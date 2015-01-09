@@ -1,0 +1,28 @@
+array(1) {
+  ["Customer"]=>
+  array(6) {
+    ["name"]=>
+    string(8) "fhggghgg"
+    ["email"]=>
+    string(8) "hh@g.com"
+    ["mobile_number"]=>
+    string(10) "5654398426"
+    ["deviceId"]=>
+    string(16) "26c8a4fe0964e677"
+    ["device_token"]=>
+    string(20) "kkkdi7999900hhhhhhhh"
+    ["image"]=>
+    array(5) {
+      ["name"]=>
+      string(17) "1418825732891.png"
+      ["type"]=>
+      string(24) "application/octet-stream"
+      ["tmp_name"]=>
+      string(14) "/tmp/phps1f9hW"
+      ["error"]=>
+      int(0)
+      ["size"]=>
+      int(35090)
+    }
+  }
+}

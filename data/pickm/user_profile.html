@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pick Meals</title>
+
+<!-- Bootstrap -->
+
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="css/style.css" rel="stylesheet">
+<link href="fonts/roboto.css" rel="stylesheet">
+
+<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+
+<!--[if lt IE 9]>
+
+          <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+
+          <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+
+        <![endif]-->
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/knockout/3.2.0/knockout-min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/knockout.mapping/2.4.1/knockout.mapping.js"></script>
+
+<!--        <script src="js/jquery.js"></script>-->
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+
+<script src="js/bootstrap.min.js"></script>
+</head>
+
+<body>
+<div class="main_container"> 
+  
+  <!--*********************************header***********************************-->
+  
+  <header>
+    <div class="header_top">
+      <div class="container">
+        <div class="home_sign_in"> <span> <a href="">SIGN IN</a> <a href="">SIGN UP</a> </span> </div>
+      </div>
+    </div>
+    <div class="header_nav">
+      <nav role="navigation" class="navbar navbar-inverse">
+        <div class="container">
+          <div class="logo"> <img src="img/logo.png"> </div>
+          <div class="navbar-header">
+            <div aria-controls="navbar" aria-expanded="false" data-target="#navbar" data-toggle="collapse" class="navbar-toggle collapsed"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </div>
+            <a href="#" class="navbar-brand"></a> </div>
+          <div class="navbar-collapse collapse" id="navbar">
+            <ul class="nav navbar-nav navbar-">
+              <li><a href="#">HOME</a></li>
+              <li><a href="#">ABOUT US</a></li>
+              <li><a href="#">ITEMS</a></li>
+              <li><a href="#">CONTACT US</a></li>
+            </ul>
+            <form class="navbar-form navbar-right">
+              <input type="text" placeholder="Search..." class="form-control">
+            </form>
+          </div>
+        </div>
+      </nav>
+    </div>
+  </header>
+  
+  <!--******************************************content********************************************-->
+  
+  <div class="container">
+    <div class="user_profile">
+      <div class="col-sm-3">
+        <div class="user_profile_left">
+          <div class="user_profile_img"><img src="img/chef_profile.jpg"></div>
+          <div class="user_profile_about">
+            <h1>Rick Martin</h1>
+            <ul>
+              <li><span class="user_profile_home"><img src="img/home.png"></span>
+                <p>Melbourne, Australia </p>
+              </li>
+              <li><span class="user_profile_phone"><img src="img/phone.png"></span>
+                <p>+03 7010 5678</p>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-9">
+        <div class="user_list_inn">
+          <div class="user_list_title">
+            <h2>Order history</h2>
+          </div>
+          <div class="user_list_main">
+            <div class="user_list">
+              <div class="user_list_title">
+                <h3>FULL Dal Fried (Yellow)</h3>
+              </div>
+              <div class="col-sm-2">
+                <div class="row">
+                  <div class="user_list_left"><img src="img/product.png"> </div>
+                </div>
+              </div>
+              <div class="col-sm-5">
+                <div class="row">
+                  <div class="user_list_right">
+                    <ul>
+                      <li>
+                        <p>By Ashok Mittal</p>
+                      </li>
+                      <li>
+                        <h2><span>Order date:</span>17/12/2014</h4>
+                      </li>
+                      <li>
+                        <h4><span>Location:</span>Street Abc, IT park, Chandigarh</h4>
+                      </li>
+                      <li>
+                        <h3><span>Price:</span>Rs <!-- ko text: Combination.price -->50<!-- /ko --></h3>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-3">
+              	<div class="chef_food_rating">
+                    	<div class="btn-group">
+                            <button id="feedback_btn">
+                             Leave Feedback
+                            </button>
+                            <div id="feedback_block">
+                            <span class="feedback_block_comment">
+                             <textarea placeholder="Comment..."></textarea>
+                             </span>
+                             <span class="feedback_block_rating">
+                             	<img src="img/rating.png">
+                             </span>
+                              <span class="feedback_block_submit">
+                             	<button>Submit</button>
+                             </span>
+                            </div>
+      					</div>
+                      </div>  
+              </div>
+            </div>
+            <div class="user_list">
+              <div class="user_list_title">
+                <h3>FULL Dal Fried (Yellow)</h3>
+              </div>
+              <div class="col-sm-2">
+                <div class="row">
+                  <div class="user_list_left"> <img src="img/product.png"> </div>
+                </div>
+              </div>
+              <div class="col-sm-5">
+                <div class="row">
+                  <div class="user_list_right">
+                    <ul>
+                      <li>
+                        <p>By Ashok Mittal</p>
+                      </li>
+                      <li>
+                        <h2><span>Order date:</span>17/12/2014</h4>
+                      </li>
+                      <li>
+                        <h4><span>Location:</span>Street Abc, IT park, Chandigarh</h4>
+                      </li>
+                      <li>
+                        <h3><span>Price:</span>Rs <!-- ko text: Combination.price -->50<!-- /ko --></h3>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="user_list">
+              <div class="user_list_title">
+                <h3>FULL Dal Fried (Yellow)</h3>
+              </div>
+              <div class="col-sm-2">
+                <div class="row">
+                  <div class="user_list_left"> <img src="img/product.png"> </div>
+                </div>
+              </div>
+              <div class="col-sm-5">
+                <div class="row">
+                  <div class="user_list_right">
+                    <ul>
+                      <li>
+                        <p>By Ashok Mittal</p>
+                      </li>
+                      <li>
+                        <h2><span>Order date:</span>17/12/2014</h4>
+                      </li>
+                      <li>
+                        <h4><span>Location:</span>Street Abc, IT park, Chandigarh</h4>
+                      </li>
+                      <li>
+                        <h3><span>Price:</span>Rs <!-- ko text: Combination.price -->50<!-- /ko --></h3>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <footer>
+    <div class="container">
+      <div class="footer_in">
+        <p>Copyright © 2013 by Company Name</p>
+      </div>
+    </div>
+  </footer>
+  
+  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) --> 
+  
+</div>
+<script>
+//function val(id) {
+//	
+//  var x='#feedback_btn'+id;
+//  
+// $(x).ready(function(){
+//     $("#feedback_block").slideToggle();
+//   
+//  });
+// 
+//}
+$(document).ready(function(){
+	
+  $("#feedback_btn").click(function(){
+    $("#feedback_block").slideToggle();
+  });
+});
+</script>
+</body>
+</html>
