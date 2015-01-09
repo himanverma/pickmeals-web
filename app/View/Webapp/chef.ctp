@@ -11,18 +11,12 @@
                     <li><span class="chef_profile_home"><img src="/img/home.png"></span>
                         <p><?php echo $vendor['Vendor']['address']; ?></p>
                     </li>
-                    <li><span class="chef_profile_phone"><img src="/img/phone.png"></span>
-                        <p><?php echo $vendor['Vendor']['email']; ?></p>
-                    </li>
-                    <li><span class="chef_profile_phone"><img src="/img/phone.png"></span>
+                    
+                    <li>
+                        <b class="chef_profile_phone">Business Name:</b><br />
                         <p><?php echo $vendor['Vendor']['company_name']; ?></p>
                     </li>
-                    <li><span class="chef_profile_phone"><img src="/img/phone.png"></span>
-                        <p><?php echo $vendor['Vendor']['mobile_number']; ?></p>
-                    </li>
-                    <li><span class="chef_profile_phone"><img src="/img/phone.png"></span>
-                        <p><?php echo $vendor['Vendor']['phone_number']; ?></p>
-                    </li>
+                    
                 </ul>
             </div>
         </div>
@@ -278,7 +272,7 @@
         
         $('.rateit').rateit();
         $('#vendor-ratings-bl').rateit('value', <?php echo $gRate == "" ? 0 : $gRate; ?>);
-        $('#vendor-ratings').html(<?php echo $gRate == "" ? 0 : $gRate; ?>);
+        $('#vendor-ratings').html(<?php echo $rvCount; //echo $gRate == "" ? 0 : $gRate; ?>);
         
     });
 </script>

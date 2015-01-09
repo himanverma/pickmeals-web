@@ -348,6 +348,12 @@ class OrdersController extends AppController {
                 'Order.sku' => $orderId
             ));
         }
+        $orders = $this->Order->find("all",array(
+            "conditions"=>array(
+                "Order.sku" => $orderId
+            )
+        ));
+        $this->set("orders",$orders);
     }
 
     public function payment_failure($orderId = null) {
@@ -361,6 +367,12 @@ class OrdersController extends AppController {
                 'Order.sku' => $orderId
             ));
         }
+        $orders = $this->Order->find("all",array(
+            "conditions"=>array(
+                "Order.sku" => $orderId
+            )
+        ));
+        $this->set("orders",$orders);
     }
     
     

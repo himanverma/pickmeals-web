@@ -189,7 +189,15 @@ class WebappController extends AppController {
                 "Combination.Review"
             )
         ));
+        $this->loadModel('Review');
+        $rvCount = $this->Review->find("count",array(
+            "conditions" => array(
+                "Review.vendor_id" => $vendor['Vendor']['id']
+            )
+        ));
+        
         $this->set("vendor", $vendor);
+        $this->set("rvCount", $rvCount);
 //        debug($vendor);
 //        exit;
     }
