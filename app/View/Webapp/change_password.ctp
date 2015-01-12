@@ -1,3 +1,5 @@
+
+<div class="change-password-main">
 <div>
     <div style="height: 100px;"></div>
     <div  style="width:300px; margin: 0 auto;">
@@ -21,13 +23,15 @@
                     </div>
                 </div>
                 <div class="panel-footer">
-                    <button class="btn btn-default">Update Password</button>
+                    <div class="center-block">
+                        <button class="change-password">Update Password</button>
+                    </div>
                 </div>
             </div>
         </form>
     </div>
     <div style="height: 100px;"></div>
 </div>
-
+</div>
 <style type="text/css">
 </style>    

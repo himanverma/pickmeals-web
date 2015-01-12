@@ -16,7 +16,7 @@
                 'admin/bootstrap-wysihtml5/bootstrap3-wysihtml5.min'
             ));
             echo $this->Html->script(array(
-                    'http://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js',
+                    '//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js',
                     //'app/swt'
                 ));
         ?>
@@ -66,10 +66,7 @@
             }
         </style>
         <script type="text/javascript">
-            for(i in swt){
-                (new Image()).src = "/swatch/"+swt[i].file;
-                (new Image()).src = "/tom/"+i+".png";
-              }
+            
         </script>
     </body>
 </html>

@@ -7,7 +7,7 @@ body{
 }
 .main_container{
     width:100%;
-    float:left;
+    float:left;  overflow: hidden;
 }
 header{
     width:100%;
@@ -41,8 +41,10 @@ header{
     padding-right:0;
 }
 .header_nav{
-    width:100%;
-    float:left;
+  float: left;
+    position: relative;
+    width: 100%;
+    z-index: 9999;
 }
 .navbar{
     background:#e3e3e3;
@@ -143,8 +145,9 @@ header{
     font-size:19px;
     font-family: 'robotoregular';
     color:#fff;
-    background:rgba(255, 255, 255, 0.4);
+    background:rgba(230, 230, 230, 0.9);
     text-align:center;
+    color:#666;
 }
 .home_content_left ul{
     width:100%;
@@ -157,8 +160,9 @@ header{
     width:100%;
     float:left;
     padding:10px;
-    background:#ffffff;
+    background:#f5f5f5;
     border:1px solid #fff;
+    margin-bottom: 5px;
 }
 .home_content_left ul li:hover{
     border:1px solid #ccc;
@@ -205,10 +209,11 @@ header{
 .list_box{
     width:100%;
     float:left;
-    padding:12px;
-    background:#fff;
+    padding:7px;
+    background:#f5f5f5;
     border:1px solid #fff;
     position: relative;
+    margin-bottom: 7px;
 }
 .list_box:hover{
     border:1px solid #ccc;
@@ -218,10 +223,11 @@ header{
     padding: 0 15% 0 0;
     float:left;
 }
-.list_box_left img{
-    width:100%;
-    float:left;
-    border:3px solid #d9d9d9;
+.list_box_left img {
+ border: 3px solid #d9d9d9;
+    float: left;
+    height: 105px; margin: 0 0 0 17px;
+    width: 125px;
 }
 .list_box_title{
     width:100%;
@@ -230,7 +236,7 @@ header{
 .list_box_title h3{
     width:100%;
     float:left;
-    margin:0;
+   margin: 0 0 0 16px;
     padding: 0 0 7px;
     font-size:20px;
     font-family: 'robotoregular';
@@ -244,7 +250,7 @@ header{
     width:100%;
     float:left;
     list-style:none;
-    padding:0 15px;
+    padding:0 0;
     margin:0;
 }
 .list_box_right ul li{
@@ -479,12 +485,14 @@ footer{
     padding-bottom: 15px;
     border: 1px solid #ccc;
     margin-top: 15px;
+    
 }
 .sidebar_order_list {
-    border-bottom: 1px solid #ccc;
+    background: none repeat scroll 0 0 #f5f5f5;
     float: left;
     padding: 7px 0;
     width: 100%;
+    margin-bottom: 5px;
 }
 .sidebar_order_list p {
     font-size:13px;
@@ -512,7 +520,7 @@ footer{
     float: left;
     width: 100%;
     padding:0 15px;
-    margin-top: 20px;
+    margin-top: 0px;
     background: #fff;
 }
 .order_total ul {
@@ -520,6 +528,7 @@ footer{
     width: 100%;
     list-style:none;
     padding:0;
+    margin: 0;
 }
 .order_total ul li {
     float: left;
@@ -541,6 +550,7 @@ footer{
     width:100%;
     float:left;
     padding:0 15px;
+    margin-top: 15px;
 }
 .order_checkout button{
     border: none;
@@ -592,12 +602,14 @@ footer{
 
 /*--------------------------------------------------place_order--------------------------------------------*/
 .placeorder{
-    width:100%;
-    float:left;
-	margin-top:16px;
+   background: none repeat scroll 0 0 #f8f8f8;
+    border: 1px solid #ccc;
+    float: left;
+    margin-top: 16px;
+    width: 100%;
 }
 .placeorder_title{
-    width:100%;
+    width:100%;margin:62px 0 0 0;
     float:left;
 }
 .placeorder_title h1{
@@ -641,15 +653,16 @@ footer{
     float:left;
     padding:0;
     margin:0;
+    color: #999;
 }
 .placeorder_right ul li label{
-    width:100%;
-    float:left;
-    font-size:14px;
-    font-weight:normal;
+    color: #333;
+    float: left;
     font-family: "robotoregular";
-    color:#333;
+    font-size: 16px;
+    font-weight: normal;
     margin: 10px 0 0;
+    width: 100%;
 }
 .placeorder_right ul li input[type="text"]{
     width:60%;
@@ -664,6 +677,7 @@ footer{
     border:1px solid #ccc;
     resize:none;
 }
+.frmct{ padding: 2%;}
 .payment_option{
     width:100%;
     float:left;
@@ -785,7 +799,7 @@ footer{
     margin: 15px 0 30px 0;
 }
 .payment_checkout1_button {
-    background: url("../img/double_arrow.png") no-repeat scroll right 34px top 16px / 30px auto #ea5058;
+    background: url("../img/double_arrow.png") no-repeat scroll right 34px top 20px / 23px auto #ea5058;
     border: medium none;
     border-radius: 4px;
     color: #fff;
@@ -796,7 +810,7 @@ footer{
     font-weight: bold;
     line-height: 43px;
     margin-bottom: 0;
-    padding: 5px 5px 5px 40px;
+    padding: 5px 5px 5px 34px;
     white-space: nowrap;
     width: 100%;
 	text-align:left;
@@ -1060,7 +1074,7 @@ footer{
 .video_wrap{
     position: absolute; 
     z-index: 2; background: rgba(255,255,255,0.2);
-    width: 100%;
+    width: 100%;   top: 0;
 }
 .search_bar_main input{
     border-radius:0px !important;
@@ -1113,6 +1127,276 @@ nav li { background: #f8f8f8; }
 .navbar.navbar-default {
     background: none repeat scroll 0 0 rgba(0, 0, 0, 0);
 }
+
+.checkout-dialog
+{
+    width: 80%;
+    margin: 20px auto 0 auto;
+}
+.checkout-head{
+    width: 100%;
+    float: left;
+}
+.modal-header {
+    padding: 13px 15px 39px !important;
+     background: none repeat scroll 0 0 #eee;
+    border-radius: 4px;
+}
+.checkout-oder-confirm{
+    width: auto;
+    float: left;
+    
+    font-size: 18px;
+    color: #ea5058;
+}
+.checkout-oder-id{
+    width: auto;
+    float: right;
+    font-size: 18px;
+    color: #ea5058;
+    
+}
+.checkout-body h4{
+    font-size: 14px;
+    text-align: center;
+}
+.checkout-body h6{
+    font-size: 14px;
+}
+.checkout-shiping{
+    float: left;
+    width: 100%;
+    
+}
+.checkout-shiping h5{
+    font-size: 14px;
+    padding: 10px 0;
+    width: 100%;
+    float: left;
+    border-bottom:1px solid #e5e5e5;
+    padding: 2%;
+    background: none repeat scroll 0 0 #ea5058;
+    color:#fff;
+    margin: 0;
+}
+.checkout-edit{
+    background: #666;
+    border: medium none;
+    border-radius: 2px;
+    color: #fff;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.42857;
+    margin-bottom: 0;
+    padding: 6px 12px;
+    text-align: center;
+    vertical-align: middle;
+    white-space: nowrap;
+}
+.checkout-confirm{
+    background: none repeat scroll 0 0 #ea5058;
+    border: medium none;
+    border-radius: 2px;
+    color: #fff;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.42857;
+    margin-bottom: 0;
+    padding: 6px 12px;
+    text-align: center;
+    vertical-align: middle;
+    white-space: nowrap;
+}
+.checkout-body #cart-sec-2 {
+    max-height: 300px;
+    overflow-y: scroll;
+    margin-bottom: 10px;
+    
+}
+#srch-pd{padding-left: 10px;
+    padding-right: 10px;}
+
+#address-sec-2{border: 1px solid #ccc;}
+
+.modal-footer.checkout-footer {
+    padding-top: 0;
+}
+.home_content_right_title h3 {
+    background: none repeat scroll 0 0 #e5e5e5;
+    font-size: 17px;
+    font-weight: normal;
+    margin: 0;
+    color: #666;
+    padding: 8px 0;
+    font-family: "robotoregular";
+    text-align: center;
+    width: 100%;
+}
+.checkout-terms{
+   width: 100%;
+   float: left;
+    padding: 2%;
+}
+.checkout-terms input[type="checkbox"]{
+   width: auto;
+   float: left;
+   font-family: "robotoregular";
+   font-size:13px;
+   margin: 0;
+   margin-right: 4px;
+}
+.checkout-terms h2{
+   width: auto;
+   float: left;
+   font-family: "robotoregular";
+   font-size:13px;
+   margin: 0;
+}
+
+.sucess-order{
+    width: 100%;
+    float: left;
+}
+.sucess-order h4{
+    font-size: 14px;
+    text-align: center;
+}
+.sucess-order{
+    float: left;
+    width: 100%;
+}
+.sucess-order h5{
+    font-size: 14px;
+    padding: 10px 0;
+    width: 100%;
+    float: left;
+    border-bottom: 1px solid #e5e5e5;
+}
+.padding-none{
+    padding: 0;
+}
+.home-video{
+     float: left;
+     width: 100%; 
+     height: auto; 
+     overflow: hidden;
+}
+.chef_profile {
+    margin: 100px 0;
+}
+.chef-revies-comment{
+   width: 100%;
+   float: left;
+}
+.chef-revies-comment img{width: 100%;}
+.chef-revies-comment h6{float: right; width: auto; margin: 0;}
+.chef-revies-comment .well{padding: 5px !important;}
+
+.change-password{background: none repeat scroll 0 0 #ea5058;
+    border: medium none;
+    border-radius: 2px;
+    color: #fff;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 13px;
+    margin-bottom: 0;
+    padding: 9px 20px;
+    text-align: center;
+    vertical-align: middle;
+    white-space: nowrap;}
+.change-password-main .panel-footer .center-block{width: 151px;}
+
+.change-password-main label{
+    color: #333;
+    float: left;
+    font-family: "robotoregular";
+    font-size: 16px;
+    font-weight: normal;
+    margin: 10px 0 0;
+    width: 100%;
+}
+.change-password-main input[type="text"]{
+    border: 1px solid #ccc;
+    height: 34px;
+}
+
+.change-password-main h3 {
+    background: none repeat scroll 0 0 #e3e3e3;
+    color: #666;
+    float: left;
+    font-family: "robotoregular";
+    font-size: 17px;
+    margin: 0;
+    padding: 8px 15px;
+    width: 100%;
+}
+.change-password-main .panel-heading{padding: 0;}
+
+
+.forgot-password{background: none repeat scroll 0 0 #ea5058;
+    border: medium none;
+    border-radius: 2px;
+    color: #fff;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 13px;
+    margin-bottom: 0;
+    padding: 9px 20px;
+    text-align: center;
+    vertical-align: middle;
+    white-space: nowrap;}
+.forgot-password-main .center-block{width: 169px;}
+
+.forgot-password-main label{
+    color: #333;
+    float: left;
+    font-family: "robotoregular";
+    font-size: 16px;
+    font-weight: normal;
+    margin: 10px 0 0;
+    width: 100%;
+}
+.forgot-password-main input[type="text"]{
+    border: 1px solid #ccc;
+    height: 34px;
+}
+
+.forgot-password-main h3 {
+    background: none repeat scroll 0 0 #e3e3e3;
+    color: #666;
+    float: left;
+    font-family: "robotoregular";
+    font-size: 17px;
+    margin: 0;
+    padding: 8px 15px;
+    width: 100%;
+}
+.forgot-password-main .panel-heading{padding: 0;}
+.checkout-list-main {
+    border-bottom: 1px solid #e5e5e5;
+    float: left;
+    padding: 5px 0;
+    width: 100%;
+}
+.checkout-title {
+    border-bottom: 1px solid #e5e5e5;
+    float: left;
+    width: 100%;
+}
+.checkout-total {
+    background: none repeat scroll 0 0 #eee;
+    float: left;
+    width: 100%;
+}
+
 /*===================================
 extra css========================
 */
@@ -1123,7 +1407,7 @@ extra css========================
 	width:100%;
 	float:left;
 	min-height:600px;
-	margin: 20px 0;
+	margin: 90px 0;
 	}
 .chef_profile_left {
     float: left;
@@ -1415,7 +1699,7 @@ extra css========================
     resize: none;
     width: 100%;
 	}
-	
+
 /*---------------------------------------------chef_profile end-----------------------------------------------*/
 
 /*---------------------------------------------user_profile-----------------------------------------------*/
@@ -1424,7 +1708,7 @@ extra css========================
 	width:100%;
 	float:left;
 	min-height:600px;
-	margin: 20px 0;
+	margin: 90px 0;
 	}
 .user_profile_left {
     float: left;
@@ -1769,6 +2053,8 @@ extra css========================
     max-height: 260px;
     overflow-y: scroll;
     width: 100%;
+    
+    margin-bottom: 5px;
 }
 .top-txt a {
     color: #666 !important;
@@ -2477,4 +2763,31 @@ footer {
     vertical-align: middle;
     white-space: nowrap;
     width: 300px;
+}.user_list_inn {
+    float: left;
+    width: 100%;
+}#i-cont-load p {
+    float: left;
+    width: 100%;
+}#i-cont-load > div {
+    float: left;
+}
+
+.chef_list_price{
+    float: left;
+    width: 100%;
+}
+
+.top-txt {
+    float: right !important;
+    padding: 27px;
+}
+
+#cart-sec {
+    float: right !important;
+}
+
+
+.rateit {
+    width: 89px !important;
 }

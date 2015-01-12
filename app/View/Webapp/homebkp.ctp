@@ -255,18 +255,18 @@
                                     </div>
                                     <div class="sidebar_order_list_main" data-bind="foreach:items">
                                         <div class="sidebar_order_list" >
-                                            <div class="col-sm-2"><p class="order_list_sr" data-bind="text:qty">1</p></div>
-                                            <div class="col-sm-6">
+                                            <div class="col-sm-2 sidebar_order_1"><p class="order_list_sr" data-bind="text:qty">1</p></div>
+                                            <div class="col-sm-6 sidebar_order_2">
                                                 <div class="row">
                                                     <p class="order_list_product" data-bind="text:data.Combination.display_name">Manchow Soup Veg.</p>
                                                 </div>
                                             </div>
-                                            <div class="col-sm-4">
+                                            <div class="col-sm-4 sidebar_order_3">
                                                 <p class="order_list_price">Rs.
                                                     <!-- ko text: data.Combination.price * qty() --><!-- /ko -->
                                                 </p>
                                             </div>
-                                            <div class="col-sm-12">
+                                            <div class="col-sm-12 sidebar_order_4">
                                                 <div class="order_list_add">
                                                     <button class="badge1" data-bind="click: $root.increase">+</button>
                                                     <button class="badge1" data-bind="click: $root.decrease">-</button>

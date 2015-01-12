@@ -1,3 +1,5 @@
+
+<div class="forgot-password-main">
 <div>
     <div style="height: 100px;"></div>
     <div  style="width:300px; margin: 0 auto;">
@@ -13,12 +15,15 @@
                     </div>
                 </div>
                 <div class="panel-footer">
-                    <button class="btn btn-default">Send New Password</button>
+                    <div class="center-block">
+                    <button class="forgot-password">Send New Password</button>
+                    </div>
                 </div>
             </div>
         </form>
     </div>
     <div style="height: 100px;"></div>
+</div>
 </div>
 
 <style type="text/css">

@@ -56,8 +56,8 @@
     </div>
 </div>
 <?php echo $this->Form->end(__('Submit')); ?>
-<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/knockout/3.2.0/knockout-min.js"></script>
-<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/knockout.mapping/2.4.1/knockout.mapping.js"></script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/knockout/3.2.0/knockout-min.js"></script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/knockout.mapping/2.4.1/knockout.mapping.js"></script>
 <script type="text/javascript">
     var CombinationsVM = function() {
         var me = this;

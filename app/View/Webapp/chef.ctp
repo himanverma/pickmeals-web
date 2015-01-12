@@ -1,5 +1,5 @@
 <div class="chef_profile">
-    <div class="col-sm-3">
+    <div class="col-xs-12 col-sm-4 col-md-3">
         <div class="chef_profile_left">
             <div class="chef_profile_img"><img src="<?php echo $vendor['Vendor']['photo'] != null ? $vendor['Vendor']['photo'] : "/img/chef_profile.jpg"; ?>"></div>
             <div class="chef_profile_about">
@@ -21,7 +21,7 @@
             </div>
         </div>
     </div>
-    <div class="col-sm-6" id="combination-sec">
+    <div class="col-sm-8 col-md-6" id="combination-sec">
         <div class="chef_list_inn">
             <div class="chef_list_title">
                 <h2>Meal Combinations</h2>
@@ -50,18 +50,18 @@
                         $tRate = $tRate / count($combo['Review']);
                         ?>
                     </div>
-                    <div class="chef_list">
-                        <div class="chef_list_title">
+                    <div class="list_box">
+                        <div class="list_box_title">
                             <h3><?php echo $combo['display_name']; ?></h3>
                         </div>
-                        <div class="col-sm-2">
-                            <div class="row">
-                                <div class="chef_list_left"> <img src="<?php echo $combo['image'] != NULL ? $combo['image'] : "/img/product.png"; ?>"> </div>
+                        <div class="col-xs-4 col-sm-4 padding-none">
+                            <div class="padding-none">
+                                <div class="list_box_left"> <img src="<?php echo $combo['image'] != NULL ? $combo['image'] : "/img/product.png"; ?>"> </div>
                             </div>
                         </div>
-                        <div class="col-sm-8">
+                        <div class="col-xs-6 col-sm-6 ">
                             <div class="row">
-                                <div class="chef_list_right">
+                                <div class="list_box_right">
                                     <ul>
                                         <li>
                                             <p><?php echo $vendor['Vendor']['name']; ?></p>
@@ -80,32 +80,33 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-sm-2">
-                            <div class="chef_list_button">
+                        <div class="col-xs-2 col-sm-2">
+                            <div class="row">
+<div class="food_qty_button">
                                 <button data-combo='<?php echo json_encode($combo); ?>' data-bind="click:addToCart">Order</button>
-                            </div>
+                            </div> </div>
                         </div>
                         <div style="height: 10px" class="clr-div"></div>
-                        <div class="col-lg-12">
-                            <div class="chef_list_price">
-                                <div class="row">
-                                    <div class="col-lg-4">
+                        <div class="col-xs-12 padding-none-1">
+                            <div class="box_price">
+                                <div class="padding-none">
+                                    <div class="col-xs-4 col-sm-4 padding-none-2">
                                         <div class="row">
-                                            <div class="chef_food_qty"> 
+                                            <div class="food_qty"> 
                                                 <span><input data-bind="checked: essentials " type="radio" value="4 Roti + Half Rice"></span>
                                                 <label>4 Roti + Half Rice</label>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-lg-4">
-                                        <div class="chef_food_qty">
+                                    <div class="col-xs-4 col-sm-4 padding-none-2"><div class="row">
+                                        <div class="food_qty">
                                             <input data-bind="checked: essentials " type="radio" value="6 Roti">
                                             <label>6 Roti</label>
                                         </div>
-                                    </div>
-                                    <div class="col-lg-4">
+                                    </div> </div>
+                                    <div class="col-xs-4 col-sm-4 padding-none-2">
                                         <div class="row">
-                                            <div class="chef_food_qty">
+                                            <div class="food_qty">
                                                 <input data-bind="checked: essentials" type="radio" value="2 Roti + Full Rice">
                                                 <label>2 Roti + Full Rice</label>
                                             </div>
@@ -119,8 +120,8 @@
             </div>
         </div>
     </div>
-    <div class="col-sm-3" id="cart-sec">
-        <div class="row">
+    <div class="col-sm-8 col-md-3" id="cart-sec">
+       
             <div class="home_content_right">
 
                 <div id="sidebar">
@@ -130,18 +131,18 @@
                         </div>
                         <div class="sidebar_order_list_main" data-bind="foreach:items">
                             <div class="sidebar_order_list" >
-                                <div class="col-sm-2"><p class="order_list_sr" data-bind="text:qty">1</p></div>
-                                <div class="col-sm-6">
+                                <div class="col-sm-2 sidebar_order_1"><p class="order_list_sr" data-bind="text:qty">1</p></div>
+                                <div class="col-sm-6 sidebar_order_2">
                                     <div class="row">
                                         <p class="order_list_product" data-bind="text:data.Combination.display_name">Manchow Soup Veg.</p>
                                     </div>
                                 </div>
-                                <div class="col-sm-4">
+                                <div class="col-sm-4 sidebar_order_3">
                                     <p class="order_list_price pull-right" style="font-weight: bold;">Rs.
                                         <!-- ko text: data.Combination.price * qty() --><!-- /ko -->
                                     </p>
                                 </div>
-                                <div class="col-sm-12">
+                                <div class="col-sm-12 sidebar_order_4">
                                     <div class="order_list_add">
                                         <button class="badge1" data-bind="click: $root.increase">+</button>
                                         <button class="badge1" data-bind="click: $root.decrease">-</button>
@@ -175,7 +176,7 @@
 
                     </div>
                 </div>
-            </div>
+           
         </div>
     </div>
 

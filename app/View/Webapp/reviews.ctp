@@ -1,5 +1,5 @@
 <div class="chef_profile">
-    <div class="col-sm-3">
+    <div class="col-xs-12 col-sm-4 col-md-3">
         <div class="chef_profile_left">
             <div class="chef_profile_img"><img src="<?php echo $combination['Vendor']['photo'] != null ? $combination['Vendor']['photo'] : "/img/chef_profile.jpg"; ?>"></div>
             <div class="chef_profile_about">
@@ -27,7 +27,7 @@
             </div>
         </div>
     </div>
-    <div class="col-sm-9" id="combination-sec">
+    <div class="col-xs-12 col-sm-8 col-md-9" id="combination-sec">
         <div class="chef_list_inn">
             <div class="chef_list_title">
                 <h2>Combinations Detail</h2>
@@ -38,12 +38,12 @@
                     <div class="chef_list_title">
                         <h3><?php echo $combination['Combination']['display_name']; ?></h3>
                     </div>
-                    <div class="col-sm-2">
+                    <div class="col-xs-4 col-sm-4 col-md-2">
                         <div class="row">
                             <div class="chef_list_left"> <img src="<?php echo $combination['Combination']['image'] != NULL ? $combination['Combination']['image'] : "/img/product.png"; ?>"> </div>
                         </div>
                     </div>
-                    <div class="col-sm-8">
+                    <div class="col-xs-8 col-sm-8">
                         <div class="row">
                             <div class="chef_list_right">
                                 <ul>
@@ -52,7 +52,7 @@
                                     </li>
                                     <li>
 <!--                                        <span class="rateit" data-rateit-value="<?php echo $tRate; ?>" data-rateit-ispreset="true" data-rateit-readonly="true"></span>-->
-                                        (<?php echo $this->Paginator->counter(array('format' => __('{:count}'))); ?>)
+                                        <p>(<?php echo $this->Paginator->counter(array('format' => __('{:count}'))); ?>)</p>
                                     </li>
                                     <li>
                                         <h4><span>Delivery:</span>Free/45 mins</h4>
@@ -64,25 +64,21 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-sm-2">
-
-                    </div>
-                    <div style="height: 150px" class="clr-div"></div>
                 </div>
-                <div class="row">
+                <div class="chef-revies-comment">
                     <?php foreach ($reviews as $rv) { ?>
                         <div class="well" >
                             <div class="row">
-                                <div class="col-sm-3">
+                                <div class="col-xs-3 col-sm-3 col-md-2">
                                     <img src="<?php echo $rv['Customer']['image']; ?>" />
                                 </div>
-                                <div class="col-sm-9">
+                                <div class="col-xs-9 col-sm-9 col-md-10">
                                     <span class="rateit" id="vendor-ratings-bl" data-rateit-value="<?php echo $rv['Review']['ratings']; ?>" data-rateit-ispreset="true" data-rateit-readonly="true"></span><br>
-                                    <b>by <?php echo $rv['Customer']['name']; ?></b><br>
+                                    <p><b>by <?php echo $rv['Customer']['name']; ?></b><p>
                                     <p>
                                         <?php echo $rv['Review']['review']; ?>
                                     </p>
-                                    <sub class="pull-right"><?php echo $rv['Review']['created']; ?></sub>
+                                    <h6><?php echo $rv['Review']['created']; ?></h6>
                                 </div>
                             </div>
                         </div>

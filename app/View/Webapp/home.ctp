@@ -1,7 +1,5 @@
 <!--******************************************banner********************************************-->
-<div style="left: 0; top:0px;
-     position: absolute;
-     width: 100%; z-index: 1; height: 611px; overflow: hidden;">
+<div class="home-video">
     <video id="pretzel-video" class="video-playing" poster="/story/1.jpg" autoplay="true" style="width: 100%; ">
         <source type="video/mp4" src="/story/NA.mp4"></source>
         <source type="video/webm" src="/story/NA.webm"></source>
@@ -130,7 +128,7 @@
     <div class="container">
         <div class="home_content_in">
 
-            <nav class="navbar navbar-default" id="nav1" role="navigation" style="z-index: 2;">
+            <nav class="navbar navbar-default" id="nav1" role="navigation">
 
                 <div class="collapse navbar-collapse" id="navbar-collapse-main">
                     <div class="row">
@@ -138,7 +136,7 @@
                         <div class="col-sm-3"><div class="row">
                             </div>
                         </div>
-                            <div class="col-sm-6">
+                            <div class="col-sm-6" id="srch-pd">
                                 <div class="input-group">
 
                                     <input type="text" data-bind="value:SearchMeal" placeholder="Search..." class="form-control search_input">
@@ -156,7 +154,7 @@
                             <div class="row">
                                 <div class="home_content_left">
                                     <div class="home_content_left_title">
-                                        <h2>MENU</h2>
+                                        <h2>CATEGORIES</h2>
                                     </div>
                                 </div>
                             </div>
@@ -164,7 +162,7 @@
                         <div class="col-sm-6 hidden-xs">
                             <div class="home_content_left">
                                 <div class="home_content_left_title">
-                                    <h2>LIST</h2>
+                                    <h2>MENU</h2>
                                 </div>
                             </div>
                         </div>
@@ -215,14 +213,14 @@
                                 <div class="list_box_title">
                                     <h3 data-bind="text: Combination.display_name">Rajma+Paneer+Salad</h3>
                                 </div>
-                                <div class="col-xs-4">
-                                    <div class="row">
+                                <div class="col-xs-4 col-sm-4 padding-none">
+                                    <div class="padding-none">
                                         <div class="list_box_left">
                                             <img src="img/product.png">
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-xs-6">
+                                <div class="col-xs-6 col-sm-6">
                                     <div class="row">                                                            
                                         <div class="list_box_right">
                                             <ul>
@@ -246,10 +244,10 @@
                                 </div>
 
                                 <div style="height: 10px" class="clr-div"></div>
-                                <div class="col-xs-12">
+                                <div class="col-xs-12 padding-none-1">
                                     <div class="box_price">
-                                        <div class="row">
-                                            <div class="col-xs-4">
+                                        <div class="padding-none">
+                                            <div class="col-xs-4 col-sm-4 padding-none-2">
                                                 <div class="row">
                                                     <div class="food_qty">
                                                         <span><input data-bind="checked:$root.essentials, attr:{'name':'ess-fw-'+Combination.id} " type="radio" value="4 Roti + Half Rice"></span>
@@ -257,13 +255,13 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-xs-3">
+                                            <div class="col-xs-4 col-sm-4 padding-none-2">
                                                 <div class="food_qty">
                                                     <input data-bind="checked:$root.essentials, attr:{'name':'ess-fw-'+Combination.id} " type="radio" value="6 Roti">
                                                     <label>6 Roti</label>
                                                 </div>
                                             </div>
-                                            <div class="col-xs-4">
+                                            <div class="col-xs-4 col-sm-4 padding-none-2">
                                                 <div class="row">
                                                     <div class="food_qty">
                                                         <input data-bind="checked:$root.essentials, attr:{'name':'ess-fw-'+Combination.id} " type="radio" value="2 Roti + Full Rice">
@@ -281,7 +279,7 @@
                 </div>
 
                 <div class="col-sm-3" id="cart-sec">
-                    <div class="row">
+                    <div class="padding-none">
                         <div class="home_content_right">
 
                             <div id="sidebar">
@@ -291,18 +289,18 @@
                                     </div>
                                     <div class="sidebar_order_list_main" data-bind="foreach:items">
                                         <div class="sidebar_order_list" >
-                                            <div class="col-sm-2"><p class="order_list_sr" data-bind="text:qty">1</p></div>
-                                            <div class="col-sm-6">
+                                            <div class="col-sm-2 sidebar_order_1"><p class="order_list_sr" data-bind="text:qty">1</p></div>
+                                            <div class="col-sm-6 sidebar_order_2">
                                                 <div class="row">
                                                     <p class="order_list_product" data-bind="text:data.Combination.display_name">Manchow Soup Veg.</p>
                                                 </div>
                                             </div>
-                                            <div class="col-sm-4">
+                                            <div class="col-sm-4 sidebar_order_3">
                                                 <p class="order_list_price pull-right" style="font-weight: bold;">Rs.
                                                     <!-- ko text: data.Combination.price * qty() --><!-- /ko -->
                                                 </p>
                                             </div>
-                                            <div class="col-sm-12">
+                                            <div class="col-sm-12 sidebar_order_4">
                                                 <div class="order_list_add">
                                                     <button class="badge1" data-bind="click: $root.increase">+</button>
                                                     <button class="badge1" data-bind="click: $root.decrease">-</button>

@@ -4,7 +4,8 @@
         <h1>Place Order</h1>
     </div>
 </div>
-<div class="col-sm-9" id="address-sec">
+<div class="col-sm-9">
+    <div id="address-sec">
 
     <div class="placeorder">
 
@@ -12,6 +13,7 @@
             <div class="placeorder_right_title">
                 <h1>Your delivery address </h1>
             </div>
+            <div class="frmct">
             <?php
             echo $this->Form->create('Address', array('url' => '/api/addresses/add', 'id' => 'addr-fw-frm'));
             ?>
@@ -37,7 +39,7 @@
                 echo $this->Form->input("customer_id", array('div' => false, 'label' => false, 'data-bind' => "value:customer_id", 'type' => 'hidden'));
                 ?>
             </ul>
-
+            </div>
         </div>
 
 
@@ -46,7 +48,7 @@
                 <h1>Choose how to pay</h1>
             </div>
 
-            <div class="col-sm-3">	
+            <div class="col-xs-6 col-sm-6 col-md-3">	
                 <div class="payment_option">
                     <input type="radio" name="payment_mode" data-bind="checked:payment_mode " value="Online Payment">
                     <label>Pay online (with PayU money)</label>
@@ -70,7 +72,7 @@
                             </div>
                         </div>-->
 
-            <div class="col-sm-3">	
+            <div class="col-xs-6 col-sm-6 col-md-3">	
                 <div class="payment_option">
                     <input type="radio" name="payment_mode" data-bind="checked:payment_mode " value="COD">
                     <label>Cash On Delivery</label>
@@ -78,7 +80,7 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-sm-offset-8 col-sm-4">
+                <div class="col-sm-offset-4 col-sm-4">
                     <div class="payment_checkout1">
                         <div style="padding-bottom: 24px;" class="bs-example">
                             <button class="payment_checkout1_button" class="btn btn-primary" data-bind="click: makeOrder" type="button">Place order</button>
@@ -92,8 +94,9 @@
     </div>
 
 </div>
-
-<div class="col-sm-3" id="cart-sec">
+</div>
+<div class="col-sm-3">
+<div id="cart-sec">
     <div class="row">
         <div class="home_content_right">
 
@@ -101,21 +104,22 @@
                 <div class="sidebar_main">
 
                     <div class="home_content_right_title">
+                        <h3>Cart</h3>
                     </div>
                     <div class="sidebar_order_list_main" data-bind="foreach:items">
                         <div class="sidebar_order_list" >
-                            <div class="col-sm-2"><p class="order_list_sr" data-bind="text:qty">1</p></div>
-                            <div class="col-sm-6">
+                            <div class="col-sm-2 sidebar_order_1"><p class="order_list_sr" data-bind="text:qty">1</p></div>
+                            <div class="col-sm-6 sidebar_order_2">
                                 <div class="row">
                                     <p class="order_list_product" data-bind="text:data.Combination.display_name">Manchow Soup Veg.</p>
                                 </div>
                             </div>
-                            <div class="col-sm-4">
+                            <div class="col-sm-4 sidebar_order_3">
                                 <p class="order_list_price pull-right" style="font-weight: bold;">Rs.
                                     <!-- ko text: data.Combination.price * qty() --><!-- /ko -->
                                 </p>
                             </div>
-                            <div class="col-sm-12">
+                            <div class="col-sm-12 sidebar_order_4">
                                 <div class="order_list_add">
                                     <button class="badge1" data-bind="click: $root.increase">+</button>
                                     <button class="badge1" data-bind="click: $root.decrease">-</button>
@@ -153,81 +157,98 @@
     </div>
 
 </div>
+</div>
 
 
 <div aria-hidden="true" aria-labelledby="exampleModalLabel" role="dialog" tabindex="-1" id="order-cnfrm-mdl" class="modal fade" style="display: none;">
-    <div class="modal-dialog">
+    <div class="checkout-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <b>Order Confirmation</b>
-                <b class="pull-right">Order ID: <span id="pk-fw-odr-id"></span></b>
+                <div class="checkout-head">
+                    <p class="checkout-oder-confirm">Order Confirmation</p>
+                    <p class="checkout-oder-id">Order ID: <span id="pk-fw-odr-id"></span></p>
 <!--              <button data-dismiss="modal" class="close" type="button"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>-->
+                </div>
             </div>
-            <div class="modal-body">
+            <div class="modal-body checkout-body">
                 <div class="row">
                     <div>
                         <div id="cart-sec-2">
-                            <div class="col-lg-12">
-                                <div class="col-xs-8">Items</div>
-                                <div class="col-xs-4">Price</div>
+                            <div class="checkout-title">
+                                <div class="col-xs-1 col-sm-2 col-md-1"><h4>Items</h4></div>
+                                <div class="col-xs-offset-8 col-xs-2 col-sm-offset-7 col-sm-3 col-md-offset-8 col-md-3"><h4><span>Price</span></h4></div>
                             </div>
                                 
                             <!-- ko foreach: items -->
-                            <div class="col-lg-12" style="margin: 2px 0; background: #eee;">
-                                <div class="col-xs-1">
-                                    <!-- ko text: $index() + 1 --><!-- /ko -->)
+                            <div class="checkout-list-main">
+                            
+                                 
+                                <div class="col-xs-1 col-sm-1">
+                                    <h4><!-- ko text: $index() + 1 --><!-- /ko -->)</h4>
                                 </div>
-                                <div class="col-xs-2">
+                                <div class="col-xs-4 col-sm-2">
                                      <img  src="/img/product.png"  onerror="javascript: this.src = '/img/panner.jpg'" width="65px" />
                                 </div>
-                                <div class="col-xs-9" id="">
+                                <div class="col-xs-6 col-sm-6 padding-none" id="">
                                     <div data-bind="text:data.Combination.display_name"></div>
                                     <div data-bind="text:data.essentials"></div>
-                                    <span class="pull-right" style="font-weight:bold">Rs.<span data-bind="text:price"></span> X <span data-bind="text:qty"></span> = Rs.<span data-bind="text:price() * qty()"></span></span>
                                 </div>
-
-                            </div>
+                                <div class="col-sm-3">
+                                    <h4><span class="" style="font-weight:bold">Rs.<span data-bind="text:price"></span> X <span data-bind="text:qty"></span> = Rs.<span data-bind="text:price() * qty()"></span></span><h4>
+                                </div>
+                              
+                            
+                        </div>
                             <!-- /ko -->
-                            <div class="col-lg-12" style="margin: 2px 0; background: #eee;">
-                                <div class="col-xs-2">
+                            <div class="checkout-total">
+                            
+                                <div class="col-xs-2 col-sm-3 col-md-3">
                                 </div>
-                                <div class="col-xs-10" id="">
-                                    <div>TOTAL:</div>
-                                    <span class="pull-right" style="font-weight:bold">Rs.<span data-bind="text: total()"></span></span>
+                                <div class="col-xs-7 col-sm-7 col-md-6" id="">
+                                    <h6><div>TOTAL:</div></h6>
                                 </div>
+                                <div class="col-xs-3 col-sm-2 col-md-3">
+                                    <h4><span class="" style="font-weight:bold">Rs.<span data-bind="text: total()"></span></span></h4>
+                                </div>
+                            
                             </div>
 
                         </div>
                     </div>
-
-                    <div style="margin: 180px 12px 0px 10px;" id="address-sec-2">
-                        <b>Shipping Address</b><hr>
+                        
+                    <div class="col-sm-12 col-md-6">
+                    <div class="checkout-shiping" id="address-sec-2">
+                        <h5><b>Shipping Address</b></h5>
                         <div class="row">
-                            <div class="col-lg-10">
-                                <p style="font-weight: bold;"> 
+                            <div class="col-lg-12">
+                                <p style="font-weight: bold; border-bottom: 1px solid #dcdcdc; padding: 2%;"> 
                                     <!-- ko text: fname --><!-- /ko --> <!-- ko text: lname --><!-- /ko -->
                                 </p>
+                                <p style="border-bottom: 1px solid #dcdcdc;padding: 2%;"> 
                                 <!-- ko text: address --><!-- /ko -->, <!-- ko text: area --><!-- /ko -->, <!-- ko text: city --><!-- /ko --> (<!-- ko text: zip --><!-- /ko -->)
-                                <p style="font-weight: bold;"> 
+                                </p>
+                                <p style="font-weight: bold;border-bottom: 1px solid #dcdcdc; color: #999;padding: 2%;"> 
                                     Mobile No: <!-- ko text: phone --><!-- /ko -->
                                 </p>
                                 <p></p>
-                                <p style="font-weight: bold;"> 
+                                <p style="font-weight: bold;border-bottom: 1px solid #dcdcdc;color: #999;padding: 2%;"> 
                                     Payment Mode: <!-- ko text: payment_mode --><!-- /ko -->
                                 </p>
-                                
+                                <span class="checkout-terms"><input type="checkbox"><h2>I have read and agree to the Terms & Conditions.</h2></span>
                             </div>
                         </div>
                     </div>
+                </div>
+                    <div class="col-sm-6"></div>
                 </div>
                 <div>
 
                 </div>
             </div>
-            <div class="modal-footer">
-                <button onclick="AddressObj.editAgain()" type="button" class="btn btn-primary">Edit</button>
+            <div class="modal-footer checkout-footer">
+                <button onclick="AddressObj.editAgain()" type="button" class="checkout-edit">Edit</button>
                 &nbsp;
-                <button onclick="AddressObj.saveAddress()" type="button" class="btn btn-success">Confirm</button>
+                <button onclick="AddressObj.saveAddress()" type="button" class="checkout-confirm">Confirm</button>
             </div>
         </div>
     </div>

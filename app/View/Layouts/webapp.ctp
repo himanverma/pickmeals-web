@@ -227,7 +227,7 @@
             padding: 27px;
         }
         .trans-btns {
-            background: rgba(230,230,230,0.6);
+            background: rgba(230,230,230,0.9);
             color: #000;
             padding: 5px 16px;
             /*            border: # 1px solid;*/

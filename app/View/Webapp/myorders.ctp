@@ -5,12 +5,12 @@
                 <h3><?php echo $order['Combination']['display_name']; ?></h3>
                 <h6>with <?php echo $order['Order']['essentials']; ?></h6>
             </div>
-            <div class="col-sm-2">
+            <div class="col-sm-2 my_accountt_p">
                 <div class="row">
                     <div class="user_list_left"><img src="<?php echo $order['Combination']['image'] == "" ? '/img/product.png' : $order['Combination']['image']; ?>" /> </div>
                 </div>
             </div>
-            <div class="col-sm-5">
+            <div class="col-sm-7 col-md-5 my_account_detaill">
                 <div class="row">
                     <div class="user_list_right">
                         <ul>
@@ -36,7 +36,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-sm-3">
+            <div class="col-sm-3 web_boxx">
                 <div class="chef_food_rating">
                     <?php 
                         $rvew = null;

@@ -7222,7 +7222,7 @@ textarea.input-group-sm>.form-control, textarea.input-group-sm>.input-group-addo
 
 .navbar-inverse .navbar-collapse, .navbar-inverse .navbar-form {
 
-	border-color: #101010
+	border-color: #101010 background: none repeat scroll 0 0 #f1f1f1;
 
 }
 
