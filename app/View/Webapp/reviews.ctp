@@ -66,16 +66,18 @@
                     </div>
                 </div>
                 <div class="chef-revies-comment">
+                    <h2>Reviews</h2>
                     <?php foreach ($reviews as $rv) { ?>
-                        <div class="well" >
+                        <div class="well review-well" >
                             <div class="row">
                                 <div class="col-xs-3 col-sm-3 col-md-2">
                                     <img src="<?php echo $rv['Customer']['image']; ?>" />
                                 </div>
                                 <div class="col-xs-9 col-sm-9 col-md-10">
-                                    <span class="rateit" id="vendor-ratings-bl" data-rateit-value="<?php echo $rv['Review']['ratings']; ?>" data-rateit-ispreset="true" data-rateit-readonly="true"></span><br>
-                                    <p><b>by <?php echo $rv['Customer']['name']; ?></b><p>
-                                    <p>
+                                    
+                                    <p class="review-name">By <?php echo $rv['Customer']['name']; ?><p>
+                                        <span class="rateit" id="vendor-ratings-bl" data-rateit-value="<?php echo $rv['Review']['ratings']; ?>" data-rateit-ispreset="true" data-rateit-readonly="true"></span><br>
+                                    <p class="review-text">
                                         <?php echo $rv['Review']['review']; ?>
                                     </p>
                                     <h6><?php echo $rv['Review']['created']; ?></h6>

@@ -7376,7 +7376,7 @@ textarea.input-group-sm>.form-control, textarea.input-group-sm>.input-group-addo
 
 	line-height: 1.42857143;
 
-	color: #428bca;
+	color: #999;
 
 	text-decoration: none;
 
@@ -9080,7 +9080,7 @@ a.list-group-item-danger.active, a.list-group-item-danger.active:hover, a.list-g
 
 	background-color: #f5f5f5;
 
-	border: 1px solid #e3e3e3;
+	/*border: 1px solid #e3e3e3;*/
 
 	border-radius: 4px;
 

@@ -40,10 +40,14 @@
 }
 }
 
+@media screen and (max-width: 1280px){
+.home_content {
+    float: left;
+    margin: 35px 0 0;
+    width: 100%;
+}
 
-
-
-
+}
 
 
 @media screen and (max-width: 1220px){
@@ -215,6 +219,12 @@
 .checkout-oder-id {font-size: 16px;}
 .checkout-body h4{text-align: center;}
 
+/*--13-1-2015--*/
+
+.order_success_in{padding: 0;}
+
+.home_content {margin: -102px 0 0;}
+
 
 }
 
@@ -332,6 +342,11 @@
 
 .user_profile .col-sm-3 {
     padding: 0;
+}
+
+.home_content {margin: 37px 0 0;}
+.home_content {
+    margin: -52px 0 0;
 }
 
 }
@@ -562,6 +577,12 @@
 .user_profile .col-sm-3 {
     padding: 0;
 }
+.home_content_in {
+    float: left;
+    margin: -66px 0 0;
+    width: 100%;
+}
+
 }
 
 
@@ -718,6 +739,9 @@
 .user_profile .col-sm-3 {
     padding: 0;
 }
+
+.home_content_in {margin: -110px 0 0;}
+
 }
 
 
@@ -748,7 +772,7 @@
     padding-none{padding: 0;}
     .trans-btns {margin-left: 6px !important; padding: 2px !important;}
     .trans-btns {font-size: 12px;}
-    .food_qty_button button{padding: 9px 26px;}
+    .food_qty_button button{padding: 9px 18px;}
     .logo img{width: 120px;}
     .logo img {margin-left: 45px;margin-top: 14px;width: 100px !important;}
     .navbar-toggle{padding: 7px 8px;}
@@ -764,7 +788,7 @@
       .placeorder_right ul li input[type="text"]{width:100%;}
       
            .user_list_left img {  height: 311px; width:100%;}
-   .list_box_main { margin-top: 18px;}  
+   .list_box_main { margin-top: 15px;}  
    
    
 .payment_checkout1_button {
@@ -859,13 +883,6 @@
     width: 60px !important;
 }
 
-
-
-#combination-sec {
-    float: left;
-    padding: 0 !important;
-    width: 64% !important;
-}
 
 
 .home_content_left ul li a {  padding: 5px 0 7px 10px;}
@@ -1001,6 +1018,10 @@
 .checkout-body h4{text-align: center;}
 
 
+.header-inner{background: none;}
+
+.home_content_left ul li a{width: 100%; float: left;}
+.home_content_in {margin: 20px 0 0;}
 
 }
 
@@ -1285,10 +1306,22 @@
 #cart-sec {padding: 0 15px;width: 100% !important;}
 
 
+/*--13-1-2015--*/
 
+.order_success_in{padding: 0;}
 
+.nav > li {
+    display: block;
+    float: left;
+    position: relative;
+    width: 50%;
+}
+.nav.navbar-nav {
+    box-shadow: 1px 3px 4px #ccc;
+}
 
     }
+   
 
 @media screen and (max-width: 480px){
 
@@ -1580,6 +1613,35 @@
 #address-sec {width: 100%; margin-bottom: 20px; float: left;}
 
 
+/*--13-1-2015--*/
+
+.order_success_in{padding: 0;}
+.order_success_title h1 {font-size: 22px; line-height: 26px;}
+.order_success_review_in h3 {font-size: 15px;}
+.success_user_list_title h3{font-size: 17px;}
+.success_user_list_right ul li p{font-size: 14px; padding: 0; margin-bottom: 4px;}
+.success_user_list_right ul li h2 {background: url("../img/calender.png") no-repeat scroll left top / 16px auto rgba(0, 0, 0, 0); font-size: 14px; line-height: 16px; padding: 0 0 0 20px;}
+.success_user_list_right ul li h4 {
+    background: url("../img/location.png") no-repeat scroll left top / 17px auto rgba(0, 0, 0, 0);
+    font-size: 14px;
+    line-height: 17px;
+    padding: 0 0 0 20px;
+}
+.success_user_list_right ul li h1 {
+    background: url("../img/phone.png") no-repeat scroll left 7px top / 11px auto rgba(0, 0, 0, 0);
+    font-size: 14px;
+    line-height: 17px;
+    padding: 0 0 0 20px;
+}
+.success_user_list_right ul li h6 {
+    background: url("../img/quantity.png") no-repeat scroll left top / 19px auto rgba(0, 0, 0, 0);
+    font-size: 14px;
+    line-height: 17px;
+    padding: 0 0 0 20px;
+}
+
+.logo-2{display: block;}
+
 
 
 }
@@ -1841,6 +1903,35 @@
 .checkout-terms h2 {width: 90%;}
 .checkout-oder-confirm {font-size: 16px;}
 .checkout-oder-id {font-size: 16px;}
+
+
+/*--13-1-2015--*/
+
+.order_success_in{padding: 0;}
+.order_success_title h1 {font-size: 22px; line-height: 26px;}
+.order_success_review_in h3 {font-size: 15px;}
+.success_user_list_title h3{font-size: 17px;}
+.success_user_list_right ul li p{font-size: 13px; padding: 0; margin-bottom: 4px;}
+.success_user_list_right ul li h2 {background: url("../img/calender.png") no-repeat scroll left top / 13px auto rgba(0, 0, 0, 0); font-size: 13px; line-height: 13px; padding: 0 0 0 16px;}
+.success_user_list_right ul li h4 {
+    background: url("../img/location.png") no-repeat scroll left top / 15px auto rgba(0, 0, 0, 0);
+    font-size: 13px;
+    line-height: 13px;
+    padding: 0 0 0 17px;
+}
+.success_user_list_right ul li h1 {
+    background: url("../img/phone.png") no-repeat scroll left 7px top / 9px auto rgba(0, 0, 0, 0);
+    font-size: 13px;
+    line-height: 13px;
+    padding: 0 0 0 18px;
+}
+.success_user_list_right ul li h6 {
+    background: url("../img/quantity.png") no-repeat scroll left top / 17px auto rgba(0, 0, 0, 0);
+    font-size: 13px;
+    line-height: 13px;
+    padding: 0 0 0 20px;
+}
+
 
   
     
@@ -2200,6 +2291,32 @@
 }
 
 
+/*--13-1-2015--*/
+
+.order_success_in{padding: 0;}
+.order_success_title h1 {font-size: 22px; line-height: 26px;}
+.order_success_review_in h3 {font-size: 15px;}
+.success_user_list_title h3{font-size: 17px;}
+.success_user_list_right ul li p{font-size: 13px; padding: 0; margin-bottom: 4px;}
+.success_user_list_right ul li h2 {background: url("../img/calender.png") no-repeat scroll left top / 13px auto rgba(0, 0, 0, 0); font-size: 13px; line-height: 13px; padding: 0 0 0 16px;}
+.success_user_list_right ul li h4 {
+    background: url("../img/location.png") no-repeat scroll left top / 15px auto rgba(0, 0, 0, 0);
+    font-size: 13px;
+    line-height: 13px;
+    padding: 0 0 0 17px;
+}
+.success_user_list_right ul li h1 {
+    background: url("../img/phone.png") no-repeat scroll left 7px top / 9px auto rgba(0, 0, 0, 0);
+    font-size: 13px;
+    line-height: 13px;
+    padding: 0 0 0 18px;
+}
+.success_user_list_right ul li h6 {
+    background: url("../img/quantity.png") no-repeat scroll left top / 17px auto rgba(0, 0, 0, 0);
+    font-size: 13px;
+    line-height: 13px;
+    padding: 0 0 0 20px;
+}
 
 
     }

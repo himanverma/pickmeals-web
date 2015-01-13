@@ -1,5 +1,5 @@
 <div class="chef_profile">
-    <div class="col-xs-12 col-sm-4 col-md-3">
+    <div class="col-xs-12 col-sm-3 col-md-3">
         <div class="chef_profile_left">
             <div class="chef_profile_img"><img src="<?php echo $vendor['Vendor']['photo'] != null ? $vendor['Vendor']['photo'] : "/img/chef_profile.jpg"; ?>"></div>
             <div class="chef_profile_about">
@@ -21,7 +21,7 @@
             </div>
         </div>
     </div>
-    <div class="col-sm-8 col-md-6" id="combination-sec">
+    <div class="col-sm-6 col-md-6" id="combination-sec">
         <div class="chef_list_inn">
             <div class="chef_list_title">
                 <h2>Meal Combinations</h2>
@@ -120,14 +120,15 @@
             </div>
         </div>
     </div>
-    <div class="col-sm-8 col-md-3" id="cart-sec">
+    <div class="col-sm-3 col-md-3" id="cart-sec">
        
             <div class="home_content_right">
 
                 <div id="sidebar">
-                    <div class="sidebar_main">
+                    <div class="sidebar_main chef-sidebar-main">
 
-                        <div class="home_content_right_title">
+                        <div class="home_content_right_title chef-cart-title">
+                            <h2>Cart</h2>
                         </div>
                         <div class="sidebar_order_list_main" data-bind="foreach:items">
                             <div class="sidebar_order_list" >

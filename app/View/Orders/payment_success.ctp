@@ -1,60 +1,64 @@
 
-<div class="col-sm-2"></div>
+<div class="order_success_in">
+    <div class="col-xs-12 col-sm-12 col-md-2"></div>
 
 
 
-<div class="col-sm-8">
-    <div class="order_success_in">
+<div class="col-xs-12 col-sm-12 col-md-8">
+     <div class="success-order_main">  
+<div class="col-sm-12">
+    
         <div class="order_success_title">
             <h1>Your order has been received Successfully</h1>
         </div>
         <div class="order_success_review">
             <div class="order_success_review_in">
                 <h3>Order ID:<b><?php echo $oid; ?></b></h3>
+                <p>Thank you <b>Person name</b> for ordering</p>
             </div>
             
             <div class="sucess-order">
                 <div class="row">
-                    <div>
-                        <div id="cart-sec-2">
-                            <div class="col-sm-12">
-                                <div class="col-sm-1"><h4>Items</h4></div>
-                                <div class="col-sm-offset-8 col-sm-3"><h4>Price</h4></div>
-                            </div>
-                                
-                            <!-- ko foreach: items -->
-                            <div style="margin: 2px 0; background: #eee;" class="col-sm-12">
-                                <div class="col-sm-1">
-                                    <h4><!-- ko text: $index() + 1 -->1<!-- /ko -->)</h4>
-                                </div>
-                                <div class="col-sm-2">
-                                     <img width="65px" onerror="javascript: this.src = '/img/panner.jpg'" src="/img/product.png">
-                                </div>
-                                <div id="" class="col-sm-6">
-                                    <div class="row">
-                                        <div data-bind="text:data.Combination.display_name">FULL Dal Fried (Yellow)</div>
-                                        <div data-bind="text:data.essentials">4 Roti + Half Rice</div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-3">
-                                    <h4><span style="font-weight:bold" class="">Rs.<span data-bind="text:price">2</span> X <span data-bind="text:qty">1</span> = Rs.<span data-bind="text:price() * qty()">2</span></span></h4><h4>
-                                </h4></div>
-
-                            </div>
-                            <!-- /ko -->
-                            <div style="margin: 2px 0; background: #eee;" class="col-lg-12">
-                                <div class="col-sm-3">
-                                </div>
-                                <div id="" class="col-sm-6">
-                                    <h6><div>TOTAL:</div></h6>
-                                </div>
-                                <div class="col-sm-3">
-                                    <h4><span style="font-weight:bold" class="">Rs.<span data-bind="text: total()">2</span></span></h4>
-                                </div>
-                            </div>
-
-                        </div>
+                    <div class="success-order-height">
+                    <div class="success_user_list">
+            <div class="success_user_list_title">
+                <h3>HALF Black Dal + HALF Bhindi</h3>
+                <h6>with 6 Roti</h6>
+            </div>
+            <div class="col-xs-3 col-sm-2">
+                <div class="row">
+                    <div class="success_user_list_left"><img src="/img/product.png"> </div>
+                </div>
+            </div>
+            <div class="col-xs-9 col-sm-10">
+                <div class="row">
+                    <div class="success_user_list_right">
+                        <ul>
+                            <li>
+                                <p>By <a href="/chef/ashok-mittal">Ashok Mittal</a></p>
+                            </li>
+                            <li>
+                                <h2><span>Order date:</span>09-01-2015 08:32 PM</h2>
+                            </li>
+                            <li>
+                                <h4><span>Location:</span>Futurework Pvt. Ltd. 4th Floor Plot-10, Chandigarh</h4>
+                            </li>
+                            <li>
+                                <h1><span>Mobile No.:</span>+91-8699445905</h1>
+                            </li>
+                            <li>
+                                <h6><span>Quantity:</span>1</h6>
+                            </li>
+                            <li>
+                                <h3><span>Price:</span>Rs 1</h3>
+                            </li>
+                        </ul>
                     </div>
+                </div>
+                </div>
+            </div>
+            
+        </div>
                         
                     <div class="col-sm-12">
                     <div id="address-sec-2" class="sucess-order">
@@ -82,15 +86,18 @@
                 </div>
             </div>
             
-            <pre>
+            <!--<pre>
                 <?php 
-                    print_r($orders);
+                   // print_r($orders);
                     
                 ?>
             </pre>
-            
+            -->
         </div>
     </div>
 </div>
+</div>
 
-<div class="col-sm-2"></div>
+</div>
+
+<div class="col-xs-12 col-sm-12 col-md-2"></div>

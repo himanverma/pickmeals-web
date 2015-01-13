@@ -2,12 +2,12 @@
 
     <div class="header_nav">
         <div role="navigation" class="">
-            <div class="video_wrap">
+            <div class="video_wrap header-inner">
                 <div class="container">
                
                     <div class="logo">
                         <img src="/img/logo.png" onclick="window.location = '/'" >
-                         <img src="/img/pickmeals_icon.png" onclick="window.location = '/'" >
+                        <img class="logo-2" src="/img/pickmeals_icon.png" onclick="window.location = '/'" >
                         
                         
                     </div>

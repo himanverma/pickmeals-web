@@ -1104,7 +1104,7 @@ footer{
 }
 /* additional sections */
 #box1 {
-    background: none;
+    background: darkblue;
     color: white;
     display: table;
     height: 300px;
@@ -1227,12 +1227,11 @@ nav li { background: #f8f8f8; }
 }
 .home_content_right_title h3 {
     background: none repeat scroll 0 0 #e5e5e5;
-    font-size: 18px;
+    font-size: 17px;
     font-weight: normal;
     margin: 0;
     color: #666;
     padding: 8px 0;
-    font-weight: bold;
     font-family: "robotoregular";
     text-align: center;
     width: 100%;
@@ -1264,11 +1263,11 @@ nav li { background: #f8f8f8; }
 }
 .sucess-order h4{
     font-size: 14px;
+    text-align: center;
 }
 .sucess-order{
     float: left;
     width: 100%;
-    border: none !important;
 }
 .sucess-order h5{
     font-size: 14px;
@@ -1292,21 +1291,10 @@ nav li { background: #f8f8f8; }
 .chef-revies-comment{
    width: 100%;
    float: left;
-   box-shadow: 0 1px 2px #838383;
 }
 .chef-revies-comment img{width: 100%;}
 .chef-revies-comment h6{float: right; width: auto; margin: 0;}
-.chef-revies-comment .well{padding: 15px !important;}
-.chef-revies-comment h2 {
-    background: none repeat scroll 0 0 #f5f5f5;
-    border-bottom: 1px solid #e7e7e7;
-    color: #ea5058;
-    font-size: 20px;
-    margin: 0;
-    padding: 6px;
-    text-align: center;
-    text-transform: uppercase;
-}
+.chef-revies-comment .well{padding: 5px !important;}
 
 .change-password{background: none repeat scroll 0 0 #ea5058;
     border: medium none;
@@ -1409,205 +1397,6 @@ nav li { background: #f8f8f8; }
     width: 100%;
 }
 
-
-/*--13-1-2015--*/
-
-
-.success_user_list {
-    border-bottom: 1px solid #e5e5e5;
-    float: left;
-    padding: 12px;
-    width: 100%;
-}
-.success_user_list_left {
-    float: left;
-    width: 100%;
-}
-.success_user_list_left img {
-    border: 3px solid #d9d9d9;
-    float: left;
-    width: 100%;
-}
-.success_user_list_title {
-    float: left;
-    width: 100%;
-}
-.success_user_list_title h3 {
-    color: #ea5058;
-    float: left;
-    font-family: "robotoregular";
-    font-size: 20px;
-    margin: 0;
-    padding: 0 0 7px;
-    width: 100%;
-}
-.success_user_list_right {
-    float: left;
-    width: 100%;
-}
-.success_chef_food_rating {
-    float: right;
-}
-
-.success_user_list_right ul {
-    float: left;
-    list-style: outside none none;
-    margin: 0;
-    padding: 0 15px;
-    width: 100%;
-}
-.success_user_list_right ul li {
-    float: left;
-    width: 100%;
-}
-.success_user_list_right ul li p {
-    color: #000;
-    float: left;
-    font-family: "robotolight";
-    font-size: 16px;
-    margin: 0;
-    padding: 0 0 7px;
-    width: 100%;
-}
-.success_user_list_right ul li img {
-    float: left;
-    max-width: 100%;
-    width: 130px;
-}
-.success_user_list_right ul li h2 {
-    background: url("../img/calender.png") no-repeat scroll left top / 23px auto rgba(0, 0, 0, 0);
-    color: #000;
-    float: left;
-    font-family: "robotolight";
-    font-size: 14px;
-    line-height: 23px;
-    margin: 0 0 7px;
-    padding: 0 0 0 32px;
-    width: 100%;
-}
-.success_user_list_right ul li h4 {
-    background: url("../img/location.png") no-repeat scroll left top / 23px auto rgba(0, 0, 0, 0);
-    color: #000;
-    float: left;
-    font-family: "robotolight";
-    font-size: 14px;
-    line-height: 23px;
-    margin: 0 0 7px;
-    padding: 0 0 0 32px;
-    width: 100%;
-}
-.success_user_list_right ul li h1 {
-    background: url("../img/phone.png") no-repeat scroll left 7px top / 15px auto rgba(0, 0, 0, 0);
-    color: #000;
-    float: left;
-    font-family: "robotolight";
-    font-size: 14px;
-    line-height: 23px;
-    margin: 0 0 7px;
-    padding: 0 0 0 32px;
-    width: 100%;
-}
-.success_user_list_right ul li h6 {
-    background: url("../img/quantity.png") no-repeat scroll left top / 27px auto rgba(0, 0, 0, 0);
-    color: #000;
-    float: left;
-    font-family: "robotolight";
-    font-size: 14px;
-    line-height: 23px;
-    margin: 0 0 7px;
-    padding: 0 0 0 32px;
-    width: 100%;
-}
-.success_user_list_right ul li h3 {
-    color: #ea5058;
-    float: left;
-    font-family: "robotobold";
-    font-size: 20px;
-    margin: 0;
-    padding: 0;
-    width: 100%;
-}
-.success_user_list_button {
-    float: left;
-    width: 100%;
-}
-
-.success-order_main {border: 1px solid #e5e5e5; width: 100%; float: left;}
-
-.success-order-height{width: 100%; float: left; max-height: 400px; overflow-y: scroll;}
-
-.header-inner{background: #e3e3e3;}
-
-
-.trans-btns {
-    background:#d9d9d9 ;
-    border-radius: 3px;
-    color: #000;
-    margin-left: 6px;
-    padding: 5px 16px;
-}
-.trans-btns:hover {
-    background: none repeat scroll 0 0 rgba(230, 230, 230, 0.4);
-    text-decoration: none;
-}
-
-.logo-2{display: none;}
-
-.chef-cart-title h2 {
-    background: #d9d9d9;
-    color: #666;
-    float: left;
-    font-family: "robotoregular";
-    font-size: 19px;
-    margin: 0;
-    padding: 7px 0;
-    text-align: center;
-    width: 100%;
-}
-.chef-sidebar-main{margin-top: 0;}
-
-*:before, *:after {
-    box-sizing: border-box;
-}
-*:before, *:after {
-    box-sizing: border-box;
-}
-.top-txt a {
-    color: #fff;
-}
-.top-txt a {
-    color: #666 !important;
-}
-.top-txt a {
-    color: #666 !important;
-}
-a:focus {
-    outline: thin dotted;
-    outline-offset: -2px;
-}
-a:hover, a:focus {text-decoration: none !important;}
-
-.review-text{color: rgb(102, 102, 102);
-    float: left;
-    font-size: 16px;
-    margin: 0;
-    padding-bottom: 5px;
-    width: 100% !important;	
-}
-.review-name{color: rgb(234, 80, 88); font-weight: normal; font-size: 18px;}
-.chef-revies-comment h6 {
-    
-	
-    color: #a2a2a2;
-    float: left;
-    font-size: 13px;
-    margin: 0;
-}
-.well:hover{ background:#f8f8f8;}
-.well p{float: left;
-    margin: 0 10px 0 0;
-    width: auto;}
-.review-well{ background: none !important; border-radius:0px !important; box-shadow: none !important; border-bottom: 1px solid #e0e0e0 !important;}
 /*===================================
 extra css========================
 */
@@ -1629,49 +1418,39 @@ extra css========================
     float: left;
     position: relative;
     width: 100%;
-    border: 1px solid #ededed;
 }
 .chef_profile_img img {
-    border: 23px solid #fff;
-   
+    border: 3px solid #f3f3f3;
+    box-shadow: 2px 0 2px #e4e4e4;
     float: left;
     width: 100%;
 }
 .chef_profile_about {
-    background: none repeat scroll 0 0 #f5f5f5;
-    
+    background: none repeat scroll 0 0 #f2f2f2;
+    border: 1px solid #e3e3e3;
     float: left;
+    width: 100%;
 }
 .chef_profile_about h1 {
-    color: #ea5058;
+    color: #4e4e4e;
     float: left;
     font-size: 22px;
     font-weight: normal;
     margin: 0;
     padding: 8px 15px;
     width: 100%;
-    text-align: center;
 }
 .chef_profile_about ul {
     float: left;
     list-style: outside none none;
-    padding: 0px;
+    padding: 0 20px;
     width: 100%;
 }
 .chef_profile_about ul li {
-    border-bottom: 1px solid #d6d6d6;
-    border-top: 1px solid #ffffff;
     float: left;
     margin: 0;
-    padding: 8px 20px;
+    padding: 8px 0;
     width: 100%;
-}
-.chef_profile_about li:first-child {
-    border-top: medium none;
-}
-
-.chef_profile_about li:last-child {
-    border-bottom: medium none;
 }
 .chef_profile_home {
     float: left;
@@ -1712,7 +1491,7 @@ extra css========================
 }
 .chef_list_main {
     float: left;
-    margin-top: 0px;
+    margin-top: 15px;
     width: 100%;
 }
 .chef_list_title {
@@ -1731,10 +1510,9 @@ extra css========================
     width: 100%;
 }
 .chef_list {
-    background: none repeat scroll 0 0 #f5f5f5;
+    background: none repeat scroll 0 0 #fff;
     border: 1px solid #fff;
     float: left;
-    margin-bottom: 20px;
     padding: 12px;
     width: 100%;
 }
@@ -1949,8 +1727,8 @@ extra css========================
     width: 100%;
 }
 .user_profile_about {
-    background: none repeat scroll 0 0 #f5f5f5;
-    
+    background: none repeat scroll 0 0 #f2f2f2;
+    border: 1px solid #e3e3e3;
     float: left;
     width: 100%;
 }
@@ -1966,19 +1744,15 @@ extra css========================
 .user_profile_about ul {
     float: left;
     list-style: outside none none;
-    padding: 0 0px;
+    padding: 0 20px;
     width: 100%;
 }
 .user_profile_about ul li {
     float: left;
     margin: 0;
-    padding: 8px 20px;
+    padding: 8px 0;
     width: 100%;
-     
 }
-
-
-
 .user_profile_home {
     float: left;
 }
@@ -2017,7 +1791,7 @@ extra css========================
 }
 .user_list_main {
     float: left;
-    margin-top: 0px;
+    margin-top: 15px;
     width: 100%;
 }
 .user_list_title {
@@ -2036,10 +1810,9 @@ extra css========================
     width: 100%;
 }
 .user_list {
-   background: none repeat scroll 0 0 #f5f5f5;
+    background: none repeat scroll 0 0 #fff;
     border: 1px solid #fff;
     float: left;
-    margin-bottom: 5px;
     padding: 12px;
     width: 100%;
 }
@@ -2075,25 +1848,12 @@ extra css========================
 .chef_food_rating{
 	float:right;
 	}
-  .user_profile_about a {background: none repeat scroll 0 0 #ea5058 !important;
-    border-radius: 2px !important;
-    color: #fff !important; 
-    padding: 3% 2% !important;
-    text-align: center;}      
-        
 #feedback_btn{
-    background: none repeat scroll 0 0 #ea5058;
-    border: medium none;
-    border-radius: 2px;
-    color: #fff;
-    padding: 7px 9px;
-	font-size: 15px;
-	}
-        
-        .user_list_right a {
+	background: #f1f1f1;
+    border: 1px solid #ccc;
     color: #333;
-    font-weight: bold;
-}
+    padding: 7px 9px;
+	}
 #feedback_block {
     background: none repeat scroll 0 0 #f1f1f1;
     border: 1px solid #ccc;
@@ -2119,9 +1879,8 @@ extra css========================
 	float:left;
 	}
 .feedback_block_submit button {
-   background: none repeat scroll 0 0 #ea5058;
+    background: none repeat scroll 0 0 #949494;
     border: medium none;
-    border-radius: 3px;
     color: #fff;
     margin-left: 10px;
     padding: 5px 20px;
@@ -2329,7 +2088,8 @@ extra css========================
 .order_success_in{
 	width:100%;
 	float:left;
-	margin:100px 0 20px 0;
+	border:1px solid #eaeaea;
+	margin:20px 0;
 	padding:20px; 
 	}
 .order_success_title{
@@ -2372,7 +2132,6 @@ extra css========================
 .order_success_review_in{
 	width:100%;
 	float:left;
-        border-bottom: 1px solid #e5e5e5;
 	}
 .order_success_review_in h3{
 	font-size:18px;
@@ -2392,11 +2151,11 @@ footer {
 	width:100%;
 }
 .footer_box {
-    background: none repeat scroll 0 0 #f0f0f0;
-    float: left;
-    margin: 0;
-    padding: 1.7% 0;
-    width: 100%;
+	background:#e3e3e3;
+	float: left;
+	margin: 0 0 0;
+	padding: 1.7% 0;
+	width: 100%;
 }
 .footer_box_top {
 	margin:0 2% 0 0;
@@ -2413,43 +2172,33 @@ footer {
 	width:100%;
 }
 .footer_menu1 h1 {
-    border-bottom: 1px dotted #bababa;
-    color: #ea5058;
-    float: left;
-    font-size: 18px;
-    height: auto;
-    margin: 0 0 9px;
-    padding: 0 0 5px;
-    text-transform: uppercase;
-    width: 100%;
+	margin:0;
+	padding:0 0;
+	float:left;
+	height:auto;
+	width:100%;
+	font-size: 16px;
+	color:#333;
 }
-
 .footer_menu1 li {
-	 border-bottom: 1px solid #d5d5d5;
-    box-shadow: 0 1px 0 #fff;
-    color: #666;
-    float: left;
-    font-size: 14px;
-    height: auto;
-    line-height: 24px;
-    list-style: outside none none;
-    margin: 0;
-    padding: 0;
-    width: 100%;
-}
-.footer_menu1 > li:hover {
-    background: none repeat scroll 0 0 #f4f4f4;
-	color: #ea5058;
+	margin:0px;
+	padding:0 0;
+	list-style:none;
+	float:left;
+	height:auto;
+	width:100%;
+	font-size: 14px;
+	color:#666;
+	line-height: 24px;
 }
 .footer_menu1 li a {
-	color: #666;
-    float: left;
-    font-size: 14px;
-    height: auto;
-    margin: 0;
-    padding: 2px 0;
-    text-decoration: none;
-    width: 100%;
+	margin:0px;
+	padding:0 0;
+	float:left;
+	height:auto;
+	width:100%;
+	font-size: 14px;
+	color:#666;
 }
 .footer_copyright {
 	margin:7px 0;
@@ -2459,12 +2208,12 @@ footer {
 	width:100%;
 }
 .footer_copyright p {
-	 color: #fff;
-    font-size: 13px;
-    height: auto;
-    margin: 0;
-    padding: 0;
-    text-align: center;
+	margin:0px;
+	padding:0 0;
+	height:auto;
+	text-align:center;
+	font-size: 13px;
+	color:#a9a9a9;
 }
 .footer_copyright h6 {
 	margin:0px;
@@ -2482,10 +2231,7 @@ footer {
 	height:auto;
 	width:100%;
 }
-.footer_copyright a {
-    color: #ea5058;
-    text-decoration: none;
-}
+
 
 /*---------------------------------------------about-us---------------------------------------------*/
 

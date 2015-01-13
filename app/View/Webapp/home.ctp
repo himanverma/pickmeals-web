@@ -179,7 +179,7 @@
                 </div>
             </nav>
             <div class="dish_content">
-                <div class="col-sm-3 hidden-xs" id='recipe-sec'>
+                <div class="col-sm-2 col-md-3 hidden-xs" id='recipe-sec'>
                     <div class="row">
                         <div class="home_content_left">
                             <div class="home_content_left_title">
@@ -200,7 +200,7 @@
 
 
 
-                <div class="col-sm-6" id="combination-sec">
+                <div class="col-sm-7 col-md-6" id="combination-sec">
                     <div class="home_content_mid">
                         <div class="home_content_mid_title" style="display: none;">
                             <br /><br />
@@ -278,7 +278,7 @@
                     </div>
                 </div>
 
-                <div class="col-sm-3" id="cart-sec">
+                <div class="col-sm-3 padding-none" id="cart-sec">
                     <div class="padding-none">
                         <div class="home_content_right">
 
