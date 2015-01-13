@@ -4,6 +4,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="google-site-verification" content="wm7CKUQMwx0HC4eh2Xe5wmNSezdpAG0gw8wjAgW-36g" />
         <?php echo $this->Html->meta("icon", "favicon.ico"); ?>
         <title> Online food delivery in IT park Chandigarh,  Food delivery in It park Chandigarh, Tiffin services in IT park Chandigarh</title>
         <meta name=”keywords” content=” Online food delivery in IT park Chandigarh, Order Food online in IT park Chandigarh, food delivery in It park Chandigarh, Tiffin services in IT park Chandigarh, Free Food Delivery in It Park Chandigarh, food option in IT park Chandigarh, Lunch or dinner option in IT park Chandigarh ”>
@@ -44,7 +45,21 @@
 //            
         echo $this->fetch('startjs');
         ?>
-
+        <script>
+            (function(i, s, o, g, r, a, m) {
+                i['GoogleAnalyticsObject'] = r;
+                i[r] = i[r] || function() {
+                    (i[r].q = i[r].q || []).push(arguments)
+                }, i[r].l = 1 * new Date();
+                a = s.createElement(o),
+                        m = s.getElementsByTagName(o)[0];
+                a.async = 1;
+                a.src = g;
+                m.parentNode.insertBefore(a, m)
+            })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+            ga('create', 'UA-58087415-1', 'auto');
+            ga('send', 'pageview');
+        </script>
 
 
     </head>
@@ -247,19 +262,4 @@
         }
 
     </style>
-    <script>
-        (function(i, s, o, g, r, a, m) {
-            i['GoogleAnalyticsObject'] = r;
-            i[r] = i[r] || function() {
-                (i[r].q = i[r].q || []).push(arguments)
-            }, i[r].l = 1 * new Date();
-            a = s.createElement(o),
-                    m = s.getElementsByTagName(o)[0];
-            a.async = 1;
-            a.src = g;
-            m.parentNode.insertBefore(a, m)
-        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
-        ga('create', 'UA-58087415-1', 'auto');
-        ga('send', 'pageview');
-    </script>
 </html>

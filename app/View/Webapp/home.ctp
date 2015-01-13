@@ -186,9 +186,9 @@
                                 <ul data-bind="foreach: list ">
                                     <li data-bind="click: $root.filter">
                                         <span>
-                                            <img data-bind="attr:{'src':Recipe.image}" onerror="this.src='img/panner.jpg'">
+                                            <img data-bind="attr:{'src':Dishfilter.image}" onerror="this.src='img/panner.jpg'">
                                         </span>
-                                        <a href="#" data-bind="text:Recipe.recipe_name">Panner <span>(5)</span></a>
+                                        <a href="#" data-bind="text:Dishfilter.recipe_name">Panner <span>(5)</span></a>
                                     </li>
                                 </ul>
                             </div>
@@ -537,11 +537,11 @@
         var me = this;
         me.list = ko.observableArray([]);
         me.filter = function(d,e){
-            ComboObj.SearchMeal(d.Recipe.recipe_name);
+            ComboObj.SearchMeal(d.Dishfilter.recipe_name);
             ComboObj.Search();
         }
         me.init = function(){
-            $.post("/api/recipes.json",{
+            $.post("/api/dishfilters.json",{
                 
             },function(d){
                 me.list(d.data);

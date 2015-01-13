@@ -3,12 +3,12 @@
 App::uses('AppModel', 'Model');
 
 /**
- * Recipe Model
+ * Dishfilter Model
  *
  * @property CombinationItem $CombinationItem
  * @property MealMenu $MealMenu
  */
-class Recipe extends AppModel {
+class Dishfilter extends AppModel {
 
     /**
      * Display field
@@ -62,34 +62,34 @@ class Recipe extends AppModel {
      *
      * @var array
      */
-    public $hasMany = array(
-        'CombinationItem' => array(
-            'className' => 'CombinationItem',
-            'foreignKey' => 'recipe_id',
-            'dependent' => true,
-            'conditions' => '',
-            'fields' => '',
-            'order' => '',
-            'limit' => '',
-            'offset' => '',
-            'exclusive' => '',
-            'finderQuery' => '',
-            'counterQuery' => ''
-        ),
-        'MealMenu' => array(
-            'className' => 'MealMenu',
-            'foreignKey' => 'recipe_id',
-            'dependent' => true,
-            'conditions' => '',
-            'fields' => '',
-            'order' => '',
-            'limit' => '',
-            'offset' => '',
-            'exclusive' => '',
-            'finderQuery' => '',
-            'counterQuery' => ''
-        )
-    );
+//    public $hasMany = array(
+//        'CombinationItem' => array(
+//            'className' => 'CombinationItem',
+//            'foreignKey' => 'recipe_id',
+//            'dependent' => true,
+//            'conditions' => '',
+//            'fields' => '',
+//            'order' => '',
+//            'limit' => '',
+//            'offset' => '',
+//            'exclusive' => '',
+//            'finderQuery' => '',
+//            'counterQuery' => ''
+//        ),
+//        'MealMenu' => array(
+//            'className' => 'MealMenu',
+//            'foreignKey' => 'recipe_id',
+//            'dependent' => true,
+//            'conditions' => '',
+//            'fields' => '',
+//            'order' => '',
+//            'limit' => '',
+//            'offset' => '',
+//            'exclusive' => '',
+//            'finderQuery' => '',
+//            'counterQuery' => ''
+//        )
+//    );
 
     public function delete($id = null, $cascade = true) {
         if ($id == null) {
@@ -108,11 +108,11 @@ class Recipe extends AppModel {
         if ($this->data[$this->alias]['image']['name'] != "") {
             $ext = pathinfo($this->data[$this->alias]['image']['name'], PATHINFO_EXTENSION);
             $image_name = date('YmdHis') . rand(1, 999) . "." . $ext;
-            $destination = "files/recipe_images/" . $image_name;
+            $destination = "files/dish_images/" . $image_name;
             if(move_uploaded_file($this->data[$this->alias]['image']['tmp_name'], $destination)){
                 $bowl = $this->createBowl($destination);
                 $tmp = explode("/", $bowl);
-                $destination2 = "files/recipe_images/" . $tmp[1];
+                $destination2 = "files/dish_images/" . $tmp[1];
                 unlink($destination);
                 rename($bowl, $destination2);
                 

@@ -1,7 +1,7 @@
 <?php echo $this->Form->create('Recipe', array('type' => 'file')); ?>
 <div class="box box-primary">
     <div class="box-header">
-        <h3 class="box-title">Add New Recipe</h3>
+        <h3 class="box-title">Edit Recipe</h3>
     </div>
     <div class="box-body">
         <div class="row">
@@ -52,13 +52,17 @@
             </div>
             <div class="col-md-12">
                 <div class="form-group">
-                    <?php echo $this->Form->select('status',
-                            array(
-                                '1'=>'Active'
-                                ,'0'=>'Block'),
-                                array(
-                                'class'=>"form-control"
-                                )); ?>
+                    <?php
+                    echo $this->Form->input("status", array(
+                        'div' => false,
+                        'class' => 'form-control',
+                        'placeholder' => '',
+                        'options' => array(
+                            "ACTIVE" => 'ACTIVE',
+                            "INACTIVE" => 'INACTIVE',
+                        )
+                    ));
+                    ?>
                 </div>
             </div>
         </div>

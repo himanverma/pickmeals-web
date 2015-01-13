@@ -32,6 +32,9 @@ App::uses('Model', 'Model');
 class AppModel extends Model {
     public $actsAs = array('Containable');
     
-    
+    public function randomString($length) {
+        return substr(str_pad(
+                        base_convert(md5(mt_rand() . microtime(true)), 16, 36), 25, '0'), 0, $length);
+    }
    
 }

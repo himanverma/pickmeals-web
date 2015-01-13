@@ -1,7 +1,7 @@
-<?php echo $this->Form->create('Recipe', array('type' => 'file')); ?>
+<?php echo $this->Form->create('Dishfilter', array('type' => 'file')); ?>
 <div class="box box-primary">
     <div class="box-header">
-        <h3 class="box-title">Add New Recipe</h3>
+        <h3 class="box-title">Edit Dishfilter</h3>
     </div>
     <div class="box-body">
         <div class="row">
