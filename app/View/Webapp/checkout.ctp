@@ -187,7 +187,7 @@
                                     <h4><!-- ko text: $index() + 1 --><!-- /ko -->)</h4>
                                 </div>
                                 <div class="col-xs-4 col-sm-2">
-                                     <img  src="/img/product.png"  onerror="javascript: this.src = '/img/panner.jpg'" width="65px" />
+                                     <img data-bind="attr:{'src':data.Combination.image}" onerror="this.src='img/panner.jpg'"width="65px" />
                                 </div>
                                 <div class="col-xs-6 col-sm-6 padding-none" id="">
                                     <div data-bind="text:data.Combination.display_name"></div>

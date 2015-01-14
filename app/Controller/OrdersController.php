@@ -24,7 +24,9 @@ class OrdersController extends AppController {
                 'api_order', 
                 'payu',
                 "successipn",
-                "failureipn"
+                "failureipn",
+                "payment_success",
+                "payment_failure"
             ));
     }
 
@@ -379,6 +381,9 @@ class OrdersController extends AppController {
     // Payumoney WebHooks 
     public function successipn($data){
         ob_start();
+        print_r($_POST); // Post Data 
+        print_r($_GET);
+        
         print_r($data);
         print_r($this->request->data);
         print_r($this->request->query);
@@ -391,6 +396,8 @@ class OrdersController extends AppController {
     }
     public function failureipn($data){
         ob_start();
+        print_r($_POST);
+        print_r($_GET);
         print_r($data);
         print_r($this->request->data);
         print_r($this->request->query);

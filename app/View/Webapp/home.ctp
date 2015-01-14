@@ -17,72 +17,72 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
     <script type="text/javascript">
         var vidType = '.mp4';
-        if (Modernizr.video && Modernizr.video.h264){
+        if (Modernizr.video && Modernizr.video.h264) {
             var vidType = '.mp4';
-        }else if(Modernizr.video && Modernizr.video.webm){
+        } else if (Modernizr.video && Modernizr.video.webm) {
             var vidType = '.webm';
         }
-        var VideoNext = function(){
+        var VideoNext = function() {
             vidCnt++;
-            if(vidCnt == 30){
+            if (vidCnt == 30) {
                 vidCnt = 0;
             }
-            $('#pretzel-video').attr({poster: '/story/'+vidArr[vidCnt]+'.jpg'});
+            $('#pretzel-video').attr({poster: '/story/' + vidArr[vidCnt] + '.jpg'});
             $('#pretzel-video').css({
-                'background': "transparent url('/story/"+vidArr[vidCnt]+".jpg') no-repeat scroll center center"
+                'background': "transparent url('/story/" + vidArr[vidCnt] + ".jpg') no-repeat scroll center center"
             });
-            $('#pretzel-video')[0].src = "/story/"+vidArr[vidCnt]+vidType;
+            $('#pretzel-video')[0].src = "/story/" + vidArr[vidCnt] + vidType;
             //console.log("/story/"+vidArr[vidCnt]+".mp4");
         };
-        var VideoPrev = function(){
-            if(vidCnt == 0){
+        var VideoPrev = function() {
+            if (vidCnt == 0) {
                 vidCnt = 30;
             }
             vidCnt--;
-            $('#pretzel-video').attr({poster: '/story/'+vidArr[vidCnt]+'.jpg'});
+            $('#pretzel-video').attr({poster: '/story/' + vidArr[vidCnt] + '.jpg'});
             $('#pretzel-video').css({
-                'background': "transparent url('/story/"+vidArr[vidCnt]+".jpg') no-repeat scroll center center"
+                'background': "transparent url('/story/" + vidArr[vidCnt] + ".jpg') no-repeat scroll center center"
             });
-            $('#pretzel-video')[0].src = "/story/"+vidArr[vidCnt]+vidType;
+            $('#pretzel-video')[0].src = "/story/" + vidArr[vidCnt] + vidType;
             //console.log("/story/"+vidArr[vidCnt]+".mp4");
         };
-        
-        
-        var vidArr = <?php 
-            $a = [1,2,3];
-            shuffle($a);
-            echo json_encode($a);
-        ?>;
+
+
+        var vidArr = <?php
+$a = [1, 2, 3];
+shuffle($a);
+echo json_encode($a);
+?>;
         var vidCnt = 0;
         $(document).ready(function() {
-            $('#pretzel-video').attr({poster: '/story/'+vidArr[0]+'.jpg'});
+            $('#pretzel-video').attr({poster: '/story/' + vidArr[0] + '.jpg'});
             $('#pretzel-video').css({
-                'background': "transparent url('/story/"+vidArr[0]+".jpg') no-repeat scroll center center"
+                'background': "transparent url('/story/" + vidArr[0] + ".jpg') no-repeat scroll center center"
             });
-            $('#pretzel-video')[0].src = "/story/"+vidArr[0]+vidType;
+            $('#pretzel-video')[0].src = "/story/" + vidArr[0] + vidType;
             $('#pretzel-video')[0].addEventListener("ended", function() {
                 vidCnt++;
-                if(vidCnt == 30){
+                if (vidCnt == 30) {
                     vidCnt = 0;
                 }
-                this.src = "/story/"+vidArr[vidCnt]+".mp4";
+                this.src = "/story/" + vidArr[vidCnt] + ".mp4";
                 //console.log("/story/"+vidArr[vidCnt]+".mp4");
             });
-            
-            
-            
+
+
+
         });
-        $(document).on("keyup",function(e){
+        $(document).on("keyup", function(e) {
             //console.log(e.keyCode);
-            if(e.keyCode == 188){
+            if (e.keyCode == 188) {
                 VideoPrev();
             }
-            if(e.keyCode == 190){
+            if (e.keyCode == 190) {
                 VideoNext();
             }
         });
-        
-        
+
+
     </script>
 </div>
 <div class="banner hidden-xs" id="box1">
@@ -132,10 +132,10 @@
 
                 <div class="collapse navbar-collapse" id="navbar-collapse-main">
                     <div class="row">
-                    <div class="search_bar_main" id="srch-block">
-                        <div class="col-sm-3"><div class="row">
+                        <div class="search_bar_main" id="srch-block">
+                            <div class="col-sm-3"><div class="row">
+                                </div>
                             </div>
-                        </div>
                             <div class="col-sm-6" id="srch-pd">
                                 <div class="input-group">
 
@@ -146,10 +146,10 @@
                                 </div>
 
                             </div>
-                       <div class="col-sm-3"> <div class="row">
+                            <div class="col-sm-3"> <div class="row">
+                                </div>
                             </div>
                         </div>
-                    </div>
                         <div class="col-sm-3 hidden-xs">
                             <div class="row">
                                 <div class="home_content_left">
@@ -175,7 +175,7 @@
                                 </div>
                             </div>
                         </div>
-                </div>
+                    </div>
                 </div>
             </nav>
             <div class="dish_content">
@@ -216,7 +216,7 @@
                                 <div class="col-xs-4 col-sm-4 padding-none">
                                     <div class="padding-none">
                                         <div class="list_box_left">
-                                            <img src="img/product.png">
+                                            <img data-bind="attr: {'src': Combination.image}" onerror="this.src = 'img/product.png';">
                                         </div>
                                     </div>
                                 </div>
@@ -342,7 +342,7 @@
     </div>
 </div>
 <div style="opacity: 0; z-index: -1; height: 0.1px; width: 0.1px; overflow: hidden;">
-<img src="<?php echo $this->Html->url('/img/ajax-loader.gif'); ?>">
+    <img src="<?php echo $this->Html->url('/img/ajax-loader.gif'); ?>">
 </div>
 <script type="text/javascript">
 
@@ -360,19 +360,19 @@
         me.lng = 76.8465098;
         me.page = 1;
         me.essentials = ko.observable('4 Roti');
-        
+
         me.isLoading = ko.observable(false);
-        me.isLoading.subscribe(function(n){
-            if(n == true){
-               // me.Combolist([]);
+        me.isLoading.subscribe(function(n) {
+            if (n == true) {
+                // me.Combolist([]);
                 $('#combination-sec .home_content_mid_title h2').html("Loading...");
                 $('#combination-sec .home_content_mid_title').show();
-            }else{
-                if(me.Combolist().length == 0){
+            } else {
+                if (me.Combolist().length == 0) {
                     //me.Combolist([]);
                     $('#combination-sec .home_content_mid_title h2').html("No Combinations Available...");
-                    $('#combination-sec .home_content_mid_title').show();    
-                }else{
+                    $('#combination-sec .home_content_mid_title').show();
+                } else {
                     $('#combination-sec .home_content_mid_title').hide();
                 }
             }
@@ -385,7 +385,7 @@
                 "data[User][longitude]": m.lng,
                 "data[User][count]": m.page
             }, function(d) {
-                for(i in d.data.items){
+                for (i in d.data.items) {
                     d.data.items[i].essentials = m.essentials();
                 }
                 m.Combolist(d.data.items);
@@ -399,7 +399,7 @@
             $.post('/api/combinations/search.json', {
                 "data[Combination][search]": m.SearchMeal()
             }, function(d) {
-                for(i in d.data){
+                for (i in d.data) {
                     d.data[i].essentials = m.essentials();
                 }
                 me.Combolist(d.data);
@@ -437,11 +437,11 @@
                             m.isLoading(false);
                             return false;
                         } else {
-                            for(i in d.data.items){
+                            for (i in d.data.items) {
                                 d.data.items[i].essentials = m.essentials();
                                 m.Combolist.push(d.data.items[i]);
                             }
-                            
+
                         }
                         m.isLoading(false);
                     });
@@ -463,19 +463,19 @@
             }
             return x;
         }, this);
-        me.updateEss = function(d,e){
+        me.updateEss = function(d, e) {
             localStorage.pickmealsCart = ko.mapping.toJSON(me.items);
         };
         me.pushToCart = function(item, qty, price) {
             var flag = false;
-            for(i in me.items()){
-                if(me.items()[i].data.essentials() == ComboObj.essentials() && me.items()[i].data.Combination.id == item.Combination.id){
-                   // flag = i;
+            for (i in me.items()) {
+                if (me.items()[i].data.essentials() == ComboObj.essentials() && me.items()[i].data.Combination.id == item.Combination.id) {
+                    // flag = i;
                 }
             }
-            if(flag){
-                me.items()[flag].qty(me.items()[flag].qty()+1);
-            }else{
+            if (flag) {
+                me.items()[flag].qty(me.items()[flag].qty() + 1);
+            } else {
                 me.items.push({
                     data: item,
                     qty: ko.observable(qty),
@@ -483,7 +483,7 @@
                 });
             }
             localStorage.pickmealsCart = ko.mapping.toJSON(me.items);
-            
+
             //var x = me.
             //();
             //me.subt((qty*price) + x );
@@ -512,17 +512,17 @@
         me.total = ko.computed(function() {
             return this.subt();
         }, this);
-        
-        
-        me.moveToCheckOut = function(){
-          window.location  = "/checkout";  
+
+
+        me.moveToCheckOut = function() {
+            window.location = "/checkout";
         };
-        
-        me.init = function(){
-            if(typeof localStorage.pickmealsCart != 'undefined' ){
+
+        me.init = function() {
+            if (typeof localStorage.pickmealsCart != 'undefined') {
                 $items = JSON.parse(localStorage.pickmealsCart);
                 //var d = [];
-                for(i in $items){
+                for (i in $items) {
                     $items[i].price = ko.observable($items[i].price);
                     $items[i].qty = ko.observable($items[i].qty);
                     $items[i].data.essentials = ko.observable($items[i].data.essentials);
@@ -532,25 +532,24 @@
         };
         me.init();
     };
-    
-    var RecipeVM = function(){
+
+    var RecipeVM = function() {
         var me = this;
         me.list = ko.observableArray([]);
-        me.filter = function(d,e){
+        me.filter = function(d, e) {
             ComboObj.SearchMeal(d.Dishfilter.recipe_name);
             ComboObj.Search();
         }
-        me.init = function(){
-            $.post("/api/dishfilters.json",{
-                
-            },function(d){
+        me.init = function() {
+            $.post("/api/dishfilters.json", {
+            }, function(d) {
                 me.list(d.data);
             });
         }
         me.init();
     }
 
-    
+
     CartObj = new CartVM();
     ComboObj = new CombinationVM();
     RecipeObj = new RecipeVM();
@@ -570,27 +569,46 @@
         var topPadding = 15;
         var xcsv = 0;
         $(window).scroll(function() {
-            if($(window).width() > 768){
-                if ($(window).scrollTop() + xcsv > offset.top ) {
+            if ($(window).width() > 999 ) {
+                if (500 < $(window).scrollTop()) {
                     $("#sidebar").stop().animate({
-                        marginTop: $(window).scrollTop() + xcsv - offset.top + topPadding
+                        marginTop: parseFloat($(window).scrollTop()) - parseFloat($('#pretzel-video').parent().height())
                     });
                 } else {
                     $("#sidebar").stop().animate({
                         marginTop: 0
                     });
                 }
-            }
-
-            //---- For top Header and video banner
-            if (500 < $(window).scrollTop()) {
-                xcsv = 200;
-                $('#nav1').css({position: 'fixed', 'top': '5px', width: '84.5%', 'z-index': 2, height: '30px'});
-                $('#pretzel-video').parent().css({position: 'fixed', 'top': '-500px', 'z-index': 1});
-            } else {
-                xcsv = 0;
-                $('#nav1').removeAttr('style').attr({style: 'z-index:2'});
-                $('#pretzel-video').parent().css({position: 'absolute', 'top': '0px', 'z-index': 1});
+                //---- For top Header and video banner
+                if (500 < $(window).scrollTop()) {
+                    xcsv = 200;
+                    $('#nav1').css({position: 'fixed', 'top': '5px', width: '84.5%', 'z-index': 2, height: '30px'});
+                    $('#pretzel-video').parent().css({position: 'fixed', 'top': '-500px', 'z-index': 1});
+                } else {
+                    xcsv = 0;
+                    $('#nav1').removeAttr('style').attr({style: 'z-index:2'});
+                    $('#pretzel-video').parent().css({position: 'absolute', 'top': '0px', 'z-index': 1});
+                }
+            }else if($(window).width() < 1000 && $(window).width() > 420){
+                if (500 < $(window).scrollTop()) {
+                    $("#sidebar").stop().animate({
+                        marginTop: parseFloat($(window).scrollTop()) - parseFloat($('#pretzel-video').parent().height())
+                    });
+                } else {
+                    $("#sidebar").stop().animate({
+                        marginTop: 0
+                    });
+                }
+                //---- For top Header and video banner
+                if (500 < $(window).scrollTop()) {
+                    xcsv = 200;
+                    $('#nav1').css({position: 'fixed', 'top': '5px', width: '84.5%', 'z-index': 2, height: '30px'});
+                    $('#pretzel-video').parent().css({position: 'fixed', 'top': '-500px', 'z-index': 1});
+                } else {
+                    xcsv = 0;
+                    $('#nav1').removeAttr('style').attr({style: 'z-index:2'});
+                    $('#pretzel-video').parent().css({position: 'absolute', 'top': '0px', 'z-index': 1});
+                }
             }
 
         });

@@ -23,3 +23,12 @@
 </div>
 
 <div class="col-sm-2"></div>
+<script type="text/javascript">
+    setTimeout(function() {
+        try {
+            Android.welcome("test");
+        } catch (e) {
+//            alert(e.message);
+        }
+    }, 10000);
+</script>
