@@ -239,6 +239,7 @@ class CombinationsController extends AppController {
     }
 
     public function generate() {
+        Configure::write('debug', 2);
         $this->loadModel('Recipe');
         $this->Recipe->recursive = 0;
         $recipes = $this->Recipe->find('all');
@@ -256,12 +257,29 @@ class CombinationsController extends AppController {
         }
         $this->set("vendors", $r);
         if ($this->request->is('post')) {
+            App::uses("HtmlHelper", "View/Helper");
+            $html = new HtmlHelper(new View());
             foreach ($this->request->data as $data) {
+                ///-------------Create Thali image start
+                $dishArr = array();
+                foreach ($data['Combination']['CombinationItem'] as $v) {
+                    $dishArr[] = ltrim($v['image'], 'https://www.pickmeals.com/');
+                }
+                
+                if(count($dishArr) == 1){      //for same dish in both 2 bowls
+                    $dishArr[] = $dishArr[0];
+                }
+                
+                $thali_pngs = $this->createThali($dishArr, 150);
+                $data['Combination']['image'] = $html->url("/" . $thali_pngs[0], true);
+                ///-------------Create Thali image end
+                
                 $this->Combination->saveAssociated($data, array('deep' => true));
                 $this->loadModel('Review');
                 debug($this->Combination->getLastInsertID());
                 $x = $this->Combination->find("first", array("conditions" => array("Combination.id" => $this->Combination->getLastInsertID())));
                 $x2 = $this->Review->find("all", array("contain" => false, "conditions" => array("Review.combination_reviewkey" => $x['Combination']['reviewkey']), "fields" => array("id")));
+                
                 foreach ($x2 as $v) {
                     App::uses("CombinationsReview", "Model");
                     $a = new CombinationsReview();
@@ -275,8 +293,74 @@ class CombinationsController extends AppController {
                         ));
                     }
                 }
+               
             }
         }
+    }
+    
+    public function createThali($dishArray = array(), $w = 140, $h = 0) {
+        Configure::write('debug', 2);
+        ini_set("max_execution_time", -1);
+
+        $thali1 = new Imagick("tmpl/img/thali-1.png");
+        $thali2 = new Imagick("tmpl/img/thali-2.png");
+        $thali3 = new Imagick("tmpl/img/thali-3.png");
+        
+        $mask_1 = new Imagick("tmpl/img/thali-mask2.png");
+        $mask_2 = new Imagick("tmpl/img/thali-mask3.png");
+        
+        if(!is_array($dishArray)){
+            return false;
+        }
+        
+        $mask_cnt = 0;
+        foreach($dishArray as $dish){
+            if($mask_cnt > 1){   // Mask Locking (Modify if masks will be increased or decreased)
+                break;
+            }
+            $dish = new Imagick($dish);
+            $dish->scaleimage($thali1->getimagewidth(), $thali1->getimageheight()); // Set As per bowl image
+            
+            $dish->compositeimage(new Imagick("tmpl/img/thali-mask".($mask_cnt + 2).".png"), \Imagick::COMPOSITE_COPYOPACITY, 0, 0, Imagick::CHANNEL_ALPHA);
+            $dish->mergeimagelayers(Imagick::LAYERMETHOD_COALESCE);
+
+            $thali1->compositeimage($dish, \Imagick::COMPOSITE_ATOP, 0, 0, Imagick::CHANNEL_ALPHA);
+            $thali1->mergeimagelayers(Imagick::LAYERMETHOD_COALESCE);
+            
+            $thali2->compositeimage($dish, \Imagick::COMPOSITE_ATOP, 0, 0, Imagick::CHANNEL_ALPHA);
+            $thali2->mergeimagelayers(Imagick::LAYERMETHOD_COALESCE);
+            
+            $thali3->compositeimage($dish, \Imagick::COMPOSITE_ATOP, 0, 0, Imagick::CHANNEL_ALPHA);
+            $thali3->mergeimagelayers(Imagick::LAYERMETHOD_COALESCE);
+            
+            
+            
+            $mask_cnt++;  
+        }
+        
+        $url = "files/thali_images/" . $this->randomString(6); 
+        $url_end =  "-Thali.jpg";
+        $result_urls = array();
+        $thali1->setimageformat("jpg");
+        $thali1->setImageFileName($result_urls[] = $url."-0".$url_end);
+        $thali1->scaleimage($w, $h);
+        $thali1->writeimage();
+        $thali1->destroy();
+
+        $thali2->setimageformat("jpg");
+        $thali2->setImageFileName($result_urls[] = $url."-1".$url_end);
+        $thali2->scaleimage($w, $h);
+        $thali2->writeimage();
+        $thali2->destroy();
+
+        $thali3->setimageformat("jpg");
+        $thali3->setImageFileName($result_urls[] = $url."-2".$url_end);
+        $thali3->scaleimage($w, $h);
+        $thali3->writeimage();
+        $thali3->destroy();
+
+        
+        return $result_urls;
     }
 
 }

@@ -137,23 +137,29 @@
                     user_id = response.authResponse.userID; //get FB UID
 
                     FB.api('/me', function(response) {
-                        $.post("/webapp/fblogin", {"data": response}, function(d) {
-                            if (d.error == 0) {
-                                $('#login-mdl').modal('hide');
-                                var options = {
-                                    iconUrl: '//pickmeals.com/img/pickmeals_icon.png',
-                                    title: 'pickmeals.com',
-                                    body: d.msg,
-                                    timeout: 7000,
-                                    onclick: function() {
-                                        notification.close();
-                                    }
-                                };
-                                $.notification(options);
-                                window.location = "/";
-                            }
-                            console.log(d);
+                        FB.api("/me/picture?width=180&height=180", function(r)
+                        {
+                            response.profile_pic = r.data.url;
+                            $.post("/webapp/fblogin", {"data": response}, function(d) {
+                                if (d.error == 0) {
+                                    $('#login-mdl').modal('hide');
+                                    var options = {
+                                        iconUrl: '//pickmeals.com/img/pickmeals_icon.png',
+                                        title: 'pickmeals.com',
+                                        body: d.msg,
+                                        timeout: 7000,
+                                        onclick: function() {
+                                            notification.close();
+                                        }
+                                    };
+                                    $.notification(options);
+                                    window.location = "/";
+                                }
+                                console.log(d);
+                            });
+
                         });
+                        
                     });
 
                 } else {

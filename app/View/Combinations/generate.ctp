@@ -106,7 +106,8 @@
                         CombinationItem: [
                             {
                                 recipe_id : p1.id,
-                                name_to_display:p1.recipe_name
+                                name_to_display:p1.recipe_name,
+                                image: p1.image
                             }
                             
                         ]
@@ -131,11 +132,13 @@
                                 CombinationItem: [
                                     {
                                         recipe_id : p2.id,
-                                        name_to_display:p2.recipe_name
+                                        name_to_display:p2.recipe_name,
+                                        image: p2.image
                                     },
                                     {
                                         recipe_id : p3.id,
-                                        name_to_display:p3.recipe_name
+                                        name_to_display:p3.recipe_name,
+                                        image: p3.image
                                     }
                                     
                                 ]

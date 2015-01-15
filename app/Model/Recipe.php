@@ -113,11 +113,13 @@ class Recipe extends AppModel {
                 $bowl = $this->createBowl($destination);
                 $tmp = explode("/", $bowl);
                 $destination2 = "files/recipe_images/" . $tmp[1];
-                unlink($destination);
+                //unlink($destination);
+                rename($destination, $dt = "files/recipe_images/ori/" . $tmp[1]);
                 rename($bowl, $destination2);
                 
             }
-            $this->data[$this->alias]['image'] = $html->url("/".$destination2, true);
+            $this->data[$this->alias]['image'] = $html->url("/".$dt, true);
+            $this->data[$this->alias]['image_bowl'] = $html->url("/".$destination2, true);
         }
         parent::beforeSave($options);
         return true;

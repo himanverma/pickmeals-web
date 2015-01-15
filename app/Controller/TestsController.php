@@ -182,7 +182,7 @@ class TestsController extends AppController {
                 break;
             }
             $dish = new Imagick($dish);
-            if($mask_cnt + 1 == 1){
+            if($mask_cnt + 1 == 5){
                 $dish = new Imagick("tmpl/dishes/rice.jpg"); // Fixed Rice for Mask No. 1
             }
             

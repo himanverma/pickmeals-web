@@ -1,4 +1,4 @@
-<?php //debug($me); exit;   ?>
+<?php //debug($me); exit;    ?>
 <div class="user_profile">
     <div class="col-sm-3">
 
@@ -8,7 +8,7 @@
 
                     <img onerror="this.src = '/img/chef_profile.jpg'" data-bind="attr: {'src':image} ">
                     <input class="il-edit" name="data[Customer][image]" type="file" data-bind="event: { 'blur': stopEditing , 'change': imageUpdate }" /> 
-                    
+
                 </div>
                 <div class="user_profile_about">
                     <h1>
@@ -49,12 +49,12 @@
 <!--                        <li><span class="user_profile_phone">Verified:</span>
                             <p> <?php echo $me['verified']; ?></p>
                         </li>-->
-                        
+
                     </ul>
-                    
+
                 </div>
             </form>
-            
+
             <div id="" data-bind="visible:isUpdating ">Updating...</div>
         </div>
     </div>
@@ -69,14 +69,52 @@
         </div>
     </div>
 </div>
-<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery.form/3.51/jquery.form.min.js"></script>
+
+<div style="padding-bottom: 24px;" class="bs-example">
+    <div aria-hidden="true" aria-labelledby="exampleModalLabel" role="dialog" tabindex="-1" id="image-crop-mdl" class="modal fade" style="display: none;">
+        <div class="modal-dialog" style="margin:10% auto;">
+            <div class="modal-content">
+                <!--<div class="modal-header">
+                  <button data-dismiss="modal" class="close" type="button"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+      
+                </div>-->
+                <div class="modal-body">
+                    <div class="modal-body_in center-block">
+                        <div id="cst-im-crop" style="width: 100%;">
+                            <img src="" id="thepicture" width="100%" />
+                        </div>
+
+                    </div>
+                    
+                </div>
+                <div class="modal-footer">
+                    <div class="pull-right" id="crp-ftr">
+                        <button type="button" onclick="javascript: $('#image-crop-mdl').modal('hide');" class="btn btn-warning">Cancel</button>
+                        <button type="button" onclick="javascript: CustomerObj.cropNow();" class="btn btn-success">Save</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div><!-- /.modal -->
+</div>
+<?php
+$this->start("startcss");
+echo $this->Html->css(array("cropper.min"));
+$this->end();
+$this->start("startjs");
+echo $this->Html->script(array(
+    "//cdnjs.cloudflare.com/ajax/libs/jquery.form/3.51/jquery.form.min.js",
+    "cropper.min"
+    ));
+$this->end();
+?>
 <script type="text/javascript">
-    
-    
-    
-    
-    
-    
+
+
+
+
+
+
     var CustomerVM = function() {
         var me = this;
         me.isUpdating = ko.observable(false);
@@ -87,55 +125,97 @@
         me.mobile_number = ko.observable('<?php echo $me['mobile_number']; ?>');
         me.email = ko.observable('<?php echo $me['email']; ?>');
         me.image = ko.observable('<?php echo $me['image'] == "" ? "http://placehold.it/100x120&text=NA" : $me['image']; ?>');
-        me.savedata = ko.computed(function(){
-            var m = this; 
+        me.image.subscribe(function(newVal){
+            $('#thepicture').attr({src: newVal});
+        });
+        me.cropCordinates = null;
+        me.savedata = ko.computed(function() {
+            var m = this;
             me.name();
             me.address();
             me.mobile_number();
             me.isUpdating(true);
+            
             $('#cstr-profile-frm').ajaxSubmit({
-                success: function(d){
-                    if(d.Customer.image != ""){
+                success: function(d) {
+                    if (d.Customer.image != "") {
                         m.image(d.Customer.image);
                     }
                     m.isUpdating(false);
+                    $('#cstr-profile-frm')[0].reset();
                 }
             });
-        },this);
-        me.imageUpdate = function(d,e){
+        }, this);
+        me.imageUpdate = function(d, e) {
             var m = me;
             m.isUpdating(true);
             $('#cstr-profile-frm').ajaxSubmit({
-                success: function(d){
-                    if(d.Customer.image != ""){
+                success: function(d) {
+                    if (d.Customer.image != "") {
                         m.image(d.Customer.image);
                     }
+                    m.showImageCrop(d.Customer);
+                    console.log(d);
                     m.isUpdating(false);
+                    $('#cstr-profile-frm')[0].reset();
                 }
             });
         };
-        me.editItem = function(d,e) {
+        me.cropNow = function(){
+            var m = me;
+            $('#crp-ftr').html('Cropping...');
+            var data = {
+              uri: $('#thepicture').attr('src'),
+              h: me.cropCordinates.height,
+              w: me.cropCordinates.width,
+              x: me.cropCordinates.x,
+              y: me.cropCordinates.y
+            };
+            $.post("/webapp/cropImg",data,function(d){
+                if(d.error == 0){
+                    m.image(data.uri + "?_=" + (new Date()).getTime().toString());
+                    $('#thepicture').attr({src: data.uri + "?_=" + (new Date()).getTime().toString()});
+                    $('#image-crop-mdl').modal('hide');
+                    $('#crp-ftr').html('complete...');
+                    window.location.reload();
+                }else{
+                    $('#crp-ftr').html('error occoured...');
+                }
+            });
+        }
+        me.showImageCrop = function(d) {
+            var m = me;
+            $('#thepicture').attr({src: d.image});
+            $('#image-crop-mdl').modal('show');
+            $("#cst-im-crop > img").cropper({
+                aspectRatio: 1,
+                done: function(data) {
+                  m.cropCordinates = data;
+                }
+              });
+        };
+        me.editItem = function(d, e) {
             $(e.currentTarget).parent().addClass('il-editing');
             $(e.currentTarget).parent().find('il-edit').focus();
         };
-        me.stopEditing = function(d,e) {
+        me.stopEditing = function(d, e) {
             $(e.currentTarget).parent().removeClass('il-editing');
         };
-        me.saveData = function(){
+        me.saveData = function() {
             $('#cstr-profile-frm')[0].submit();
         }
-        me.init = function(){
+        me.init = function() {
             $('#cstr-profile-frm').ajaxForm({
-                success: function(d){
+                success: function(d) {
                     console.log(d);
                 }
             });
         }
         me.init();
-        
+
     };
     var CustomerObj = new CustomerVM();
-    
+
     var paginate = function(event) {
         event.preventDefault();
         var href;
@@ -163,7 +243,7 @@
     $(document).ready(function() {
         getOrderView('/webapp/myorders/');
         ko.applyBindings(CustomerObj, $('#cstr-profile')[0]);
-        
+
     });
 </script>
 <style type="text/css">

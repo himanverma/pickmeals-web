@@ -88,6 +88,7 @@ class WebappController extends AppController {
                 )
             ));
             if (!isset($user['Customer'])) {
+               
                 $data = array(
                     "Customer" => array(
                         "fbid" => $d['id'],
@@ -107,6 +108,24 @@ class WebappController extends AppController {
                 $msg = "You are registered successfuly...";
                 $error = 0;
                 if ($this->Customer->save($data)) {
+                    if($d['profile_pic'] != ''){
+                        App::uses("HtmlHelper", "View/Helper");
+                        $html = new HtmlHelper(new View());
+                        
+                        App::uses('HttpSocket', 'Network/Http');
+                        $HttpSocket = new HttpSocket(array(
+                            'ssl_verify_peer' => false,
+                            'ssl_verify_host' => false,
+                        ));
+                        $data_img = $HttpSocket->get($d['profile_pic']);
+                        
+                        file_put_contents($pth2 = "files/profile_image/".date('YmdHis') . rand(1, 999) . ".jpg", $data_img);
+                        $this->Customer->updateAll(array(
+                            "Customer.image" => "'".$html->url("/".$pth2, true)."'"
+                        ), array(
+                            "Customer.id" => $this->Customer->getLastInsertID()
+                        ));
+                    }
                     $user = $this->Customer->find("first", array(
                         "conditions" => array(
                             "Customer.id" => $this->Customer->getLastInsertID()
@@ -226,14 +245,18 @@ class WebappController extends AppController {
     }
 
     public function myaccount() {
-        // Configure::write('debug', 2);
+        Configure::write('debug', 2);
         $this->loadModel('Customer');
         $this->layout = "webapp_inner";
         $me = $this->Customer->find("first", array("conditions" => array('Customer.id' => AuthComponent::user('id'))));
         $this->set("me", $me['Customer']);
 
         if ($this->request->is(array('ajax', 'post'))) {
+            
             $d = $this->request->data;
+            if($d['Customer']['mobile_number'] == ''){
+                unset($d['Customer']['mobile_number']);
+            }
             if ($d['Customer']['id'] != "") {
 //                App::uses("AuthComponent", "Controller/Component");
 //                if($d['Customer']['password'] == "" || AuthComponent::password($d['Customer']['opassword']) != AuthComponent::user('password')){
@@ -251,6 +274,26 @@ class WebappController extends AppController {
                 $this->response->body(json_encode(array('Customer' => array('image' => ''))));
             }
         }
+    }
+    
+    public function cropImg() {
+        //Configure::write('debug', 2);
+        if ($this->request->is(array("ajax", "post"))) {
+            $d = $this->request->data;
+            $url = ltrim($d['uri'],"https://www.pickmeals.com/");
+            $im = new Imagick($url);
+            $im->cropimage($d['w'], $d['h'], $d['x'], $d['y']);
+            $im->scaleimage(0, 180);
+            $im->writeimage($url); 
+            $im->destroy();
+            $this->autoRender = false;
+            $this->response->type('json');
+            $this->response->body(json_encode(array("error"=>0)));
+            
+        }else{
+            exit;
+        }
+        
     }
 
     public function myorders() {

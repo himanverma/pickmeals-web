@@ -240,14 +240,17 @@ class Customer extends AppModel {
             App::uses("HtmlHelper", "View/Helper");
             $html = new HtmlHelper(new View());
             if(isset($this->data[$this->alias]['image']['name'])){
+                if($this->data[$this->alias]['image']['name'] != ""){
                     $ext = pathinfo($this->data[$this->alias]['image']['name'], PATHINFO_EXTENSION);
                     $image_name = date('YmdHis') . rand(1, 999) . "." . $ext;
                     $path = $this->data[$this->alias]['image']['tmp_name'];
                     $this->data[$this->alias]['image'] = $html->url("/files/profile_image/" . $image_name, true);
                     $destination = "files/profile_image/" . $image_name;
                     move_uploaded_file($path, $destination);
+                }
             }
         }
+        return TRUE;
     }
 
 }

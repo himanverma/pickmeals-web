@@ -4,6 +4,7 @@
 	<thead>
 	<tr>
 			<th><?php echo $this->Paginator->sort('id'); ?></th>
+                        <th></th>
 			<th><?php echo $this->Paginator->sort('recipe_name'); ?></th>
 			<th><?php echo $this->Paginator->sort('description'); ?></th>
 			<th><?php echo $this->Paginator->sort('also_known_as'); ?></th>
@@ -14,6 +15,8 @@
 	<?php foreach ($recipes as $recipe): ?>
 	<tr>
 		<td><?php echo h($recipe['Recipe']['id']); ?>&nbsp;</td>
+                <td>
+                    <img src="<?php echo h($recipe['Recipe']['image_bowl']); ?>" /></td>
 		<td><?php echo h($recipe['Recipe']['recipe_name']); ?>&nbsp;</td>
 		<td><?php echo h($recipe['Recipe']['description']); ?>&nbsp;</td>
 		<td><?php echo h($recipe['Recipe']['also_known_as']); ?>&nbsp;</td>

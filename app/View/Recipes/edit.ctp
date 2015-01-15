@@ -8,6 +8,7 @@
             <div class="col-md-12">
                 <div class="form-group">
                     <?php
+                    echo $this->Form->input("id", array( 'type' => 'hidden'));
                     echo $this->Form->input("recipe_name", array(
                         'div' => false,
                         'class' => 'form-control',

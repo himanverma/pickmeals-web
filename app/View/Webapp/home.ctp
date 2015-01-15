@@ -216,7 +216,7 @@ echo json_encode($a);
                                 <div class="col-xs-4 col-sm-4 padding-none">
                                     <div class="padding-none">
                                         <div class="list_box_left">
-                                            <img data-bind="attr: {'src': Combination.image}" onerror="this.src = 'img/product.png';">
+                                            <img data-bind="attr: {'src': ko.computed(function(){return $root.dynamicSrc(Combination.image)})}" onerror="this.src = 'img/product.png';">
                                         </div>
                                     </div>
                                 </div>
@@ -257,15 +257,15 @@ echo json_encode($a);
                                             </div>
                                             <div class="col-xs-4 col-sm-4 padding-none-2">
                                                 <div class="food_qty">
-                                                    <input data-bind="checked:$root.essentials, attr:{'name':'ess-fw-'+Combination.id} " type="radio" value="6 Roti">
+                                                    <input checked="checked" data-bind="checked:$root.essentials, attr:{'name':'ess-fw-'+Combination.id} " type="radio" value="6 Roti">
                                                     <label>6 Roti</label>
                                                 </div>
                                             </div>
                                             <div class="col-xs-4 col-sm-4 padding-none-2">
                                                 <div class="row">
                                                     <div class="food_qty">
-                                                        <input data-bind="checked:$root.essentials, attr:{'name':'ess-fw-'+Combination.id} " type="radio" value="2 Roti + Full Rice">
-                                                        <label>2 Roti + Full Rice</label>
+                                                        <input data-bind="checked:$root.essentials, attr:{'name':'ess-fw-'+Combination.id} " type="radio" value="Full Rice">
+                                                        <label>Full Rice</label>
                                                     </div>
                                                 </div>
                                             </div>
@@ -308,7 +308,7 @@ echo json_encode($a);
                                                         <select data-bind="value:data.essentials,event:{'change':$root.updateEss}, ">
                                                             <option value="4 Roti + Half Rice">4 Roti + Half Rice</option>
                                                             <option value="6 Roti">6 Roti</option>
-                                                            <option value="2 Roti + Full Rice">2 Roti + Full Rice</option>
+                                                            <option value="Full Rice">Full Rice</option>
                                                         </select>
                                                     </span>
                                                 </div>
@@ -359,7 +359,23 @@ echo json_encode($a);
         me.lat = 30.7238504;
         me.lng = 76.8465098;
         me.page = 1;
-        me.essentials = ko.observable('4 Roti');
+        me.essentials = ko.observable('6 Roti');
+        me.essentials.subscribe(function(){
+            
+        });
+        
+        me.dynamicSrc = function(s){
+            if(me.essentials() == "4 Roti + Half Rice"){
+                s = s.replace("-0-","-2-");
+            }
+            if(me.essentials() == "Full Rice"){
+                s = s.replace("-0-","-1-");
+            }
+            if(me.essentials() == "6 Roti"){
+                //s = s.replace("-0-","-1-");
+            }
+            return s;
+        }
 
         me.isLoading = ko.observable(false);
         me.isLoading.subscribe(function(n) {
@@ -533,7 +549,7 @@ echo json_encode($a);
         me.init();
     };
 
-    var RecipeVM = function() {
+    var FilterVM = function() {
         var me = this;
         me.list = ko.observableArray([]);
         me.filter = function(d, e) {
@@ -552,14 +568,14 @@ echo json_encode($a);
 
     CartObj = new CartVM();
     ComboObj = new CombinationVM();
-    RecipeObj = new RecipeVM();
+    FilterObj = new FilterVM();
 
     $(document).ready(function() {
         ko.applyBindings(ComboObj, $('#combination-sec')[0]);
         ko.applyBindings(ComboObj, $('#srch-block')[0]);
 
         ko.applyBindings(CartObj, $('#cart-sec')[0]);
-        ko.applyBindings(RecipeObj, $('#recipe-sec')[0]);
+        ko.applyBindings(FilterObj, $('#recipe-sec')[0]);
         $('.rateit').rateit();
     });
 </script>

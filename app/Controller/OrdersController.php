@@ -353,6 +353,11 @@ class OrdersController extends AppController {
         $orders = $this->Order->find("all",array(
             "conditions"=>array(
                 "Order.sku" => $orderId
+            ),
+            "contain" => array(
+                "Combination.Vendor",
+                "Customer",
+                "Address"
             )
         ));
         $this->set("orders",$orders);

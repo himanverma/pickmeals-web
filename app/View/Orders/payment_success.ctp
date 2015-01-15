@@ -1,11 +1,13 @@
-
+<pre><?php// print_r($orders); exit; ?>
+</pre>
 <div class="order_success_in">
     <div class="col-xs-12 col-sm-12 col-md-2"></div>
 
 
 
     <div class="col-xs-12 col-sm-12 col-md-8">
-        <div class="success-order_main">  
+        <div class="success-order_main"> 
+            <?php foreach($orders as $ord){ ?>
             <div class="col-sm-12">
 
                 <div class="order_success_title">
@@ -14,7 +16,7 @@
                 <div class="order_success_review">
                     <div class="order_success_review_in">
                         <h3>Order ID:<b><?php echo $oid; ?></b></h3>
-                        <p>Thank you <b>Person name</b> for ordering</p>
+                        <p>Thank you <b><?php echo $ord['Customer']['name'];?></b> for ordering</p>
                     </div>
 
                     <div class="sucess-order">
@@ -22,35 +24,34 @@
                             <div class="success-order-height">
                                 <div class="success_user_list">
                                     <div class="success_user_list_title">
-                                        <h3>HALF Black Dal + HALF Bhindi</h3>
-                                        <h6>with 6 Roti</h6>
+                                        <h3><?php echo $ord['Order']['recipe_names'];?></h3>
+                                        <h6><?php echo $ord['Order']['essentials'];?></h6>
                                     </div>
                                     <div class="col-xs-3 col-sm-2">
                                         <div class="row">
-                                            <div class="success_user_list_left"><img src="/img/product.png"> </div>
+                                            <div class="success_user_list_left"><img src="<?php echo $ord['Combination']['image'];?>"> </div>
                                         </div>
                                     </div>
                                     <div class="col-xs-9 col-sm-10">
                                         <div class="row">
                                             <div class="success_user_list_right">
                                                 <ul>
+                                           
+                                                    
                                                     <li>
-                                                        <p>By <a href="/chef/ashok-mittal">Ashok Mittal</a></p>
+                                                        <p>By <a href="<?php echo $this->Html->url('/').$ord['Combination']['image'];?>"><?php echo $ord['Combination']['Vendor']['name'];?></a></p>
+                                                    </li>
+                                                   
+                                                    <li>
+                                                        <h2><span>Order date:</span><?php echo $ord['Order']['created'];?></h2>
+                                                    </li>
+                                                    
+                                                   
+                                                    <li>
+                                                        <h6><span>Quantity:</span><?php echo $ord['Order']['qty'];?></h6>
                                                     </li>
                                                     <li>
-                                                        <h2><span>Order date:</span>09-01-2015 08:32 PM</h2>
-                                                    </li>
-                                                    <li>
-                                                        <h4><span>Location:</span>Futurework Pvt. Ltd. 4th Floor Plot-10, Chandigarh</h4>
-                                                    </li>
-                                                    <li>
-                                                        <h1><span>Mobile No.:</span>+91-8699445905</h1>
-                                                    </li>
-                                                    <li>
-                                                        <h6><span>Quantity:</span>1</h6>
-                                                    </li>
-                                                    <li>
-                                                        <h3><span>Price:</span>Rs 1</h3>
+                                                        <h3><span>Price:</span><?php echo $ord['Order']['price'];?></h3>
                                                     </li>
                                                 </ul>
                                             </div>
@@ -66,15 +67,15 @@
                                     <div class="row">
                                         <div class="col-lg-10">
                                             <p style="font-weight: bold;"> 
-                                                <!-- ko text: fname -->Rajan<!-- /ko --> <!-- ko text: lname -->Khokhar<!-- /ko -->
+                                             <?php echo $ord['Address']['f_name'];?>&nbsp;<?php echo $ord['Address']['l_name'];?>
                                             </p>
-                                            <!-- ko text: address -->Futurework Pvt. Ltd. 4th Floor Plot-10<!-- /ko -->, <!-- ko text: area -->IT Park (Rajiv Gandhi Technology Park)<!-- /ko -->, <!-- ko text: city -->Chandigarh<!-- /ko --> (<!-- ko text: zip -->1610101<!-- /ko -->)
+                                            <?php echo $ord['Address']['address'];?> <?php echo $ord['Address']['area'];?>,<?php echo $ord['Address']['city'];?> <?php echo $ord['Address']['zipcode'];?>
                                             <p style="font-weight: bold;"> 
-                                                Mobile No: <!-- ko text: phone -->+91-8699445905<!-- /ko -->
+                                                Mobile No:<?php echo $ord['Address']['phone_number'];?>
                                             </p>
                                             <p></p>
                                             <p style="font-weight: bold;"> 
-                                                Payment Mode: <!-- ko text: payment_mode -->Online Payment<!-- /ko -->
+                                                Payment Mode: <?php echo $ord['Order']['paid_via'];?>
                                             </p>
                                         </div>
                                     </div>
@@ -94,6 +95,7 @@
                     -->
                 </div>
             </div>
+            <?php } ?>
         </div>
     </div>
 
