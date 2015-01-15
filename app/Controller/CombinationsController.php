@@ -319,7 +319,12 @@ class CombinationsController extends AppController {
                 break;
             }
             $dish = new Imagick($dish);
-            $dish->scaleimage($thali1->getimagewidth(), $thali1->getimageheight()); // Set As per bowl image
+            
+            $dish->scaleimage($thali1->getimagewidth() + 60, $thali1->getimageheight() + 60); // Set As per bowl image
+            
+            if($mask_cnt == 1){
+                $dish->rotateimage("#fff", 180);
+            }
             
             $dish->compositeimage(new Imagick("tmpl/img/thali-mask".($mask_cnt + 2).".png"), \Imagick::COMPOSITE_COPYOPACITY, 0, 0, Imagick::CHANNEL_ALPHA);
             $dish->mergeimagelayers(Imagick::LAYERMETHOD_COALESCE);

@@ -375,7 +375,7 @@ echo json_encode($a);
                 //s = s.replace("-0-","-1-");
             }
             return s;
-        }
+        };
 
         me.isLoading = ko.observable(false);
         me.isLoading.subscribe(function(n) {

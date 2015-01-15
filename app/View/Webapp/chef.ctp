@@ -151,7 +151,7 @@
                                             <select data-bind="value:data.essentials,event:{'change':$root.updateEss}, ">
                                                 <option value="4 Roti + Half Rice">4 Roti + Half Rice</option>
                                                 <option value="6 Roti">6 Roti</option>
-                                                <option value="2 Roti + Full Rice">2 Roti + Full Rice</option>
+                                                <option value="Full Rice">Full Rice</option>
                                             </select>
                                         </span>
                                     </div>

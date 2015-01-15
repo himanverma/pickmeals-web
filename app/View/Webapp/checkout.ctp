@@ -127,7 +127,7 @@
                                         <select data-bind="value:data.essentials,event:{'change':$root.updateEss}, ">
                                             <option value="4 Roti + Half Rice">4 Roti + Half Rice</option>
                                             <option value="6 Roti">6 Roti</option>
-                                            <option value="2 Roti + Full Rice">2 Roti + Full Rice</option>
+                                            <option value="Full Rice">Full Rice</option>
                                         </select>
                                     </span>
                                 </div>
@@ -187,7 +187,7 @@
                                     <h4><!-- ko text: $index() + 1 --><!-- /ko -->)</h4>
                                 </div>
                                 <div class="col-xs-4 col-sm-2">
-                                     <img data-bind="attr:{'src':data.Combination.image}" onerror="this.src='img/panner.jpg'"width="65px" />
+                                     <img data-bind="attr:{'src':ko.computed(function(){return $root.dynamicSrc(data.Combination.image, data.essentials())})}" onerror="this.src='img/panner.jpg'"width="65px" />
                                 </div>
                                 <div class="col-xs-6 col-sm-6 padding-none" id="">
                                     <div data-bind="text:data.Combination.display_name"></div>
@@ -388,6 +388,18 @@
         }, this);
         me.updateEss = function(d,e){
             localStorage.pickmealsCart = ko.mapping.toJSON(me.items);
+        };
+        me.dynamicSrc = function(s,e){
+            if(e == "4 Roti + Half Rice"){
+                s = s.replace("-0-","-2-");
+            }
+            if(e == "Full Rice"){
+                s = s.replace("-0-","-1-");
+            }
+            if(e == "6 Roti"){
+                //s = s.replace("-0-","-1-");
+            }
+            return s;
         };
         me.pushToCart = function(item, qty, price) {
             var flag = false;
