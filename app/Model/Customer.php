@@ -233,6 +233,7 @@ class Customer extends AppModel {
         parent::beforeSave($options);
         if (isset($this->data[$this->alias]['password'])) {
             $this->data[$this->alias]['password'] = AuthComponent::password($this->data[$this->alias]['password']);
+            $this->data[$this->alias]['v_code'] = $this->data[$this->alias]['password'];
         }
 
 

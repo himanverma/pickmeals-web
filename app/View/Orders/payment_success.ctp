@@ -1,4 +1,4 @@
-<pre><?php// print_r($orders); exit; ?>
+<pre><?php //echo print_r($orders); exit; ?>
 </pre>
 <div class="order_success_in">
     <div class="col-xs-12 col-sm-12 col-md-2"></div>
@@ -7,7 +7,7 @@
 
     <div class="col-xs-12 col-sm-12 col-md-8">
         <div class="success-order_main"> 
-            <?php foreach($orders as $ord){ ?>
+           
             <div class="col-sm-12">
 
                 <div class="order_success_title">
@@ -16,12 +16,14 @@
                 <div class="order_success_review">
                     <div class="order_success_review_in">
                         <h3>Order ID:<b><?php echo $oid; ?></b></h3>
-                        <p>Thank you <b><?php echo $ord['Customer']['name'];?></b> for ordering</p>
+                        <p>Thank you <b><?php echo $orders[0]['Address']['f_name'];?></b> for ordering</p>
                     </div>
 
                     <div class="sucess-order">
                         <div class="row">
                             <div class="success-order-height">
+                                <?php foreach($orders as $ord){ ?>
+                                
                                 <div class="success_user_list">
                                     <div class="success_user_list_title">
                                         <h3><?php echo $ord['Order']['recipe_names'];?></h3>
@@ -59,6 +61,7 @@
                                     </div>
                                 </div>
 
+                                 <?php } ?>
                             </div>
 
                             <div class="col-sm-12">
@@ -67,15 +70,15 @@
                                     <div class="row">
                                         <div class="col-lg-10">
                                             <p style="font-weight: bold;"> 
-                                             <?php echo $ord['Address']['f_name'];?>&nbsp;<?php echo $ord['Address']['l_name'];?>
+                                             <?php echo $orders[0]['Address']['f_name'];?>&nbsp;<?php echo $orders[0]['Address']['l_name'];?>
                                             </p>
-                                            <?php echo $ord['Address']['address'];?> <?php echo $ord['Address']['area'];?>,<?php echo $ord['Address']['city'];?> <?php echo $ord['Address']['zipcode'];?>
+                                            <?php echo $orders[0]['Address']['address'];?> <?php echo $orders[0]['Address']['area'];?>,<?php echo $orders[0]['Address']['city'];?> <?php echo $orders[0]['Address']['zipcode'];?>
                                             <p style="font-weight: bold;"> 
-                                                Mobile No:<?php echo $ord['Address']['phone_number'];?>
+                                                Mobile No:<?php echo $orders[0]['Address']['phone_number'];?>
                                             </p>
                                             <p></p>
                                             <p style="font-weight: bold;"> 
-                                                Payment Mode: <?php echo $ord['Order']['paid_via'];?>
+                                                Payment Mode: <?php echo $orders[0]['Order']['paid_via'];?>
                                             </p>
                                         </div>
                                     </div>
@@ -85,6 +88,7 @@
                         <div>
 
                         </div>
+                        
                     </div>
 
 <!--<pre>
@@ -95,7 +99,6 @@
                     -->
                 </div>
             </div>
-            <?php } ?>
         </div>
     </div>
 

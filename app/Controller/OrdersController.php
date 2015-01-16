@@ -360,6 +360,13 @@ class OrdersController extends AppController {
                 "Address"
             )
         ));
+        $mobile_num = explode("-", $orders[0]['Address']['phone_number']);
+        if(count($mobile_num)>1){
+            $mobile_num = $mobile_num[1];
+        }else{
+            $mobile_num = ltrim($mobile_num,"0");
+        }
+        $this->sendSms($mobile_num, "Dear ".$orders[0]['Address']['f_name']." ".$orders[0]['Address']['l_name']." thanks for placing Order ID:".$orderId.". Your order will be delivered within 45 minutes.");
         $this->set("orders",$orders);
     }
 

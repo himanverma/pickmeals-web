@@ -576,6 +576,8 @@ echo json_encode($a);
 
         ko.applyBindings(CartObj, $('#cart-sec')[0]);
         ko.applyBindings(FilterObj, $('#recipe-sec')[0]);
+        ko.applyBindings(FilterObj, $('#bs-example-navbar-collapse-1')[0]);
+        
         $('.rateit').rateit();
     });
 </script>

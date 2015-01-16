@@ -245,6 +245,9 @@ class WebappController extends AppController {
     }
 
     public function myaccount() {
+        ini_set("upload_max_filesize", "10M");
+        ini_set("post_max_size", "10M");
+        ini_set("max_execution_time", -1);
         Configure::write('debug', 2);
         $this->loadModel('Customer');
         $this->layout = "webapp_inner";
@@ -345,6 +348,9 @@ class WebappController extends AppController {
     }
 
     public function contactus() {
+        $this->layout = "webapp_inner";
+    }
+    public function feedback() {
         $this->layout = "webapp_inner";
     }
 

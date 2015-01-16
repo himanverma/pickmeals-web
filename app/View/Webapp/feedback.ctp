@@ -2,10 +2,10 @@
     <div class="contact">
         <div class="contact_right">
             <div class="contact_right_title">
-                <h1>Contact Us</h1>
+                <h1>Feedback</h1>
             </div>
             <div class="contact_content">
-<!--                <img src="/img/contact.png" alt="...">-->
+<!--                <img src="img/contact.png" alt="...">-->
                 <h2>Your Message</h2>
                 <form>
                     <ul>

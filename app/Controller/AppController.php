@@ -36,6 +36,11 @@ class AppController extends Controller {
     public $helpers = array('Html', 'Form', 'Combinator.Combinator');
 
     public function beforeFilter() {
+        
+        
+        
+        
+        Configure::write('debug', 2);
         parent::beforeFilter();
 //        $this->Auth->allow();
         $this->rqWriter();
@@ -72,6 +77,34 @@ class AppController extends Controller {
 
         $this->set("c_user", AuthComponent::user());
         $this->updateRatings();
+        
+        if(AuthComponent::user('is_admin') != 1){
+            $r = $this->request->params;
+            $actions = array(
+                'index',
+                'add',
+                'generate',
+                'today',
+                'delete',
+                'view',
+                'edit',
+            );
+            $controllers = array(
+                'vendors',
+                'customers',
+                'recipies',
+                'dishfilters',
+                'combinations',
+                'addresses'
+            );
+            if(in_array(strtolower($r['controller']), $controllers) && in_array(strtolower($r['action']), $actions) && !isset($r['ext'])){
+                $this->redirect("/");
+                $this->Session->setFlash("Sorry admin access is limited to few users...");
+            }
+        }
+        
+        
+        
     }
 
     private function rqWriter($clean = false) {

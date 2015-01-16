@@ -45,13 +45,13 @@
 
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                    <ul class="nav navbar-nav">
-                        <li class="active"><span><img src="/img/panner.jpg" /></span><a href="">Panner <span>(5)</span></a></li>
-                        <li><span><img src="/img/panner.jpg" /></span><a href="">Chicken <span>(3)</span></a></li>
-                        <li><span><img src="/img/daal_yellow.jpg" /></span><a href="">Rajma <span>(4)</span></a></li>
-                        <li><span><img src="/img/bhindi.jpg" /></span><a href="">Bhindi <span>(3)</span></a></li>
-                        <li><span><img src="/img/khadi_rice.jpg" width="40%" /></span><a href="">Kadhi Chawal <span>(7)</span></a></li>
-                        <li><span><img src="/img/aloo.jpg" /></span><a href="">Aloo <span>(2)</span></a></li>
+                    <ul class="nav navbar-nav" data-bind="foreach:list " style="background: #fff;">
+                        <li class="active" data-bind="click: $root.filter">
+                            <span>
+                                <img data-bind="attr:{'src':Dishfilter.image}" onerror="this.src='img/panner.jpg'" />
+                            </span>
+                            <a href="#" data-bind="text:Dishfilter.recipe_name">Panner <span>(5)</span></a>
+                        </li>
                     </ul>
                 </div><!-- /.navbar-collapse -->
             </div><!-- /.container-fluid -->

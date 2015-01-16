@@ -43,6 +43,7 @@
 //        Router::connect('/reset-password', array('controller' => 'Webapp', 'action' => 'reset_password'));
         Router::connect('/change-password', array('controller' => 'Webapp', 'action' => 'change_password'));
 //        Router::connect('/pay-online', array('controller' => 'Webapp', 'action' => 'payments'));
+        Router::connect('/feedback', array('controller' => 'Webapp', 'action' => 'feedback'));
         
         
         

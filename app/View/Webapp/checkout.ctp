@@ -234,7 +234,7 @@
                                 <p style="font-weight: bold;border-bottom: 1px solid #dcdcdc;color: #999;padding: 2%;"> 
                                     Payment Mode: <!-- ko text: payment_mode --><!-- /ko -->
                                 </p>
-                                <span class="checkout-terms"><input type="checkbox"><h2>I have read and agree to the Terms & Conditions.</h2></span>
+                                <span class="checkout-terms"><input type="checkbox"><h2>I have read and agree to the <a href="/terms-and-conditions" target="_new">Terms & Conditions</a>.</h2></span>
                             </div>
                         </div>
                     </div>
@@ -332,7 +332,7 @@
                                     }
                                 };
                                 $.notification(options);
-                                window.location = "/";
+                                window.location = 'https://www.pickmeals.com/orders/payment_success/' + m.orderId();//"/";
                             }
                         } else {
                             var options = {

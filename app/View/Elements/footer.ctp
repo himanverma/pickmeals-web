@@ -21,10 +21,9 @@
                 </div>
                 <div class="col-sm-3 col-md-3 col-lg-2">
                     <ul class="footer_menu1">
-                        <h1>Contact us</h1>
-                        <li>123 Abc area, Abc city</li>
-                        <li>Tel: +11 1 111 1111</li>
-                        <li>Fax: +11 1 111 1111</li>
+                        <h1>Help</h1>
+                        <li><a href="/contact-us">Contact Us</a></li>
+                        <li><a href="/feedback">Feedback</a></li>
                     </ul>
                 </div>
                 <div class="col-sm-4 col-md-4 col-lg-6">

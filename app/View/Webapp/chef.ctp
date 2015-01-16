@@ -56,7 +56,8 @@
                         </div>
                         <div class="col-xs-4 col-sm-4 padding-none">
                             <div class="padding-none">
-                                <div class="list_box_left"> <img src="<?php echo $combo['image'] != NULL ? $combo['image'] : "/img/product.png"; ?>"> </div>
+                                <div class="list_box_left"> 
+                                <img data-bind="attr: {'src': ko.computed(function(){return $root.dynamicSrc('<?php echo $combo['image'] != NULL ? $combo['image'] : "/img/product.png"; ?>')})}" onerror="this.src = 'img/product.png';" /> </div>
                             </div>
                         </div>
                         <div class="col-xs-6 col-sm-6 ">
@@ -107,8 +108,8 @@
                                     <div class="col-xs-4 col-sm-4 padding-none-2">
                                         <div class="row">
                                             <div class="food_qty">
-                                                <input data-bind="checked: essentials" type="radio" value="2 Roti + Full Rice">
-                                                <label>2 Roti + Full Rice</label>
+                                                <input data-bind="checked: essentials" type="radio" value="Full Rice">
+                                                <label>Full Rice</label>
                                             </div>
                                         </div>
                                     </div>
@@ -186,7 +187,19 @@
 <script type="text/javascript">
     var ComboVM = function(){
         var me = this;
-        me.essentials = ko.observable('4 Roti');
+        me.dynamicSrc = function(s){
+            if(me.essentials() == "4 Roti + Half Rice"){
+                s = s.replace("-0-","-2-");
+            }
+            if(me.essentials() == "Full Rice"){
+                s = s.replace("-0-","-1-");
+            }
+            if(me.essentials() == "6 Roti"){
+                //s = s.replace("-0-","-1-");
+            }
+            return s;
+        };
+        me.essentials = ko.observable('6 Roti');
         me.addToCart = function(d,e){
             var data = $(e.currentTarget).data('combo');
             delete data.Review;
