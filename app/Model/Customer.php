@@ -242,12 +242,28 @@ class Customer extends AppModel {
             $html = new HtmlHelper(new View());
             if(isset($this->data[$this->alias]['image']['name'])){
                 if($this->data[$this->alias]['image']['name'] != ""){
+                    
+                    if(isset($this->data[$this->alias]['id'])){
+                        $fx = $this->find("first",array(
+                            "contain" => false,
+                            "conditions" => array(
+                                "Customer.id" => $this->data[$this->alias]['id']
+                            )
+                        ));
+                        $fn = ltrim($fx[$this->alias]['image'],"https://www.pickmeals.com/");
+                        @unlink($fn);
+                    }
+                    
                     $ext = pathinfo($this->data[$this->alias]['image']['name'], PATHINFO_EXTENSION);
                     $image_name = date('YmdHis') . rand(1, 999) . "." . $ext;
                     $path = $this->data[$this->alias]['image']['tmp_name'];
                     $this->data[$this->alias]['image'] = $html->url("/files/profile_image/" . $image_name, true);
                     $destination = "files/profile_image/" . $image_name;
                     move_uploaded_file($path, $destination);
+                    $im = new Imagick($destination);
+                    $im->scaleimage(800,0);
+                    $im->writeimage($destination);
+                    $im->destroy();
                 }
             }
         }

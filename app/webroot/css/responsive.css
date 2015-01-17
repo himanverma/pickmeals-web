@@ -24,12 +24,13 @@
 
 @media screen and (max-width: 1366px){
 
-    .rateit .rateit-range {
+/*    Creating issues*/
+/*    .rateit .rateit-range {
         background-position: 0 -37px;
         background-size: 12px auto;
         height: 11px !important;
         width: 60px !important;
-    }
+    }*/
 
     .logo > img:last-child {
         display: none;
@@ -43,9 +44,9 @@
 @media screen and (max-width: 1280px){
     .home_content {
         float: left;
-        margin: 35px 0 0;
         width: 100%;
     }
+ .home_content {margin: 36px 0 0;}
 
 }
 
@@ -81,18 +82,16 @@
         text-align: left;
         width: 79%;
     }
-    .video_wrap {
-        position: inherit;
-    }
     .list_box_left img{margin:0px;height:auto;}
     .list_box_title h3 {margin:0px;}
 
-    .rateit .rateit-range {
+/*Creating issues    */
+/*    .rateit .rateit-range {
         background-position: 0 -37px;
         background-size: 12px auto;
         height: 11px !important;
         width: 60px !important;
-    }
+    }*/
 
     .logo > img:last-child {
         display: none;
@@ -101,13 +100,6 @@
         float: right;
         padding-left: 0;
     }
-
-    .home_content_in {
-        float: left;
-        margin: 24px 0 0;
-        width: 100%;
-    }
-
     #cart-sec {
         padding: 0;
     }
@@ -156,12 +148,6 @@
         text-align: left;
         width: 79%;
     }
-
-    .video_wrap {
-        position: inherit;
-    }
-
-
     .header_nav {
         float: left;
         position: relative;
@@ -172,13 +158,13 @@
 
     .list_box_left img{margin:0px;height:auto;}
     .list_box_title h3 {margin:0px;}
-
-    .rateit .rateit-range {
+/*Creating issues*/
+/*    .rateit .rateit-range {
         background-position: 0 -37px;
         background-size: 12px auto;
         height: 11px !important;
         width: 60px !important;
-    }
+    }*/
     .logo > img:last-child {
         display: none;
     }
@@ -222,8 +208,10 @@
     /*--13-1-2015--*/
 
     .order_success_in{padding: 0;}
-
-    .home_content {margin: -102px 0 0;}
+    .home_content {margin: 0;}
+    .home_content_left ul li a {padding: 30px 0 0 10px; width: auto;}
+    .footer_menu1 h1 {font-size: 17px;}
+    .chef_profile_about h1 {font-size: 17px;}
 
 
 }
@@ -242,7 +230,7 @@
     }
     #box1 {
         display: block;
-        height: 15px;
+        height: 0;
     }
     
     
@@ -292,12 +280,6 @@
         font-size: 11px;
         padding: 7px 4px;
     }
-
-    .video_wrap {
-        position: inherit;
-    }
-
-
     .header_nav {
         float: left;
         position: relative;
@@ -308,13 +290,13 @@
     .list_box_left img{margin:0px;height:auto;  width: 92px;}
     .list_box_title h3 {margin:0px;}
 
-
-    .rateit .rateit-range {
+/*Creating issues*/
+/*    .rateit .rateit-range {
         background-position: 0 -37px;
         background-size: 12px auto;
         height: 11px !important;
         width: 60px !important;
-    }
+    }*/
     .logo > img:last-child {
         display: none;
     }
@@ -352,17 +334,19 @@
         padding: 0;
     }
 
-    .home_content {margin: 37px 0 0;}
-    .home_content {
-        margin: -52px 0 0;
-    }
-
+    .video_wrap {
+    background:#e3e3e3;
+    float: left;
+    height: 70px;
+    position: inherit;
 }
-
-
-
-
-
+ .search_bar_main input {border: 1px solid #e5e5e5 !important;}
+  
+    #nav1 {display: none;}
+    .home_content_left ul li a{width: 100%; float: left; padding: 0; text-align: center;}
+    .dish_content_titles{display: block;}
+    .dish_content_title_search{display: block;}
+    }
 
 
 
@@ -423,13 +407,6 @@
     }
 
 
-
-
-    .video_wrap {
-        position: inherit;
-    }
-
-
     .header_nav {
         float: left;
         position: relative;
@@ -447,11 +424,12 @@
         background-repeat: no-repeat;
         width: 100% !important
     }
-    .rateit .rateit-range {
+/*    Creating issues*/
+/*    .rateit .rateit-range {
         background-size: 12px auto;
         height: 11px !important;
         width: 60px !important;
-    }
+    }*/
     .home_content_left ul li {
         text-align: center;
         border: 1px solid #fff;
@@ -461,8 +439,6 @@
         width: 100%;
     }
 
-
-    .home_content_left ul li a {  padding: 5px 0 7px 10px;}
     .home_content_left_title img {
         float: none;
         height: 90px;
@@ -590,7 +566,6 @@
         margin: -66px 0 0;
         width: 100%;
     }
-
 }
 
 
@@ -664,15 +639,13 @@
         background-repeat: no-repeat;
         width: 100% !important
     }
-    .rateit .rateit-range {
+/*    Creating issues*/
+/*    .rateit .rateit-range {
         background-position: 0 -37px;
         background-size: 12px auto;
         height: 11px !important;
         width: 60px !important;
-    }
-
-
-    .home_content_left ul li a {  padding: 5px 0 7px 10px;}
+    }*/
     .home_content_left_title img {
         float: none;
         height: 90px;
@@ -747,9 +720,7 @@
     .user_profile .col-sm-3 {
         padding: 0;
     }
-
-    .home_content_in {margin: -110px 0 0;}
-
+#box1 {height: 65px;}
 }
 
 
@@ -782,15 +753,11 @@
     .trans-btns {font-size: 12px;}
     .food_qty_button button{padding: 9px 18px;}
     .logo img{width: 120px;}
-    .logo img {margin-left: 45px;margin-top: 14px;width: 100px !important;}
+    .logo img {margin-left: 45px;margin-top: 14px;}
     .navbar-toggle{padding: 7px 8px;}
     .placeorder_right ul li textarea{width:100%;}
     .placeorder_right ul li input[type="text"]{width:100%;}
     .user_list_left img {  height: 211px; width:100%;}
-
-    #box1 {
-        display: none;
-    }
     .home_content {margin: -3px 0 0;}
     .placeorder_right ul li textarea{width:100%;}
     .placeorder_right ul li input[type="text"]{width:100%;}
@@ -831,13 +798,6 @@
         border-color: #bebebe;
     }
 
-
-    .header_nav {
-        background: none repeat scroll 0 0 #dedede;
-        float: left;
-        width: 100%;height: 60px;
-    }
-
     .chef_food_qty > span {  float: left; width: auto;}
 
     .chef_food_qty label { float: right; text-align: left;  width: 92%;}  
@@ -848,10 +808,6 @@
     .trans-btns {
         position: relative;
         z-index: 9999999 !important;
-    }
-
-    .video_wrap {
-        position: inherit;
     }
     .navbar-nav img {
         border-radius: 50%;    
@@ -884,16 +840,13 @@
         background-repeat: no-repeat;
         width: 100% !important
     }
-    .rateit .rateit-range {
+/*    Creating issues*/
+/*    .rateit .rateit-range {
         background-position: 0 -37px;
         background-size: 12px auto;
         height: 11px !important;
         width: 60px !important;
-    }
-
-
-
-    .home_content_left ul li a {  padding: 5px 0 7px 10px;}
+    }*/
     .home_content_left_title img {
         float: none;
         height: 90px;
@@ -1029,8 +982,16 @@
     .header-inner{background: none;}
 
     .home_content_left ul li a{width: 100%; float: left;}
-    .home_content_in {margin: 20px 0 0;}
-
+    .home_content_in {margin: 0;}
+    .video_wrap {
+    background: none repeat scroll 0 0 #e3e3e3;
+    float: left;
+    height: 55px;
+    position: inherit;
+}
+#box1 {
+    height: 0;
+}
 }
 
 
@@ -1102,8 +1063,6 @@
         z-index: 9999999 !important;
     }
 
-    .video_wrap{position: inherit;}
-
     .header_nav > div {  float: left; width: 100%;
     }
 
@@ -1132,14 +1091,6 @@
     .navbar-default .navbar-toggle {
         border-color: #bebebe;
     }
-
-
-    .header_nav {
-        background: none repeat scroll 0 0 #dedede;
-        float: left;
-        width: 100%;
-    }
-
     .chef_food_qty > span {  float: left; width: auto;}
 
     .chef_food_qty label { float: right; text-align: left;  width: 92%;}
@@ -1177,12 +1128,13 @@
         background-repeat: no-repeat;
         width: 100% !important
     }
-    .rateit .rateit-range {
+/*    Creating issues*/
+/*    .rateit .rateit-range {
         background-position: 0 11px;
         background-size: 12px auto;
         height: 11px !important;
         width: 60px !important;
-    }
+    }*/
 
 
 
@@ -1327,6 +1279,27 @@
     .nav.navbar-nav {
         box-shadow: 1px 3px 4px #ccc;
     }
+    
+    
+    .home_content {margin: 10px 0 0;}
+    .navbar-nav > li > a {padding: 0; background: none !important;}
+    .dish_content_titles{display: none;}
+    
+    .dish_content_title_search .search_bar_main {
+    float: left;
+    padding: 10px 0;
+    width: 100%;
+}
+
+.dish_content_title_search #srch-pd{
+  padding: 0;  
+}
+.chef_profile_about h1 {font-size: 22px;}
+.faq_in {margin-top: 30px;}
+.privacy_in {margin-top: 30px;}
+.about_in {margin-top: 30px;}
+.terms_in{margin-top: 30px;}
+.contact{margin-top: 30px;}
 
 }
 
@@ -1344,10 +1317,11 @@
     .logo img{width: 120px;}
     .logo img {margin-left: 45px;margin-top: 14px;width: 100px !important;}
     .navbar-toggle{padding: 7px 8px;}
-    .rateit .rateit-range{   background-position: 0 10px;
+    /*    Creating issues*/
+/*    .rateit .rateit-range{   background-position: 0 10px;
                              background-size: 12px auto;
                              height: 11px !important;
-                             width: 60px !important;}
+                             width: 60px !important;}*/
     .list_box_right ul li {font-size: 12px;}
     .list_box_right ul li h4 { background: none; height: auto; line-height: 23px; margin: 0; padding: 0; font-size: 16px; }
     .list_box_right ul li h3 {font-size: 18px;}
@@ -1420,8 +1394,6 @@
         z-index: 9999999 !important;
     }
 
-    .video_wrap{position: inherit;}
-
     .header_nav > div {  float: left; width: 100%;
     }
 
@@ -1454,14 +1426,6 @@
     #nav1 {
         display: none;
     }
-
-    .header_nav {
-        background: none repeat scroll 0 0 #f1f1f1;
-        float: left;
-        width: 100%;
-    }
-
-
     .trans-btns {
         box-shadow: none !important;
         border: 1px solid #bebebe;
@@ -1476,8 +1440,6 @@
     .chef_food_qty > span {  float: left; width: auto;}
 
     .chef_food_qty label { float: right; text-align: left;  width: 92%;}
-
-    .chef_profile_img img { height: 237px;}
 
     .rateit {
         width: 68px;
@@ -1649,6 +1611,7 @@
     }
 
     .logo-2{display: block;}
+    .home_content{margin: 10px;}
 
 
 
@@ -1721,8 +1684,6 @@
         z-index: 9999999 !important;
     }
 
-    .video_wrap{position: inherit;}
-
     .header_nav > div {  float: left; width: 100%;
     }
 
@@ -1742,8 +1703,8 @@
 
     .chef_food_qty label { float: right; text-align: left;  width: 92%;}
 
-
-    .rateit-selected.rateit-preset {
+/*Creating issue*/
+/*    .rateit-selected.rateit-preset {
         background-position: 0 15px;
         background-repeat: no-repeat;
         width: 100% !important
@@ -1752,7 +1713,7 @@
         background-size: 12px auto;
         height: 11px !important;
         width: 60px !important;
-    }
+    }*/
 
 
 
@@ -1762,19 +1723,9 @@
         margin: 6% 0;
     } 
 
-
-    .header_nav {
-        background: none repeat scroll 0 0 #f1f1f1;
-        float: left;
-        width: 100%;
-    }
-
-
     #nav1 {
         display: none;
     }
-
-
 
     .trans-btns {
         box-shadow: none !important;
@@ -1786,7 +1737,6 @@
         border-color: #bebebe;
     }
 
-    .chef_profile_img img { height: 237px;}
 
 
     .list_box_main {
@@ -1940,6 +1890,12 @@
         padding: 0 0 0 20px;
     }
 
+    
+    
+    /*----------16-1-2015-------------*/
+    
+    
+    .home_content_in {margin: 0;}
 
 
 
@@ -2032,8 +1988,6 @@
         z-index: 9999999 !important;
     }
 
-    .video_wrap{position: inherit;}
-
     .header_nav > div {  float: left; width: 100%;
     }
 
@@ -2043,7 +1997,8 @@
     .chef_food_qty > span {  float: left; width: auto;}
 
     .chef_food_qty label { float: right; text-align: left;  width: 88%;}
-    .rateit-selected.rateit-preset {
+/*Creating issues    */
+/*    .rateit-selected.rateit-preset {
         background-position: 0 15px;
         background-repeat: no-repeat;
         width: 100% !important
@@ -2052,21 +2007,12 @@
         background-size: 12px auto;
         height: 11px !important;
         width: 60px!important;
-    }
+    }*/
 
     .chef_list_button {
         float: left;
         margin: 6% 0;
     }
-
-
-
-    .header_nav {
-        background: none repeat scroll 0 0 #f1f1f1;
-        float: left;
-        width: 100%;
-    }
-
 
     #nav1 {
         display: none;
@@ -2084,9 +2030,6 @@
         border-color: #bebebe;
     }
 
-
-
-    .chef_profile_img img { height: 237px;}
 
     .container {
         margin-left: auto;
@@ -2418,9 +2361,6 @@
         position: relative;
         z-index: 9999999 !important;
     }
-
-    .video_wrap{position: inherit;}
-
     .header_nav > div {  float: left; width: 100%;
     }
 
@@ -2430,7 +2370,8 @@
     .chef_food_qty > span {  float: left; width: auto;}
 
     .chef_food_qty label { float: right; text-align: left;  width: 87%;}
-    .rateit-selected.rateit-preset {
+/*Creating issues    */
+/*    .rateit-selected.rateit-preset {
         background-position: 0 15px;
         background-repeat: no-repeat;
         width: 100% !important
@@ -2439,7 +2380,7 @@
         background-size: 12px auto;
         height: 11px !important;
         width: 60px!important;
-    }
+    }*/
 
     .chef_list_button {
         float: left;

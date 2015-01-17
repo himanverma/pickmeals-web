@@ -28,6 +28,7 @@
         <![endif]-->
         <script src="//cdnjs.cloudflare.com/ajax/libs/knockout/3.2.0/knockout-min.js"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/knockout.mapping/2.4.1/knockout.mapping.js"></script>
+        <script src="/js/knockout.validation.min.js"></script>
         <!--        <script src="js/jquery.js"></script>-->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
         <!-- Include all compiled plugins (below), or include individual files as needed -->
@@ -37,7 +38,7 @@
 
         <?php
         echo $this->fetch('startcss');
-        echo $this->Html->script(array('bootstrap.min', '/rate/jquery.rateit.min'));
+        echo $this->Html->script(array('bootstrap.min'));
 //            $this->Combinator->add_libs('js', array(
 //                'js/bootstrap.min',
 //            )); 

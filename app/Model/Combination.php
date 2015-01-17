@@ -157,4 +157,19 @@ class Combination extends AppModel {
             }
         }
         
+        public function deleteAll($conditions, $cascade = true, $callbacks = false) {
+            $x = $this->find("all",array(
+                "contain" => false,
+                "fields" => array('image'),
+                "conditions" => $conditions
+            ));
+            foreach($x as $v){
+                $pth = ltrim($v[$this->alias]['image'], "https://www.pickmeals.com/");
+                unlink(str_replace("-0-", "-1-", $pth));
+                unlink(str_replace("-0-", "-2-", $pth));
+                unlink($pth);
+            }
+            parent::deleteAll($conditions, $cascade, $callbacks);
+        }
+        
 }

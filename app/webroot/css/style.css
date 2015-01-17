@@ -1123,7 +1123,6 @@ nav {
     width: 100%;
     background: #fff;
 }
-nav li { background: #f8f8f8; }
 .navbar.navbar-default {
     background: none repeat scroll 0 0 rgba(0, 0, 0, 0);
 }
@@ -1608,6 +1607,19 @@ a:hover, a:focus {text-decoration: none !important;}
     margin: 0 10px 0 0;
     width: auto;}
 .review-well{ background: none !important; border-radius:0px !important; box-shadow: none !important; border-bottom: 1px solid #e0e0e0 !important;}
+.dish_content_titles{
+    width: 100%;
+    float: left;
+    display: none;
+}
+.dish_content_title_search{
+    width: 100%;
+    float: left;
+    display: none;
+}
+
+
+
 /*===================================
 extra css========================
 */
@@ -2301,7 +2313,7 @@ extra css========================
     color: #666 !important;
 }
 .modal-dialog {
-    margin: 30px auto;
+    margin: 100px auto 0 auto;
     width: 350px !important;
 }
 .checkout_left_title{
@@ -2496,6 +2508,7 @@ footer {
 .about_in{
 	width:100%;
 	float:left;
+        margin-top: 100px;
 	}
 .about_title{
 	width:100%;
@@ -2587,6 +2600,7 @@ footer {
 .terms_in{
 	width:100%;
 	float:left;
+        margin-top: 100px;
 	}
 .terms_title{
 	width:100%;
@@ -2643,6 +2657,7 @@ footer {
 .privacy_in{
 	width:100%;
 	float:left;
+        margin-top: 100px;
 	}
 .privacy_title{
 	width:100%;
@@ -2688,6 +2703,7 @@ footer {
 .faq_in{
 	width:100%;
 	float:left;
+        margin-top: 100px;
 	}
 .faq_title{
 	width:100%;
@@ -2891,7 +2907,7 @@ footer {
 .contact{
 	width:100%;
 	float:left;
-	margin:20px 0;
+	margin:100px 0;
 	}
 .contact_title {
     float: left;

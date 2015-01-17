@@ -257,9 +257,18 @@ class WebappController extends AppController {
         if ($this->request->is(array('ajax', 'post'))) {
             
             $d = $this->request->data;
-            if($d['Customer']['mobile_number'] == ''){
-                unset($d['Customer']['mobile_number']);
+            if(isset($d['Customer']['mobile_number'])){
+                if($d['Customer']['mobile_number'] == ''){
+                    unset($d['Customer']['mobile_number']);
+                }
             }
+            if($d['Customer']['name'] == ''){
+                unset($d['Customer']['name']);
+            }
+            if($d['Customer']['address'] == ''){
+                unset($d['Customer']['address']);
+            }
+            
             if ($d['Customer']['id'] != "") {
 //                App::uses("AuthComponent", "Controller/Component");
 //                if($d['Customer']['password'] == "" || AuthComponent::password($d['Customer']['opassword']) != AuthComponent::user('password')){
@@ -297,6 +306,20 @@ class WebappController extends AppController {
             exit;
         }
         
+    }
+    public function removeImg(){
+        if($this->request->is(array('post','ajax'))){
+           $this->loadModel('Customer');
+           $d = $this->Customer->read(array('image'), $this->request->data['id']);
+           $img = ltrim($d['Customer']['image'],"https://www.pickmeals.com/");
+           unlink($img);
+           $this->Customer->updateAll(array(
+               'Customer.image' => "''"
+           ),array(
+               'Customer.id' => $this->request->data['id']
+           ));
+           exit;
+        }
     }
 
     public function myorders() {

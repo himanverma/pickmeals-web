@@ -78,29 +78,29 @@ class CombinationsController extends AppController {
         $combinationInfo = $this->Combination->find('first', array('conditions' => array(
                 'Combination.id' => $id
             ),
-            'fields' => array('id', 'vendor_id', 'display_name', 'image', 'day', 'date', 'price','reviewkey'),
+            'fields' => array('id', 'vendor_id', 'display_name', 'image', 'day', 'date', 'price', 'reviewkey'),
             'recursive' => 1,
             'contain' => false
         ));
         $this->loadModel('Review');
-        $x = $this->Review->find("all",array(
+        $x = $this->Review->find("all", array(
             'recursive' => 1,
             "conditions" => array(
                 "Review.combination_reviewkey" => $combinationInfo['Combination']['reviewkey']
             ),
             "contain" => array(
-                    'Customer' => array(
-                        'id',
-                        'name',
-                        'image',
-                    )
+                'Customer' => array(
+                    'id',
+                    'name',
+                    'image',
                 )
+            )
         ));
         $reviews = array();
-        foreach($x as $v){
+        foreach ($x as $v) {
             $reviews[] = $v;
         }
-        
+
         $combinationInfo['Combination']['Review'] = $reviews;
         $this->set(array(
             'data' => $combinationInfo,
@@ -238,6 +238,17 @@ class CombinationsController extends AppController {
         return $this->redirect(array('action' => 'index'));
     }
 
+    public function deleteSelected() {
+        if ($this->request->is(array('ajax', 'post'))) {
+
+            $this->Combination->deleteAll(array(
+                "Combination.id" => $this->request->data['ids']
+                    ), true);
+            echo 'done';
+        }
+        exit;
+    }
+
     public function generate() {
         Configure::write('debug', 2);
         $this->loadModel('Recipe');
@@ -265,21 +276,21 @@ class CombinationsController extends AppController {
                 foreach ($data['Combination']['CombinationItem'] as $v) {
                     $dishArr[] = ltrim($v['image'], 'https://www.pickmeals.com/');
                 }
-                
-                if(count($dishArr) == 1){      //for same dish in both 2 bowls
+
+                if (count($dishArr) == 1) {      //for same dish in both 2 bowls
                     $dishArr[] = $dishArr[0];
                 }
-                
+
                 $thali_pngs = $this->createThali($dishArr, 150);
                 $data['Combination']['image'] = $html->url("/" . $thali_pngs[0], true);
                 ///-------------Create Thali image end
-                
+
                 $this->Combination->saveAssociated($data, array('deep' => true));
                 $this->loadModel('Review');
                 debug($this->Combination->getLastInsertID());
                 $x = $this->Combination->find("first", array("conditions" => array("Combination.id" => $this->Combination->getLastInsertID())));
                 $x2 = $this->Review->find("all", array("contain" => false, "conditions" => array("Review.combination_reviewkey" => $x['Combination']['reviewkey']), "fields" => array("id")));
-                
+
                 foreach ($x2 as $v) {
                     App::uses("CombinationsReview", "Model");
                     $a = new CombinationsReview();
@@ -293,11 +304,10 @@ class CombinationsController extends AppController {
                         ));
                     }
                 }
-               
             }
         }
     }
-    
+
     public function createThali($dishArray = array(), $w = 140, $h = 0) {
         Configure::write('debug', 2);
         ini_set("max_execution_time", -1);
@@ -305,66 +315,66 @@ class CombinationsController extends AppController {
         $thali1 = new Imagick("tmpl/img/thali-1.png");
         $thali2 = new Imagick("tmpl/img/thali-2.png");
         $thali3 = new Imagick("tmpl/img/thali-3.png");
-        
+
         $mask_1 = new Imagick("tmpl/img/thali-mask2.png");
         $mask_2 = new Imagick("tmpl/img/thali-mask3.png");
-        
-        if(!is_array($dishArray)){
+
+        if (!is_array($dishArray)) {
             return false;
         }
-        
+
         $mask_cnt = 0;
-        foreach($dishArray as $dish){
-            if($mask_cnt > 1){   // Mask Locking (Modify if masks will be increased or decreased)
+        foreach ($dishArray as $dish) {
+            if ($mask_cnt > 1) {   // Mask Locking (Modify if masks will be increased or decreased)
                 break;
             }
             $dish = new Imagick($dish);
-            
+
             $dish->scaleimage($thali1->getimagewidth() + 60, $thali1->getimageheight() + 60); // Set As per bowl image
-            
-            if($mask_cnt == 1){
+
+            if ($mask_cnt == 1) {
                 $dish->rotateimage("#fff", 180);
             }
-            
-            $dish->compositeimage(new Imagick("tmpl/img/thali-mask".($mask_cnt + 2).".png"), \Imagick::COMPOSITE_COPYOPACITY, 0, 0, Imagick::CHANNEL_ALPHA);
+
+            $dish->compositeimage(new Imagick("tmpl/img/thali-mask" . ($mask_cnt + 2) . ".png"), \Imagick::COMPOSITE_COPYOPACITY, 0, 0, Imagick::CHANNEL_ALPHA);
             $dish->mergeimagelayers(Imagick::LAYERMETHOD_COALESCE);
 
             $thali1->compositeimage($dish, \Imagick::COMPOSITE_ATOP, 0, 0, Imagick::CHANNEL_ALPHA);
             $thali1->mergeimagelayers(Imagick::LAYERMETHOD_COALESCE);
-            
+
             $thali2->compositeimage($dish, \Imagick::COMPOSITE_ATOP, 0, 0, Imagick::CHANNEL_ALPHA);
             $thali2->mergeimagelayers(Imagick::LAYERMETHOD_COALESCE);
-            
+
             $thali3->compositeimage($dish, \Imagick::COMPOSITE_ATOP, 0, 0, Imagick::CHANNEL_ALPHA);
             $thali3->mergeimagelayers(Imagick::LAYERMETHOD_COALESCE);
-            
-            
-            
-            $mask_cnt++;  
+
+
+
+            $mask_cnt++;
         }
-        
-        $url = "files/thali_images/" . $this->randomString(6); 
-        $url_end =  "-Thali.jpg";
+
+        $url = "files/thali_images/" . $this->randomString(6);
+        $url_end = "-Thali.jpg";
         $result_urls = array();
         $thali1->setimageformat("jpg");
-        $thali1->setImageFileName($result_urls[] = $url."-0".$url_end);
+        $thali1->setImageFileName($result_urls[] = $url . "-0" . $url_end);
         $thali1->scaleimage($w, $h);
         $thali1->writeimage();
         $thali1->destroy();
 
         $thali2->setimageformat("jpg");
-        $thali2->setImageFileName($result_urls[] = $url."-1".$url_end);
+        $thali2->setImageFileName($result_urls[] = $url . "-1" . $url_end);
         $thali2->scaleimage($w, $h);
         $thali2->writeimage();
         $thali2->destroy();
 
         $thali3->setimageformat("jpg");
-        $thali3->setImageFileName($result_urls[] = $url."-2".$url_end);
+        $thali3->setImageFileName($result_urls[] = $url . "-2" . $url_end);
         $thali3->scaleimage($w, $h);
         $thali3->writeimage();
         $thali3->destroy();
 
-        
+
         return $result_urls;
     }
 

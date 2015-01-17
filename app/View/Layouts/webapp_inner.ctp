@@ -24,6 +24,7 @@
         <![endif]-->
         <script src="//cdnjs.cloudflare.com/ajax/libs/knockout/3.2.0/knockout-min.js"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/knockout.mapping/2.4.1/knockout.mapping.js"></script>
+        <script src="/js/knockout.validation.min.js"></script>
         <!--        <script src="js/jquery.js"></script>-->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
         <!-- Include all compiled plugins (below), or include individual files as needed -->
@@ -46,8 +47,8 @@
 
 
     </head>
-    <?php 
-        $sessionFlashMsg = $this->Session->flash();
+    <?php
+    $sessionFlashMsg = $this->Session->flash();
     ?>
     <body>
         <div class="main_container">
@@ -220,7 +221,26 @@
             }
 
         };
+
+        var FilterVM = function() {
+            var me = this;
+            me.list = ko.observableArray([]);
+            me.filter = function(d, e) {
+                ComboObj.SearchMeal(d.Dishfilter.recipe_name);
+                ComboObj.Search();
+            }
+            me.init = function() {
+                $.post("/api/dishfilters.json", {
+                }, function(d) {
+                    me.list(d.data);
+                });
+            }
+            me.init();
+        };
+        FilterObj = new FilterVM();
         $(document).ready(function() {
+            ko.applyBindings(FilterObj, $('#bs-example-navbar-collapse-1')[0]);
+
             $('#pk-fw-submi').off("click").on("click", login_mthd);
             $('#pk-fw-uname, #pk-fw-passw').off("keyup").on("keyup", function(e) {
                 if (e.keyCode == 13) {

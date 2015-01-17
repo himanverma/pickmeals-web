@@ -27,6 +27,7 @@
                                 <input class="il-edit" type="text" name="data[Customer][address]" data-bind="value: address, event: { 'blur': stopEditing }" /> 
                             </div> 
                         </li>
+                        <?php if($me['mobile_number'] != ""): ?>  
                         <li><span class="user_profile_phone"><img src="/img/phone.png"></span>
                             <div class="editor"> 
                                 <div class="il-view" data-bind=" text: mobile_number() || 'Add mobile number...'"> 
@@ -34,6 +35,7 @@
                                 <input class="il-edit" type="text" name="data[Customer][mobile_number]" data-bind="value: mobile_number, event: { 'blur': stopEditing }" /> 
                             </div> 
                         </li>
+                        <?php endif; ?>
 <!--                        <li><span class="user_profile_phone"><img src="/img/phone.png"></span>
                             <div class="editor"> 
                                 <div class="il-view" data-bind=" text: email() || 'Add Email Address...'"> 
@@ -117,14 +119,27 @@ $this->end();
 
     var CustomerVM = function() {
         var me = this;
+        me.isSaved = true;
         me.isUpdating = ko.observable(false);
-        me.name = ko.observable('<?php echo $me['name']; ?>');
+        me.name = ko.observable('<?php echo $me['name']; ?>').extend({
+                     required: { message: 'Please fill your full name.' },
+                     minLength: 4
+                 });
         me.uid = ko.observable(<?php echo $me['id']; ?>);
         me.fbid = ko.observable(<?php echo $me['fbid']; ?>);
-        me.address = ko.observable('<?php echo $me['address']; ?>');
-        me.mobile_number = ko.observable('<?php echo $me['mobile_number']; ?>');
+        me.address = ko.observable('<?php echo $me['address']; ?>').extend({
+                     required: { message: 'Please fill your address.' },
+                     minLength: 10
+                 });
+        <?php if($me['mobile_number'] != ""): ?>                 
+        me.mobile_number = ko.observable('<?php echo $me['mobile_number']; ?>').extend({
+                     required: { message: 'Please fill your 10 digit mobile number.' },
+                     minLength: 10,
+                     maxLength: 10
+                 });
+        <?php    endif; ?>
         me.email = ko.observable('<?php echo $me['email']; ?>');
-        me.image = ko.observable('<?php echo $me['image'] == "" ? "http://placehold.it/100x120&text=NA" : $me['image']; ?>');
+        me.image = ko.observable('<?php echo $me['image'] == "" ? "https://placehold.it/100x120&text=NA" : $me['image']; ?>');
         me.image.subscribe(function(newVal){
             $('#thepicture').attr({src: newVal});
         });
@@ -133,7 +148,9 @@ $this->end();
             var m = this;
             me.name();
             me.address();
+            <?php if($me['mobile_number'] != ""): ?>    
             me.mobile_number();
+            <?php    endif; ?>
             me.isUpdating(true);
             
             $('#cstr-profile-frm').ajaxSubmit({
@@ -172,6 +189,7 @@ $this->end();
               y: me.cropCordinates.y
             };
             $.post("/webapp/cropImg",data,function(d){
+                m.isSaved = true;
                 if(d.error == 0){
                     m.image(data.uri + "?_=" + (new Date()).getTime().toString());
                     $('#thepicture').attr({src: data.uri + "?_=" + (new Date()).getTime().toString()});
@@ -182,11 +200,25 @@ $this->end();
                     $('#crp-ftr').html('error occoured...');
                 }
             });
-        }
+        };
+        me.removeUncroped = function(){
+            console.log(me.isSaved);
+            if(!me.isSaved){
+                $.post("/webapp/removeImg",{'data[id]': me.uid()},function(d){
+                    window.location.reload();
+                });
+            }
+        };
         me.showImageCrop = function(d) {
             var m = me;
+            m.isSaved = false;
             $('#thepicture').attr({src: d.image});
             $('#image-crop-mdl').modal('show');
+            $('#image-crop-mdl').on('hide.bs.modal',m.removeUncroped);
+//            try{
+//                $("#cst-im-crop > img").cropper('destroy');
+//            }catch(e){
+//            }
             $("#cst-im-crop > img").cropper({
                 aspectRatio: 1,
                 done: function(data) {
@@ -242,8 +274,11 @@ $this->end();
     }
     $(document).ready(function() {
         getOrderView('/webapp/myorders/');
+        CustomerObj.name.extend({
+                     required: true,
+                     minLength: 3
+                 });
         ko.applyBindings(CustomerObj, $('#cstr-profile')[0]);
-
     });
 </script>
 <style type="text/css">

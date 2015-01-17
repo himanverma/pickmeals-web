@@ -150,7 +150,7 @@ echo json_encode($a);
                                 </div>
                             </div>
                         </div>
-                        <div class="col-sm-3 hidden-xs">
+                        <div class="col-sm-2 col-md-3 hidden-xs">
                             <div class="row">
                                 <div class="home_content_left">
                                     <div class="home_content_left_title">
@@ -159,14 +159,14 @@ echo json_encode($a);
                                 </div>
                             </div>
                         </div>
-                        <div class="col-sm-6 hidden-xs">
+                        <div class="col-sm-7 col-md-6 hidden-xs">
                             <div class="home_content_left">
                                 <div class="home_content_left_title">
                                     <h2>MENU</h2>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-sm-3 hidden-xs">
+                        <div class="col-sm-3 col-md-3 hidden-xs">
                             <div class="row">
                                 <div class="home_content_left">
                                     <div class="home_content_left_title">
@@ -179,6 +179,64 @@ echo json_encode($a);
                 </div>
             </nav>
             <div class="dish_content">
+                
+                
+                
+                  <div class="dish_content_title_search">  
+                    
+                    <div id="srch-block" class="search_bar_main">
+                            <div class="col-sm-2 col-md-3"><div class="row">
+                                </div>
+                            </div>
+                            <div id="srch-pd" class="col-sm-7 col-md-6">
+                                <div class="input-group">
+
+                                    <input type="text" class="form-control search_input" placeholder="Search..." data-bind="value:SearchMeal">
+                                    <div class="input-group-btn">
+                                        <input type="button" value="Search" data-bind="click:Search" class="btn btn-default btn-lg seacrh_btn">
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="col-sm-2 col-md-3"> <div class="row">
+                                </div>
+                            </div>
+                        </div>
+                  </div>
+                    
+                <div class="dish_content_titles">    
+                <div class="col-sm-2 col-md-3">
+                            <div class="row">
+                                <div class="home_content_left">
+                                    <div class="home_content_left_title">
+                                        <h2>CATEGORIES</h2>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-7 col-md-6">
+                            <div class="home_content_left">
+                                <div class="home_content_left_title">
+                                    <h2>MENU</h2>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-3 col-md-3">
+                            <div class="row">
+                                <div class="home_content_left">
+                                    <div class="home_content_left_title">
+                                        <h2>CART</h2>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                </div>
+                
+                
+                
+                
+                
+                
                 <div class="col-sm-2 col-md-3 hidden-xs" id='recipe-sec'>
                     <div class="row">
                         <div class="home_content_left">
@@ -226,7 +284,7 @@ echo json_encode($a);
                                             <ul>
                                                 <li><p>By <a href="#" data-bind="text: Vendor.name, attr:{'href':'/chef/'+Vendor.name.replace(' ','-').toLowerCase()} "></a></p></li>
                                                 <li>
-                                                    <span class="rateit" data-bind="attr:{'data-rateit-value':Review.ratings}" data-rateit-value="" data-rateit-ispreset="true" data-rateit-readonly="true"></span>(<!-- ko text: Review.length --><!-- /ko -->)
+                                                    <span class="rateit" data-bind="attr:{'data-rateit-value':Combination.ratings, 'id':'rate-it-blk'+Combination.id}" data-rateit-ispreset="true" data-rateit-readonly="true"></span>(<!-- ko text: Review.length --><!-- /ko -->)
                                                 </li>
                                                 <li><h4><span>Delivery:</span>Free/45 mins</h4></li>
                                                 <li><h3 ><span>Price:</span>Rs <!-- ko text: Combination.price --><!-- /ko --></h3></li>
@@ -355,6 +413,9 @@ echo json_encode($a);
         me.price = ko.observable();
         me.SearchMeal = ko.observable();
         me.Combolist = ko.observableArray([]);
+        me.Combolist.subscribe(function(){
+           $.getScript("/rate/jquery.rateit.min.js",function(){$('.rateit').rateit()});
+        });
         me.cartItems = ko.observableArray([]);
         me.lat = 30.7238504;
         me.lng = 76.8465098;
@@ -563,7 +624,7 @@ echo json_encode($a);
             });
         }
         me.init();
-    }
+    };
 
 
     CartObj = new CartVM();
@@ -578,7 +639,6 @@ echo json_encode($a);
         ko.applyBindings(FilterObj, $('#recipe-sec')[0]);
         ko.applyBindings(FilterObj, $('#bs-example-navbar-collapse-1')[0]);
         
-        $('.rateit').rateit();
     });
 </script>
 <script type="text/javascript">

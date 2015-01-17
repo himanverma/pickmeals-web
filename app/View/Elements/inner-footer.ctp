@@ -26,7 +26,7 @@
                         <li><a href="/feedback">Feedback</a></li>
                     </ul>
                 </div>
-                <div class="col-sm-4 col-md-4 col-lg-6">
+                <div class="col-sm-4 col-md-3 col-lg-6">
                     <iframe width="100%" height="150" src="//www.youtube.com/embed/FEC9OIgy9Cg" frameborder="0" allowfullscreen></iframe>
                 </div>
             </div>

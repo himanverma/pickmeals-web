@@ -259,5 +259,12 @@ class TestsController extends AppController {
 //        exit;
         
     }
+    
+    
+    public function size(){
+        echo ini_get('post_max_size')."<br>";
+        echo ini_get('upload_max_filesize');
+        exit;
+    }
 
 }
