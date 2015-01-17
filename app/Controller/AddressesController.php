@@ -3,6 +3,7 @@ App::uses('AppController', 'Controller');
 /**
  * Addresses Controller
  *
+ * @property Customer $Customer
  * @property Address $Address
  * @property PaginatorComponent $Paginator
  * @property SessionComponent $Session
@@ -25,6 +26,14 @@ class AddressesController extends AppController {
         
         public function api_add(){
             if($this->request->is('post')){
+                if(AuthComponent::user('mobile_number') == null || AuthComponent::user('mobile_number') == ""){
+                    $this->loadModel('Customer');
+                    $this->Customer->updateAll(array(
+                        "Customer.mobile_number" => "'".$this->request->data['Address']['phone_number']."'"
+                    ), array(
+                        "Customer.id" => AuthComponent::user('id')
+                    ));
+                }
                 if($this->Address->save($this->request->data)){
                     $this->set(array(
                         'data' => array(

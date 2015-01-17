@@ -112,30 +112,25 @@ $this->end();
 ?>
 <script type="text/javascript">
 
-
-
-
-
-
     var CustomerVM = function() {
         var me = this;
         me.isSaved = true;
         me.isUpdating = ko.observable(false);
         me.name = ko.observable('<?php echo $me['name']; ?>').extend({
                      required: { message: 'Please fill your full name.' },
-                     minLength: 4
+                     minLength: {params: 4, message: "Name must be at least 4 characters long."}
                  });
         me.uid = ko.observable(<?php echo $me['id']; ?>);
         me.fbid = ko.observable(<?php echo $me['fbid']; ?>);
         me.address = ko.observable('<?php echo $me['address']; ?>').extend({
                      required: { message: 'Please fill your address.' },
-                     minLength: 10
+                     minLength: {params: 10, message: "Address field is too small to understand."}
                  });
         <?php if($me['mobile_number'] != ""): ?>                 
         me.mobile_number = ko.observable('<?php echo $me['mobile_number']; ?>').extend({
                      required: { message: 'Please fill your 10 digit mobile number.' },
-                     minLength: 10,
-                     maxLength: 10
+                     minLength: {params: 10, message: "Mobile Number must be at least 10 digit long"},
+                     maxLength: {params: 10, message: "Mobile Number should not more than 10 digits"}
                  });
         <?php    endif; ?>
         me.email = ko.observable('<?php echo $me['email']; ?>');
@@ -152,16 +147,32 @@ $this->end();
             me.mobile_number();
             <?php    endif; ?>
             me.isUpdating(true);
-            
-            $('#cstr-profile-frm').ajaxSubmit({
-                success: function(d) {
-                    if (d.Customer.image != "") {
-                        m.image(d.Customer.image);
+            if(ko.validation.group(me)().length == 0){
+                $('#cstr-profile-frm').ajaxSubmit({
+                    success: function(d) {
+                        if (d.Customer.image != "") {
+                            m.image(d.Customer.image);
+                        }
+                        m.isUpdating(false);
+                        $('#cstr-profile-frm')[0].reset();
                     }
-                    m.isUpdating(false);
-                    $('#cstr-profile-frm')[0].reset();
+                });
+            }else{
+                var err = ko.validation.group(me)();
+                for(i in err){
+                    var options = {
+                            iconUrl: 'https://www.pickmeals.com/img/pickmeals_icon.png',
+                            title: 'Account details Missing...',
+                            body: err[i],
+                            timeout: 7000,
+                            onclick: function() {
+                                notification.close();
+                            }
+                        };
+                        $.notification(options);
                 }
-            });
+                m.isUpdating(false);
+            }
         }, this);
         me.imageUpdate = function(d, e) {
             var m = me;

@@ -75,7 +75,7 @@ class WebappController extends AppController {
     }
 
     public function fblogin() {
-        //Configure::write('debug', 2);
+        Configure::write('debug', 2);
         if ($this->request->is('ajax')) {
 //            debug($this->request->data);
 //            exit;
@@ -83,7 +83,7 @@ class WebappController extends AppController {
             $this->loadModel('Customer');
             $user = $this->Customer->find('first', array(
                 "conditions" => array(
-                    "Customer.email" => $d['email'],
+                    //"Customer.email" => $d['email'],
                     "Customer.fbid" => $d['id']
                 )
             ));
@@ -93,12 +93,12 @@ class WebappController extends AppController {
                     "Customer" => array(
                         "fbid" => $d['id'],
                         "fbrawdata" => json_encode($d),
-                        "email" => $d['email'],
-                        "name" => $d['first_name'] . " " . $d['last_name'],
-                        "verified" => $d['verified'],
+                        "email" => isset($d['email']) ? $d['email'] : $d['id']."@facebook.com",
+                        "name" => @$d['first_name'] . " " . @$d['last_name'],
+                        "verified" => @$d['verified'],
                         "status" => "VERIFIED",
                         "password" => "pickm",
-                        "address" => $d['location']['name'],
+                        "address" => @$d['location']['name'],
                         "v_code" => "pickm",
 //                      "fbid" => $d['id'],
 //                      "fbid" => $d['id'],
@@ -190,6 +190,14 @@ class WebappController extends AppController {
 
     public function checkout() {
         $this->layout = "webapp_inner";
+        $this->loadModel('Customer');
+        $x = $this->Customer->find("first",array(
+            'conditions' => array(
+                'Customer.id' => AuthComponent::user('id')
+            ),
+            'contain' => false
+        ));
+        $this->set("me", $x['Customer']);
     }
 
     public function chef($slug = null) {
