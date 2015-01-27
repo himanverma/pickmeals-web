@@ -276,6 +276,9 @@ class WebappController extends AppController {
             if($d['Customer']['address'] == ''){
                 unset($d['Customer']['address']);
             }
+            if(!isset($d['Customer']['image']['size'])){
+                unset($d['Customer']['address']);
+            }
             
             if ($d['Customer']['id'] != "") {
 //                App::uses("AuthComponent", "Controller/Component");

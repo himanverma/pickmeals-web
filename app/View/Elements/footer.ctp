@@ -27,7 +27,7 @@
                     </ul>
                 </div>
                 <div class="col-sm-4 col-md-3 col-lg-6">
-                    <iframe width="100%" height="150" src="//www.youtube.com/embed/FEC9OIgy9Cg" frameborder="0" allowfullscreen></iframe>
+                    <iframe width="300" height="150" src="//www.youtube.com/embed/GeRmsNPVHts" frameborder="0" allowfullscreen></iframe>
                 </div>
             </div>
         </div>

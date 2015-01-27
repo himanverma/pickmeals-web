@@ -1,4 +1,4 @@
-<?php //debug($me); exit;    ?>
+<?php //debug($me); exit;     ?>
 <div class="user_profile">
     <div class="col-sm-3">
 
@@ -27,14 +27,14 @@
                                 <input class="il-edit" type="text" name="data[Customer][address]" data-bind="value: address, event: { 'blur': stopEditing }" /> 
                             </div> 
                         </li>
-                        <?php if($me['mobile_number'] != ""): ?>  
-                        <li><span class="user_profile_phone"><img src="/img/phone.png"></span>
-                            <div class="editor"> 
-                                <div class="il-view" data-bind=" text: mobile_number() || 'Add mobile number...'"> 
-                                </div>
-                                <input class="il-edit" type="text" name="data[Customer][mobile_number]" data-bind="value: mobile_number, event: { 'blur': stopEditing }" /> 
-                            </div> 
-                        </li>
+                        <?php if ($me['mobile_number'] != ""): ?>  
+                            <li><span class="user_profile_phone"><img src="/img/phone.png"></span>
+                                <div class="editor"> 
+                                    <div class="il-view" data-bind=" text: mobile_number() || 'Add mobile number...'"> 
+                                    </div>
+                                    <input class="il-edit" type="text" name="data[Customer][mobile_number]" data-bind="value: mobile_number, event: { 'blur': stopEditing }" /> 
+                                </div> 
+                            </li>
                         <?php endif; ?>
 <!--                        <li><span class="user_profile_phone"><img src="/img/phone.png"></span>
                             <div class="editor"> 
@@ -87,7 +87,7 @@
                         </div>
 
                     </div>
-                    
+
                 </div>
                 <div class="modal-footer">
                     <div class="pull-right" id="crp-ftr">
@@ -107,7 +107,7 @@ $this->start("startjs");
 echo $this->Html->script(array(
     "//cdnjs.cloudflare.com/ajax/libs/jquery.form/3.51/jquery.form.min.js",
     "cropper.min"
-    ));
+));
 $this->end();
 ?>
 <script type="text/javascript">
@@ -117,25 +117,25 @@ $this->end();
         me.isSaved = true;
         me.isUpdating = ko.observable(false);
         me.name = ko.observable('<?php echo $me['name']; ?>').extend({
-                     required: { message: 'Please fill your full name.' },
-                     minLength: {params: 4, message: "Name must be at least 4 characters long."}
-                 });
+            required: {message: 'Please fill your full name.'},
+            minLength: {params: 4, message: "Name must be at least 4 characters long."}
+        });
         me.uid = ko.observable(<?php echo $me['id']; ?>);
         me.fbid = ko.observable(<?php echo $me['fbid']; ?>);
         me.address = ko.observable('<?php echo $me['address']; ?>').extend({
-                     required: { message: 'Please fill your address.' },
-                     minLength: {params: 10, message: "Address field is too small to understand."}
-                 });
-        <?php if($me['mobile_number'] != ""): ?>                 
-        me.mobile_number = ko.observable('<?php echo $me['mobile_number']; ?>').extend({
-                     required: { message: 'Please fill your 10 digit mobile number.' },
-                     minLength: {params: 10, message: "Mobile Number must be at least 10 digit long"},
-                     maxLength: {params: 10, message: "Mobile Number should not more than 10 digits"}
-                 });
-        <?php    endif; ?>
+            required: {message: 'Please fill your address.'},
+            minLength: {params: 10, message: "Address field is too small to understand."}
+        });
+<?php if ($me['mobile_number'] != ""): ?>
+            me.mobile_number = ko.observable('<?php echo $me['mobile_number']; ?>').extend({
+                required: {message: 'Please fill your 10 digit mobile number.'},
+                minLength: {params: 10, message: "Mobile Number must be at least 10 digit long"},
+                maxLength: {params: 10, message: "Mobile Number should not more than 10 digits"}
+            });
+<?php endif; ?>
         me.email = ko.observable('<?php echo $me['email']; ?>');
         me.image = ko.observable('<?php echo $me['image'] == "" ? "https://placehold.it/100x120&text=NA" : $me['image']; ?>');
-        me.image.subscribe(function(newVal){
+        me.image.subscribe(function(newVal) {
             $('#thepicture').attr({src: newVal});
         });
         me.cropCordinates = null;
@@ -143,36 +143,36 @@ $this->end();
             var m = this;
             me.name();
             me.address();
-            <?php if($me['mobile_number'] != ""): ?>    
-            me.mobile_number();
-            <?php    endif; ?>
+<?php if ($me['mobile_number'] != ""): ?>
+                me.mobile_number();
+<?php endif; ?>
             me.isUpdating(true);
-            if(ko.validation.group(me)().length == 0){
-                $('#cstr-profile-frm').ajaxSubmit({
-                    success: function(d) {
-                        if (d.Customer.image != "") {
-                            m.image(d.Customer.image);
-                        }
-                        m.isUpdating(false);
-                        $('#cstr-profile-frm')[0].reset();
+
+            $('#cstr-profile-frm').ajaxSubmit({
+                success: function(d) {
+                    if (d.Customer.image != "") {
+                        //m.image(d.Customer.image);
                     }
-                });
-            }else{
-                var err = ko.validation.group(me)();
-                for(i in err){
-                    var options = {
-                            iconUrl: 'https://www.pickmeals.com/img/pickmeals_icon.png',
-                            title: 'Account details Missing...',
-                            body: err[i],
-                            timeout: 7000,
-                            onclick: function() {
-                                notification.close();
-                            }
-                        };
-                        $.notification(options);
+                    m.isUpdating(false);
+                    $('#cstr-profile-frm')[0].reset();
                 }
-                m.isUpdating(false);
+            });
+
+            var err = ko.validation.group(me)();
+            for (i in err) {
+                var options = {
+                    iconUrl: 'https://www.pickmeals.com/img/pickmeals_icon.png',
+                    title: 'Account details Missing...',
+                    body: err[i],
+                    timeout: 7000,
+                    onclick: function() {
+                        notification.close();
+                    }
+                };
+                $.notification(options);
             }
+            m.isUpdating(false);
+
         }, this);
         me.imageUpdate = function(d, e) {
             var m = me;
@@ -189,33 +189,33 @@ $this->end();
                 }
             });
         };
-        me.cropNow = function(){
+        me.cropNow = function() {
             var m = me;
             $('#crp-ftr').html('Cropping...');
             var data = {
-              uri: $('#thepicture').attr('src'),
-              h: me.cropCordinates.height,
-              w: me.cropCordinates.width,
-              x: me.cropCordinates.x,
-              y: me.cropCordinates.y
+                uri: $('#thepicture').attr('src'),
+                h: me.cropCordinates.height,
+                w: me.cropCordinates.width,
+                x: me.cropCordinates.x,
+                y: me.cropCordinates.y
             };
-            $.post("/webapp/cropImg",data,function(d){
+            $.post("/webapp/cropImg", data, function(d) {
                 m.isSaved = true;
-                if(d.error == 0){
+                if (d.error == 0) {
                     m.image(data.uri + "?_=" + (new Date()).getTime().toString());
                     $('#thepicture').attr({src: data.uri + "?_=" + (new Date()).getTime().toString()});
                     $('#image-crop-mdl').modal('hide');
                     $('#crp-ftr').html('complete...');
                     window.location.reload();
-                }else{
+                } else {
                     $('#crp-ftr').html('error occoured...');
                 }
             });
         };
-        me.removeUncroped = function(){
+        me.removeUncroped = function() {
             console.log(me.isSaved);
-            if(!me.isSaved){
-                $.post("/webapp/removeImg",{'data[id]': me.uid()},function(d){
+            if (!me.isSaved) {
+                $.post("/webapp/removeImg", {'data[id]': me.uid()}, function(d) {
                     window.location.reload();
                 });
             }
@@ -225,7 +225,7 @@ $this->end();
             m.isSaved = false;
             $('#thepicture').attr({src: d.image});
             $('#image-crop-mdl').modal('show');
-            $('#image-crop-mdl').on('hide.bs.modal',m.removeUncroped);
+            $('#image-crop-mdl').on('hide.bs.modal', m.removeUncroped);
 //            try{
 //                $("#cst-im-crop > img").cropper('destroy');
 //            }catch(e){
@@ -233,9 +233,9 @@ $this->end();
             $("#cst-im-crop > img").cropper({
                 aspectRatio: 1,
                 done: function(data) {
-                  m.cropCordinates = data;
+                    m.cropCordinates = data;
                 }
-              });
+            });
         };
         me.editItem = function(d, e) {
             $(e.currentTarget).parent().addClass('il-editing');
@@ -286,9 +286,9 @@ $this->end();
     $(document).ready(function() {
         getOrderView('/webapp/myorders/');
         CustomerObj.name.extend({
-                     required: true,
-                     minLength: 3
-                 });
+            required: true,
+            minLength: 3
+        });
         ko.applyBindings(CustomerObj, $('#cstr-profile')[0]);
     });
 </script>

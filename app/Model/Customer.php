@@ -241,7 +241,7 @@ class Customer extends AppModel {
             App::uses("HtmlHelper", "View/Helper");
             $html = new HtmlHelper(new View());
             if(isset($this->data[$this->alias]['image']['name'])){
-                if($this->data[$this->alias]['image']['name'] != ""){
+                if(isset($this->data[$this->alias]['image']['size'])){
                     
                     if(isset($this->data[$this->alias]['id'])){
                         $fx = $this->find("first",array(

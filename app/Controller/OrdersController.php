@@ -340,6 +340,7 @@ class OrdersController extends AppController {
     }
 
     public function payment_success($orderId = null) {
+        configure::write('debug',0);
         $this->layout = "webapp_inner";
         $this->set("oid",$orderId);
         if($orderId != NULL){
@@ -371,6 +372,7 @@ class OrdersController extends AppController {
     }
 
     public function payment_failure($orderId = null) {
+        configure::write('debug',0);
         $this->layout = "webapp_inner";
         $this->set("oid",$orderId);
         if($orderId != NULL){

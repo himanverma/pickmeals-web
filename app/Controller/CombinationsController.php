@@ -28,6 +28,7 @@ class CombinationsController extends AppController {
     /* ------------------------------------------ Web-Services-Start---------------------------------------- */
 
     public function api_index() {
+        Configure::write('debug', 0);
 //        Configure::write('debug', 2);
 //        $lat = $this->request->data['User']['latitude'] = 30.7238504;
 //        $long = $this->request->data['User']['longitude'] = 76.8465098;
@@ -49,9 +50,9 @@ class CombinationsController extends AppController {
             ),
             "fields" => array("get_distance_in_miles_between_geo_locations($lat,$long,Vendor.lat,Vendor.long) as distance", "Vendor.*", "Combination.*"),
             "order" => 'distance ASC',
-            'limit' => 8,
-            'offset' => ($count - 1) * 8,
-            'page' => $count
+//            'limit' => 8,
+//            'offset' => ($count - 1) * 8,
+//            'page' => $count
         ));
 
 //        foreach($combination['items'] as &$ar){
