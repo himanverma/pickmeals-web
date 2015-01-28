@@ -27,8 +27,11 @@
 	<tr>
 		<td><?php echo h($vendor['Vendor']['id']); ?>&nbsp;</td>
 		<td><?php echo h($vendor['Vendor']['name']); ?>&nbsp;</td>
-		<td><?php echo h($vendor['Vendor']['photo']); ?>&nbsp;</td>
-		<td><?php echo h($vendor['Vendor']['company_logo']); ?>&nbsp;</td>
+		<td>
+                    <img src="<?php echo $vendor['Vendor']['photo']; ?>" width="180" /></td>
+		<td>
+                    <img src="<?php echo $vendor['Vendor']['company_logo']; ?>" width="180" />
+                </td>
 		<td><?php echo h($vendor['Vendor']['company_name']); ?>&nbsp;</td>
 		<td><?php echo h($vendor['Vendor']['address']); ?>&nbsp;</td>
 		<td><?php echo h($vendor['Vendor']['city']); ?>&nbsp;</td>

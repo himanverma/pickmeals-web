@@ -30,6 +30,18 @@
             <li class="treeview">
                 <a href="#">
                     <i class="fa fa-dashboard"></i>
+                    <span>Orders</span>
+                    <!--<small class="badge pull-right bg-green">new</small>-->
+                    <i class="fa fa-angle-left pull-right"></i>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="<?php echo $this->Html->url('/orders/');?>"><i class="fa fa-angle-double-right"></i> List All</a></li>
+                    <li><a href="<?php echo $this->Html->url('/orders/add');?>"><i class="fa fa-angle-double-right"></i> Add New</a></li>
+                </ul>
+            </li>
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-dashboard"></i>
                     <span>Customers</span>
                     <!--<small class="badge pull-right bg-green">new</small>-->
                     <i class="fa fa-angle-left pull-right"></i>

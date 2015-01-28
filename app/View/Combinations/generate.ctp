@@ -68,6 +68,7 @@
         me.generatedD = ko.observableArray([]);
         me.generatedData = ko.observableArray([]);
         me.setData = ko.observableArray([]);
+        me.is_sending=ko.observable(false);
         me.setData.subscribe(function(newVal){
             var d = [];
             for(i in me.setData()){
@@ -154,9 +155,12 @@
         }
          
         me.send = function() {
-            $.post('?q=data', {data: ko.mapping.toJS(me.generatedData)}, function(data) {
-                window.location.reload();
-            });
+            if(me.is_sending() == false){
+                me.is_sending(true);
+                $.post('?q=data', {data: ko.mapping.toJS(me.generatedData)}, function(data) {
+                    window.location.reload();
+                });
+            }
             //console.dir(d);
         }
     }

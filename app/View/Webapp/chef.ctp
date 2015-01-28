@@ -3,7 +3,7 @@
         <div class="chef_profile_left">
             <div class="chef_profile_img"><img src="<?php echo $vendor['Vendor']['photo'] != null ? $vendor['Vendor']['photo'] : "/img/chef_profile.jpg"; ?>"></div>
             <div class="chef_profile_about">
-                <h1><?php echo $vendor['Vendor']['name']; ?></h1>
+                <h1 style="text-align:left;"><?php echo $vendor['Vendor']['name']; ?></h1>
                 <ul>
                     <li>
                         <span class="rateit" id="vendor-ratings-bl" data-rateit-value="0" data-rateit-ispreset="true" data-rateit-readonly="true"></span>(<span id="vendor-ratings"></span>)<br>
@@ -13,8 +13,8 @@
                     </li>
                     
                     <li>
-                        <b class="chef_profile_phone">Business Name:</b><br />
-                        <p><?php echo $vendor['Vendor']['company_name']; ?></p>
+                        <b class="chef_profile_phone"></b><br />
+                        <p><b><?php echo $vendor['Vendor']['company_name']; ?></b></p>
                     </li>
                     
                 </ul>
@@ -289,5 +289,22 @@
         $('#vendor-ratings-bl').rateit('value', <?php echo $gRate == "" ? 0 : $gRate; ?>);
         $('#vendor-ratings').html(<?php echo $rvCount; //echo $gRate == "" ? 0 : $gRate; ?>);
         
+    });
+    
+    $(function() {
+        var offset = $("#sidebar").offset();
+        var topPadding = 15;
+        $(window).scroll(function() {
+            if ($(window).scrollTop() > offset.top) {
+                $("#sidebar").stop().animate({
+                    marginTop: $(window).scrollTop() - offset.top + topPadding
+                });
+            } else {
+                $("#sidebar").stop().animate({
+                    marginTop: 0
+                });
+            }
+            ;
+        });
     });
 </script>

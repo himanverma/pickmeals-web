@@ -4,7 +4,7 @@
 	<thead>
 	<tr>
 			<th><?php echo $this->Paginator->sort('id'); ?></th>
-			<th><?php echo $this->Paginator->sort('vendor_day_id'); ?></th>
+			
 			<th><?php echo $this->Paginator->sort('customer_id'); ?></th>
 			<th><?php echo $this->Paginator->sort('recipe_names'); ?></th>
 			<th><?php echo $this->Paginator->sort('status'); ?></th>
@@ -22,9 +22,7 @@
 	<?php foreach ($orders as $order): ?>
 	<tr>
 		<td><?php echo h($order['Order']['id']); ?>&nbsp;</td>
-		<td>
-			<?php echo $this->Html->link($order['VendorDay']['id'], array('controller' => 'vendor_days', 'action' => 'view', $order['VendorDay']['id'])); ?>
-		</td>
+		
 		<td>
 			<?php echo $this->Html->link($order['Customer']['name'], array('controller' => 'customers', 'action' => 'view', $order['Customer']['id'])); ?>
 		</td>

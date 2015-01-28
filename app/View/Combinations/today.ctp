@@ -1,8 +1,12 @@
 <div class="combinations index">
 	<h2><?php echo __('Combinations'); ?></h2>
+        <button id="deleteSelected">Delete Selected</button>
         <table cellpadding="0" class="table table-bordered" cellspacing="0">
 	<thead>
 	<tr>
+             <th>
+                <input type="checkbox" id="allChk" />
+            </th>
 			<th><?php echo $this->Paginator->sort('id'); ?></th>
 			<th><?php echo $this->Paginator->sort('vendor_id'); ?></th>
 			<th><?php echo $this->Paginator->sort('display_name'); ?></th>
@@ -16,6 +20,9 @@
 	<tbody>
 	<?php foreach ($combinations as $combination): ?>
 	<tr>
+                 <td>
+                    <input type="checkbox" class="deleteSel" name="ids[]" value="<?php echo h($combination['Combination']['id']); ?>" />
+                </td>
 		<td><?php echo h($combination['Combination']['id']); ?>&nbsp;</td>
 		<td>
 			<?php echo $this->Html->link($combination['Vendor']['name'], array('controller' => 'vendors', 'action' => 'view', $combination['Vendor']['id'])); ?>
@@ -48,3 +55,32 @@
 	?>
 	</div>
 </div>
+
+
+<script type="text/javascript">
+    $(document).ready(function(){
+        $("#deleteSelected").on("click",function(){
+            var ids = [];
+            $('.deleteSel:checked').each(function(){
+               ids.push($(this).val()); 
+            });
+            $.post("/combinations/deleteSelected",{"data[ids]":ids},function(d){
+               window.location.reload();
+            });
+        });
+        
+        
+        $('#allChk').on("ifChanged",function(){
+           if($(this).is(":checked")){
+               $('.deleteSel').prop('checked',true);
+           }else{
+               $('.deleteSel').prop('checked',false);
+           }
+           $(".deleteSel").iCheck({
+                checkboxClass: 'icheckbox_minimal',
+                radioClass: 'iradio_minimal'
+            });
+        });
+        
+    });
+</script>    

@@ -251,6 +251,7 @@ echo json_encode($a);
                                 </ul>
                             </div>
                         </div>
+                         
                     </div>
                 </div>
 
@@ -334,6 +335,29 @@ echo json_encode($a);
                             </div>
                         </div>
                     </div>
+                    <div class="home-pagination">
+                        <div class="row">
+                          <nav>
+                            <ul class="pagination">
+                              <li>
+                                <a href="#" aria-label="Previous">
+                                  <span aria-hidden="true">&laquo;</span>
+                                </a>
+                              </li>
+                              <li><a href="#">1</a></li>
+                              <li><a href="#">2</a></li>
+                              <li><a href="#">3</a></li>
+                              <li><a href="#">4</a></li>
+                              <li><a href="#">5</a></li>
+                              <li>
+                                <a href="#" aria-label="Next">
+                                  <span aria-hidden="true">&raquo;</span>
+                                </a>
+                              </li>
+                            </ul>
+                          </nav>  
+                        </div>
+                        </div>
                 </div>
 
                 <div class="col-sm-3 padding-none" id="cart-sec">
@@ -650,7 +674,7 @@ echo json_encode($a);
             if ($(window).width() > 999 ) {
                 if (500 < $(window).scrollTop()) {
                     $("#sidebar").stop().animate({
-                        marginTop: parseFloat($(window).scrollTop()) - parseFloat($('#pretzel-video').parent().height())
+                        marginTop: parseFloat($(window).scrollTop()) + 230 - parseFloat($('#pretzel-video').parent().height())
                     });
                 } else {
                     $("#sidebar").stop().animate({
@@ -670,7 +694,7 @@ echo json_encode($a);
             }else if($(window).width() < 1000 && $(window).width() > 420){
                 if (500 < $(window).scrollTop()) {
                     $("#sidebar").stop().animate({
-                        marginTop: parseFloat($(window).scrollTop()) - parseFloat($('#pretzel-video').parent().height())
+                        marginTop: parseFloat($(window).scrollTop()) + 230 - parseFloat($('#pretzel-video').parent().height())
                     });
                 } else {
                     $("#sidebar").stop().animate({

@@ -1645,10 +1645,8 @@ extra css========================
     width: 100%;
     border: 1px solid #ededed;
 }
-.chef_profile_img img {
-    border: 23px solid #fff;
-   
-    float: left;
+.chef_profile_img img {     
+    float: left; 
     width: 100%;
 }
 .chef_profile_about {
