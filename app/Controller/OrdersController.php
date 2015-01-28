@@ -154,6 +154,12 @@ class OrdersController extends AppController {
      */
     public function index() {
         $this->Order->recursive = 0;
+        $this->Paginator->settings['contain'] = array(
+            "Combination.Vendor",
+            "Address",
+            "Customer"
+            
+        );
         $this->set('orders', $this->Paginator->paginate());
     }
 
