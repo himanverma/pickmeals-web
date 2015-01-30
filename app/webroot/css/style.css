@@ -539,12 +539,12 @@ footer{
     float: left;
     margin:0;
     font-weight:normal;
-    font-size:13px;
+    font-size:14px;
 }
 .order_total ul li p {
     float: right;
     margin:0;
-    font-size:13px;
+    font-size:15px;
 }
 .order_checkout{
     width:100%;
@@ -1675,7 +1675,7 @@ extra css========================
     border-top: 1px solid #ffffff;
     float: left;
     margin: 0;
-    padding: 8px 20px;
+    padding: 8px 15px;
     width: 100%;
 }
 .chef_profile_about li:first-child {
@@ -2113,7 +2113,7 @@ extra css========================
     padding: 15px 0;
     position: absolute;
     right: 0;
-    width: 650px;
+    width: 100%;
 	z-index:1;
 	box-shadow: 1px 1px 1px #666;
 	-webkit-box-shadow: 1px 1px 1px #666;
@@ -3060,4 +3060,10 @@ footer {
 
 .rateit {
     width: 89px !important;
+}
+.list_box_right .food_qty_button {
+    display: none;
+}
+.view_cart {
+    display: none !important;
 }

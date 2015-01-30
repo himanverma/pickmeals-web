@@ -1,5 +1,4 @@
-<pre><?php //echo print_r($orders); exit; ?>
-</pre>
+
 <div class="order_success_in">
     <div class="col-xs-12 col-sm-12 col-md-2"></div>
 

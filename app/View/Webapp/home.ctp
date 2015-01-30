@@ -279,13 +279,17 @@ echo json_encode($a);
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-xs-6 col-sm-6">
+                                <div class="col-xs-8 col-sm-6">
                                     <div class="row">                                                            
                                         <div class="list_box_right">
                                             <ul>
                                                 <li><p>By <a href="#" data-bind="text: Vendor.name, attr:{'href':'/chef/'+Vendor.name.replace(' ','-').toLowerCase()} "></a></p></li>
                                                 <li>
                                                     <span class="rateit" data-bind="attr:{'data-rateit-value':Combination.ratings, 'id':'rate-it-blk'+Combination.id}" data-rateit-ispreset="true" data-rateit-readonly="true"></span>&nbsp;&nbsp;&nbsp;&nbsp;(<!-- ko text: Review.length --><!-- /ko -->)
+                                                    
+                                                    <div class="food_qty_button">
+                                                        <button class="" data-bind="attr:{'id':Vendor.id},click: $root.addToCart">Order</button>
+                                                    </div>
                                                 </li>
                                                 <li><h4><span>Delivery:</span>Free/45 mins</h4></li>
                                                 <li><h3 ><span>Price:</span>Rs <!-- ko text: Combination.price --><!-- /ko --></h3></li>
@@ -294,7 +298,7 @@ echo json_encode($a);
                                     </div>
                                 </div>
 
-                                <div class="col-xs-2">
+                                <div class="col-xs-2 hidden-xs">
                                     <div class="row">
                                         <div class="food_qty_button">
                                             <button class="" data-bind="attr:{'id':Vendor.id},click: $root.addToCart">Order</button>
@@ -396,6 +400,7 @@ echo json_encode($a);
                                         </ul>
                                         <div class="order_checkout">
                                             <button type="button" data-bind="click: moveToCheckOut " class="">Proceed to checkout</button>
+                                            <button type="button" data-bind="" class="view_cart" style="padding-right: 0 !important;">View Cart</button>
                                         </div>
                                     </div>
 

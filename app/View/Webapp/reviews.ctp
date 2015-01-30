@@ -11,7 +11,7 @@
                     <li><span class="chef_profile_home"><img src="/img/home.png"></span>
                         <p><?php echo $combination['Vendor']['address']; ?></p>
                     </li>
-                    <li><span class="chef_profile_phone"><img src="/img/phone.png"></span>
+                    <!--<li><span class="chef_profile_phone"><img src="/img/phone.png"></span>
                         <p><?php echo $combination['Vendor']['email']; ?></p>
                     </li>
                     <li><span class="chef_profile_phone"><img src="/img/phone.png"></span>
@@ -22,7 +22,7 @@
                     </li>
                     <li><span class="chef_profile_phone"><img src="/img/phone.png"></span>
                         <p><?php echo $combination['Vendor']['phone_number']; ?></p>
-                    </li>
+                    </li>-->
                 </ul>
             </div>
         </div>

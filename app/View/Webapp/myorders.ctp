@@ -53,7 +53,10 @@
                         <button id="feedback_btn" type="button" class="feedback_btn-c">
                             Leave Feedback
                         </button>
+                        <div id="element_to_pop_up">
+                             
                         <div id="feedback_block" class="feedback_block-c">
+                            <a class="b-close">x<a/>
                             <span class="feedback_block_comment">
                                 <textarea name="data[Review][review]" placeholder="Comment..."></textarea>
                             </span>
@@ -70,9 +73,10 @@
                             </span>
                         </div>
                     </div>
+                    </div>
                     <?php }else{ ?>
                     <div>
-                        <span class="rateit" data-rateit-value="<?php echo $rvew['ratings']; ?>" data-rateit-ispreset="true" data-rateit-readonly="true"></span>(<?php echo $rvew['ratings']; ?>)<br>
+                        <span class="rateit" data-rateit-value="<?php echo $rvew['ratings']; ?>" data-rateit-ispreset="true" data-rateit-readonly="true"></span>&nbsp;&nbsp;&nbsp;&nbsp;(<?php echo $rvew['ratings']; ?>)<br>
                         <p><?php echo $rvew['review']; ?></p>
                     </div>
                     <?php } ?>
@@ -110,8 +114,9 @@ if (count($orders) == 0) {
 <?php } ?>
 <script type="text/javascript">
     $(document).ready(function() {
-        $(".feedback_btn-c").click(function() {
+        $(".feedback_btn-c").click(function() {            
             $(".feedback_block-c",$(this).parent()).slideToggle();
+             $('#element_to_pop_up').bPopup();
         });
         $('.rateit').rateit();
         $('.send-review').on("click",function(){
@@ -143,3 +148,30 @@ if (count($orders) == 0) {
         });
     });
 </script>
+<?php echo $this->Html->script('jquery.bpopup.min');?>
+<!--<script type="text/javascript">
+  $('.feedback_btn-c').on("click",function(){
+     
+  });  
+</script>-->
+
+    
+
+<style type="text/css">
+    #element_to_pop_up { 
+    background-color:#fff;
+    border-radius:15px;
+    color:#000;
+    display:none; 
+    width:50%;
+    min-height: 180px;
+    left: 25% !important;
+}
+.b-close{
+    cursor:pointer;
+    position:absolute;
+    right:10px;
+    top:5px;
+}
+
+</style>

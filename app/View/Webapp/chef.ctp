@@ -60,7 +60,7 @@
                                 <img data-bind="attr: {'src': ko.computed(function(){return $root.dynamicSrc('<?php echo $combo['image'] != NULL ? $combo['image'] : "/img/product.png"; ?>')})}" onerror="this.src = 'img/product.png';" /> </div>
                             </div>
                         </div>
-                        <div class="col-xs-6 col-sm-6 ">
+                        <div class="col-xs-8 col-sm-6 ">
                             <div class="row">
                                 <div class="list_box_right">
                                     <ul>
@@ -69,7 +69,10 @@
                                         </li>
                                         <li>
                                             <span class="rateit" data-rateit-value="<?php echo $tRate; ?>" data-rateit-ispreset="true" data-rateit-readonly="true"></span>&nbsp;&nbsp;&nbsp;&nbsp;
-                                            <a href="/reviews/<?php echo $combo['id']; ?>" >(<?php echo count($combo['Review']); ?> ratings)</a>
+                                            <a href="/reviews/<?php echo $combo['id']; ?>" >(<?php echo count($combo['Review']); ?>)</a>
+                                            <div class="food_qty_button">
+                                               <button data-combo='<?php echo json_encode($combo); ?>' data-bind="click:addToCart">Order</button>
+                                            </div>
                                         </li>
                                         <li>
                                             <h4><span>Delivery:</span>Free/45 mins</h4>
@@ -81,9 +84,9 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-xs-2 col-sm-2">
+                        <div class="col-xs-2 col-sm-2 hidden-xs">
                             <div class="row">
-<div class="food_qty_button">
+                            <div class="food_qty_button">
                                 <button data-combo='<?php echo json_encode($combo); ?>' data-bind="click:addToCart">Order</button>
                             </div> </div>
                         </div>
