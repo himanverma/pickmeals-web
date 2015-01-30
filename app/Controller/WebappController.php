@@ -75,7 +75,7 @@ class WebappController extends AppController {
     }
 
     public function fblogin() {
-        Configure::write('debug', 2);
+//        Configure::write('debug', 2);
         if ($this->request->is('ajax')) {
 //            debug($this->request->data);
 //            exit;
@@ -256,7 +256,7 @@ class WebappController extends AppController {
         ini_set("upload_max_filesize", "10M");
         ini_set("post_max_size", "10M");
         ini_set("max_execution_time", -1);
-        Configure::write('debug', 2);
+//        Configure::write('debug', 2);
         $this->loadModel('Customer');
         $this->layout = "webapp_inner";
         $me = $this->Customer->find("first", array("conditions" => array('Customer.id' => AuthComponent::user('id'))));

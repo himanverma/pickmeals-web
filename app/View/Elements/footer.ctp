@@ -2,7 +2,7 @@
     <div class="footer_box">
         <div class="container">
             <div class="footer_top_box">
-                <div class="col-sm-3 col-md-3 col-lg-2">
+                <div class="col-sm-3 col-md-3 col-lg-3">
                     <ul class="footer_menu1">
                         <h1>Info</h1>
                         <li><a href="/about-us">About Us</a></li>
@@ -11,7 +11,7 @@
                         <li><a href="/terms-and-conditions">Terms and Conditions</a></li>
                     </ul>
                 </div>
-                <div class="col-sm-2 col-md-3 col-lg-2">
+                <div class="col-sm-2 col-md-3 col-lg-3">
                     <ul class="footer_menu1">
                         <h1>Follow us</h1>
                         <li><a target="_new" href="https://twitter.com/pickmeals"> Twitter</a></li>
@@ -19,14 +19,14 @@
                         <li><a target="_new" href="//instagram.com/pickmeals/"> Instagram</a></li>
                     </ul>
                 </div>
-                <div class="col-sm-3 col-md-3 col-lg-2">
+                <div class="col-sm-3 col-md-3 col-lg-3">
                     <ul class="footer_menu1">
                         <h1>Help</h1>
                         <li><a href="/contact-us">Contact Us</a></li>
                         <li><a href="/feedback">Feedback</a></li>
                     </ul>
                 </div>
-                <div class="col-sm-4 col-md-3 col-lg-6">
+                <div class="col-sm-4 col-md-3 col-lg-3">
                     <iframe width="300" height="150" src="//www.youtube.com/embed/GeRmsNPVHts" frameborder="0" allowfullscreen></iframe>
                 </div>
             </div>

@@ -6,7 +6,7 @@
                 <h1 style="text-align:left;"><?php echo $vendor['Vendor']['name']; ?></h1>
                 <ul>
                     <li>
-                        <span class="rateit" id="vendor-ratings-bl" data-rateit-value="0" data-rateit-ispreset="true" data-rateit-readonly="true"></span>(<span id="vendor-ratings"></span>)<br>
+                        <span class="rateit" id="vendor-ratings-bl" data-rateit-value="0" data-rateit-ispreset="true" data-rateit-readonly="true"></span>&nbsp;&nbsp;&nbsp;&nbsp;(<span id="vendor-ratings"></span>)<br>
                     </li>
                     <li><span class="chef_profile_home"><img src="/img/home.png"></span>
                         <p><?php echo $vendor['Vendor']['address']; ?></p>
@@ -68,7 +68,7 @@
                                             <p><?php echo $vendor['Vendor']['name']; ?></p>
                                         </li>
                                         <li>
-                                            <span class="rateit" data-rateit-value="<?php echo $tRate; ?>" data-rateit-ispreset="true" data-rateit-readonly="true"></span>
+                                            <span class="rateit" data-rateit-value="<?php echo $tRate; ?>" data-rateit-ispreset="true" data-rateit-readonly="true"></span>&nbsp;&nbsp;&nbsp;&nbsp;
                                             <a href="/reviews/<?php echo $combo['id']; ?>" >(<?php echo count($combo['Review']); ?> ratings)</a>
                                         </li>
                                         <li>

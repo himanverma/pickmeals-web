@@ -144,16 +144,20 @@
                             $.post("/webapp/fblogin", {"data": response}, function(d) {
                                 if (d.error == 0) {
                                     $('#login-mdl').modal('hide');
-                                    var options = {
-                                        iconUrl: '//pickmeals.com/img/pickmeals_icon.png',
-                                        title: 'pickmeals.com',
-                                        body: d.msg,
-                                        timeout: 7000,
-                                        onclick: function() {
-                                            notification.close();
-                                        }
-                                    };
-                                    $.notification(options);
+                                    try{
+                                        var options = {
+                                            iconUrl: '//pickmeals.com/img/pickmeals_icon.png',
+                                            title: 'pickmeals.com',
+                                            body: d.msg,
+                                            timeout: 7000,
+                                            onclick: function() {
+                                                notification.close();
+                                            }
+                                        };
+                                        $.notification(options);
+                                    } catch (e) {
+                                        alert(d.msg);
+                                    }
                                     window.location = "/";
                                 }
                                 console.log(d);
@@ -204,16 +208,20 @@
                         pk_fw_login = 1;
                         $('#pk-fw-messa').html("Please try again...");
                     } else {
-                        var options = {
-                            iconUrl: '//pickmeals.com/img/pickmeals_icon.png',
-                            title: 'pickmeals.com',
-                            body: d.msg,
-                            timeout: 7000,
-                            onclick: function() {
-                                notification.close();
-                            }
-                        };
-                        $.notification(options);
+                        try{
+                            var options = {
+                                iconUrl: '//pickmeals.com/img/pickmeals_icon.png',
+                                title: 'pickmeals.com',
+                                body: d.msg,
+                                timeout: 7000,
+                                onclick: function() {
+                                    notification.close();
+                                }
+                            };
+                            $.notification(options);
+                        } catch (e) {
+                            alert(d.msg);
+                        }
                         pk_fw_login = 2;
                         $('#login-mdl').modal('hide');
                         window.location = "/";

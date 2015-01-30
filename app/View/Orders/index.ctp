@@ -1,6 +1,7 @@
 <?php 
 //debug($orders);
 //exit;
+
 ?>
 <div class="row">
     <div class="col-xs-12">
@@ -21,9 +22,10 @@
                         <div class="box-header">
                             <h3 class="box-title">
                                 Order ID : <?php echo $order['Order']['sku']; ?> (<?php echo $order['Order']['payment_status']; ?>)
+                                
                             </h3>
                             <div class="box-tools pull-right">
-
+                                <?php echo $order['Order']['created']; ?>
                                 <a href="<?php echo $this->Html->url('/order/edit/' . $order['Order']['sku']); ?>" class="btn btn-default btn-sm">Edit</a>
                                 <button data-widget="collapse" class="btn btn-default btn-sm"><i class="fa fa-plus"></i></button>
                                 <button data-widget="remove" class="btn btn-default btn-sm"><i class="fa fa-times"></i></button>
@@ -71,14 +73,14 @@
                                 <div class="col-md-6">
                                     <div class="box box-solid">
                                         <div class="box-header">
-                                            <h3 class="box-title">Combination Details</h3>
+                                            <h3 class="box-title">Order Details</h3>
                                         </div><!-- /.box-header -->
                                         <div class="box-body">
                                             <table class="table table-bordered">
                                                 <tbody>
                                                     <tr>
                                                         <th>
-                                                            <img src="<?php echo $order['Combination']['f_name']; ?>" />
+                                                            <img src="<?php echo $order['Combination']['image']; ?>" />
                                                         </th>
                                                         <td>
                                                             <h2><?php echo $order['Combination']['display_name']; ?></h2>
@@ -89,20 +91,20 @@
                                                         </td>
                                                     </tr>
                                                     <tr>
-                                                        <th>Last Name</th>
-                                                        <td><?php echo $order['Combination']['l_name']; ?></td>
+                                                        <th>Unit Price</th>
+                                                        <td><?php echo $order['Combination']['price']; ?></td>
                                                     </tr>
                                                     <tr>
-                                                        <th>Address</th>
-                                                        <td><?php echo $order['Combination']['address']; ?></td>
+                                                        <th>Quantity</th>
+                                                        <td><?php echo $order['Order']['qty']; ?></td>
                                                     </tr>
                                                     <tr>
-                                                        <th>Zipcode</th>
-                                                        <td><?php echo $order['Combination']['zipcode']; ?></td>
+                                                        <th><b>Total Payable Amount</b></th>
+                                                        <td><?php echo $order['Combination']['price'] * $order['Order']['qty']; ?></td>
                                                     </tr>
                                                     <tr>
-                                                        <th>Phone No.</th>
-                                                        <td><?php echo $order['Combination']['phone_number']; ?></td>
+                                                        <th>Paid Via.</th>
+                                                        <td><?php echo $order['Order']['paid_via']; ?></td>
                                                     </tr>
                                                     
                                                 </tbody>

@@ -20,19 +20,19 @@
 
                     <ul>
                         <li><label>First Name</label></li>
-                        <li><?php echo $this->Form->input("f_name", array('div' => false, 'label' => false, 'data-bind' => "value:fname")); ?></li>
+                        <li><?php echo $this->Form->input("f_name", array('div' => false, 'label' => false, 'data-bind' => "value:fname,validationElement: fname")); ?></li>
                         <li><label>Last Name</label></li>
                         <li><?php echo $this->Form->input("l_name", array('div' => false, 'label' => false, 'data-bind' => "value:lname")); ?></li>
                         <li><label>Address</label></li>
-                        <li><?php echo $this->Form->input("address", array('div' => false, 'label' => false, 'data-bind' => "value:address")); ?></li>
+                        <li><?php echo $this->Form->input("address", array('div' => false, 'label' => false, 'data-bind' => "value:address, validationElement: address")); ?></li>
                         <li><label>Area</label></li>
                         <li><?php echo $this->Form->input("area", array('div' => false, 'label' => false, 'data-bind' => "value:area")); ?></li>
                         <li><label>City</label></li>
                         <li><?php echo $this->Form->input("city", array('div' => false, 'label' => false, 'data-bind' => "value:city")); ?></li>
                         <li><label>Zipcode</label></li>
-                        <li><?php echo $this->Form->input("zipcode", array('div' => false, 'label' => false, 'data-bind' => "value:zip")); ?></li>
+                        <li><?php echo $this->Form->input("zipcode", array('div' => false, 'label' => false, 'data-bind' => "value:zip, validationElement: zip")); ?></li>
                         <li><label>Phone No.</label></li>
-                        <li><?php echo $this->Form->input("phone_number", array('div' => false, 'label' => false, 'data-bind' => "value:phone")); ?></li>
+                        <li><?php echo $this->Form->input("phone_number", array('div' => false, 'label' => false, 'data-bind' => "value:phone, validationElement: phone")); ?></li>
                         <?php
                         echo $this->Form->input("lat", array('div' => false, 'label' => false, 'data-bind' => "value:lat", 'type' => 'hidden'));
                         echo $this->Form->input("long", array('div' => false, 'label' => false, 'data-bind' => "value:lng", 'type' => 'hidden'));
@@ -256,285 +256,312 @@
 
 
 
-<script type="text/javascript">
+                                            <script type="text/javascript">
 
-    var pk_fw_login = 0;
-    var AddressVM = function() {
-        var me = this;
-        me.orderId = ko.observable(0);
-        me.orderId.subscribe(function(d) {
-            $('#pk-fw-odr-id').html(d);
-        });
-        me.fname = ko.observable('<?php $nm = explode(" ", $me['name']); echo @$nm[0]; ?>').extend({
-            required: {message: 'Please fill your name.'},
-            minLength: {params: 4, message: "Name must be at least 4 characters long."}
-        });
-        me.lname = ko.observable('<?php echo @$nm[1]; ?>');
-        me.city = ko.observable('<?php echo $me['city'] ?>');
-        me.address = ko.observable('<?php echo $me['address'] ?>').extend({
-                     required: { message: 'Please fill your address.' },
-                     minLength: {params: 10, message: "Address field is too small to understand."}
-                 });
-        me.area = ko.observable('IT Park (Rajiv Gandhi Technology Park)');
-        me.zip = ko.observable('<?php echo $me['pin_code'] ?>').extend({
-                     required: { message: 'Please fill your zipcode.' },
-                     digits: { message: 'Please fill only numbers.'}
-//                     minLength: {params: 10, message: "Mobile Number must be at least 10 digit long"},
-//                     maxLength: {params: 10, message: "Mobile Number should not more than 10 digits"}
-                 });
-        me.phone = ko.observable('<?php echo $me['mobile_number'] ?>').extend({
-                     required: { message: 'Please fill your 10 digit mobile number.' },
-                     digits: { message: 'Please fill only numbers.'},
-                     minLength: {params: 10, message: "Mobile Number must be at least 10 digit long"},
-                     maxLength: {params: 10, message: "Mobile Number should not more than 10 digits"}
-                 });
-        me.tm = ko.observable(0);
-        me.lat = ko.observable('0.0');
-        me.lng = ko.observable('0.0');
-        me.customer_id = ko.observable(0);
-        me.payment_mode = ko.observable("Online Payment");
-        me.editAgain = function() {
-            $('#order-cnfrm-mdl').modal('hide');
-        };
-        me.saveAddress = function() {
-            var a = {};
-            var m = me;
-            $('#addr-fw-frm input,#addr-fw-frm textarea').each(function() {
-                a[$(this).attr('name')] = $(this).val();
-            });
-            $.post("/api/addresses/add.json", a, function(d) {
-                if (d.data.msg == "success") {
-                    var it = JSON.parse(localStorage.pickmealsCart)
-                    var items = [];
+                                                var pk_fw_login = 0;
+                                                var AddressVM = function() {
+                                                    var me = this;
+                                                    me.orderId = ko.observable(0);
+                                                    me.orderId.subscribe(function(d) {
+                                                        $('#pk-fw-odr-id').html(d);
+                                                    });
+                                                    me.fname = ko.observable('<?php $nm = explode(" ", $me['name']);
+                        echo @$nm[0]; ?>').extend({
+                                                        required: {message: 'Please fill your name.'},
+                                                        minLength: {params: 4, message: "Name must be at least 4 characters long."}
+                                                    });
+                                                    me.lname = ko.observable('<?php echo @$nm[1]; ?>');
+                                                    me.city = ko.observable('<?php echo $me['city'] ?>');
+                                                    me.address = ko.observable('<?php echo $me['address'] ?>').extend({
+                                                        required: {message: 'Please fill your address.'},
+                                                        minLength: {params: 10, message: "Address field is too small to understand."}
+                                                    });
+                                                    me.area = ko.observable('IT Park (Rajiv Gandhi Technology Park)');
+                                                    me.zip = ko.observable('<?php echo $me['pin_code'] ?>').extend({
+                                                        required: {message: 'Please fill your zipcode.'},
+                                                        digits: {message: 'Please fill only numbers.'}
+                                                        //                     minLength: {params: 10, message: "Mobile Number must be at least 10 digit long"},
+                                                        //                     maxLength: {params: 10, message: "Mobile Number should not more than 10 digits"}
+                                                    });
+                                                    me.phone = ko.observable('<?php echo $me['mobile_number'] ?>').extend({
+                                                        required: {message: 'Please fill your 10 digit mobile number.'},
+                                                        digits: {message: 'Please fill only numbers.'},
+                                                        minLength: {params: 10, message: "Mobile Number must be at least 10 digit long"},
+                                                        maxLength: {params: 10, message: "Mobile Number should not more than 10 digits"}
+                                                    });
+                                                    me.tm = ko.observable(0);
+                                                    me.lat = ko.observable('0.0');
+                                                    me.lng = ko.observable('0.0');
+                                                    me.customer_id = ko.observable(0);
+                                                    me.payment_mode = ko.observable("Online Payment");
+                                                    me.editAgain = function() {
+                                                        $('#order-cnfrm-mdl').modal('hide');
+                                                    };
+                                                    me.saveAddress = function() {
+                                                        var a = {};
+                                                        var m = me;
+                                                        $('#addr-fw-frm input,#addr-fw-frm textarea').each(function() {
+                                                            a[$(this).attr('name')] = $(this).val();
+                                                        });
+                                                        $.post("/api/addresses/add.json", a, function(d) {
+                                                            if (d.data.msg == "success") {
+                                                                var it = JSON.parse(localStorage.pickmealsCart);
+                                                                var items = [];
 
-                    for (i in it) {
-                        items.push({
-                            'Order': {
-                                'combination_id': it[i].data.Combination.id,
-                                'recipe_names': it[i].data.Combination.display_name,
-                                'address_id': d.data.addressid,
-                                'customer_id': m.customer_id(),
-                                'lat': m.lat(),
-                                'long': m.lng(),
-                                'paid_via': m.payment_mode(),
-                                'status': 1,
-                                'qty': it[i].qty,
-                                'essentials': it[i].data.essentials,
-                                'price': it[i].price,
-                                'timestamp': m.tm(),
-                                'sku': m.orderId()
+                                                                for (i in it) {
+                                                                    items.push({
+                                                                        'Order': {
+                                                                            'combination_id': it[i].data.Combination.id,
+                                                                            'recipe_names': it[i].data.Combination.display_name,
+                                                                            'address_id': d.data.addressid,
+                                                                            'customer_id': m.customer_id(),
+                                                                            'lat': m.lat(),
+                                                                            'long': m.lng(),
+                                                                            'paid_via': m.payment_mode(),
+                                                                            'status': 1,
+                                                                            'qty': it[i].qty,
+                                                                            'essentials': it[i].data.essentials,
+                                                                            'price': it[i].price,
+                                                                            'timestamp': m.tm(),
+                                                                            'sku': m.orderId()
 
-                            }
-                        });
-                    }
-                    var data = {
-                        'data': items
-                    };
-                    $.post("/api/orders/makeorder.json", data, function(d) {
-                        console.log(d);
-                        if (d.data.error == 0) {
-                            delete localStorage.pickmealsCart;
-                            if (m.payment_mode() != "COD") {
-                                window.location = d.data.url;
-                            }
-                            else {
-                                var options = {
-                                    iconUrl: 'https://www.pickmeals.com/img/pickmeals_icon.png',
-                                    title: 'pickmeals.com',
-                                    timeout: 7000,
-                                    body: "Order has been completed successfully...",
-                                    onclick: function() {
-                                        notification.close();
-                                    }
-                                };
-                                $.notification(options);
-                                window.location = 'https://www.pickmeals.com/orders/payment_success/' + m.orderId();//"/";
-                            }
-                        } else {
-                            var options = {
-                                iconUrl: 'https://www.pickmeals.com/img/pickmeals_icon.png',
-                                title: 'pickmeals.com',
-                                timeout: 7000,
-                                body: d.data.msg,
-                                onclick: function() {
-                                    notification.close();
-                                }
-                            };
-                            $.notification(options);
-                        }
-                    });
-                }
-            });
-        };
-        me.makeOrder = function(d, e) {
-            if(ko.validation.group(me)().length  > 0){
-                
-                var err = ko.validation.group(me)();
-                for(i in err){
-                    var options = {
-                            iconUrl: 'https://www.pickmeals.com/img/pickmeals_icon.png',
-                            title: 'Shipping details Missing...',
-                            body: err[i],
-                            timeout: 7000,
-                            onclick: function() {
-                                notification.close();
-                            }
-                        };
-                        $.notification(options);
-                }
-                
-                return false;
-            }
-            var num = new Date().getTime();
-            me.tm(num);
-            me.orderId(num.toString(36).toUpperCase());
-            $.post("/webapp/getuser", function(d) {
-                if (d != null) {
-                    me.customer_id(d.id);
-                    $('#order-cnfrm-mdl').modal('show');
-                    return false;
-                }
-                $('#login-mdl').modal('show');
-            });
-        }
-        me.init = function() {
-            var m = me;
-            navigator.geolocation.getCurrentPosition(function(e) {
-                m.lat(e.coords.latitude);
-                m.lng(e.coords.longitude);
-            });
-        };
-        me.init();
-    };
-    var AddressObj = new AddressVM();
+                                                                        }
+                                                                    });
+                                                                }
+                                                                var data = {
+                                                                    'data': items
+                                                                };
+                                                                $.post("/api/orders/makeorder.json", data, function(d) {
+                                                                    console.log(d);
+                                                                    if (d.data.error == 0) {
+                                                                        delete localStorage.pickmealsCart;
+                                                                        if (m.payment_mode() != "COD") {
+                                                                            window.location = d.data.url;
+                                                                        }
+                                                                        else {
+                                                                            try {
+                                                                                var options = {
+                                                                                    iconUrl: 'https://www.pickmeals.com/img/pickmeals_icon.png',
+                                                                                    title: 'pickmeals.com',
+                                                                                    timeout: 7000,
+                                                                                    body: "Order has been completed successfully...",
+                                                                                    onclick: function() {
+                                                                                        notification.close();
+                                                                                    }
+                                                                                };
+                                                                                $.notification(options);
+                                                                            } catch (e) {
+                                                                                alert("Order has been completed successfully...");
+                                                                            }
 
-
-    var CartVM = function() {
-        var me = this;
-        me.items = ko.observableArray([]);
-        me.subt = ko.computed(function() {
-            var x = 0;
-            var d = this.items();
-            for (i in d) {
-                x += d[i].qty() * d[i].price();
-            }
-            return x;
-        }, this);
-        me.updateEss = function(d, e) {
-            localStorage.pickmealsCart = ko.mapping.toJSON(me.items);
-        };
-        me.dynamicSrc = function(s, e) {
-            if (e == "4 Roti + Half Rice") {
-                s = s.replace("-0-", "-2-");
-            }
-            if (e == "Full Rice") {
-                s = s.replace("-0-", "-1-");
-            }
-            if (e == "6 Roti") {
-                //s = s.replace("-0-","-1-");
-            }
-            return s;
-        };
-        me.pushToCart = function(item, qty, price) {
-            var flag = false;
-            console.log(item);
-            for (i in me.items()) {
-                console.log(me.items()[i].data.essentials());
-                console.log(item.essentials());
-                if (me.items()[i].data.essentials() == ComboObj.essentials() && me.items()[i].data.Combination.id == item.Combination.id) {
-                    // flag = i;
-                }
-            }
-            if (flag) {
-                me.items()[flag].qty(me.items()[flag].qty() + 1);
-            } else {
-                me.items.push({
-                    data: item,
-                    qty: ko.observable(qty),
-                    price: ko.observable(price)
-                });
-            }
-            localStorage.pickmealsCart = ko.mapping.toJSON(me.items);
-
-            //var x = me.
-            //();
-            //me.subt((qty*price) + x );
-        }
-        me.increase = function(d, e) {
-            d.qty(d.qty() + 1);
-            localStorage.pickmealsCart = ko.mapping.toJSON(me.items);
-        };
-        me.decrease = function(d, e) {
-            if (d.qty() == "1") {
-                me.items.remove(d);
-            } else {
-                d.qty(d.qty() - 1);
-            }
-            localStorage.pickmealsCart = ko.mapping.toJSON(me.items);
-        }
-        me.subTotal = ko.computed(function() {
-            return 0;
-        }, this);
-        me.serviceTax = ko.computed(function() {
-            return 0;
-        }, this);
-        me.vat = ko.computed(function() {
-            return 0;
-        }, this);
-        me.total = ko.computed(function() {
-            return this.subt();
-        }, this);
-
-
-        me.moveToCheckOut = function() {
-            window.location = "/checkout";
-        };
-
-        me.init = function() {
-            if (typeof localStorage.pickmealsCart != 'undefined') {
-                $items = JSON.parse(localStorage.pickmealsCart);
-                //var d = [];
-                for (i in $items) {
-                    $items[i].price = ko.observable($items[i].price);
-                    $items[i].qty = ko.observable($items[i].qty);
-                    $items[i].data.essentials = ko.observable($items[i].data.essentials);
-                }
-                me.items($items);
-            }
-        };
-        me.init();
-    };
+                                                                            window.location.href = 'https://www.pickmeals.com/orders/payment_success/' + m.orderId();//"/";
+                                                                        }
+                                                                    } else {
+                                                                        try {
+                                                                            var options = {
+                                                                                iconUrl: 'https://www.pickmeals.com/img/pickmeals_icon.png',
+                                                                                title: 'pickmeals.com',
+                                                                                timeout: 7000,
+                                                                                body: d.data.msg,
+                                                                                onclick: function() {
+                                                                                    notification.close();
+                                                                                }
+                                                                            };
+                                                                            $.notification(options);
+                                                                        } catch (e) {
+                                                                            alert(d.data.msg);
+                                                                        }
+                                                                    }
+                                                                });
+                                                            }
+                                                        });
+                                                    };
+                                                    me.makeOrder = function(d, e) {
+                                                        if (ko.validation.group(me)().length > 0) {
 
 
 
-    CartObj = new CartVM();
+                                                            var err1 = ko.validation.group(me);
+                                                            err1.showAllMessages();
+                                                            var err = err1();
+                                                            for (i in err) {
+                                                                try {
+                                                                    var options = {
+                                                                        iconUrl: 'https://www.pickmeals.com/img/pickmeals_icon.png',
+                                                                        title: 'Shipping details Missing...',
+                                                                        body: err[i],
+                                                                        timeout: 7000,
+                                                                        onclick: function() {
+                                                                            notification.close();
+                                                                        }
+                                                                    };
+                                                                    $.notification(options);
+                                                                } catch (e) {
+                                                                    alert(err[i]);
+                                                                }
+                                                            }
 
-    $(document).ready(function() {
-        ko.applyBindings(CartObj, $('#cart-sec')[0]);
-        ko.applyBindings(AddressObj, $('#address-sec')[0]);
+                                                            return false;
+                                                        }
+                                                        var num = new Date().getTime();
+                                                        me.tm(num);
+                                                        me.orderId(num.toString(36).toUpperCase());
+                                                        $.post("/webapp/getuser", function(d) {
+                                                            if (d != null) {
+                                                                me.customer_id(d.id);
+                                                                $('#order-cnfrm-mdl').modal('show');
+                                                                return false;
+                                                            }
+                                                            $('#login-mdl').modal('show');
+                                                        });
+                                                    }
+                                                    me.init = function() {
+                                                        var m = me;
+                                                        navigator.geolocation.getCurrentPosition(function(e) {
+                                                            m.lat(e.coords.latitude);
+                                                            m.lng(e.coords.longitude);
+                                                        });
+                                                    };
+                                                    me.init();
+                                                };
+                                                var AddressObj = new AddressVM();
 
-        ko.applyBindings(CartObj, $('#cart-sec-2')[0]);
-        ko.applyBindings(AddressObj, $('#address-sec-2')[0]);
+
+                                                var CartVM = function() {
+                                                    var me = this;
+                                                    me.items = ko.observableArray([]);
+                                                    me.subt = ko.computed(function() {
+                                                        var x = 0;
+                                                        var d = this.items();
+                                                        for (i in d) {
+                                                            x += d[i].qty() * d[i].price();
+                                                        }
+                                                        return x;
+                                                    }, this);
+                                                    me.updateEss = function(d, e) {
+                                                        localStorage.pickmealsCart = ko.mapping.toJSON(me.items);
+                                                    };
+                                                    me.dynamicSrc = function(s, e) {
+                                                        if (e == "4 Roti + Half Rice") {
+                                                            s = s.replace("-0-", "-2-");
+                                                        }
+                                                        if (e == "Full Rice") {
+                                                            s = s.replace("-0-", "-1-");
+                                                        }
+                                                        if (e == "6 Roti") {
+                                                            //s = s.replace("-0-","-1-");
+                                                        }
+                                                        return s;
+                                                    };
+                                                    me.pushToCart = function(item, qty, price) {
+                                                        var flag = false;
+                                                        console.log(item);
+                                                        for (i in me.items()) {
+                                                            console.log(me.items()[i].data.essentials());
+                                                            console.log(item.essentials());
+                                                            if (me.items()[i].data.essentials() == ComboObj.essentials() && me.items()[i].data.Combination.id == item.Combination.id) {
+                                                                // flag = i;
+                                                            }
+                                                        }
+                                                        if (flag) {
+                                                            me.items()[flag].qty(me.items()[flag].qty() + 1);
+                                                        } else {
+                                                            me.items.push({
+                                                                data: item,
+                                                                qty: ko.observable(qty),
+                                                                price: ko.observable(price)
+                                                            });
+                                                        }
+                                                        localStorage.pickmealsCart = ko.mapping.toJSON(me.items);
+
+                                                        //var x = me.
+                                                        //();
+                                                        //me.subt((qty*price) + x );
+                                                    }
+                                                    me.increase = function(d, e) {
+                                                        d.qty(d.qty() + 1);
+                                                        localStorage.pickmealsCart = ko.mapping.toJSON(me.items);
+                                                    };
+                                                    me.decrease = function(d, e) {
+                                                        if (d.qty() == "1") {
+                                                            me.items.remove(d);
+                                                        } else {
+                                                            d.qty(d.qty() - 1);
+                                                        }
+                                                        localStorage.pickmealsCart = ko.mapping.toJSON(me.items);
+                                                    }
+                                                    me.subTotal = ko.computed(function() {
+                                                        return 0;
+                                                    }, this);
+                                                    me.serviceTax = ko.computed(function() {
+                                                        return 0;
+                                                    }, this);
+                                                    me.vat = ko.computed(function() {
+                                                        return 0;
+                                                    }, this);
+                                                    me.total = ko.computed(function() {
+                                                        return this.subt();
+                                                    }, this);
 
 
-    });
+                                                    me.moveToCheckOut = function() {
+                                                        window.location = "/checkout";
+                                                    };
+
+                                                    me.init = function() {
+                                                        if (typeof localStorage.pickmealsCart != 'undefined') {
+                                                            $items = JSON.parse(localStorage.pickmealsCart);
+                                                            //var d = [];
+                                                            for (i in $items) {
+                                                                $items[i].price = ko.observable($items[i].price);
+                                                                $items[i].qty = ko.observable($items[i].qty);
+                                                                $items[i].data.essentials = ko.observable($items[i].data.essentials);
+                                                            }
+                                                            me.items($items);
+                                                        }
+                                                    };
+                                                    me.init();
+                                                };
 
 
 
-    $(function() {
-        var offset = $("#sidebar").offset();
-        var topPadding = 15;
-        $(window).scroll(function() {
-            if ($(window).scrollTop() > offset.top) {
-                $("#sidebar").stop().animate({
-                    marginTop: $(window).scrollTop() - offset.top + topPadding
-                });
-            } else {
-                $("#sidebar").stop().animate({
-                    marginTop: 0
-                });
-            }
-            ;
-        });
-    });
-</script>
+                                                CartObj = new CartVM();
+
+                                                $(document).ready(function() {
+                                                    ko.applyBindings(CartObj, $('#cart-sec')[0]);
+                                                    ko.applyBindings(AddressObj, $('#address-sec')[0]);
+
+                                                    ko.applyBindings(CartObj, $('#cart-sec-2')[0]);
+                                                    ko.applyBindings(AddressObj, $('#address-sec-2')[0]);
+
+
+                                                });
+
+
+
+                                                $(function() {
+                                                    var offset = $("#sidebar").offset();
+                                                    var topPadding = 15;
+                                                    $(window).scroll(function() {
+                                                        if ($(window).scrollTop() > offset.top) {
+                                                            $("#sidebar").stop().animate({
+                                                                marginTop: $(window).scrollTop() - offset.top + topPadding
+                                                            });
+                                                        } else {
+                                                            $("#sidebar").stop().animate({
+                                                                marginTop: 0
+                                                            });
+                                                        }
+                                                        ;
+                                                    });
+                                                });
+                                            </script>
+                                            <style type="text/css">
+                                                .validationElement{
+                                                    background: pink;
+                                                    border: red solid 1px;
+                                                }
+                                                .validationMessage{
+                                                    color: red;
+                                                }
+                                            </style>

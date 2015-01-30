@@ -160,16 +160,20 @@ $this->end();
 
             var err = ko.validation.group(me)();
             for (i in err) {
-                var options = {
-                    iconUrl: 'https://www.pickmeals.com/img/pickmeals_icon.png',
-                    title: 'Account details Missing...',
-                    body: err[i],
-                    timeout: 7000,
-                    onclick: function() {
-                        notification.close();
-                    }
-                };
-                $.notification(options);
+                try{
+                    var options = {
+                        iconUrl: 'https://www.pickmeals.com/img/pickmeals_icon.png',
+                        title: 'Account details Missing...',
+                        body: err[i],
+                        timeout: 7000,
+                        onclick: function() {
+                            notification.close();
+                        }
+                    };
+                    $.notification(options);
+                } catch (e) {
+                    alert(err[i]);
+                }
             }
             m.isUpdating(false);
 

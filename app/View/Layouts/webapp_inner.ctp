@@ -133,16 +133,20 @@
                         $.post("/webapp/fblogin", {"data": response}, function(d) {
                             if (d.error == 0) {
                                 $('#login-mdl').modal('hide');
-                                var options = {
-                                    iconUrl: 'https://www.pickmeals.com/img/pickmeals_icon.png',
-                                    title: 'pickmeals.com',
-                                    timeout: 7000,
-                                    body: d.msg,
-                                    onclick: function() {
-                                        notification.close();
-                                    }
-                                };
-                                $.notification(options);
+                                try{
+                                    var options = {
+                                        iconUrl: 'https://www.pickmeals.com/img/pickmeals_icon.png',
+                                        title: 'pickmeals.com',
+                                        timeout: 7000,
+                                        body: d.msg,
+                                        onclick: function() {
+                                            notification.close();
+                                        }
+                                    };
+                                    $.notification(options);
+                                } catch (e) {
+                                    alert(d.msg);
+                                }
                                 var loc = window.location.pathname;
                                 if (loc == "/checkout/" || loc == "/checkout") {
                                     //window.location = "/checkout/?_=confirm";
@@ -193,6 +197,7 @@
                         pk_fw_login = 1;
                         $('#pk-fw-messa').html("Please try again...");
                     } else {
+                        try{
                         var options = {
                             iconUrl: 'https://www.pickmeals.com/img/pickmeals_icon.png',
                             title: 'pickmeals.com',
@@ -203,6 +208,9 @@
                             }
                         };
                         $.notification(options);
+                        } catch (e) {
+                            alert(d.msg);
+                        }
                         pk_fw_login = 2;
                         $('#login-mdl').modal('hide');
                         var loc = window.location.pathname;
@@ -255,6 +263,7 @@
 <?php
 if ($sessionFlashMsg != "") {
     ?>
+            try{
                 var options = {
                     iconUrl: 'https://www.pickmeals.com/img/pickmeals_icon.png',
                     title: 'pickmeals.com',
@@ -265,6 +274,9 @@ if ($sessionFlashMsg != "") {
                     }
                 };
                 $.notification(options);
+                } catch (e) {
+                    alert('<?php echo strip_tags($sessionFlashMsg); ?>);
+                }
 <?php } ?>
         });
 

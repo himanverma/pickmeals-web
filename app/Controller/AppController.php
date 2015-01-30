@@ -36,11 +36,6 @@ class AppController extends Controller {
     public $helpers = array('Html', 'Form', 'Combinator.Combinator');
 
     public function beforeFilter() {
-        
-        
-        
-        
-        Configure::write('debug', 2);
         parent::beforeFilter();
 //        $this->Auth->allow();
         $this->rqWriter();

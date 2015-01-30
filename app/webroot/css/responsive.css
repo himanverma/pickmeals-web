@@ -569,7 +569,9 @@
 }
 
 
-
+@media screen and (max-width: 899px){
+    .home_content_in {margin: -22px 0 0;}
+}
 
 
 
@@ -1013,6 +1015,17 @@
 .home_content_right .sidebar_main{margin: 0;background: #ccc;}
 .order_total{background: #ccc;}
 .home_content_right_title{display: none;}
+.sidebar_order_list_main {display: none;}
+footer {padding: 0 0 70px;}
+.order_total ul li:first-child {display: none;}
+.order_checkout{margin-top: 3px;}
+.order_total ul li {padding: 0;}
+.order_checkout button {padding: 8px 6px !important;}
+.modal-header {padding: 13px 15px 30px !important;}
+.placeorder_title {margin: 10px 0 0;}
+.footer_menu1 h1 {margin: 0;}
+.footer_menu1 { margin: 0 0 15px;}
+.footer_menu1 h1 {font-size: 19px;}
 
 }
 
@@ -1272,7 +1285,7 @@
 
 
 
-    .modal-header {padding: 13px 15px 69px !important;}
+    .modal-header {padding: 13px 15px 30px !important;}
     .checkout-list-main{width: 100%;float: left; border-bottom: 1px solid #ccc;}
     .checkout-list-main img{width: 42%;}
     .checkout-total {float: left; width: 100%;}
@@ -1335,7 +1348,7 @@
     .food_qty_button button{  margin: 0;
                               padding: 6px 12px;}
     .logo img{width: 120px;}
-    .logo img {margin-left: 45px;margin-top: 14px;width: 100px !important;}
+    .logo img {margin-left: 45px;margin-top: 12px;width: 100px !important;}
     .navbar-toggle{padding: 7px 8px;}
     /*    Creating issues*/
 /*    .rateit .rateit-range{   background-position: 0 10px;
@@ -1590,7 +1603,7 @@
     .chef-revies-comment h6{font-size: 11px;}
 
 
-    .modal-header {padding: 13px 15px 69px !important;}
+    .modal-header {padding: 13px 15px 30px !important;}
     .checkout-list-main{width: 100%;float: left; border-bottom: 1px solid #ccc;}
     .checkout-list-main img{width: 60%;}
     .checkout-total {float: left; width: 100%;}
@@ -1778,7 +1791,7 @@
     .list_box_title h3 {margin:0px;}
 
     .logo {
-        margin: 0 0 0 5%;
+        margin: 0 0 0 0;
     }
 
     .modal-dialog {
@@ -1797,7 +1810,7 @@
 
     .logo > img:last-child {
         float: left;display: list-item;
-        width: 12% !important;
+        width: 13.5% !important;
     }
     .top-txt {
         float: right;
@@ -1872,7 +1885,7 @@
 
 
 
-    .modal-header {padding: 13px 15px 69px !important;}
+    .modal-header {padding: 13px 15px 30px !important;}
     .checkout-list-main{width: 100%;float: left; border-bottom: 1px solid #ccc;}
     .checkout-list-main img{width: 100%;}
     .checkout-total {float: left; width: 100%;}
@@ -2249,7 +2262,7 @@
     .chef-revies-comment h6{font-size: 11px;}
 
 
-    .modal-header {padding: 13px 15px 69px !important;}
+    .modal-header {padding: 13px 15px 30px !important;}
     .checkout-oder-id {float: left;}
     .checkout-list-main{width: 100%;float: left; border-bottom: 1px solid #ccc;}
     .checkout-list-main img{width: 100%;}

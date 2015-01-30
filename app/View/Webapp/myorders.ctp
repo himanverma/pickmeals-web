@@ -122,16 +122,20 @@ if (count($orders) == 0) {
             });
             $.post('/webapp/myorders',data,function(d){
                if(d.error == 0){
-                   var options = {
-                        iconUrl: 'https://www.pickmeals.com/img/pickmeals_icon.png',
-                        title: 'pickmeals.com',
-                        body: d.msg,
-                        timeout: 7000,
-                        onclick: function() {
-                            notification.close();
-                        }
-                    };
-                    $.notification(options);
+                   try{
+                    var options = {
+                         iconUrl: 'https://www.pickmeals.com/img/pickmeals_icon.png',
+                         title: 'pickmeals.com',
+                         body: d.msg,
+                         timeout: 7000,
+                         onclick: function() {
+                             notification.close();
+                         }
+                     };
+                     $.notification(options);
+                    } catch (e) {
+                        alert(d.msg);
+                    }
                     cntr.parent().remove();
                     window.location = "/myaccount";
                } 

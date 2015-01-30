@@ -179,64 +179,64 @@ echo json_encode($a);
                 </div>
             </nav>
             <div class="dish_content">
-                
-                
-                
-                  <div class="dish_content_title_search">  
-                    
+
+
+
+                <div class="dish_content_title_search">  
+
                     <div id="srch-block" class="search_bar_main">
-                            <div class="col-sm-2 col-md-3"><div class="row">
-                                </div>
-                            </div>
-                            <div id="srch-pd" class="col-sm-7 col-md-6">
-                                <div class="input-group">
-
-                                    <input type="text" class="form-control search_input" placeholder="Search..." data-bind="value:SearchMeal">
-                                    <div class="input-group-btn">
-                                        <input type="button" value="Search" data-bind="click:Search" class="btn btn-default btn-lg seacrh_btn">
-                                    </div>
-                                </div>
-
-                            </div>
-                            <div class="col-sm-2 col-md-3"> <div class="row">
-                                </div>
+                        <div class="col-sm-2 col-md-3"><div class="row">
                             </div>
                         </div>
-                  </div>
-                    
+                        <div id="srch-pd" class="col-sm-7 col-md-6">
+                            <div class="input-group">
+
+                                <input type="text" class="form-control search_input" placeholder="Search..." data-bind="value:SearchMeal">
+                                <div class="input-group-btn">
+                                    <input type="button" value="Search" data-bind="click:Search" class="btn btn-default btn-lg seacrh_btn">
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="col-sm-2 col-md-3"> <div class="row">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="dish_content_titles">    
-                <div class="col-sm-2 col-md-3">
-                            <div class="row">
-                                <div class="home_content_left">
-                                    <div class="home_content_left_title">
-                                        <h2>CATEGORIES</h2>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-7 col-md-6">
+                    <div class="col-sm-2 col-md-3">
+                        <div class="row">
                             <div class="home_content_left">
                                 <div class="home_content_left_title">
-                                    <h2>MENU</h2>
+                                    <h2>CATEGORIES</h2>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-sm-3 col-md-3">
-                            <div class="row">
-                                <div class="home_content_left">
-                                    <div class="home_content_left_title">
-                                        <h2>CART</h2>
-                                    </div>
+                    </div>
+                    <div class="col-sm-7 col-md-6">
+                        <div class="home_content_left">
+                            <div class="home_content_left_title">
+                                <h2>MENU</h2>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-3 col-md-3">
+                        <div class="row">
+                            <div class="home_content_left">
+                                <div class="home_content_left_title">
+                                    <h2>CART</h2>
                                 </div>
                             </div>
                         </div>
+                    </div>
                 </div>
-                
-                
-                
-                
-                
-                
+
+
+
+
+
+
                 <div class="col-sm-2 col-md-3 hidden-xs" id='recipe-sec'>
                     <div class="row">
                         <div class="home_content_left">
@@ -251,7 +251,7 @@ echo json_encode($a);
                                 </ul>
                             </div>
                         </div>
-                         
+
                     </div>
                 </div>
 
@@ -285,7 +285,7 @@ echo json_encode($a);
                                             <ul>
                                                 <li><p>By <a href="#" data-bind="text: Vendor.name, attr:{'href':'/chef/'+Vendor.name.replace(' ','-').toLowerCase()} "></a></p></li>
                                                 <li>
-                                                    <span class="rateit" data-bind="attr:{'data-rateit-value':Combination.ratings, 'id':'rate-it-blk'+Combination.id}" data-rateit-ispreset="true" data-rateit-readonly="true"></span>(<!-- ko text: Review.length --><!-- /ko -->)
+                                                    <span class="rateit" data-bind="attr:{'data-rateit-value':Combination.ratings, 'id':'rate-it-blk'+Combination.id}" data-rateit-ispreset="true" data-rateit-readonly="true"></span>&nbsp;&nbsp;&nbsp;&nbsp;(<!-- ko text: Review.length --><!-- /ko -->)
                                                 </li>
                                                 <li><h4><span>Delivery:</span>Free/45 mins</h4></li>
                                                 <li><h3 ><span>Price:</span>Rs <!-- ko text: Combination.price --><!-- /ko --></h3></li>
@@ -335,29 +335,15 @@ echo json_encode($a);
                             </div>
                         </div>
                     </div>
-                    <div class="home-pagination">
-                        <div class="row">
-                          <nav>
+                    <div class="home-pagination" data-bind="visible:showLoadMore ">
+                        <div class="">
                             <ul class="pagination">
-                              <li>
-                                <a href="#" aria-label="Previous">
-                                  <span aria-hidden="true">&laquo;</span>
-                                </a>
-                              </li>
-                              <li><a href="#">1</a></li>
-                              <li><a href="#">2</a></li>
-                              <li><a href="#">3</a></li>
-                              <li><a href="#">4</a></li>
-                              <li><a href="#">5</a></li>
-                              <li>
-                                <a href="#" aria-label="Next">
-                                  <span aria-hidden="true">&raquo;</span>
-                                </a>
-                              </li>
+                                
+                                <li data-bind="click:loadMore"><a href="javascript:void(0);">Load More</a></li>
+                                
                             </ul>
-                          </nav>  
                         </div>
-                        </div>
+                    </div>
                 </div>
 
                 <div class="col-sm-3 padding-none" id="cart-sec">
@@ -436,27 +422,30 @@ echo json_encode($a);
         me.name = ko.observable();
         me.price = ko.observable();
         me.SearchMeal = ko.observable();
+        me.showLoadMore = ko.observable(false);
         me.Combolist = ko.observableArray([]);
-        me.Combolist.subscribe(function(){
-           $.getScript("/rate/jquery.rateit.min.js",function(){$('.rateit').rateit()});
+        me.Combolist.subscribe(function() {
+            $.getScript("/rate/jquery.rateit.min.js", function() {
+                $('.rateit').rateit()
+            });
         });
         me.cartItems = ko.observableArray([]);
         me.lat = 30.7238504;
         me.lng = 76.8465098;
         me.page = 1;
         me.essentials = ko.observable('6 Roti');
-        me.essentials.subscribe(function(){
-            
+        me.essentials.subscribe(function() {
+
         });
-        
-        me.dynamicSrc = function(s){
-            if(me.essentials() == "4 Roti + Half Rice"){
-                s = s.replace("-0-","-2-");
+
+        me.dynamicSrc = function(s) {
+            if (me.essentials() == "4 Roti + Half Rice") {
+                s = s.replace("-0-", "-2-");
             }
-            if(me.essentials() == "Full Rice"){
-                s = s.replace("-0-","-1-");
+            if (me.essentials() == "Full Rice") {
+                s = s.replace("-0-", "-1-");
             }
-            if(me.essentials() == "6 Roti"){
+            if (me.essentials() == "6 Roti") {
                 //s = s.replace("-0-","-1-");
             }
             return s;
@@ -481,11 +470,16 @@ echo json_encode($a);
         me.getData = function() {
             var m = me;
             me.isLoading(true);
-            $.post('/api/combinations.json', {
+            $.post('/api/combinations/indexweb.json', {
                 "data[User][latitude]": m.lat,
                 "data[User][longitude]": m.lng,
                 "data[User][count]": m.page
             }, function(d) {
+                if(m.Combolist().length == d.data.list){
+                    m.showLoadMore(false);
+                }else{
+                    m.showLoadMore(true);
+                }
                 for (i in d.data.items) {
                     d.data.items[i].essentials = m.essentials();
                 }
@@ -512,6 +506,37 @@ echo json_encode($a);
             CartObj.pushToCart(d, 1, d.Combination.price);
 
         };
+        me.loadMore = function() {
+            var m = me;
+            if (m.isLoading() == true) {
+                return false;
+            }
+            m.page += 1;
+            m.isLoading(true);
+            $.post('/api/combinations/indexweb.json', {
+                "data[User][latitude]": m.lat,
+                "data[User][longitude]": m.lng,
+                "data[User][count]": m.page
+            }, function(d) {
+                if(m.Combolist().length == d.data.list){
+                    m.showLoadMore(false);
+                }else{
+                    m.showLoadMore(true);
+                }
+                if (d.data.items.length == 0) {
+                    m.page -= 1;
+                    m.isLoading(false);
+                    return false;
+                } else {
+                    for (i in d.data.items) {
+                        d.data.items[i].essentials = m.essentials();
+                        m.Combolist.push(d.data.items[i]);
+                    }
+
+                }
+                m.isLoading(false);
+            });
+        };
         me.init = function() {
             var m = me;
             navigator.geolocation.getCurrentPosition(function(e) {
@@ -519,16 +544,17 @@ echo json_encode($a);
                 m.lng = e.coords.longitude;
             });
 
-            window.scrollMaxY;
+            //window.scrollMaxY;
+            /*
             window.scrollY;
             $(window).on("scroll", function() {
                 if (m.isLoading() == true) {
                     return false;
                 }
-                if (window.scrollMaxY - window.scrollY < 100) {
+                if ((document.documentElement.scrollHeight - document.documentElement.clientHeight) - window.scrollY < 100) {
                     m.page += 1;
                     m.isLoading(true);
-                    $.post('/api/combinations.json', {
+                    $.post('/api/combinations/indexweb.json', {
                         "data[User][latitude]": m.lat,
                         "data[User][longitude]": m.lng,
                         "data[User][count]": m.page
@@ -538,6 +564,7 @@ echo json_encode($a);
                             m.isLoading(false);
                             return false;
                         } else {
+                            //if(d.data.items.length > showLoadMore)
                             for (i in d.data.items) {
                                 d.data.items[i].essentials = m.essentials();
                                 m.Combolist.push(d.data.items[i]);
@@ -548,6 +575,7 @@ echo json_encode($a);
                     });
                 }
             });
+            */
         };
         me.init();
 
@@ -616,7 +644,11 @@ echo json_encode($a);
 
 
         me.moveToCheckOut = function() {
-            window.location = "/checkout";
+            if(me.items().length > 0){
+                window.location = "/checkout";
+            }{
+                alert("Please add combination to your cart...");
+            }
         };
 
         me.init = function() {
@@ -662,7 +694,7 @@ echo json_encode($a);
         ko.applyBindings(CartObj, $('#cart-sec')[0]);
         ko.applyBindings(FilterObj, $('#recipe-sec')[0]);
         ko.applyBindings(FilterObj, $('#bs-example-navbar-collapse-1')[0]);
-        
+
     });
 </script>
 <script type="text/javascript">
@@ -671,7 +703,7 @@ echo json_encode($a);
         var topPadding = 15;
         var xcsv = 0;
         $(window).scroll(function() {
-            if ($(window).width() > 999 ) {
+            if ($(window).width() > 999) {
                 if (500 < $(window).scrollTop()) {
                     $("#sidebar").stop().animate({
                         marginTop: parseFloat($(window).scrollTop()) + 230 - parseFloat($('#pretzel-video').parent().height())
@@ -691,7 +723,7 @@ echo json_encode($a);
                     $('#nav1').removeAttr('style').attr({style: 'z-index:2'});
                     $('#pretzel-video').parent().css({position: 'absolute', 'top': '0px', 'z-index': 1});
                 }
-            }else if($(window).width() < 1000 && $(window).width() > 420){
+            } else if ($(window).width() < 1000 && $(window).width() > 420) {
                 if (500 < $(window).scrollTop()) {
                     $("#sidebar").stop().animate({
                         marginTop: parseFloat($(window).scrollTop()) + 230 - parseFloat($('#pretzel-video').parent().height())
