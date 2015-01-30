@@ -46,7 +46,7 @@
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav" data-bind="foreach:list " style="background: #fff;">
-                        <li class="active" data-bind="click: $root.filter">
+                        <li class="active" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" data-bind="click: $root.filter">
                             <span>
                                 <img data-bind="attr:{'src':Dishfilter.image}" onerror="this.src='img/panner.jpg'" />
                             </span>

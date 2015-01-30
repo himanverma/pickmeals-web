@@ -184,7 +184,7 @@ echo json_encode($a);
 
                 <div class="dish_content_title_search">  
 
-                    <div id="srch-block" class="search_bar_main">
+                    <div id="srch-blk-2" class="search_bar_main">
                         <div class="col-sm-2 col-md-3"><div class="row">
                             </div>
                         </div>
@@ -690,6 +690,8 @@ echo json_encode($a);
     $(document).ready(function() {
         ko.applyBindings(ComboObj, $('#combination-sec')[0]);
         ko.applyBindings(ComboObj, $('#srch-block')[0]);
+        ko.applyBindings(ComboObj, $('#srch-blk-2')[0]);
+        
 
         ko.applyBindings(CartObj, $('#cart-sec')[0]);
         ko.applyBindings(FilterObj, $('#recipe-sec')[0]);
