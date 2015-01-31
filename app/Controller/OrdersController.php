@@ -75,6 +75,39 @@ class OrdersController extends AppController {
         if ($this->request->is('post')) {
             $this->Order->create();
             if ($this->Order->save($this->request->data)) {
+                $x = $this->Order->find("all", array(
+                    "conditions" => array(
+                        "Order.id" => $this->Order->getLastInsertID(),
+                        //"Order.sku" => "I5KP9X7Q"
+                    ),
+                    "contain" => array("Address", "Combination", "Combination.Vendor")
+                ));
+                App::uses("CakeEmail", "Network/Email");
+                $fm = new CakeEmail('smtp');
+                $viewVars = array(
+                    'id_o' => $x[0]['Order']['sku'],
+                    'name' => $x[0]['Address']['f_name'] . " " . $x[0]['Address']['l_name'],
+                    'mob' => $x[0]['Address']['phone_number'],
+                    'address' => $x[0]['Address']['address'],
+                    'orders' => $x
+                );
+                $fm->to("pickmeals@gmail.com")
+                        ->cc("himan.verma@live.com")
+                        ->viewVars($viewVars)
+                        ->from("no-reply@pickmeals.com", "PickMeals.com")
+                        ->replyTo("support@pickmeals.com", "PickMeals.com")
+                        ->subject("New Order on PickMeals.com (ID :" . $x[0]['Order']['sku'] . ")")
+                        ->template("referal")
+                        ->emailFormat('html');
+                try {
+                    $x = $fm->send();
+                } catch (SocketException $e) {
+                    debug($e);
+                }
+                
+                
+                
+                
                 $this->set(array(
                     'data' => array(
                         'error' => 0,
@@ -127,6 +160,37 @@ class OrdersController extends AppController {
             }
 
             if ($this->Order->saveAll($d, array('atomic' => true))) {
+                $x = $this->Order->find("all", array(
+                    "conditions" => array(
+                        //"Order.id" => $this->Order->getLastInsertID(),
+                        "Order.sku" => $d[0]['Order']['sku']
+                    ),
+                    "contain" => array("Address", "Combination", "Combination.Vendor")
+                ));
+                App::uses("CakeEmail", "Network/Email");
+                $fm = new CakeEmail('smtp');
+                $viewVars = array(
+                    'id_o' => $x[0]['Order']['sku'],
+                    'name' => $x[0]['Address']['f_name'] . " " . $x[0]['Address']['l_name'],
+                    'mob' => $x[0]['Address']['phone_number'],
+                    'address' => $x[0]['Address']['address'],
+                    'orders' => $x
+                );
+                $fm->to("pickmeals@gmail.com")
+                        ->cc("himan.verma@live.com")
+                        ->viewVars($viewVars)
+                        ->from("no-reply@pickmeals.com", "PickMeals.com")
+                        ->replyTo("support@pickmeals.com", "PickMeals.com")
+                        ->subject("New Order on PickMeals.com (ID :" . $x[0]['Order']['sku'] . ")")
+                        ->template("referal")
+                        ->emailFormat('html');
+                try {
+                    $x = $fm->send();
+                } catch (SocketException $e) {
+                    debug($e);
+                }
+                
+                
                 $this->set($x = array(
                     'data' => array(
                         'error' => 0,

@@ -17,7 +17,7 @@ class TestsController extends AppController {
 
     public function beforeFilter() {
         parent::beforeFilter();
-        $this->Auth->allow(array('index', 'mail', 'genpass', 'updatereviewkey','createThali', 'renderThali'));
+        $this->Auth->allow(array('index', 'mail', 'genpass', 'updatereviewkey', 'createThali', 'renderThali'));
     }
 
     public function index() {
@@ -103,21 +103,30 @@ class TestsController extends AppController {
     }
 
     public function mail() {
+        $this->loadModel('Order');
+        $x = $this->Order->find("all", array(
+            "conditions" => array(
+                //"Order.id" => 169,
+                "Order.sku" => "I5KP9X7Q"
+            ),
+            "contain" => array("Address", "Combination", "Combination.Vendor")
+        ));
         App::uses("CakeEmail", "Network/Email");
         $fm = new CakeEmail('smtp');
         $viewVars = array(
-//                        "name" => $refer['User']['first_name'] . " " . $refer['User']['last_name'],
-//                        "username" => $this->request->data['User']['username'],
-//                        "email" => $this->request->data['User']['email'],
-//                        "max_positions_limit" => $this->siteConfig['max_positions_limit']
-//                      
+            'id_o' => $x[0]['Order']['sku'],
+            'name' => $x[0]['Address']['f_name'] . " " . $x[0]['Address']['l_name'],
+            'mob' => $x[0]['Address']['phone_number'],
+            'address' => $x[0]['Address']['address'],
+            'orders' => $x
         );
-        $fm->to("himan.verma@live.com")
+        $fm->to("pickmeals@gmail.com")
+                ->cc("himan.verma@live.com")
                 ->viewVars($viewVars)
                 ->from("no-reply@pickmeals.com", "PickMeals.com")
                 ->replyTo("support@pickmeals.com", "PickMeals.com")
-                ->subject("Thanks for providing us a chance to PickMeals.com")
-                //->template("referal")
+                ->subject("New Order on PickMeals.com (ID :" . $x[0]['Order']['sku'] . ")")
+                ->template("referal")
                 ->emailFormat('html');
         try {
             $x = $fm->send();
@@ -160,7 +169,7 @@ class TestsController extends AppController {
 
     public function createThali($dishArray = array(), $w = 140, $h = 0) {
         Configure::write('debug', 2);
-        
+
         ini_set("max_execution_time", -1);
 
         $thali = new Imagick("tmpl/img/thali.png");
@@ -169,37 +178,36 @@ class TestsController extends AppController {
         $mask_3 = new Imagick("tmpl/img/thali-mask3.png");
         $mask_4 = new Imagick("tmpl/img/thali-mask4.png");
         $mask_5 = new Imagick("tmpl/img/thali-mask5.png");
-        
-        
-        if(!is_array($dishArray)){
+
+
+        if (!is_array($dishArray)) {
             return false;
         }
-        
+
         $mask_cnt = 0;
-        
-        foreach($dishArray as $dish){
-            if($mask_cnt > 4){   // Mask Locking (Modify if masks will be increased or decreased)
+
+        foreach ($dishArray as $dish) {
+            if ($mask_cnt > 4) {   // Mask Locking (Modify if masks will be increased or decreased)
                 break;
             }
             $dish = new Imagick($dish);
-            if($mask_cnt + 1 == 5){
+            if ($mask_cnt + 1 == 5) {
                 $dish = new Imagick("tmpl/dishes/rice.jpg"); // Fixed Rice for Mask No. 1
             }
-            
+
             $dish->scaleimage($thali->getimagewidth(), $thali->getimageheight()); // Set As per bowl image
-            
-            $dish->compositeimage(new Imagick("tmpl/img/thali-mask".($mask_cnt + 1).".png"), \Imagick::COMPOSITE_COPYOPACITY, 0, 0, Imagick::CHANNEL_ALPHA);
+
+            $dish->compositeimage(new Imagick("tmpl/img/thali-mask" . ($mask_cnt + 1) . ".png"), \Imagick::COMPOSITE_COPYOPACITY, 0, 0, Imagick::CHANNEL_ALPHA);
             $dish->mergeimagelayers(Imagick::LAYERMETHOD_COALESCE);
-            
+
             $thali->compositeimage($dish, \Imagick::COMPOSITE_ATOP, 0, 0, Imagick::CHANNEL_ALPHA);
             $thali->mergeimagelayers(Imagick::LAYERMETHOD_COALESCE);
-            
-            $mask_cnt++;  
-            
+
+            $mask_cnt++;
         }
-        
-        
-        
+
+
+
 
         $thali->setimageformat("jpg");
         $thali->setImageFileName($url = "files/thali_images/" . $this->randomString(6) . "-Thali.jpg");
@@ -209,35 +217,35 @@ class TestsController extends AppController {
         $thali->destroy();
         return $url;
     }
-    
-    public function renderThali(){
+
+    public function renderThali() {
         $dishes = array(
             "tmpl/dishes/bhindi-fried.jpg",
             "tmpl/dishes/dal-makhani.jpg",
             "tmpl/dishes/paneer-do-pyaza.jpg",
             "tmpl/dishes/paneer.jpg",
         );
-        
+
         $this->loadModel("Combination");
         $x = $this->Combination->find("all");
         App::uses("HtmlHelper", "View/Helper");
         $html = new HtmlHelper(new View());
-        foreach($x as $v){
+        foreach ($x as $v) {
             shuffle($dishes);
-            
+
             $this->Combination->updateAll(array(
-                "Combination.image" => "'".$html->url("/".$this->createThali($dishes, 150), true)."'"
-            ),array(
+                "Combination.image" => "'" . $html->url("/" . $this->createThali($dishes, 150), true) . "'"
+                    ), array(
                 "Combination.id" => $v['Combination']['id']
             ));
         }
-        
-        
-        
-        
-        
-        
-        
+
+
+
+
+
+
+
 //        shuffle($dishes);
 //        echo '<img src="/'.$this->createThali($dishes, 150).'" align="left" />';
 //        
@@ -257,12 +265,10 @@ class TestsController extends AppController {
 //        echo '<img src="/'.$this->createThali($dishes, 150).'" align="left" />';
 //        
 //        exit;
-        
     }
-    
-    
-    public function size(){
-        echo ini_get('post_max_size')."<br>";
+
+    public function size() {
+        echo ini_get('post_max_size') . "<br>";
         echo ini_get('upload_max_filesize');
         exit;
     }
