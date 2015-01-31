@@ -3,7 +3,7 @@
 
 body{
     font-family: 'robotoregular';
-    background:#fff;
+    background:#ececec;
 }
 .main_container{
     width:100%;
@@ -135,7 +135,7 @@ header{
     width:100px;
     height:90px;
     float:left;
-    border: 2px solid #d9d9d9;
+    
 }
 .home_content_left_title h2{
     width:100%;
@@ -160,9 +160,8 @@ header{
     width:100%;
     float:left;
     padding:10px;
-    background:#f5f5f5;
-    border:1px solid #fff;
-    margin-bottom: 5px;
+    background:#fff;
+    border-bottom:1px solid #e2e2e2;
 }
 .home_content_left ul li:hover{
     border:1px solid #ccc;
@@ -206,14 +205,13 @@ header{
     text-align:center;
     text-transform: uppercase;
 }
-.list_box{
-    width:100%;
-    float:left;
-    padding:7px;
-    background:#f5f5f5;
-    border:1px solid #fff;
+.list_box {
+    background: none repeat scroll 0 0 #fff;
+    border-bottom: 1px solid #e2e2e2;
+    float: left;
+    padding: 7px;
     position: relative;
-    margin-bottom: 7px;
+    width: 100%;
 }
 .list_box:hover{
     border:1px solid #ccc;
@@ -224,7 +222,7 @@ header{
     float:left;
 }
 .list_box_left img {
- border: 3px solid #d9d9d9;
+ 
     float: left;
     height: 105px; margin: 0 0 0 17px;
     width: 125px;
@@ -483,16 +481,18 @@ footer{
     float: left;
     width: 100%;
     padding-bottom: 15px;
-    border: 1px solid #ccc;
+    border: 1px solid #d5d5d5;
     margin-top: 15px;
+    background: #fff;
+    box-shadow: 2.2px 2px 3px #a3a3a3;
     
 }
 .sidebar_order_list {
-    background: none repeat scroll 0 0 #f5f5f5;
+    background: none repeat scroll 0 0 #fff;
+    border-bottom: 1px solid #e2e2e2;
     float: left;
     padding: 7px 0;
     width: 100%;
-    margin-bottom: 5px;
 }
 .sidebar_order_list p {
     font-size:13px;
@@ -602,31 +602,37 @@ footer{
 
 /*--------------------------------------------------place_order--------------------------------------------*/
 .placeorder{
-   background: none repeat scroll 0 0 #f8f8f8;
-    border: 1px solid #ccc;
+   background: none repeat scroll 0 0 #fff;
+    border: 1px solid #d5d5d5;
     float: left;
     margin-top: 16px;
     width: 100%;
+    box-shadow: 2.2px 2px 3px #a3a3a3;
 }
 .placeorder_title{
     width:100%;margin:62px 0 0 0;
     float:left;
 }
 .placeorder_title h1{
-    width:100%;
-    float:left;
+    color: #ea5058;
+    float: left;
     font-family: "robotoregular";
+    font-size: 28px !important;
+    width: 100%;
+    margin: 2% 0 0 !important ;
 }
 .placeorder_right{
-    width:100%;
-    float:left;
+     background: none repeat scroll 0 0 #fff;
+    float: left;
+    margin-top: 2%;
+    width: 100%;
 }
 .placeorder_right_title{
     width:100%;
     float:left;
 }
 .placeorder_right_title h1{
-    background: none repeat scroll 0 0 #e3e3e3;
+    background: none repeat scroll 0 0 #d8d8d8;
     color: #666;
     float: left;
     font-family: "robotoregular";
@@ -807,7 +813,7 @@ footer{
     display: inline-block;
     float: left;
     font-size: 22px;
-    font-weight: bold;
+    font-weight: normal;
     line-height: 43px;
     margin-bottom: 0;
     padding: 5px 5px 5px 34px;
@@ -1075,6 +1081,7 @@ footer{
     position: absolute; 
     z-index: 2; background: rgba(255,255,255,0.2);
     width: 100%;   top: 0;
+    box-shadow: 0 0.2px 4px #a3a3a3;
 }
 .search_bar_main input{
     border-radius:0px !important;
@@ -1225,13 +1232,13 @@ nav {
     padding-top: 0;
 }
 .home_content_right_title h3 {
-    background: none repeat scroll 0 0 #e5e5e5;
+    background: none repeat scroll 0 0 #d8d8d8;
     font-size: 18px;
     font-weight: normal;
     margin: 0;
     color: #666;
     padding: 8px 0;
-    font-weight: bold;
+    font-weight: normal;
     font-family: "robotoregular";
     text-align: center;
     width: 100%;
@@ -2397,14 +2404,14 @@ extra css========================
 	
 /*---------------------------------------------footer---------------------------------------------*/
 footer {
-	margin:0 0 0 0;
+	margin: 1% 0 0;
 	padding:0 0;
 	float:left;
 	height:auto;
 	width:100%;
 }
 .footer_box {
-    background: none repeat scroll 0 0 #f0f0f0;
+    background: none repeat scroll 0 0 #f7f7f7;
     float: left;
     margin: 0;
     padding: 1.7% 0;
