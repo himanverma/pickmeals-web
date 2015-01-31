@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
         <meta name="google-site-verification" content="wm7CKUQMwx0HC4eh2Xe5wmNSezdpAG0gw8wjAgW-36g" />
         <?php echo $this->Html->meta("icon", "favicon.ico"); ?>
         <title> Online food delivery in IT park Chandigarh,  Food delivery in It park Chandigarh, Tiffin services in IT park Chandigarh</title>

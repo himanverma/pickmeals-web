@@ -285,7 +285,10 @@ echo json_encode($a);
                                             <ul>
                                                 <li><p>By <a href="#" data-bind="text: Vendor.name, attr:{'href':'/chef/'+Vendor.name.replace(' ','-').toLowerCase()} "></a></p></li>
                                                 <li>
-                                                    <span class="rateit" data-bind="attr:{'data-rateit-value':Combination.ratings, 'id':'rate-it-blk'+Combination.id}" data-rateit-ispreset="true" data-rateit-readonly="true"></span>&nbsp;&nbsp;&nbsp;&nbsp;(<!-- ko text: Review.length --><!-- /ko -->)
+                                                    <a href="#" data-bind="attr:{'href':'/chef/'+Vendor.name.replace(' ','-').toLowerCase()} ">
+                                                        <span class="rateit" data-bind="attr:{'data-rateit-value':Combination.ratings, 'id':'rate-it-blk'+Combination.id}" data-rateit-ispreset="true" data-rateit-readonly="true"></span>&nbsp;&nbsp;&nbsp;&nbsp;(<!-- ko text: Review.length --><!-- /ko -->)
+                                                    </a>
+                                                    
                                                     
                                                     <div class="food_qty_button">
                                                         <button class="" data-bind="attr:{'id':Vendor.id},click: $root.addToCart">Order</button>

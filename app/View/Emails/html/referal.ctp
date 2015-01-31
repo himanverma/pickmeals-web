@@ -25,7 +25,7 @@
               <tr>
                 <td align="center" valign="top">
                 	<div style="color:#245da5; font-family:Times New Roman, Times, serif; font-size:48px;"><a href="<?php echo $this->Html->url('/',true); ?>" ><img src="<?php echo $this->Html->url('/img/logo.png',true); ?>" width="350" alt=""></a></div>
-                        <div style="font-family: Verdana, Geneva, sans-serif; color:#898989; font-size:12px;"><?php echo date("M d, Y"); ?></div></td>
+                        <div style="font-family: Verdana, Geneva, sans-serif; color:#898989; font-size:12px;"><?php echo $orders[0]['Order']['created']; ?></div></td>
               </tr>
               
               <tr>
