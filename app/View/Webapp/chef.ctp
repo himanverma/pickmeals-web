@@ -68,8 +68,8 @@
                                             <p><?php echo $vendor['Vendor']['name']; ?></p>
                                         </li>
                                         <li>
-                                            <span class="rateit" data-rateit-value="<?php echo $tRate; ?>" data-rateit-ispreset="true" data-rateit-readonly="true"></span>&nbsp;&nbsp;&nbsp;&nbsp;
-                                            <a href="/reviews/<?php echo $combo['id']; ?>" >(<?php echo count($combo['Review']); ?>)</a>
+                                            <a href="/reviews/<?php echo $combo['id']; ?>" ><span class="rateit" data-rateit-value="<?php echo $tRate; ?>" data-rateit-ispreset="true" data-rateit-readonly="true"></span>&nbsp;&nbsp;&nbsp;&nbsp;
+                                            (<?php echo count($combo['Review']); ?>)</a>
                                             <div class="food_qty_button">
                                                <button data-combo='<?php echo json_encode($combo); ?>' data-bind="click:addToCart">Order</button>
                                             </div>
