@@ -306,7 +306,7 @@ class WebappController extends AppController {
             $url = ltrim($d['uri'],"https://www.pickmeals.com/");
             $im = new Imagick($url);
             $im->cropimage($d['w'], $d['h'], $d['x'], $d['y']);
-            $im->scaleimage(0, 180);
+            $im->scaleimage(253, 0);
             $im->writeimage($url); 
             $im->destroy();
             $this->autoRender = false;

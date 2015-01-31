@@ -293,7 +293,7 @@ class Vendor extends AppModel {
                     $destination = "files/vendor_photo/" . $image_name;
                     move_uploaded_file($path, $destination);
                     $im = new Imagick($destination);
-                    $im->scaleimage(180, 0);
+                    $im->scaleimage(253, 0);
                     $im->writeimage($destination);
                     $im->destroy();
                 }
@@ -320,7 +320,7 @@ class Vendor extends AppModel {
                         $destination = "files/company_logo/" . $image_name;
                         move_uploaded_file($path, $destination);
                         $im = new Imagick($destination);
-                        $im->scaleimage(180, 0);
+                        $im->scaleimage(253, 0);
                         $im->writeimage($destination);
                         $im->destroy();
                     }

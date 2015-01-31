@@ -1,7 +1,6 @@
-<?php 
+<?php
 //debug($orders);
 //exit;
-
 ?>
 <div class="row">
     <div class="col-xs-12">
@@ -10,171 +9,190 @@
                 <!--<h3 class="box-title">Hover Data Table</h3>                                    -->
             </div><!-- /.box-header -->
             <div class="box-body table-responsive">
-                
-                 <?php
+
+                <?php
                 $cnt = 0;
-			
-                foreach ($orders as $order) {
+
+                foreach ($orders as $orderO) {
                     $cnt++;
                     $cls = ($cnt % 2) ? "box-primary" : "box-info";
                     ?>
-                <div class="box <?php echo $cls; ?> collapsed-box">
+                    <div class="box <?php echo $cls; ?> collapsed-box">
                         <div class="box-header">
                             <h3 class="box-title">
-                                Order ID : <?php echo $order['Order']['sku']; ?> (<?php echo $order['Order']['payment_status']; ?>)
-                                
+                                Order ID : <?php echo $orderO['Order']['sku']; ?> (<?php echo $orderO['Order']['payment_status']; ?>)
+
                             </h3>
                             <div class="box-tools pull-right">
-                                <?php echo $order['Order']['created']; ?>
-                                <a href="<?php echo $this->Html->url('/order/edit/' . $order['Order']['sku']); ?>" class="btn btn-default btn-sm">Edit</a>
+                                <?php echo $orderO['Order']['created']; ?>
+                                <a href="<?php echo $this->Html->url('/order/edit/' . $orderO['Order']['sku']); ?>" class="btn btn-default btn-sm">Edit</a>
                                 <button data-widget="collapse" class="btn btn-default btn-sm"><i class="fa fa-plus"></i></button>
                                 <button data-widget="remove" class="btn btn-default btn-sm"><i class="fa fa-times"></i></button>
                             </div>
                         </div>
                         <div class="box-body" style="display: none;">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="box box-solid">
-                                        <div class="box-header">
-                                            <h3 class="box-title">Shipping Details</h3>
-                                        </div><!-- /.box-header -->
-                                        <div class="box-body">
-                                            <table class="table table-bordered">
-                                                <tbody>
-                                                    <tr>
-                                                        <th>First Name</th>
-                                                        <td><?php echo $order['Address']['f_name']; ?></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th>Last Name</th>
-                                                        <td><?php echo $order['Address']['l_name']; ?></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th>Address</th>
-                                                        <td><?php echo $order['Address']['address']; ?></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th>Zipcode</th>
-                                                        <td><?php echo $order['Address']['zipcode']; ?></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th>Phone No.</th>
-                                                        <td><?php echo $order['Address']['phone_number']; ?></td>
-                                                    </tr>
-                                                    
-                                                </tbody>
-                                            </table>
+                            <?php
+                            
+                            $smsString = array(); 
+                            $totalCost = 0;
+                            
+                            App::uses("Order", "Model");
+                            $odrMdl = new Order();
+                            $rO = $odrMdl->find("all", array(
+                                "conditions" => array(
+                                    "Order.sku" => $orderO['Order']['sku'],
+                                ),
+                                "contain" => array(
+                                    "Combination.Vendor",
+                                    "Address",
+                                    "Customer"
+                                ),
+                                "order" => "Order.timestamp DESC"
+                            ));
+                            foreach ($rO as $order) {
+                                $smsString[] =  array(
+                                    'R' => $order['Combination']['Vendor']['name'],
+                                    'P' => $order['Order']['price'] . " x " . $order['Order']['qty']."Pcs",
+                                    'D' => $order['Combination']['display_name'],
+                                    'E' => $order['Order']['essentials']
+                                );
+                                $totalCost += $order['Order']['price'] * $order['Order']['qty'];
+                                ?>
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="box box-solid">
+                                            <div class="box-header">
+                                                <h3 class="box-title">Shipping Details</h3>
+                                            </div><!-- /.box-header -->
+                                            <div class="box-body">
+                                                <table class="table table-bordered">
+                                                    <tbody>
+                                                        <tr>
+                                                            <th>First Name</th>
+                                                            <td><?php echo $order['Address']['f_name']; ?></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Last Name</th>
+                                                            <td><?php echo $order['Address']['l_name']; ?></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Address</th>
+                                                            <td><?php echo $order['Address']['address']; ?></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Zipcode</th>
+                                                            <td><?php echo $order['Address']['zipcode']; ?></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Phone No.</th>
+                                                            <td><?php echo $order['Address']['phone_number']; ?></td>
+                                                        </tr>
+
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    <!-- Right Col -->
+                                    <div class="col-md-6">
+                                        <div class="box box-solid">
+                                            <div class="box-header">
+                                                <h3 class="box-title">Order Details</h3>
+                                            </div><!-- /.box-header -->
+                                            <div class="box-body">
+                                                <table class="table table-bordered">
+                                                    <tbody>
+                                                        <tr>
+                                                            <th>
+                                                                <img src="<?php echo $order['Combination']['image']; ?>" />
+                                                            </th>
+                                                            <td>
+                                                                <h2><?php echo $order['Combination']['display_name']; ?></h2>
+                                                                <b>By- <a href="#"><?php echo $order['Combination']['Vendor']['name']; ?></a></b>
+                                                                <p>
+                                                                    <?php echo $this->Time->timeAgoInWords($order['Combination']['date']); ?>
+                                                                </p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Unit Price</th>
+                                                            <td><?php echo $order['Combination']['price']; ?></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Quantity</th>
+                                                            <td><?php echo $order['Order']['qty']; ?></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th><b>Total Payable Amount</b></th>
+                                                            <td><?php echo $order['Combination']['price'] * $order['Order']['qty']; ?></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Paid Via.</th>
+                                                            <td><?php echo $order['Order']['paid_via']; ?></td>
+                                                        </tr>
+
+                                                    </tbody>
+                                                </table>
+                                            </div>
                                         </div>
                                     </div>
-                                    
-                                    
-                                    
                                 </div>
-                                <div class="col-md-6">
+
+                            <?php } ?>
+
+                            <div class="row">
+                                <form method="post" class="smsDelivery" action="/orders/smsdeliver">
                                     <div class="box box-solid">
                                         <div class="box-header">
-                                            <h3 class="box-title">Order Details</h3>
+                                            <h3 class="box-title">Send SMS To Delivery Boy</h3>
                                         </div><!-- /.box-header -->
                                         <div class="box-body">
                                             <table class="table table-bordered">
                                                 <tbody>
                                                     <tr>
-                                                        <th>
-                                                            <img src="<?php echo $order['Combination']['image']; ?>" />
-                                                        </th>
-                                                        <td>
-                                                            <h2><?php echo $order['Combination']['display_name']; ?></h2>
-                                                            <b>By- <a href="#"><?php echo $order['Combination']['Vendor']['name']; ?></a></b>
-                                                            <p>
-                                                                <?php echo $this->Time->timeAgoInWords($order['Combination']['date']); ?>
-                                                            </p>
+                                                        <th>Mobile No.</th>
+                                                        <td><input type="text" value="" placeholder="Eg. 8699445905" name="data[num]" /></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td colspan="2">
+                                                            <textarea rows="7" name="data[msg]" style="width: 100%">M: <?php echo $order['Address']['phone_number']; ?> 
+N: <?php echo $order['Address']['f_name'] . " " . $order['Address']['l_name']; ?> 
+A: <?php echo $order['Address']['address']; ?> 
+O: <?php echo $order['Order']['sku']; ?> 
+<?php echo "Rs. ".$totalCost."/- " .$order['Order']['paid_via']; ?> 
+<?php foreach($smsString as $sm){ ?>
+
+R: <?php echo $sm['R']; ?> 
+P: <?php echo $sm['P'] ; ?> 
+D: <?php echo $sm['D']; ?> / <?php echo $sm['E']; ?> 
+<?php }?></textarea>
                                                         </td>
                                                     </tr>
-                                                    <tr>
-                                                        <th>Unit Price</th>
-                                                        <td><?php echo $order['Combination']['price']; ?></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th>Quantity</th>
-                                                        <td><?php echo $order['Order']['qty']; ?></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th><b>Total Payable Amount</b></th>
-                                                        <td><?php echo $order['Combination']['price'] * $order['Order']['qty']; ?></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th>Paid Via.</th>
-                                                        <td><?php echo $order['Order']['paid_via']; ?></td>
-                                                    </tr>
-                                                    
                                                 </tbody>
                                             </table>
                                         </div>
+                                        <div class="box-footer">
+                                            <div class="pull-right"><button class="btn btn-default" type="submit">Send SMS</button></div>
+                                        </div>
                                     </div>
-                                </div>
+                                </form>
                             </div>
                         </div>
-                </div>
+                    </div>
                 <?php } ?>
+
                 
-            </div>
-        </div>
-    </div>
-</div>
-
-
-<div class="orders index">
-	<h2><?php echo __('Orders'); ?></h2>
-	<table cellpadding="0" cellspacing="0">
-	<thead>
-	<tr>
-			<th><?php echo $this->Paginator->sort('id'); ?></th>
-			
-			<th><?php echo $this->Paginator->sort('customer_id'); ?></th>
-			<th><?php echo $this->Paginator->sort('recipe_names'); ?></th>
-			<th><?php echo $this->Paginator->sort('status'); ?></th>
-			<th><?php echo $this->Paginator->sort('ordered_at'); ?></th>
-			<th><?php echo $this->Paginator->sort('ready_at'); ?></th>
-			<th><?php echo $this->Paginator->sort('delivered_at'); ?></th>
-			<th><?php echo $this->Paginator->sort('lat'); ?></th>
-			<th><?php echo $this->Paginator->sort('long'); ?></th>
-			<th><?php echo $this->Paginator->sort('status_reason'); ?></th>
-			<th><?php echo $this->Paginator->sort('paid_via'); ?></th>
-			<th class="actions"><?php echo __('Actions'); ?></th>
-	</tr>
-	</thead>
-	<tbody>
-	<?php foreach ($orders as $order): ?>
-	<tr>
-		<td><?php echo h($order['Order']['id']); ?>&nbsp;</td>
-		
-		<td>
-			<?php echo $this->Html->link($order['Customer']['name'], array('controller' => 'customers', 'action' => 'view', $order['Customer']['id'])); ?>
-		</td>
-		<td><?php echo h($order['Order']['recipe_names']); ?>&nbsp;</td>
-		<td><?php echo h($order['Order']['status']); ?>&nbsp;</td>
-		<td><?php echo h($order['Order']['ordered_at']); ?>&nbsp;</td>
-		<td><?php echo h($order['Order']['ready_at']); ?>&nbsp;</td>
-		<td><?php echo h($order['Order']['delivered_at']); ?>&nbsp;</td>
-		<td><?php echo h($order['Order']['lat']); ?>&nbsp;</td>
-		<td><?php echo h($order['Order']['long']); ?>&nbsp;</td>
-		<td><?php echo h($order['Order']['status_reason']); ?>&nbsp;</td>
-		<td><?php echo h($order['Order']['paid_via']); ?>&nbsp;</td>
-		<td class="actions">
-			<?php echo $this->Html->link(__('View'), array('action' => 'view', $order['Order']['id'])); ?>
-			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $order['Order']['id'])); ?>
-			<?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $order['Order']['id']), array(), __('Are you sure you want to delete # %s?', $order['Order']['id'])); ?>
-		</td>
-	</tr>
-<?php endforeach; ?>
-	</tbody>
-	</table>
-	<p>
+                
+        <p>
 	<?php
 	echo $this->Paginator->counter(array(
 	'format' => __('Page {:page} of {:pages}, showing {:current} records out of {:count} total, starting on record {:start}, ending on {:end}')
 	));
-	?>	</p>
+	?>	
+        </p>
 	<div class="paging">
 	<?php
 		echo $this->Paginator->prev('< ' . __('previous'), array(), null, array('class' => 'prev disabled'));
@@ -182,14 +200,24 @@
 		echo $this->Paginator->next(__('next') . ' >', array(), null, array('class' => 'next disabled'));
 	?>
 	</div>
+                
+                
+                
+                
+                
+            </div>
+        </div>
+    </div>
 </div>
-<div class="actions">
-	<h3><?php echo __('Actions'); ?></h3>
-	<ul>
-		<li><?php echo $this->Html->link(__('New Order'), array('action' => 'add')); ?></li>
-		<li><?php echo $this->Html->link(__('List Vendor Days'), array('controller' => 'vendor_days', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Vendor Day'), array('controller' => 'vendor_days', 'action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Customers'), array('controller' => 'customers', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Customer'), array('controller' => 'customers', 'action' => 'add')); ?> </li>
-	</ul>
-</div>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery.form/3.51/jquery.form.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('.smsDelivery').ajaxForm({
+            success: function(d) {
+                if (d.error == 0) {
+                    alert(d.msg.api_response);
+                }
+            }
+        });
+    });
+</script>

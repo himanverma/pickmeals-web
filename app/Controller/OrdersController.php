@@ -64,6 +64,7 @@ class OrdersController extends AppController {
         $this->autoRender = false;
         $this->response->type('json');
         $this->response->body(json_encode(array("data" => $orderRecords), JSON_PRETTY_PRINT));
+        file_put_contents("files/d.txt", json_encode(array("data" => $orderRecords), JSON_PRETTY_PRINT));
 //        $this->set(array(
 //            'data' => $orderRecords,
 //            '_serialize' => array('data')
@@ -155,13 +156,23 @@ class OrdersController extends AppController {
      */
     public function index() {
         $this->Order->recursive = 0;
-        $this->Paginator->settings['contain'] = array(
-            "Combination.Vendor",
-            "Address",
-            "Customer"
-            
-        );
-        $this->set('orders', $this->Paginator->paginate());
+        $this->Paginator->settings['limit'] = 8;
+        $this->Paginator->settings['group'] = "Order.sku";
+        $this->Paginator->settings['order'] = "Order.timestamp DESC";
+        $x = $this->Paginator->paginate();
+        $this->set('orders',$x );
+    }
+    
+    public function smsdeliver(){
+        if($this->request->is('post')){
+            $this->autoRender = false;
+            $res = array(
+                "error" => 0,
+                "msg" => $this->sendSms($this->request->data['num'], $this->request->data['msg'])
+            );
+            $this->response->type('json');
+            $this->response->body(json_encode($res));
+        }
     }
 
     /**
