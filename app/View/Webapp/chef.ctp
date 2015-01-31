@@ -175,6 +175,7 @@
                             </ul>
                             <div class="order_checkout">
                                 <button type="button" data-bind="click: moveToCheckOut " class="">Proceed to checkout</button>
+                                <button type="button" data-bind="click: viewItemsClick, text: ko.computed(function(){return viewItems() ? 'Hide Cart' : 'View Cart';})" class="view_cart" style="padding-right: 0 !important;">View Cart</button>
                             </div>
                         </div>
 
@@ -217,6 +218,17 @@
     var CartVM = function() {
         var me = this;
         me.items = ko.observableArray([]);
+        me.viewItems = ko.observable(false);
+        me.viewItemsClick = function(){
+            if(me.viewItems() == false){
+                me.viewItems(true);
+                $('.sidebar_order_list_main').slideDown();
+            }else{
+                me.viewItems(false);
+                $('.sidebar_order_list_main').slideUp();
+                
+            }
+        };
         me.subt = ko.computed(function() {
             var x = 0;
             var d = this.items();
@@ -229,6 +241,10 @@
             localStorage.pickmealsCart = ko.mapping.toJSON(me.items);
         };
         me.pushToCart = function(item, qty, price) {
+            if($(window).width() < 720){
+                $('.sidebar_order_list_main').slideUp();
+                me.viewItems(false);
+            }
             me.items.push({
                 data: item,
                 qty: ko.observable(qty),

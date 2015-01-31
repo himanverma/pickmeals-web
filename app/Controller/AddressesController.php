@@ -29,7 +29,23 @@ class AddressesController extends AppController {
                 if(AuthComponent::user('mobile_number') == null || AuthComponent::user('mobile_number') == ""){
                     $this->loadModel('Customer');
                     $this->Customer->updateAll(array(
-                        "Customer.mobile_number" => "'".$this->request->data['Address']['phone_number']."'"
+                        "Customer.mobile_number" => "'".$this->request->data['Address']['phone_number']."'",
+                    ), array(
+                        "Customer.id" => AuthComponent::user('id')
+                    ));
+                }
+                if(AuthComponent::user('city') == null || AuthComponent::user('city') == ""){
+                    $this->loadModel('Customer');
+                    $this->Customer->updateAll(array(
+                        "Customer.city" => "'".$this->request->data['Address']['city']."'",
+                    ), array(
+                        "Customer.id" => AuthComponent::user('id')
+                    ));
+                }
+                if(AuthComponent::user('pin_code') == null || AuthComponent::user('pin_code') == ""){
+                    $this->loadModel('Customer');
+                    $this->Customer->updateAll(array(
+                        "Customer.pin_code" => "'".$this->request->data['Address']['zipcode']."'",
                     ), array(
                         "Customer.id" => AuthComponent::user('id')
                     ));

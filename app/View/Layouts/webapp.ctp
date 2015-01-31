@@ -116,6 +116,28 @@
             </div><!-- /.modal -->
         </div>
         <div id="fb-root"></div>
+        <div id="device_check" style="display:none">
+        <?php
+            if($_device != "desktop" && $_device != "iphone"){ // For Android
+        ?>
+        <div style="position: fixed; bottom: 0; left: 0; width: 100%; z-index: 99999; background: #000; color: #fff;">
+            <a href="https://play.google.com/store/apps/details?id=com.pickmeals">
+                <img align="left" height="100" src="http://www.elcaminohospital.org/portals/0/Images/news/google_play_icon.jpg" />
+            </a>
+            <img align="right" onclick="javascript: $(this).parent().remove();" height="100" src="/img/1422693125_circle_close_delete-128.png" />
+        </div>
+        <?php
+            }
+            if($_device == "iphone" && false == true){ // For iphone
+        ?>
+        <div style="position: fixed; bottom: 0; left: 0; width: 100%; z-index: 99999; background: #595959; color: #fff;">
+            <a href="#"><img width="100%" src="http://mimento.es/assets/web/images/appstore.png" /></a>
+        </div>
+        <?php
+            }
+        ?>
+        </div>
+        
     </body>
 
 
@@ -235,6 +257,14 @@
 
 
         $(document).ready(function() {
+            
+            //=- device_check app download link
+            if(typeof sessionStorage.device_check == "undefined"){
+                sessionStorage.device_check = '<?php echo $_device; ?>';
+                $('#device_check').show();
+            }
+            
+            
             $('#pk-fw-submi').off("click").on("click", login_mthd);
             $('#pk-fw-uname, #pk-fw-passw').off("keyup").on("keyup", function(e) {
                 if(e.keyCode == 13){

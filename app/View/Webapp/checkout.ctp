@@ -145,9 +145,10 @@
                                 <li><label>Delivery fee </label><p>FREE</p></li>
                                 <li><label><b>Total (to be rounded off)</b></label><p><b >Rs. <!-- ko text: total --><!-- /ko --></b></p></li>
                             </ul>
-                            <!--                        <div class="order_checkout">
-                                                        <button type="button" class="">Proceed to checkout</button>
-                                                    </div>-->
+                            <div class="order_checkout">
+                                <!--                                                        <button type="button" class="">Proceed to checkout</button>-->
+                                <button type="button" data-bind="click: viewItemsClick, text: ko.computed(function(){return viewItems() ? 'Hide Cart' : 'View Cart';})" class="view_cart" style="padding-right: 0 !important;">View Cart</button>
+                            </div>
                         </div>
 
 
@@ -266,7 +267,8 @@
                                                         $('#pk-fw-odr-id').html(d);
                                                     });
                                                     me.fname = ko.observable('<?php $nm = explode(" ", $me['name']);
-                        echo @$nm[0]; ?>').extend({
+                        echo @$nm[0];
+                        ?>').extend({
                                                         required: {message: 'Please fill your name.'},
                                                         minLength: {params: 4, message: "Name must be at least 4 characters long."}
                                                     });
@@ -430,6 +432,17 @@
                                                 var CartVM = function() {
                                                     var me = this;
                                                     me.items = ko.observableArray([]);
+                                                    me.viewItems = ko.observable(false);
+                                                    me.viewItemsClick = function() {
+                                                        if (me.viewItems() == false) {
+                                                            me.viewItems(true);
+                                                            $('.sidebar_order_list_main').slideDown();
+                                                        } else {
+                                                            me.viewItems(false);
+                                                            $('.sidebar_order_list_main').slideUp();
+
+                                                        }
+                                                    };
                                                     me.subt = ko.computed(function() {
                                                         var x = 0;
                                                         var d = this.items();
@@ -454,6 +467,10 @@
                                                         return s;
                                                     };
                                                     me.pushToCart = function(item, qty, price) {
+                                                        if($(window).width() < 720){
+                                                            $('.sidebar_order_list_main').slideUp();
+                                                            me.viewItems(false);
+                                                        }
                                                         var flag = false;
                                                         console.log(item);
                                                         for (i in me.items()) {

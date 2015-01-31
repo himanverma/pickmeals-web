@@ -32,11 +32,30 @@ App::uses('Controller', 'Controller');
  */
 class AppController extends Controller {
 
-    public $components = array('RequestHandler', 'Auth', 'Session');
+    public $components = array('RequestHandler', 'Auth', 'Session','MobileDetect.MobileDetect');
     public $helpers = array('Html', 'Form', 'Combinator.Combinator');
+    public $_device = "desktop";
 
     public function beforeFilter() {
         parent::beforeFilter();
+
+        if ($this->request->is('mobile')) {
+            if($this->MobileDetect->detect('isTablet')){
+                $this->_device = 'tablet';
+            }
+            if($this->MobileDetect->detect('isiOS')){
+                $this->_device = 'iphone';
+            }
+            if($this->MobileDetect->detect('version', 'Android')){
+                $this->_device = $this->MobileDetect->detect('version', 'Android');
+            }
+            //debug($this->_device);
+            //exit;
+        }
+        $this->set("_device",  $this->_device);
+        
+
+
 //        $this->Auth->allow();
         $this->rqWriter();
 //        $this->Auth->logout();
@@ -72,8 +91,8 @@ class AppController extends Controller {
 
         $this->set("c_user", AuthComponent::user());
         $this->updateRatings();
-        
-        if(AuthComponent::user('is_admin') != 1){
+
+        if (AuthComponent::user('is_admin') != 1) {
             $r = $this->request->params;
             $actions = array(
                 'index',
@@ -92,14 +111,11 @@ class AppController extends Controller {
                 'combinations',
                 'addresses'
             );
-            if(in_array(strtolower($r['controller']), $controllers) && in_array(strtolower($r['action']), $actions) && !isset($r['ext'])){
+            if (in_array(strtolower($r['controller']), $controllers) && in_array(strtolower($r['action']), $actions) && !isset($r['ext'])) {
                 $this->redirect("/");
                 $this->Session->setFlash("Sorry admin access is limited to few users...");
             }
         }
-        
-        
-        
     }
 
     private function rqWriter($clean = false) {
@@ -156,7 +172,6 @@ class AppController extends Controller {
         $response = file_get_contents($url);
         return array("api_response" => $response, "api_url" => $url);
     }
-    
 
     public function randomString($length) {
         return substr(str_pad(

@@ -7,7 +7,10 @@
                 <div class="user_profile_img">
 
                     <img onerror="this.src = '/img/chef_profile.jpg'" data-bind="attr: {'src':image} ">
-                    <input class="il-edit" name="data[Customer][image]" type="file" data-bind="event: { 'blur': stopEditing , 'change': imageUpdate }" /> 
+                    <div class="btn btn-primary">
+                        Select Picture
+                    <input class="il-edit f-inp" name="data[Customer][image]" type="file" data-bind="event: { 'blur': stopEditing , 'change': imageUpdate }" /> 
+                    </div>
 
                 </div>
                 <div class="user_profile_about">
@@ -321,5 +324,20 @@ $this->end();
     }
     .greyMe {
         opacity: 0.5;
+    }
+    
+    .f-inp{
+        cursor: pointer;
+        height: 100%;
+        position:absolute;
+        top: 0;
+        right: 0;
+        z-index: 99;
+        /*This makes the button huge. If you want a bigger button, increase the font size*/
+        font-size:50px;
+        /*Opacity settings for all browsers*/
+        opacity: 0;
+        -moz-opacity: 0;
+        filter:progid:DXImageTransform.Microsoft.Alpha(opacity=0)
     }
 </style>

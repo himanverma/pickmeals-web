@@ -359,7 +359,7 @@ echo json_encode($a);
 
                                     <div class="home_content_right_title">
                                     </div>
-                                    <div class="sidebar_order_list_main" data-bind="foreach:items">
+                                    <div class="sidebar_order_list_main" data-bind="foreach:items ">
                                         <div class="sidebar_order_list" >
                                             <div class="col-sm-2 sidebar_order_1"><p class="order_list_sr" data-bind="text:qty">1</p></div>
                                             <div class="col-sm-6 sidebar_order_2">
@@ -400,7 +400,7 @@ echo json_encode($a);
                                         </ul>
                                         <div class="order_checkout">
                                             <button type="button" data-bind="click: moveToCheckOut " class="">Proceed to checkout</button>
-                                            <button type="button" data-bind="" class="view_cart" style="padding-right: 0 !important;">View Cart</button>
+                                            <button type="button" data-bind="click: viewItemsClick, text: ko.computed(function(){return viewItems() ? 'Hide Cart' : 'View Cart';})" class="view_cart" style="padding-right: 0 !important;">View Cart</button>
                                         </div>
                                     </div>
 
@@ -589,6 +589,17 @@ echo json_encode($a);
     var CartVM = function() {
         var me = this;
         me.items = ko.observableArray([]);
+        me.viewItems = ko.observable(false);
+        me.viewItemsClick = function(){
+            if(me.viewItems() == false){
+                me.viewItems(true);
+                $('.sidebar_order_list_main').slideDown();
+            }else{
+                me.viewItems(false);
+                $('.sidebar_order_list_main').slideUp();
+                
+            }
+        };
         me.subt = ko.computed(function() {
             var x = 0;
             var d = this.items();
@@ -601,6 +612,10 @@ echo json_encode($a);
             localStorage.pickmealsCart = ko.mapping.toJSON(me.items);
         };
         me.pushToCart = function(item, qty, price) {
+            if($(window).width() < 720){
+                $('.sidebar_order_list_main').slideUp();
+                me.viewItems(false);
+            }
             var flag = false;
             for (i in me.items()) {
                 if (me.items()[i].data.essentials() == ComboObj.essentials() && me.items()[i].data.Combination.id == item.Combination.id) {
@@ -649,10 +664,11 @@ echo json_encode($a);
 
 
         me.moveToCheckOut = function() {
-            if(me.items().length > 0){
-                window.location = "/checkout";
-            }{
+            if(typeof localStorage.pickmealsCart == 'undefined' || localStorage.pickmealsCart == "[]"){
                 alert("Please add combination to your cart...");
+            }else{
+                window.location = "/checkout";
+                
             }
         };
 
