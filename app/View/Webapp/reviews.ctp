@@ -35,7 +35,7 @@
             <div class="chef_list_main">
 
                 <div class="chef_list">
-                    <div class="chef_list_title">
+                    <div class="chef_list_title" style="box-shadow: none;">
                         <h3><?php echo $combination['Combination']['display_name']; ?></h3>
                     </div>
                     <div class="col-xs-4 col-sm-4 col-md-2">
@@ -68,7 +68,7 @@
                 <div class="chef-revies-comment">
                     <h2>Reviews</h2>
                     <?php foreach ($reviews as $rv) { ?>
-                        <div class="well review-well" >
+                    <div class="well review-well" style="background: #fff !important;">
                             <div class="row">
                                 <div class="col-xs-3 col-sm-3 col-md-2">
                                     <img src="<?php echo $rv['Customer']['image']; ?>" />

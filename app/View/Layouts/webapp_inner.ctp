@@ -12,6 +12,7 @@
             'bootstrap.min',
             'style',
             '/fonts/roboto',
+            '/fonts/circular',
             '/rate/rateit',
             'responsive'
         ));

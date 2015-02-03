@@ -56,9 +56,10 @@ header{
     margin-right:2.5%;
 }
 .logo img{
-    max-width:100%;
+    max-width:165px;
     float:left;
     margin-top:12px;
+    margin-left:15px;
 }
 .navbar-right {
     float: float !important;
@@ -110,13 +111,15 @@ header{
     width:100%;
     float:left;
     padding-top:14px;
+    height: 508px;
+    display: block;
 }
 .banner_in img{
     width:100%;
 }
 .home_content {
     float: left;
-    margin: 65px 0 0;
+    margin:0;
     width: 100%;
 }
 .home_content_in{
@@ -155,6 +158,7 @@ header{
     padding:0;
     margin:15px 0 0 0;
     list-style:none;
+    box-shadow: 2.2px 2px 3px #a3a3a3;
 }
 .home_content_left ul li{
     width:100%;
@@ -212,9 +216,10 @@ header{
     padding: 7px;
     position: relative;
     width: 100%;
+    box-shadow: 2.2px 2px 3px #a3a3a3;
 }
 .list_box:hover{
-    border:1px solid #ccc;
+    border:1px solid #e2e2e2;
 }
 .list_box_left{
     width:100%;
@@ -619,13 +624,18 @@ footer{
     font-family: "robotoregular";
     font-size: 28px !important;
     width: 100%;
-    margin: 2% 0 0 !important ;
+    margin: 3% 0 0 !important ;
 }
 .placeorder_right{
+    width:100%;
+    float:left;
+}
+.placeorder_right2{
      background: none repeat scroll 0 0 #fff;
     float: left;
     margin-top: 2%;
     width: 100%;
+    box-shadow: 2.2px 2px 3px #a3a3a3;
 }
 .placeorder_right_title{
     width:100%;
@@ -1058,6 +1068,7 @@ footer{
 .dish_content{
     width: 100%;
     float: left;
+    margin-top: 9px;
 }
 .my_account_a{
     margin-left: 10px; 
@@ -1081,7 +1092,6 @@ footer{
     position: absolute; 
     z-index: 2; background: rgba(255,255,255,0.2);
     width: 100%;   top: 0;
-    box-shadow: 0 0.2px 4px #a3a3a3;
 }
 .search_bar_main input{
     border-radius:0px !important;
@@ -1298,22 +1308,31 @@ nav {
 .chef-revies-comment{
    width: 100%;
    float: left;
-   box-shadow: 0 1px 2px #838383;
+   box-shadow: 2.2px 2px 3px #a3a3a3;
 }
 .chef-revies-comment img{width: 100%;}
 .chef-revies-comment h6{float: right; width: auto; margin: 0;}
 .chef-revies-comment .well{padding: 15px !important;}
 .chef-revies-comment h2 {
-    background: none repeat scroll 0 0 #f5f5f5;
-    border-bottom: 1px solid #e7e7e7;
-    color: #ea5058;
-    font-size: 20px;
+    background: none repeat scroll 0 0 #d8d8d8;
+    color: #666;
+    float: left;
+    font-family: "robotoregular";
+    font-size: 19px;
     margin: 0;
-    padding: 6px;
+    padding: 7px 0;
     text-align: center;
-    text-transform: uppercase;
+    width: 100%;
 }
-
+.chef-revies-comment .review-well {
+    background: none repeat scroll 0 0 #fff;
+    border-bottom: 1px solid #e0e0e0 !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    float: left;
+    margin-bottom: 0;
+    width: 100%;
+}
 .change-password{background: none repeat scroll 0 0 #ea5058;
     border: medium none;
     border-radius: 2px;
@@ -1542,18 +1561,17 @@ nav {
 
 .success-order-height{width: 100%; float: left; max-height: 400px; overflow-y: scroll;}
 
-.header-inner{background: #e3e3e3;}
+.header-inner{background: #d8d8d8; box-shadow: 2.2px 2px 3px #a3a3a3;}
 
 
 .trans-btns {
-    background:#d9d9d9 ;
+    background: #e9e9e9;
     border-radius: 3px;
     color: #000;
     margin-left: 6px;
     padding: 5px 16px;
 }
 .trans-btns:hover {
-    background: none repeat scroll 0 0 rgba(230, 230, 230, 0.4);
     text-decoration: none;
 }
 
@@ -1645,6 +1663,7 @@ extra css========================
     float: left;
     margin-bottom: 30px;
     width: 100%;
+    box-shadow: 2.2px 2px 3px #a3a3a3;
 }
 .chef_profile_img {
     float: left;
@@ -1657,8 +1676,7 @@ extra css========================
     width: 100%;
 }
 .chef_profile_about {
-    background: none repeat scroll 0 0 #f5f5f5;
-    
+    background: none repeat scroll 0 0 #fff;
     float: left;
 }
 .chef_profile_about h1 {
@@ -1739,7 +1757,7 @@ extra css========================
     width: 100%;
 }
 .chef_list_title h2 {
-    background: none repeat scroll 0 0 #d9d9d9;
+    background: none repeat scroll 0 0 #d8d8d8;
     color: #666;
     float: left;
     font-family: "robotoregular";
@@ -1750,8 +1768,9 @@ extra css========================
     width: 100%;
 }
 .chef_list {
-    background: none repeat scroll 0 0 #f5f5f5;
+    background: none repeat scroll 0 0 #fff;
     border: 1px solid #fff;
+    box-shadow: 2.2px 2px 3px #a3a3a3;
     float: left;
     margin-bottom: 20px;
     padding: 12px;
@@ -1765,13 +1784,13 @@ extra css========================
     width: 100%;
 }
 .chef_list_left img {
-    border: 3px solid #d9d9d9;
     float: left;
     width: 100%;
 }
 .chef_list_title {
     float: left;
     width: 100%;
+    box-shadow: 2.2px 2px 3px #a3a3a3;
 }
 .chef_list_title h3 {
     color: #ea5058;
@@ -1955,6 +1974,8 @@ extra css========================
     float: left;
     margin-bottom: 30px;
     width: 100%;
+    background: #fff;
+    box-shadow: 2.2px 2px 3px #a3a3a3;
 }
 .user_profile_img {
     float: left;
@@ -1963,13 +1984,10 @@ extra css========================
 }
 .user_profile_img img {
     border: 3px solid #f3f3f3;
-    box-shadow: 2px 0 2px #e4e4e4;
     float: left;
     width: 100%;
 }
 .user_profile_about {
-    background: none repeat scroll 0 0 #f5f5f5;
-    
     float: left;
     width: 100%;
 }
@@ -2044,21 +2062,22 @@ extra css========================
     width: 100%;
 }
 .user_list_title h2 {
-    background: none repeat scroll 0 0 #d9d9d9;
+    background: none repeat scroll 0 0 #d8d8d8;
     color: #666;
+    box-shadow: 2.2px 2px 3px #a3a3a3;
     float: left;
     font-family: "robotoregular";
-    font-size: 19px;
+    font-size: 18px;
     margin: 0;
     padding: 7px 0;
     text-align: center;
     width: 100%;
 }
 .user_list {
-   background: none repeat scroll 0 0 #f5f5f5;
-    border: 1px solid #fff;
+    background: none repeat scroll 0 0 #fff;
+    border-bottom: 1px solid #e2e2e2;
+    box-shadow: 2.2px 2px 3px #a3a3a3;
     float: left;
-    margin-bottom: 5px;
     padding: 12px;
     width: 100%;
 }
@@ -2516,6 +2535,8 @@ footer {
 	width:100%;
 	float:left;
         margin-top: 100px;
+        background: #fff;
+        box-shadow: 2.2px 2px 3px #a3a3a3;
 	}
 .about_title{
 	width:100%;
@@ -2608,6 +2629,8 @@ footer {
 	width:100%;
 	float:left;
         margin-top: 100px;
+        background: #fff;
+        box-shadow: 2.2px 2px 3px #a3a3a3;
 	}
 .terms_title{
 	width:100%;
@@ -2665,6 +2688,8 @@ footer {
 	width:100%;
 	float:left;
         margin-top: 100px;
+        background: #fff;
+        box-shadow: 2.2px 2px 3px #a3a3a3;
 	}
 .privacy_title{
 	width:100%;
@@ -2711,6 +2736,8 @@ footer {
 	width:100%;
 	float:left;
         margin-top: 100px;
+        background: #fff;
+        box-shadow: 2.2px 2px 3px #a3a3a3;
 	}
 .faq_title{
 	width:100%;
@@ -2915,6 +2942,9 @@ footer {
 	width:100%;
 	float:left;
 	margin:100px 0;
+        background: #fff;
+        padding: 10px 0 50px;
+        box-shadow: 2.2px 2px 3px #a3a3a3;
 	}
 .contact_title {
     float: left;
@@ -3073,4 +3103,85 @@ footer {
 }
 .view_cart {
     display: none !important;
+}
+
+.video-text{color: rgb(255, 255, 255) !important;
+    display: block;
+    font-size: 48px;
+    position: relative;
+    text-align: center;
+    text-transform: uppercase;
+    top: 218px;
+    z-index: 111;
+    width: 100%;}
+
+
+.video-text p{ line-height: 32px;
+    margin: 0 !important;
+    width: 100%;}
+
+.tx{font-size: 14px !important;}
+.video-text span{font-size: 18px;width: 100%;}
+.dwnld-buttons{width: 100%; float:left;text-align:center;}
+.dwnld-buttons a{width: auto;}
+.dwnld-buttons a img{width: 150px;  opacity: 0.6;}
+
+
+.my_account_detaill_rating {
+    float: right;
+    margin: 0;
+    padding: 0 !important;
+    width: 40% !important;
+    word-wrap: break-word;
+}
+
+.upload_pic_btn{
+    background: #ea5058 !important;
+    border: none !important;
+    margin-left: 15px;
+    padding: 2px 6px;
+}
+
+.order_feedback_submit{
+   background: #ea5058;
+   border: none;
+}
+.user_profile .rateit-reset{
+    display: none !important;
+}
+.user_profile .modal-header{
+    padding: 13px 15px 7px !important;
+}
+.user_list_inn .modal-body{
+    padding: 0 15px 0 15px;
+}
+.user_profile textarea{
+    resize: none;
+}
+.crop_pic_save {background: #ea5058;
+   border: none;}
+.pagination{width: 100%; text-align: center;}
+.pagination a{box-shadow: 2.2px 2px 3px #a3a3a3;}
+.change-password-main .panel-default{background: none repeat scroll 0 0 #fff;
+    border-bottom: 1px solid #e2e2e2;
+    box-shadow: 2.2px 2px 3px #a3a3a3;}
+
+.forgot-password-main .panel-default{background: none repeat scroll 0 0 #fff;
+    border-bottom: 1px solid #e2e2e2;
+    box-shadow: 2.2px 2px 3px #a3a3a3;}
+
+.forgot-password-main .panel-footer {
+    background-color: #fff;
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
+    border-top: none !important;
+    padding: 0 15px 6px;
+}
+
+.change-password-main .panel-footer {
+    background-color: #fff;
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
+    border-top: none !important;
+    padding: 0 15px 6px;
 }

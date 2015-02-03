@@ -88,6 +88,16 @@ echo json_encode($a);
 <div class="banner hidden-xs" id="box1">
     <div class="container">
         <div class="banner_in">
+            <div class="video-text"><p>Making it Simple to eat Well<br><span>Hot Healthy Meals Delivered in 45 minutes</span></p>
+                <!--<span class="tx">View the menu and order lunch and dinner using our Android app.</span>-->
+                <div class="dwnld-buttons"><a href="https://play.google.com/store/apps/details?id=com.pickmeals"><?php echo $this->Html->image('../img/appstore-android.png');?></a>
+                
+                </div>
+                
+            </div>
+            
+            
+            
             <div data-ride="carousel" class="carousel slide" id="carousel-example-captions" style="visibility: hidden;">
                 <ol class="carousel-indicators">
                     <li class="" data-slide-to="0" data-target="#carousel-example-captions"></li>
@@ -343,10 +353,10 @@ echo json_encode($a);
                         </div>
                     </div>
                     <div class="home-pagination" data-bind="visible:showLoadMore ">
-                        <div class="">
+                        <div class="pagination_main">
                             <ul class="pagination">
                                 
-                                <li data-bind="click:loadMore"><a href="javascript:void(0);">Load More</a></li>
+                                <li data-bind="click:loadMore"><a href="javascript:void(0);" style="width: 100%; padding: 8px 0 !important;">Load More</a></li>
                                 
                             </ul>
                         </div>

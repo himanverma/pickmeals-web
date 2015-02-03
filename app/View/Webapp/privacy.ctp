@@ -1,4 +1,5 @@
 <div class="privacy_in">
+    <div class="col-sm-12">
     <div class="privacy_title">
         <h1>Privacy Policy</h1>
     </div>
@@ -17,3 +18,4 @@
         <p>Our website may have links to other websites. This privacy policy only applies to this website. You should therefore read the privacy policies of the other websites when you are using those sites.</p>
     </div>
 </div>
+    </div>

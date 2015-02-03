@@ -1,6 +1,7 @@
 <div id="address-sec" class="col-sm-12">
     <div class="contact">
         <div class="contact_right">
+             <div class="col-sm-12">
             <div class="contact_right_title">
                 <h1>Feedback</h1>
             </div>
@@ -33,5 +34,6 @@
 
             </div>
         </div>
+            </div>
     </div>
 </div>

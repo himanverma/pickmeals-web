@@ -7,7 +7,7 @@
                 <div class="user_profile_img">
 
                     <img onerror="this.src = '/img/chef_profile.jpg'" data-bind="attr: {'src':image} ">
-                    <div class="btn btn-primary">
+                    <div class="btn btn-primary upload_pic_btn">
                         Select Picture
                     <input class="il-edit f-inp" name="data[Customer][image]" type="file" data-bind="event: { 'blur': stopEditing , 'change': imageUpdate }" /> 
                     </div>
@@ -77,7 +77,7 @@
 
 <div style="padding-bottom: 24px;" class="bs-example">
     <div aria-hidden="true" aria-labelledby="exampleModalLabel" role="dialog" tabindex="-1" id="image-crop-mdl" class="modal fade" style="display: none;">
-        <div class="modal-dialog" style="margin:10% auto;">
+        <div class="modal-dialog upload_pic_dialog" style="margin:5% auto;">
             <div class="modal-content">
                 <!--<div class="modal-header">
                   <button data-dismiss="modal" class="close" type="button"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
@@ -92,10 +92,10 @@
                     </div>
 
                 </div>
-                <div class="modal-footer">
+                <div class="modal-footer upload_pic_crop">
                     <div class="pull-right" id="crp-ftr">
-                        <button type="button" onclick="javascript: $('#image-crop-mdl').modal('hide');" class="btn btn-warning">Cancel</button>
-                        <button type="button" onclick="javascript: CustomerObj.cropNow();" class="btn btn-success">Save</button>
+                        <button type="button" onclick="javascript: $('#image-crop-mdl').modal('hide');" class="btn btn-default">Cancel</button>
+                        <button type="button" onclick="javascript: CustomerObj.cropNow();" class="btn btn-success crop_pic_save">Save</button>
                     </div>
                 </div>
             </div>

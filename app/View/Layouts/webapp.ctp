@@ -16,6 +16,7 @@
             'bootstrap.min',
             'style',
             '/fonts/roboto',
+            '/fonts/circular',
             '/rate/rateit',
             'responsive'
         ));
@@ -120,11 +121,11 @@
         <?php
             if($_device != "desktop" && $_device != "iphone"){ // For Android
         ?>
-        <div style="position: fixed; bottom: 0; left: 0; width: 100%; z-index: 99999; background: #000; color: #fff;">
+        <div style="position: fixed; bottom: 0; left: 0; width: 100%; z-index: 99999; color: #fff;">
             <a href="https://play.google.com/store/apps/details?id=com.pickmeals">
-                <img align="left" height="100" src="http://www.elcaminohospital.org/portals/0/Images/news/google_play_icon.jpg" />
+                <img align="left" width="100%;" src="/img/../img/download_app.png" />
             </a>
-            <img align="right" onclick="javascript: $(this).parent().remove();" height="100" src="/img/1422693125_circle_close_delete-128.png" />
+            <img align="right" style="position: absolute; top: 0; right: 0; width: 45px; height: 45px;" onclick="javascript: $(this).parent().remove();" height="100" src="/img/1422693125_circle_close_delete-128.png" />
         </div>
         <?php
             }

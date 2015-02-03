@@ -46,7 +46,7 @@
         float: left;
         width: 100%;
     }
- .home_content {margin: 36px 0 0;}
+ .home_content {margin: -30px 0 0;}
 
 }
 
@@ -177,9 +177,6 @@
         line-height: 24px;
         padding: 0 0 0 26px;
     }
-    .chef_profile {
-        margin: 20px 0;
-    }
 
 
     /*--25-1-2015--*/
@@ -221,7 +218,7 @@
         display: block;
         height: 0;
     }
-    
+    .banner_in{ display: none;}
     
     .payment_checkout1_button {
         background: url("../img/double_arrow.png") no-repeat scroll right 9px top 20px / 23px auto #ea5058;
@@ -334,6 +331,10 @@
     .dish_content_titles{display: block;}
     .dish_content_title_search{display: block;}
     .order_success_in {margin: 35px 0 20px;}
+    .chef_food_rating {float: left;}
+    .my_account_detaill_rating {width: 80% !important;}
+    .user_profile {margin: 10px 0;}
+    .chef_profile { margin: 10px 0;}
     }
 
 
@@ -403,12 +404,6 @@
     .list_box_left img{margin:0px;height:auto;  width: 92px;}
     .list_box_title h3 {margin:0px;font-size: 15px;}
 
-
-    .rateit-selected.rateit-preset {
-        background-position: 0 15px;
-        background-repeat: no-repeat;
-        width: 100% !important
-    }
 /*    Creating issues*/
 /*    .rateit .rateit-range {
         background-size: 12px auto;
@@ -617,12 +612,6 @@
     .list_box_left img{margin:0px;height:auto;  width: 92px;}
     .list_box_title h3 {margin:0px;}
 
-
-    .rateit-selected.rateit-preset {
-        background-position: 0 15px;
-        background-repeat: no-repeat;
-        width: 100% !important
-    }
 /*    Creating issues*/
 /*    .rateit .rateit-range {
         background-position: 0 -37px;
@@ -704,7 +693,7 @@
     .user_profile .col-sm-3 {
         padding: 0;
     }
-#box1 {height: 65px;}
+#box1 {height: 15px;}
 }
 
 
@@ -758,11 +747,8 @@
     .payment_checkout1{padding:0px;}
 
     .user_profile_img img{
-        height: 286px;
         margin: 2% 0 6%;
         width: 100%;
-
-
     }
     #nav1 {
         display: none;
@@ -810,18 +796,8 @@
 
 
     .list_box_left img{margin:0px;height:auto;}
-    .list_box_title h3 {font-size: 16px;
-                        margin: 0;
-                        padding: 0 0 12px;}
+    .list_box_title h3 {font-size: 16px; margin: 0; padding: 0 0 12px;}
 
-
-
-
-    .rateit-selected.rateit-preset {
-        background-position: 0 15px;
-        background-repeat: no-repeat;
-        width: 100% !important
-    }
 /*    Creating issues*/
 /*    .rateit .rateit-range {
         background-position: 0 -37px;
@@ -978,6 +954,8 @@
     display: none !important;
 }
 .logo img {margin-top: 3px;}
+.my_account_detaill_rating {width: 80% !important;}
+
 
 }
 
@@ -1112,7 +1090,6 @@ footer {padding: 0 0 70px;}
 
 
     .user_profile_img img{
-        height: 286px;
         margin: 2% 0 6%;
         width: 100%;
 
@@ -1162,16 +1139,8 @@ footer {padding: 0 0 70px;}
         width: 100%;
     }
     .list_box_left img{margin:0px;height:auto;}
-    .list_box_title h3 {font-size: 15px;
-                        margin: 0;
-                        padding: 0 0 7px;}
+    .list_box_title h3 {font-size: 15px; margin: 0; padding: 0 0 7px;}
 
-
-    .rateit-selected.rateit-preset {
-        background-position: 0 15px;
-        background-repeat: no-repeat;
-        width: 100% !important
-    }
 /*    Creating issues*/
 /*    .rateit .rateit-range {
         background-position: 0 11px;
@@ -1288,7 +1257,7 @@ footer {padding: 0 0 70px;}
     .web_boxx {
         float: right;
         margin: 2% 0 0;
-        width: 69%;
+        width: 67% !important;
     }
     .chef_food_rating {
         float: left;
@@ -1345,6 +1314,10 @@ footer {padding: 0 0 70px;}
 .terms_in{margin-top: 30px;}
 .contact{margin-top: 30px;}
 .food_qty_button {float: right;width: 28%;}
+.cropper-container{height: 265px !important;}
+.modal-dialog.upload_pic_dialog {
+    width: 253px !important;
+}
 
 }
 
@@ -1391,7 +1364,7 @@ footer {padding: 0 0 70px;}
     .chef_food_rating {
         float: right;
         margin: 3% 0 0;
-        width: 86%;
+        width: 94%;
     }
 
     .navbar-nav img {
@@ -1444,7 +1417,6 @@ footer {padding: 0 0 70px;}
 
 
     .user_profile_img img{
-        height: 156px;
         margin: 2% 0 6%;
         width: 100%;
 
@@ -1685,7 +1657,7 @@ footer {padding: 0 0 70px;}
                                   width: 95%;}
     .user_list_right ul li h2 { font-size: 13px;   width: 95%;}
 
-    .chef_food_rating { float: left; margin: 3% 38px 0;}
+    .chef_food_rating { float: left; margin: 3% 10px 0;}
 
 
 
@@ -1733,7 +1705,7 @@ footer {padding: 0 0 70px;}
 
 
     .user_profile_img img{
-        height: 156px;
+       
         margin: 2% 0 6%;
         width: 100%;
 
@@ -2016,7 +1988,6 @@ footer {padding: 0 0 70px;}
 
 
     .user_profile_img img{
-        height: 156px;
         margin: 2% 0 6%;
         width: 100%;
 
@@ -2098,8 +2069,8 @@ footer {padding: 0 0 70px;}
 
     .chef_food_rating {
         float: left;
-        margin: 0 0 0 25px;
-        width: 72%;
+        margin: 0 0 0 0;
+        width: 100%;
     }
 
 
@@ -2318,7 +2289,9 @@ footer {padding: 0 0 70px;}
     float: right !important;
     font-size: 13px;
 }
-
+.cropper-container{left: 0 !important;}
+.upload_pic_crop {padding: 0 5px 5px 0;}
+.modal-dialog.upload_pic_dialog .modal-body{padding: 5px !important;}
 
 }
 

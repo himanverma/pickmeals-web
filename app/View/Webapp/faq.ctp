@@ -1,4 +1,5 @@
 <div class="faq_in">
+    <div class="col-sm-12">
     <div class="faq_title">
         <h1>FAQ</h1>
     </div>
@@ -92,6 +93,6 @@
         <!--toggle-->
 
 
-
+  </div>
     </div>
 </div>

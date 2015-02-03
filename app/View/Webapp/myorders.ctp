@@ -24,10 +24,10 @@
                                 <h4><span>Location:</span><?php echo $order['Address']['address'] . ", " . $order['Address']['city']; ?></h4>
                             </li>
                             <li>
-                                <h4><span>Mobile No.:</span><?php echo $order['Address']['phone_number']; ?></h4>
+                                <h1><span>Mobile No.:</span><?php echo $order['Address']['phone_number']; ?></h1>
                             </li>
                             <li>
-                                <h4><span>Quantity:</span><?php echo $order['Order']['qty']; ?></h4>
+                                <h5><span>Quantity:</span><?php echo $order['Order']['qty']; ?></h5>
                             </li>
                             <li>
                                 <h3><span>Price:</span>Rs <?php echo $order['Order']['price']; ?></h3>
@@ -36,7 +36,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-sm-3 web_boxx">
+            <div class="col-sm-3 web_boxx my_account_detaill_rating">
                 <div class="chef_food_rating">
                     <?php 
                         $rvew = null;
@@ -123,7 +123,7 @@ if (count($orders) == 0) {
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-        <button type="button" id="r-send-r"  class="btn btn-primary">Submit</button>
+        <button type="button" id="r-send-r"  class="btn btn-primary order_feedback_submit">Submit</button>
       </div>
     </div>
   </div>

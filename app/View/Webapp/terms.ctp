@@ -1,4 +1,5 @@
 <div class="terms_in">
+    <div class="col-sm-12">
     <div class="terms_title">
         <h1>Terms and Conditions</h1>
     </div>
@@ -113,4 +114,5 @@
             </li>
         </ul>
     </div>
+        </div>
 </div>

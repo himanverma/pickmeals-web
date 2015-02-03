@@ -42,8 +42,9 @@
                 </div>
             </div>
 
-
-            <div class="placeorder_right">
+        </div>
+        
+        <div class="placeorder_right2">
                 <div class="placeorder_right_title">
                     <h1>Choose how to pay</h1>
                 </div>
@@ -89,9 +90,6 @@
                     </div>
                 </div>                                        	
             </div>
-
-
-        </div>
 
     </div>
 </div>

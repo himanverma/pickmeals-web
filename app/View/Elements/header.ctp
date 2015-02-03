@@ -6,7 +6,7 @@
                 <div class="container">
                
                     <div class="logo">
-                        <img src="/img/logo.png" onclick="window.location = '/'" >
+                        <img src="/img/logo-home.png" onclick="window.location = '/'" >
                         <img class="logo-2" src="/img/pickmeals_icon.png" onclick="window.location = '/'" >
                         
                         
