@@ -43,20 +43,7 @@
         </div>
 
 
-        <div class="panel panel-default">
-            <div id="headingTwo" role="tab" class="panel-heading">
-                <h4 class="panel-title">
-                    <a aria-controls="collapseThree" aria-expanded="false" href="#collapseThree" data-parent="#accordion" data-toggle="collapse" class="collapsed">
-                        Where is your head office?
-                    </a>
-                </h4>
-            </div>
-            <div aria-labelledby="headingThree" role="tabpanel" class="panel-collapse collapse" id="collapseThree" aria-expanded="false" style="height: 0px;">
-                <div class="panel-body">
-                    Future Works Pvt. Ltd.4th floor, Plot No. 10, Rajiv Gandhi Technology Park, Chandigarh, 160101
-                </div>
-            </div>
-        </div>
+       
 
 
         <div class="panel panel-default">
@@ -84,7 +71,7 @@
             </div>
             <div aria-labelledby="headingSix" role="tabpanel" class="panel-collapse collapse" id="collapseSix" aria-expanded="false" style="height: 0px;">
                 <div class="panel-body">
-                    Yes, pickmeals app is available for iOS, Windows Phone and Android. More details on the apps page
+                    Yes, pickmeals app is available for Android. More details on the apps page
                 </div>
             </div>
         </div>

@@ -25,14 +25,14 @@
               <tr>
                 <td align="center" valign="top">
                 	<div style="color:#245da5; font-family:Times New Roman, Times, serif; font-size:48px;"><a href="<?php echo $this->Html->url('/',true); ?>" ><img src="<?php echo $this->Html->url('/img/logo.png',true); ?>" width="350" alt=""></a></div>
-                        <div style="font-family: Verdana, Geneva, sans-serif; color:#898989; font-size:12px;"><?php echo $orders[0]['Order']['created']; ?></div></td>
+                        <div style="font-family: Verdana, Geneva, sans-serif; color:#898989; font-size:12px;"></div></td>
               </tr>
               
               <tr>
-                  <td align="left" valign="top" style="font-family:Arial, Helvetica, sans-serif; font-size:15px; color:#F60;"> <br><h3>To Sales Department</h3> </td>
+                  <td align="left" valign="top" style="font-family:Arial, Helvetica, sans-serif; font-size:15px; color:#F60;"> <br><h3>To Grievance Cell</h3> </td>
               </tr>
               
-                 <td align="left" valign="top" style="font-family:Arial, Helvetica, sans-serif; font-size:12px; color:#333;">Congratulations!  You have a new Order at <a href="<?php echo $this->Html->url('/',true); ?>">www.pickmeals.com</a></td>
+                 <td align="left" valign="top" style="font-family:Arial, Helvetica, sans-serif; font-size:12px; color:#333;">You have a new query/message at <a href="<?php echo $this->Html->url('/',true); ?>">www.pickmeals.com</a></td>
               </tr>
               
               <tr>
@@ -40,97 +40,18 @@
               </tr>
               <tr>
                 <td align="left" valign="top" style="font-family:Arial, Helvetica, sans-serif; font-size:12px; color:#525252;">
-                Below is the information we received from your referral.
+                Below is the information we received from pickmeals.com
                 <br /><br />
 
 Name : <?php echo $name; ?><br />
-Mobile : <?php echo $mob; ?><br />
-Address : <?php echo $address; ?><br />
+Mobile : <?php echo $number; ?><br />
+E-mail : <?php echo $email; ?><br />
+Message : <?php echo $message; ?><br />
 <br />
 
 
 
 
-
-
-
-
-
-
-
-
-
-<div class="sucess-order">
-                        <div class="row">
-                            <div class="success-order-height">
-                                <?php foreach($orders as $ord){ ?>
-                                
-                                <div class="success_user_list">
-                                    <div class="success_user_list_title">
-                                        <h3><?php echo $ord['Order']['recipe_names'];?></h3>
-                                        <h6><?php echo $ord['Order']['essentials'];?></h6>
-                                    </div>
-                                    <div class="col-xs-3 col-sm-2">
-                                        <div class="row">
-                                            <div class="success_user_list_left"><img src="<?php echo $ord['Combination']['image'];?>"> </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-xs-9 col-sm-10">
-                                        <div class="row">
-                                            <div class="success_user_list_right">
-                                                <ul>
-                                           
-                                                    
-                                                    <li>
-                                                        <p>By <a href="<?php echo $this->Html->url('/').$ord['Combination']['image'];?>"><?php echo $ord['Combination']['Vendor']['name'];?></a></p>
-                                                    </li>
-                                                   
-                                                    <li>
-                                                        <h2><span>Order date:</span><?php echo $ord['Order']['created'];?></h2>
-                                                    </li>
-                                                    
-                                                   
-                                                    <li>
-                                                        <h6><span>Quantity:</span><?php echo $ord['Order']['qty'];?></h6>
-                                                    </li>
-                                                    <li>
-                                                        <h3><span>Price:</span><?php echo $ord['Order']['price'];?></h3>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                 <?php } ?>
-                            </div>
-
-                            <div class="col-sm-12">
-                                <div id="address-sec-2" class="sucess-order">
-                                    <h5><b>Shipping Address</b></h5>
-                                    <div class="row">
-                                        <div class="col-lg-10">
-                                            <p style="font-weight: bold;"> 
-                                             <?php echo $orders[0]['Address']['f_name'];?>&nbsp;<?php echo $orders[0]['Address']['l_name'];?>
-                                            </p>
-                                            <?php echo $orders[0]['Address']['address'];?> <?php echo $orders[0]['Address']['area'];?>,<?php echo $orders[0]['Address']['city'];?> <?php echo $orders[0]['Address']['zipcode'];?>
-                                            <p style="font-weight: bold;"> 
-                                                Mobile No:<?php echo $orders[0]['Address']['phone_number'];?>
-                                            </p>
-                                            <p></p>
-                                            <p style="font-weight: bold;"> 
-                                                Payment Mode: <?php echo $orders[0]['Order']['paid_via'];?>
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div>
-
-                        </div>
-                        
-                    </div>
 
 
 

@@ -382,7 +382,33 @@ class WebappController extends AppController {
     }
 
     public function contactus() {
+      Configure::write('debug', 2);
         $this->layout = "webapp_inner";
+        if($this->request->is('post')){        
+        App::uses("CakeEmail", "Network/Email");
+        $fm = new CakeEmail('smtp');
+        $viewVars = array(
+            'name'=>$this->request->data['name'],
+            'email'=>$this->request->data['email'],
+            'number'=>  $this->request->data['number'],
+            'message'=>  $this->request->data['message']
+        );
+        $fm->to("pickmeals@gmail.com")
+                ->cc("himan.verma@live.com")
+                ->viewVars($viewVars)
+                ->from("no-reply@pickmeals.com", "PickMeals.com")
+                ->replyTo("support@pickmeals.com", "PickMeals.com")
+                ->subject("Query on PickMeals.com")
+                ->template("contact")
+                ->emailFormat('html');
+        try {
+            $x = $fm->send();
+            $this->Session->setFlash("Your message has been sent to our team we will contact you soon.");
+        } catch (SocketException $e) {
+            $this->Session->setFlash("Some error occured sending your query/message.");
+        }
+        }
+        
     }
     public function feedback() {
         $this->layout = "webapp_inner";
