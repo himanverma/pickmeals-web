@@ -1,6 +1,8 @@
-
-
-
+.home-video{
+    position: absolute;
+    top: 0px;
+    z-index: 1;
+}
 
 @media screen and (max-width: 1600px){
 
@@ -11,16 +13,6 @@
     }
 
 }
-
-
-
-
-
-
-
-
-
-
 
 @media screen and (max-width: 1366px){
 
@@ -98,23 +90,13 @@
         float: right;
         width: 82%;
     }
-
-
-
 }
-
-
-
-
 
 
 @media screen and (max-width: 1120px){
 
 
     .list_box_right ul li h4 {width: 154%;}
-
-
-
 
     .list_box_right ul li {
         float: left;
@@ -971,7 +953,7 @@
     padding: 0 !important;
     position: fixed;
     width: 100% !important;
-    z-index: 1;
+    z-index: 2;
     background: #ccc;
 }
 #sidebar{margin: 0 !important;}

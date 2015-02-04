@@ -358,7 +358,7 @@ class CombinationsController extends AppController {
             }
             $dish = new Imagick($dish);
 
-            $dish->scaleimage($thali1->getimagewidth() + 60, $thali1->getimageheight() + 60); // Set As per bowl image
+            $dish->scaleimage($thali1->getimagewidth(), $thali1->getimageheight()); // Set As per bowl image
 
             if ($mask_cnt == 1) {
                 $dish->rotateimage("#fff", 180);
