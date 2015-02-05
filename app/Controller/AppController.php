@@ -203,5 +203,43 @@ class AppController extends Controller {
             ));
         }
     }
+    protected function generatePromoAll(){
+        $this->loadModel('Customer');
+        $x = $this->Customer->find("all");
+        foreach($x as $v){
+                if($v['Customer']['name'] == ""){
+                    $code = strtoupper($this->randomString(4)).$v['Customer']['id'];
+                }else{
+                    $code = strtoupper(substr($v['Customer']['name'], 0,4)).$v['Customer']['id'];
+                }
+                
+                $this->Customer->updateAll(array(
+                    "Customer.my_promo_code" => "'".$code."'"
+                ), array(
+                    "Customer.id" => $v['Customer']['id']
+                ));
+        }
+    }
+    protected function generatePromo($id){
+        $this->loadModel('Customer');
+        $x = $this->Customer->find("all",array(
+            "conditions" =>array(
+                "Customer.id" => $id
+            )
+        ));
+        foreach($x as $v){
+                if($v['Customer']['name'] == ""){
+                    $code = strtoupper($this->randomString(4)).$v['Customer']['id'];
+                }else{
+                    $code = strtoupper(substr($v['Customer']['name'], 0,4)).$v['Customer']['id'];
+                }
+                
+                $this->Customer->updateAll(array(
+                    "Customer.my_promo_code" => "'".$code."'"
+                ), array(
+                    "Customer.id" => $v['Customer']['id']
+                ));
+        }
+    }
 
 }

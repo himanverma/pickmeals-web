@@ -148,6 +148,8 @@ class CustomersController extends AppController {
                     ),
                     '_serialize' => array('data')
                 ));
+                $this->generatePromo($this->Customer->getLastInsertID());
+                
             } else {
                 $this->set(array(
                     'data' => array("error" => 1, "msg" => $this->Customer->validationErrors),

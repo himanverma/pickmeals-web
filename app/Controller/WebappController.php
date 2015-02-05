@@ -131,6 +131,7 @@ class WebappController extends AppController {
                             "Customer.id" => $this->Customer->getLastInsertID()
                         )
                     ));
+                    $this->generatePromo($this->Customer->getLastInsertID());
                 } else {
                     $msg = "Error occured while registration...";
                     $error = 1;
