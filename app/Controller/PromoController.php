@@ -55,6 +55,7 @@ class PromoController extends AppController {
         if (!$this->request->is(array('post'))) {
             //throw new NotFoundException("Invalid Request Method");
         }
+        $this->request->data['Customer']['code'] = strtoupper($this->request->data['Customer']['code']);
         $this->loadModel('Customer');
         $me = $this->Customer->find("first", array(
             "conditions" => array(
@@ -78,12 +79,12 @@ class PromoController extends AppController {
                 "Customer.id" => $me['Customer']['id']
             ));
 
-            // Add cash to referal
-            $this->Customer->updateAll(array(
-                "Customer.cash_by_promo" => "'" . ($referal['Customer']['cash_by_promo'] + 25) . "'"
-                    ), array(
-                "Customer.id" => $referal['Customer']['id']
-            ));
+//            // Add cash to referal
+//            $this->Customer->updateAll(array(
+//                "Customer.cash_by_promo" => "'" . ($referal['Customer']['cash_by_promo'] + 25) . "'"
+//                    ), array(
+//                "Customer.id" => $referal['Customer']['id']
+//            ));
             $res = array(
                 "error" => 0,
                 "msg" => "You just earned Rs.50/-"
@@ -119,13 +120,13 @@ class PromoController extends AppController {
             $res = array(
                 "error" => 1,
                 "msg" => "No records found for this deviceId: " . $this->request->data['Customer']['deviceId'] . " and id: " . $this->request->data['Customer']['id'],
-                    //"code" => ""
+                "code" => ""
             );
         } else {
             $res = array(
                 "error" => 0,
-                "msg" => "Use code <b>" . $data['Customer']['my_promo_code'] . "</b> and get Rs 50 first meal free, And share your promo code with your friends, and they get Rs 50 first meal free. Once they order, you get Rs 25 in Pickmeals credits.",
-                    //"code" => $data['Customer']['my_promo_code']
+                "msg" => "Share your promo code <b>".$data['Customer']['my_promo_code']."</b> with your friends, and they get Rs 50 first meal free. Once they order, you get Rs 25 in Pickmeals credits.",
+                "code" => $data['Customer']['my_promo_code']
             );
         }
         $this->set(array(
@@ -178,5 +179,48 @@ class PromoController extends AppController {
             '_serialize' => array('data')
         ));
     }
+    
+    /**
+     * Add Cash to Referals Account when When first order is placed using his/her code
+     *       
+     */
+    public function sendCashToReferal($cId){
+        if(is_object($this->request)){
+            throw new NotFoundException("Page not found 404");
+        }
+        $this->loadModel('Order');
+        $this->loadModel('Customer');
+        $x = $this->Order->find("first",array(
+           "contain" => array(
+               "Address","Customer"
+           ),
+           "conditions" => array(
+               "Customer.referal_paid" => 0,
+               "Order.customer_id" => $cId,
+               "Order.payment_status" => "PAID"
+           ) 
+        ));
+        if(!empty($x)){
+            $referal = $this->Customer->find("first",array(
+                "conditions" => array(
+                    "Customer.my_promo_code" => $x['Customer']['refered_by'] == NULL ? "tmp77val" : $x['Customer']['refered_by']
+                )
+            ));
+            if(!empty($referal)){
+                $this->Customer->updateAll(array(
+                        "Customer.cash_by_promo" => "'" . ($referal['Customer']['cash_by_promo'] + 25) . "'"
+                            ), array(
+                        "Customer.id" => $referal['Customer']['id']
+                    ));
+
+                $this->Customer->updateAll(array(
+                        "Customer.referal_paid" => "'1'"
+                            ), array(
+                        "Customer.id" => $cId
+                    ));
+            }
+        }
+    }
+    
 }
     

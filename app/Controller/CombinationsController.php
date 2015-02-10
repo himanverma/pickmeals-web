@@ -35,15 +35,17 @@ class CombinationsController extends AppController {
         $long = $this->request->data['User']['longitude'];
         $count = $this->request->data['User']['count'];
         $combination1 = $this->Combination->find('count', array(
-            "conditions" => array(
-                "DATE(Combination.date)" => date("Y-m-d")
-            ),
             "fields" => array("get_distance_in_miles_between_geo_locations($lat,$long,Vendor.lat,Vendor.long) as distance", "Vendor.*", "Combination.*"),
-            "order" => 'distance ASC',
+            //"order" => 'distance ASC',
+            "conditions" => array(
+                "DATE(Combination.date)" => date("Y-m-d"),
+                "get_distance_in_miles_between_geo_locations($lat,$long,Vendor.lat,Vendor.long) <=" => 3.73
+            )
         ));
         $combination['items'] = $this->Combination->find('all', array(
             "conditions" => array(
-                "DATE(Combination.date)" => date("Y-m-d")
+                "DATE(Combination.date)" => date("Y-m-d"),
+                "get_distance_in_miles_between_geo_locations($lat,$long,Vendor.lat,Vendor.long) <=" => 3.73
             ),
             "fields" => array("get_distance_in_miles_between_geo_locations($lat,$long,Vendor.lat,Vendor.long) as distance", "Vendor.*", "Combination.*"),
             "order" => 'distance ASC',
@@ -80,18 +82,20 @@ class CombinationsController extends AppController {
         $long = $this->request->data['User']['longitude'];
         $count = $this->request->data['User']['count'];
         $combination1 = $this->Combination->find('count', array(
-            "conditions" => array(
-                "DATE(Combination.date)" => date("Y-m-d")
-            ),
             "fields" => array("get_distance_in_miles_between_geo_locations($lat,$long,Vendor.lat,Vendor.long) as distance", "Vendor.*", "Combination.*"),
             "order" => 'distance ASC',
+            "conditions" => array(
+                "DATE(Combination.date)" => date("Y-m-d"),
+                "get_distance_in_miles_between_geo_locations($lat,$long,Vendor.lat,Vendor.long) <=" => 53.73
+            ),
         ));
 
         $combination['items'] = $this->Combination->find('all', array(
-            "conditions" => array(
-                "DATE(Combination.date)" => date("Y-m-d")
-            ),
             "fields" => array("get_distance_in_miles_between_geo_locations($lat,$long,Vendor.lat,Vendor.long) as distance", "Vendor.*", "Combination.*"),
+            "conditions" => array(
+                "DATE(Combination.date)" => date("Y-m-d"),
+                "get_distance_in_miles_between_geo_locations($lat,$long,Vendor.lat,Vendor.long) <=" => 53.73
+            ),
             "order" => 'distance ASC',
         ));
 

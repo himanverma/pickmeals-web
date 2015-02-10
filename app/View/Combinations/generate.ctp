@@ -102,7 +102,8 @@
                     Combination: {
                         key: r[i],
                         vendor_id: me.vendor(),
-                        display_name: "FULL " + name,
+                        //display_name: "FULL " + name,
+                        display_name: name,
                         price: ko.observable(0.00),
                         CombinationItem: [
                             {
@@ -128,7 +129,8 @@
                             Combination: {
                                 key: me.key(r[i].id, r2[j]),
                                 vendor_id: me.vendor(),
-                                display_name: "HALF " + name + " + HALF " + name2,
+                                //display_name: "HALF " + name + " + HALF " + name2,
+                                display_name: name + " + " + name2,
                                 price: ko.observable(0.00),
                                 CombinationItem: [
                                     {

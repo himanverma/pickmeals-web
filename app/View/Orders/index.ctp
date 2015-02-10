@@ -25,6 +25,10 @@
                             </h3>
                             <div class="box-tools pull-right">
                                 <?php echo $orderO['Order']['created']; ?>
+                                
+                                <?php echo $this->Form->postLink(
+                                        $orderO['Order']['payment_status'] == "PENDING" ? "Mark as Paid" : "Mark as Pending"
+                                        , array('action' => 'changepaymentstatus', $orderO['Order']['id'].",".$orderO['Order']['customer_id']), array('class'=>"btn btn-".($orderO['Order']['payment_status'] == "PENDING" ? "warning" : "success")), __('Are you sure?', $orderO['Order']['customer_id'])); ?>
                                 <a href="<?php echo $this->Html->url('/order/edit/' . $orderO['Order']['sku']); ?>" class="btn btn-default btn-sm">Edit</a>
                                 <button data-widget="collapse" class="btn btn-default btn-sm"><i class="fa fa-plus"></i></button>
                                 <button data-widget="remove" class="btn btn-default btn-sm"><i class="fa fa-times"></i></button>

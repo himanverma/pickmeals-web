@@ -180,6 +180,7 @@
     .home_content_left ul li a {padding: 30px 0 0 10px; width: auto;}
     .footer_menu1 h1 {font-size: 17px;}
     .chef_profile_about h1 {font-size: 17px;}
+    .footer_top_box iframe{width: 225px;}
 
 
 }
@@ -938,7 +939,7 @@
 .logo img {margin-top: 3px;}
 .my_account_detaill_rating {width: 80% !important;}
 
-
+.footer_top_box iframe{width: 225px;}
 }
 
 

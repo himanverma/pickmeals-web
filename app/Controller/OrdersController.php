@@ -92,7 +92,7 @@ class OrdersController extends AppController {
                     'orders' => $x
                 );
                 $fm->to("pickmeals@gmail.com")
-                        ->cc("himan.verma@live.com")
+                        //->cc("himan.verma@live.com")
                         ->viewVars($viewVars)
                         ->from("no-reply@pickmeals.com", "PickMeals.com")
                         ->replyTo("support@pickmeals.com", "PickMeals.com")
@@ -100,13 +100,34 @@ class OrdersController extends AppController {
                         ->template("referal")
                         ->emailFormat('html');
                 try {
-                    $x = $fm->send();
+                    $mailObj = $fm->send();
                 } catch (SocketException $e) {
                     debug($e);
                 }
+                //CakeLog::debug(print_r($x,true));
+                
+                // Code to Deduct money from wallet
+                $this->loadModel("Customer");
+                $cst = $this->Customer->find("first",array(
+                    "conditions" => array(
+                        "Customer.id" => $x[0]['Order']['customer_id']
+                    ),
+                    "contain" => false
+                ));
+                //CakeLog::debug(print_r($cst,true));
+                if($cst['Customer']['cash_by_promo'] > 0){
+                    $v = $this->Customer->updateAll(array(
+                        "Customer.cash_by_promo" => "'".($cst['Customer']['cash_by_promo'] - $x[0]['Order']['price'])."'"
+                    ),array(
+                        "Customer.id" => $cst['Customer']['id']
+                    ));
+                    //CakeLog::debug(print_r($v,true));
+                    //CakeLog::debug(print_r($cst,true));
+                }
                 
                 
-                
+//                $promo = new PromoController();
+//                $promo->sendCashToReferal($x[0]['Order']['customer_id']);
                 
                 $this->set(array(
                     'data' => array(
@@ -189,6 +210,9 @@ class OrdersController extends AppController {
                 } catch (SocketException $e) {
                     debug($e);
                 }
+                
+//                $promo = new PromoController();
+//                $promo->sendCashToReferal($x[0]['Order']['customer_id']);
                 
                 
                 $this->set($x = array(
@@ -321,7 +345,45 @@ class OrdersController extends AppController {
         }
         return $this->redirect(array('action' => 'index'));
     }
+    
+    /**
+     * changepaymentstatus method
+     * 
+     * This change the status of Payment from Admin Panel
+     * @return void Description
+     */
+    public function changepaymentstatus($token = null){
+        $tmp = explode(",", $token);
+        $cId = $tmp[1];
+        $oId = $tmp[0];
+        $this->request->allowMethod('post', 'delete');
+        $order = $this->Order->find("first", array(
+           "conditions" => array(
+               "Order.id" => $oId 
+           )
+        ));
+        if($order['Order']['payment_status'] == "PENDING"){
+            $this->Order->updateAll(array(
+                "Order.payment_status" => "'PAID'"
+            ),array(
+                "Order.sku" => $order['Order']['sku']
+            ));
+            
+            App::uses("PromoController", "Controller");
+            $promo = new PromoController();
+            $promo->sendCashToReferal($order['Order']['customer_id']);
+        }else{
+            $this->Order->updateAll(array(
+                "Order.payment_status" => "'PENDING'"
+            ),array(
+                "Order.sku" => $order['Order']['sku']
+            ));
+        }
+        return $this->redirect(array('action' => 'index'));
+        
+    }
 
+    
     /**
      * admin_index method
      *
