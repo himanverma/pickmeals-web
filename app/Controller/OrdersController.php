@@ -116,8 +116,13 @@ class OrdersController extends AppController {
                 ));
                 //CakeLog::debug(print_r($cst,true));
                 if($cst['Customer']['cash_by_promo'] > 0){
+                    if($cst['Customer']['cash_by_promo'] - $x[0]['Order']['price'] <= 0){
+                        $cashAm = 0;
+                    }else{
+                        $cashAm = $cst['Customer']['cash_by_promo'] - $x[0]['Order']['price'];
+                    }
                     $v = $this->Customer->updateAll(array(
-                        "Customer.cash_by_promo" => "'".($cst['Customer']['cash_by_promo'] - $x[0]['Order']['price'])."'"
+                        "Customer.cash_by_promo" => "'".$cashAm."'"
                     ),array(
                         "Customer.id" => $cst['Customer']['id']
                     ));

@@ -207,10 +207,11 @@ class AppController extends Controller {
         $this->loadModel('Customer');
         $x = $this->Customer->find("all");
         foreach($x as $v){
-                if($v['Customer']['name'] == ""){
+                if(strlen($v['Customer']['name']) < 6){
                     $code = strtoupper($this->randomString(4)).$v['Customer']['id'];
                 }else{
-                    $code = strtoupper(substr($v['Customer']['name'], 0,4)).$v['Customer']['id'];
+                    $t2 = str_replace(" ", "", $v['Customer']['name']);
+                    $code = strtoupper(substr($t2, 0,4)).$v['Customer']['id'];
                 }
                 
                 $this->Customer->updateAll(array(
@@ -228,10 +229,11 @@ class AppController extends Controller {
             )
         ));
         foreach($x as $v){
-                if($v['Customer']['name'] == ""){
+                if(strlen($v['Customer']['name']) < 6){
                     $code = strtoupper($this->randomString(4)).$v['Customer']['id'];
                 }else{
-                    $code = strtoupper(substr($v['Customer']['name'], 0,4)).$v['Customer']['id'];
+                    $t2 = str_replace(" ", "", $v['Customer']['name']);
+                    $code = strtoupper(substr($t2, 0,4)).$v['Customer']['id'];
                 }
                 
                 $this->Customer->updateAll(array(
