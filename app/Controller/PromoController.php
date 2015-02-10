@@ -64,13 +64,25 @@ class PromoController extends AppController {
             ),
             "contain" => false
         ));
+        $cnt = $this->Customer->find("count", array(
+            "conditions" => array(
+                "Customer.deviceId" => $this->request->data['Customer']['deviceId'],
+                //"Customer.id" => $this->request->data['Customer']['id']
+            ),
+            "contain" => false
+        ));
         $referal = $this->Customer->find("first", array(
             "conditions" => array(
                 "Customer.my_promo_code" => $this->request->data['Customer']['code']
             ),
             "contain" => false
         ));
-        if (!empty($referal) && $me['Customer']['refered_by'] == null) {
+        if($cnt > 1){
+            $res = array(
+                "error" => 1,
+                "msg" => "You can't redeam promo code twice on the same device."
+            );
+        } elseif (!empty($referal) && $me['Customer']['refered_by'] == null) {
             // Add cash to me
             $this->Customer->updateAll(array(
                 "Customer.cash_by_promo" => "'" . ($me['Customer']['cash_by_promo'] + 50) . "'",
