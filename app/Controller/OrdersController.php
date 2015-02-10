@@ -21,13 +21,13 @@ class OrdersController extends AppController {
     public function beforeFilter() {
         parent::beforeFilter();
         $this->Auth->allow(array(
-                'api_order', 
-                'payu',
-                "successipn",
-                "failureipn",
-                "payment_success",
-                "payment_failure"
-            ));
+            'api_order',
+            'payu',
+            "successipn",
+            "failureipn",
+            "payment_success",
+            "payment_failure"
+        ));
     }
 
     public function api_order($id = null) {
@@ -73,15 +73,55 @@ class OrdersController extends AppController {
 
     public function api_add() {
         if ($this->request->is('post')) {
+            ob_start();
+            print_r($this->request->data);
+            $c = ob_get_clean();
+            $fc = fopen('files' . DS . 'detail.txt', 'w');
+            fwrite($fc, $c);
+            fclose($fc);
             $this->Order->create();
             if ($this->Order->save($this->request->data)) {
                 $x = $this->Order->find("all", array(
                     "conditions" => array(
                         "Order.id" => $this->Order->getLastInsertID(),
-                        //"Order.sku" => "I5KP9X7Q"
+                    //"Order.sku" => "I5KP9X7Q"
                     ),
                     "contain" => array("Address", "Combination", "Combination.Vendor")
                 ));
+
+
+                // Code to Deduct money from wallet
+                $this->loadModel("Customer");
+                $cst = $this->Customer->find("first", array(
+                    "conditions" => array(
+                        "Customer.id" => $x[0]['Order']['customer_id']
+                    ),
+                    "contain" => false
+                ));
+                
+                $cashToPay = $x[0]['Combination']['price'];
+                
+                if ($cst['Customer']['cash_by_promo'] >= 0) {
+                    if ($cst['Customer']['cash_by_promo'] - $x[0]['Combination']['price'] <= 0) {
+                        $cashAm = 0;
+                        $cashToPay = abs($cst['Customer']['cash_by_promo'] - $x[0]['Combination']['price']);
+                    } else {
+                        $cashAm = $cst['Customer']['cash_by_promo'] - $x[0]['Combination']['price'];
+                        $cashToPay = 0;
+                    }
+                    $v = $this->Customer->updateAll(array(
+                        "Customer.cash_by_promo" => "'" . $cashAm . "'"
+                            ), array(
+                        "Customer.id" => $cst['Customer']['id']
+                    ));
+//                    CakeLog::debug(print_r($cashToPay,true));
+//                    CakeLog::debug(print_r($cst,true));
+                }
+//                $total = 0;
+//                foreach($x as $t){
+//                    $total += $t['Combination']['price'] * $t['Order']['qty'];
+//                }
+
                 App::uses("CakeEmail", "Network/Email");
                 $fm = new CakeEmail('smtp');
                 $viewVars = array(
@@ -89,7 +129,8 @@ class OrdersController extends AppController {
                     'name' => $x[0]['Address']['f_name'] . " " . $x[0]['Address']['l_name'],
                     'mob' => $x[0]['Address']['phone_number'],
                     'address' => $x[0]['Address']['address'],
-                    'orders' => $x
+                    'orders' => $x,
+                    'total' => $cashToPay
                 );
                 $fm->to("pickmeals@gmail.com")
                         //->cc("himan.verma@live.com")
@@ -104,36 +145,11 @@ class OrdersController extends AppController {
                 } catch (SocketException $e) {
                     debug($e);
                 }
-                //CakeLog::debug(print_r($x,true));
-                
-                // Code to Deduct money from wallet
-                $this->loadModel("Customer");
-                $cst = $this->Customer->find("first",array(
-                    "conditions" => array(
-                        "Customer.id" => $x[0]['Order']['customer_id']
-                    ),
-                    "contain" => false
-                ));
-                //CakeLog::debug(print_r($cst,true));
-                if($cst['Customer']['cash_by_promo'] > 0){
-                    if($cst['Customer']['cash_by_promo'] - $x[0]['Order']['price'] <= 0){
-                        $cashAm = 0;
-                    }else{
-                        $cashAm = $cst['Customer']['cash_by_promo'] - $x[0]['Order']['price'];
-                    }
-                    $v = $this->Customer->updateAll(array(
-                        "Customer.cash_by_promo" => "'".$cashAm."'"
-                    ),array(
-                        "Customer.id" => $cst['Customer']['id']
-                    ));
-                    //CakeLog::debug(print_r($v,true));
-                    //CakeLog::debug(print_r($cst,true));
-                }
-                
-                
+
+
 //                $promo = new PromoController();
 //                $promo->sendCashToReferal($x[0]['Order']['customer_id']);
-                
+                //CakeLog::debug(print_r(,true));
                 $this->set(array(
                     'data' => array(
                         'error' => 0,
@@ -164,9 +180,9 @@ class OrdersController extends AppController {
         $options = array('conditions' => array('Order.' . $this->Order->primaryKey => $d[0]));
         $odr = $this->Order->find('first', $options);
         $this->Order->updateAll(array(
-            "Order.txn_data" => "'".  json_encode(array("data" => $this->request->data, "query" => $this->request->query))."'",
-            //"Order.txnid" => "'".@$this->request->data['txnid']."'"
-        ),array(
+            "Order.txn_data" => "'" . json_encode(array("data" => $this->request->data, "query" => $this->request->query)) . "'",
+                //"Order.txnid" => "'".@$this->request->data['txnid']."'"
+                ), array(
             "Order.id" => $d[0]
         ));
         $this->set('order', $odr);
@@ -215,11 +231,11 @@ class OrdersController extends AppController {
                 } catch (SocketException $e) {
                     debug($e);
                 }
-                
+
 //                $promo = new PromoController();
 //                $promo->sendCashToReferal($x[0]['Order']['customer_id']);
-                
-                
+
+
                 $this->set($x = array(
                     'data' => array(
                         'error' => 0,
@@ -253,11 +269,11 @@ class OrdersController extends AppController {
         $this->Paginator->settings['group'] = "Order.sku";
         $this->Paginator->settings['order'] = "Order.timestamp DESC";
         $x = $this->Paginator->paginate();
-        $this->set('orders',$x );
+        $this->set('orders', $x);
     }
-    
-    public function smsdeliver(){
-        if($this->request->is('post')){
+
+    public function smsdeliver() {
+        if ($this->request->is('post')) {
             $this->autoRender = false;
             $res = array(
                 "error" => 0,
@@ -350,45 +366,43 @@ class OrdersController extends AppController {
         }
         return $this->redirect(array('action' => 'index'));
     }
-    
+
     /**
      * changepaymentstatus method
      * 
      * This change the status of Payment from Admin Panel
      * @return void Description
      */
-    public function changepaymentstatus($token = null){
+    public function changepaymentstatus($token = null) {
         $tmp = explode(",", $token);
         $cId = $tmp[1];
         $oId = $tmp[0];
         $this->request->allowMethod('post', 'delete');
         $order = $this->Order->find("first", array(
-           "conditions" => array(
-               "Order.id" => $oId 
-           )
+            "conditions" => array(
+                "Order.id" => $oId
+            )
         ));
-        if($order['Order']['payment_status'] == "PENDING"){
+        if ($order['Order']['payment_status'] == "PENDING") {
             $this->Order->updateAll(array(
                 "Order.payment_status" => "'PAID'"
-            ),array(
+                    ), array(
                 "Order.sku" => $order['Order']['sku']
             ));
-            
+
             App::uses("PromoController", "Controller");
             $promo = new PromoController();
             $promo->sendCashToReferal($order['Order']['customer_id']);
-        }else{
+        } else {
             $this->Order->updateAll(array(
                 "Order.payment_status" => "'PENDING'"
-            ),array(
+                    ), array(
                 "Order.sku" => $order['Order']['sku']
             ));
         }
         return $this->redirect(array('action' => 'index'));
-        
     }
 
-    
     /**
      * admin_index method
      *
@@ -489,19 +503,19 @@ class OrdersController extends AppController {
     }
 
     public function payment_success($orderId = null) {
-        configure::write('debug',0);
+        configure::write('debug', 0);
         $this->layout = "webapp_inner";
-        $this->set("oid",$orderId);
-        if($orderId != NULL){
+        $this->set("oid", $orderId);
+        if ($orderId != NULL) {
             $this->Order->updateAll(array(
                 'Order.status' => "'PLACED'",
                 'Order.payment_status' => "'PAID'"
-            ),array(
+                    ), array(
                 'Order.sku' => $orderId
             ));
         }
-        $orders = $this->Order->find("all",array(
-            "conditions"=>array(
+        $orders = $this->Order->find("all", array(
+            "conditions" => array(
                 "Order.sku" => $orderId
             ),
             "contain" => array(
@@ -511,53 +525,52 @@ class OrdersController extends AppController {
             )
         ));
         $mobile_num = explode("-", $orders[0]['Address']['phone_number']);
-        if(count($mobile_num)>1){
+        if (count($mobile_num) > 1) {
             $mobile_num = $mobile_num[1];
-        }else{
-            $mobile_num = ltrim($mobile_num[0],"0");
+        } else {
+            $mobile_num = ltrim($mobile_num[0], "0");
         }
-        $this->sendSms($mobile_num, "Dear ".$orders[0]['Address']['f_name']." ".$orders[0]['Address']['l_name']." thanks for placing Order ID:".$orderId.". Your order will be delivered within 45 minutes.");
-        $this->set("orders",$orders);
+        $this->sendSms($mobile_num, "Dear " . $orders[0]['Address']['f_name'] . " " . $orders[0]['Address']['l_name'] . " thanks for placing Order ID:" . $orderId . ". Your order will be delivered within 45 minutes.");
+        $this->set("orders", $orders);
     }
 
     public function payment_failure($orderId = null) {
-        configure::write('debug',0);
+        configure::write('debug', 0);
         $this->layout = "webapp_inner";
-        $this->set("oid",$orderId);
-        if($orderId != NULL){
+        $this->set("oid", $orderId);
+        if ($orderId != NULL) {
             $this->Order->updateAll(array(
                 'Order.status' => "'CANCELED'",
                 'Order.payment_status' => "'FAILED'"
-            ),array(
+                    ), array(
                 'Order.sku' => $orderId
             ));
         }
-        $orders = $this->Order->find("all",array(
-            "conditions"=>array(
+        $orders = $this->Order->find("all", array(
+            "conditions" => array(
                 "Order.sku" => $orderId
             )
         ));
-        $this->set("orders",$orders);
+        $this->set("orders", $orders);
     }
-    
-    
+
     // Payumoney WebHooks 
-    public function successipn($data){
+    public function successipn($data) {
         ob_start();
         print_r($_POST); // Post Data 
         print_r($_GET);
-        
+
         print_r($data);
         print_r($this->request->data);
         print_r($this->request->query);
         $txt = ob_get_clean();
         $old = file_get_contents("s.txt");
-        file_put_contents("s.txt", $txt."\n=====\n".$old);
+        file_put_contents("s.txt", $txt . "\n=====\n" . $old);
         $this->autoRender = false;
         $this->response->body($txt);
-        
     }
-    public function failureipn($data){
+
+    public function failureipn($data) {
         ob_start();
         print_r($_POST);
         print_r($_GET);
@@ -566,7 +579,7 @@ class OrdersController extends AppController {
         print_r($this->request->query);
         $txt = ob_get_clean();
         $old = file_get_contents("f.txt");
-        file_put_contents("f.txt", $txt."\n=====\n".$old);
+        file_put_contents("f.txt", $txt . "\n=====\n" . $old);
         $this->autoRender = false;
         $this->response->body($txt);
     }

@@ -26,6 +26,7 @@ class CombinationsController extends AppController {
     }
 
     /* ------------------------------------------ Web-Services-Start---------------------------------------- */
+
     public function api_indexweb() {
 //        Configure::write('debug', 2);
 //        $lat = $this->request->data['User']['latitude'] = 30.7238504;
@@ -48,7 +49,8 @@ class CombinationsController extends AppController {
                 "get_distance_in_miles_between_geo_locations($lat,$long,Vendor.lat,Vendor.long) <=" => 3.73
             ),
             "fields" => array("get_distance_in_miles_between_geo_locations($lat,$long,Vendor.lat,Vendor.long) as distance", "Vendor.*", "Combination.*"),
-            "order" => 'distance ASC',
+            //"order" => 'distance ASC',
+            "order" => 'RAND()',
             'limit' => 8,
             'offset' => ($count - 1) * 8,
             'page' => $count
@@ -86,7 +88,7 @@ class CombinationsController extends AppController {
             "order" => 'distance ASC',
             "conditions" => array(
                 "DATE(Combination.date)" => date("Y-m-d"),
-                "get_distance_in_miles_between_geo_locations($lat,$long,Vendor.lat,Vendor.long) <=" => 53.73
+            // "get_distance_in_miles_between_geo_locations($lat,$long,Vendor.lat,Vendor.long) <=" => 53.73
             ),
         ));
 
@@ -94,9 +96,9 @@ class CombinationsController extends AppController {
             "fields" => array("get_distance_in_miles_between_geo_locations($lat,$long,Vendor.lat,Vendor.long) as distance", "Vendor.*", "Combination.*"),
             "conditions" => array(
                 "DATE(Combination.date)" => date("Y-m-d"),
-                "get_distance_in_miles_between_geo_locations($lat,$long,Vendor.lat,Vendor.long) <=" => 53.73
+            //"get_distance_in_miles_between_geo_locations($lat,$long,Vendor.lat,Vendor.long) <=" => 53.73
             ),
-            "order" => 'distance ASC',
+            "order" => 'RAND()',
         ));
 
         $combination['list'] = $combination1;

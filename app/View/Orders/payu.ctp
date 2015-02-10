@@ -60,14 +60,14 @@ if (empty($posted['hash']) && sizeof($posted) > 0) {
 <script>
     var hash = '<?php echo $hash ?>';
     function submitPayuForm() {
-      if(hash == '') {
-        return;
-      }
-      var payuForm = document.forms.payuForm;
-      payuForm.submit();
+        if (hash == '') {
+            return;
+        }
+        var payuForm = document.forms.payuForm;
+        payuForm.submit();
     }
-    
-    window.onload = function(){
+
+    window.onload = function() {
         document.forms['payuForm'].submit();
     }
 </script>
@@ -90,8 +90,8 @@ if (empty($posted['hash']) && sizeof($posted) > 0) {
 </style>
 <div class="payu1">
     <div class="payu2">
-            <img class="payu4" style="" src="<?php echo $this->Html->url('/img/ajax-loader.gif'); ?>">
-<!--        <h2 class="payu5">Please don't refresh Or click back !!!</h2>-->
+        <img class="payu4" style="" src="<?php echo $this->Html->url('/img/ajax-loader.gif'); ?>">
+        <!--        <h2 class="payu5">Please don't refresh Or click back !!!</h2>-->
     </div>
 </div>
 
@@ -111,19 +111,19 @@ if (empty($posted['hash']) && sizeof($posted) > 0) {
         </tr>
         <tr>
             <td>Amount: </td>
-            <td><input name="amount" value="<?php echo $order['Order']['price'] ?>" /></td>
+            <td><input name="amount" value="<?php echo $order['Order']['price'] - $order['Customer']['cash_by_promo'] ?>" /></td>
             <td>First Name: </td>
             <td><input name="firstname" id="firstname" value="<?php echo $order['Address']['f_name']; ?>" /></td>
         </tr>
         <tr>
             <td>Email: </td>
             <td><input name="email" id="email" value="<?php
-if ($order['Customer']['email']) {
-    echo $order['Customer']['email'];
-} else {
-    echo "ajay_p@avainfotech.com";
-}
-?>" /></td>
+                if ($order['Customer']['email']) {
+                    echo $order['Customer']['email'];
+                } else {
+                    echo "youemail@something.com";
+                }
+                ?>" /></td>
             <td>Phone: </td>
             <td><input name="phone" value="<?php echo $order['Address']['phone_number']; ?>" /></td>
         </tr>
@@ -191,9 +191,9 @@ if ($order['Customer']['email']) {
             <td><input name="pg" value="<?php echo (empty($posted['pg'])) ? '' : $posted['pg']; ?>" /></td>
         </tr>
         <tr>
-<?php // if(!$hash) {  ?>
+            <?php // if(!$hash) {  ?>
             <td colspan="4"><input type="submit" value="Submit" /></td>
-<?php // }  ?>
+            <?php // }  ?>
         </tr>
     </table>
 </form>
