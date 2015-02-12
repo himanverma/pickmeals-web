@@ -26,30 +26,57 @@ class AddressesController extends AppController {
         
         public function api_add(){
             if($this->request->is('post')){
-                if(AuthComponent::user('mobile_number') == null || AuthComponent::user('mobile_number') == ""){
+                $cst = $this->Customer->find("first", array(
+                    "Customer.id" => $this->request->data['Address']['customer_id']
+                ));
+                
+                
+                if($cst['Customer']['mobile_number'] == null || $cst['Customer']['mobile_number'] == ""){
                     $this->loadModel('Customer');
                     $this->Customer->updateAll(array(
                         "Customer.mobile_number" => "'".$this->request->data['Address']['phone_number']."'",
                     ), array(
-                        "Customer.id" => AuthComponent::user('id')
+                        "Customer.id" => $this->request->data['Address']['customer_id']
                     ));
                 }
-                if(AuthComponent::user('city') == null || AuthComponent::user('city') == ""){
+                if($cst['Customer']['city'] == null || $cst['Customer']['city'] == ""){
                     $this->loadModel('Customer');
                     $this->Customer->updateAll(array(
                         "Customer.city" => "'".$this->request->data['Address']['city']."'",
                     ), array(
-                        "Customer.id" => AuthComponent::user('id')
+                        "Customer.id" => $this->request->data['Address']['customer_id']
                     ));
                 }
-                if(AuthComponent::user('pin_code') == null || AuthComponent::user('pin_code') == ""){
+                if($cst['Customer']['pin_code'] == null || $cst['Customer']['pin_code'] == ""){
                     $this->loadModel('Customer');
                     $this->Customer->updateAll(array(
                         "Customer.pin_code" => "'".$this->request->data['Address']['zipcode']."'",
                     ), array(
-                        "Customer.id" => AuthComponent::user('id')
+                        "Customer.id" => $this->request->data['Address']['customer_id']
                     ));
                 }
+                
+                if($cst['Customer']['address'] == null || $cst['Customer']['address'] == ""){
+                    $this->loadModel('Customer');
+                    $this->Customer->updateAll(array(
+                        "Customer.address" => "'".$this->request->data['Address']['address']."'",
+                    ), array(
+                        "Customer.id" => $this->request->data['Address']['customer_id']
+                    ));
+                }
+                
+                if($cst['Customer']['name'] == null || $cst['Customer']['name'] == ""){
+                    $this->loadModel('Customer');
+                    $this->Customer->updateAll(array(
+                        "Customer.name" => "'".$this->request->data['Address']['f_name']." ".$this->request->data['Address']['f_name']."'",
+                    ), array(
+                        "Customer.id" => $this->request->data['Address']['customer_id']
+                    ));
+                    if($cst['Customer']['my_promo_code'] == null || $cst['Customer']['my_promo_code'] == ""){
+                        $this->generatePromo($this->request->data['Address']['customer_id']);
+                    }
+                }
+                
                 if($this->Address->save($this->request->data)){
                     $this->set(array(
                         'data' => array(

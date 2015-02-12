@@ -179,6 +179,7 @@ class AppController extends Controller {
     }
 
     public function updateRatings() {
+        Configure::write('debug', 0);
         $this->loadModel("Combination");
         $c = $this->Combination->find("all", array(
             "conditions" => array(

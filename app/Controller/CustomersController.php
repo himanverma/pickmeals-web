@@ -128,7 +128,7 @@ class CustomersController extends AppController {
                 '_serialize' => array('data')
             ));
         } else {
-            
+            $this->request->data['Customer']["registered_on"] = time();
             if ($this->Customer->save($this->request->data)) {
                 /* send this v_code to mail and sms for verification */
                 App::uses("AuthComponent", "Controller/Component");
@@ -217,6 +217,7 @@ class CustomersController extends AppController {
     public function add() {
         if ($this->request->is('post')) {
             $this->Customer->create();
+            $this->request->data['Customer']['registered_on'] = time();
             if ($this->Customer->save($this->request->data)) {
                 $this->Session->setFlash(__('The customer has been saved.'));
                 return $this->redirect(array('action' => 'index'));

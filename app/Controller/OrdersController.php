@@ -209,6 +209,48 @@ class OrdersController extends AppController {
                     ),
                     "contain" => array("Address", "Combination", "Combination.Vendor")
                 ));
+                
+                
+                $ttl = 0;
+                foreach($x as $rt){
+                    $ttl += $x[0]['Combination']['price'] * $x[0]['Combination']['qty'];
+                }
+                
+                
+                // Code to Deduct money from wallet
+                $this->loadModel("Customer");
+                $cst = $this->Customer->find("first", array(
+                    "conditions" => array(
+                        "Customer.id" => $x[0]['Order']['customer_id']
+                    ),
+                    "contain" => false
+                ));
+                
+                $cashToPay = $x[0]['Combination']['price'];
+                
+                if ($cst['Customer']['cash_by_promo'] >= 0) {
+                    if ($cst['Customer']['cash_by_promo'] - $ttl <= 0) {
+                        $cashAm = 0;
+                        $cashToPay = abs($cst['Customer']['cash_by_promo'] - $ttl);
+                    } else {
+                        $cashAm = $cst['Customer']['cash_by_promo'] - $ttl;
+                        $cashToPay = 0;
+                    }
+                    $v = $this->Customer->updateAll(array(
+                        "Customer.cash_by_promo" => "'" . $cashAm . "'"
+                            ), array(
+                        "Customer.id" => $cst['Customer']['id']
+                    ));
+//                    CakeLog::debug(print_r($cashToPay,true));
+//                    CakeLog::debug(print_r($cst,true));
+                }
+//                $total = 0;
+//                foreach($x as $t){
+//                    $total += $t['Combination']['price'] * $t['Order']['qty'];
+//                }
+                
+                
+                
                 App::uses("CakeEmail", "Network/Email");
                 $fm = new CakeEmail('smtp');
                 $viewVars = array(
@@ -216,7 +258,8 @@ class OrdersController extends AppController {
                     'name' => $x[0]['Address']['f_name'] . " " . $x[0]['Address']['l_name'],
                     'mob' => $x[0]['Address']['phone_number'],
                     'address' => $x[0]['Address']['address'],
-                    'orders' => $x
+                    'orders' => $x,
+                    'total' => $cashToPay
                 );
                 $fm->to("pickmeals@gmail.com")
                         ->cc("himan.verma@live.com")
@@ -509,7 +552,7 @@ class OrdersController extends AppController {
         if ($orderId != NULL) {
             $this->Order->updateAll(array(
                 'Order.status' => "'PLACED'",
-                'Order.payment_status' => "'PAID'"
+                'Order.payment_status' => "'PENDING'"
                     ), array(
                 'Order.sku' => $orderId
             ));

@@ -100,6 +100,7 @@ class WebappController extends AppController {
                         "password" => "pickm",
                         "address" => @$d['location']['name'],
                         "v_code" => "pickm",
+                        "registered_on" => time()
 //                      "fbid" => $d['id'],
 //                      "fbid" => $d['id'],
                     )

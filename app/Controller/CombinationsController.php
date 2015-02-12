@@ -77,27 +77,31 @@ class CombinationsController extends AppController {
     public function api_index() {
         Configure::write('debug', 0);
 //        Configure::write('debug', 2);
-//        $lat = $this->request->data['User']['latitude'] = 30.7238504;
-//        $long = $this->request->data['User']['longitude'] = 76.8465098;
+        $lat = $this->request->data['User']['latitude'] = 0.0;//30.7238504;
+        $long = $this->request->data['User']['longitude'] = 0.0;//76.8465098;
 //        $count = $this->request->data['User']['count'] = 1;
         $lat = $this->request->data['User']['latitude'];
         $long = $this->request->data['User']['longitude'];
+        if($lat == 0.0 || $long == 0.0){
+            $cnd = array(
+                "DATE(Combination.date)" => date("Y-m-d"),
+            );
+        }else{
+            $cnd = array(
+                "DATE(Combination.date)" => date("Y-m-d"),
+                "get_distance_in_miles_between_geo_locations($lat,$long,Vendor.lat,Vendor.long) <=" => 3.73
+            );
+        }
         $count = $this->request->data['User']['count'];
         $combination1 = $this->Combination->find('count', array(
             "fields" => array("get_distance_in_miles_between_geo_locations($lat,$long,Vendor.lat,Vendor.long) as distance", "Vendor.*", "Combination.*"),
             "order" => 'distance ASC',
-            "conditions" => array(
-                "DATE(Combination.date)" => date("Y-m-d"),
-            // "get_distance_in_miles_between_geo_locations($lat,$long,Vendor.lat,Vendor.long) <=" => 53.73
-            ),
+            "conditions" => $cnd,
         ));
 
         $combination['items'] = $this->Combination->find('all', array(
             "fields" => array("get_distance_in_miles_between_geo_locations($lat,$long,Vendor.lat,Vendor.long) as distance", "Vendor.*", "Combination.*"),
-            "conditions" => array(
-                "DATE(Combination.date)" => date("Y-m-d"),
-            //"get_distance_in_miles_between_geo_locations($lat,$long,Vendor.lat,Vendor.long) <=" => 53.73
-            ),
+            "conditions" => $cnd,
             "order" => 'RAND()',
         ));
 

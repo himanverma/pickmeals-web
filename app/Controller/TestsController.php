@@ -10,10 +10,12 @@ App::uses('AppController', 'Controller');
  * @property SessionComponent $Session
  * @property Customer $Customer Description
  * @property Combination $Combination Description
+ * @property PhpExcel $PhpExcel Description
  */
 class TestsController extends AppController {
 
-    public $components = array('Paginator', 'Session');
+    public $components = array('Paginator', 'Session', 'PhpExcel');
+    public $helpers = array('PhpExcel');
 
     public function beforeFilter() {
         parent::beforeFilter();
@@ -270,6 +272,101 @@ class TestsController extends AppController {
     public function size() {
         echo ini_get('post_max_size') . "<br>";
         echo ini_get('upload_max_filesize');
+        exit;
+    }
+
+    public function getxorder() {
+        
+        require '../Vendor/PhpExcel/PHPExcel.php';
+        define( 'PCLZIP_TEMPORARY_DIR', '../tmp/' );
+        PHPExcel_Settings::setZipClass(PHPExcel_Settings::PCLZIP);
+        $this->loadModel('Order');
+        $x = $this->Order->find("all",array(
+           "contain" =>  array(
+               "Address",
+               "Combination",
+               "Combination.Vendor"
+           ),
+           "order" => "Order.id DESC"
+        ));
+//        debug($x);
+//        exit;
+        // create new empty worksheet and set default font
+        $this->PhpExcel->createWorksheet()
+                ->setDefaultFont('Calibri', 12);
+        $this->PhpExcel->getSheet()->setTitle("Orders");
+        
+// define table cells
+        $table = array(
+            array('label' => __('ID'), 'filter' => true),
+            array('label' => __('ORDER_ID'), 'filter' => true),
+            array('label' => __('Vendor Name'), 'filter' => true),
+            array('label' => __('Combination (Dish)'), 'filter' => true),
+            array('label' => __('Essentials'), 'filter' => true),
+            array('label' => __('Price')),
+            array('label' => __('Quantity')),
+            array('label' => __('Customer ID'), 'filter' => true),
+            array('label' => __('Customer Name'), 'filter' => true),
+            array('label' => __('Contact No.'), 'width' => 20, 'wrap' => true),
+            array('label' => __('Payment Method')),
+            array('label' => __('Order @'), 'filter' => true),
+            array('label' => __('Delivery Address'), 'width' => 40, 'wrap' => true),
+            
+        );
+
+// add heading with different font and bold text
+        $this->PhpExcel->addTableHeader($table, array('name' => 'Cambria', 'bold' => true));
+        
+// add data
+        foreach ($x as $d) {
+            $this->PhpExcel->addTableRow(array(
+                $d['Order']['id'],
+                $d['Order']['sku'],
+                @$d['Combination']['Vendor']['name'],
+                $d['Order']['recipe_names'],
+                $d['Order']['essentials'],
+                $d['Combination']['price'],
+                $d['Order']['qty'],
+                $d['Order']['customer_id'],
+                $d['Address']['f_name']." ".$d['Address']['l_name'],
+                $d['Address']['phone_number'],
+                $d['Order']['paid_via'],
+                date("d-m-Y h:i A",$d['Order']['timestamp']),
+                $d['Address']['address'],
+            ));
+        }
+
+// close table and output
+        $file = $this->PhpExcel->addTableFooter();
+        
+        $this->PhpExcel->addSheet("Customers");
+        
+        $table = array(
+            array('label' => __('id'), 'filter' => true),
+            array('label' => __('Promo Code')),
+            array('label' => __('Name'), 'filter' => true),
+            array('label' => __('Mobile No.'), 'width' => 50, 'wrap' => true),
+            array('label' => __('Registered On'), 'filter' => true),
+            array('label' => __('Cash Promo'))
+        );
+        $this->PhpExcel->addTableHeader($table, array('name' => 'Cambria', 'bold' => true));
+        $this->loadModel('Customer');
+        $cst = $this->Customer->find('all');
+        foreach ($cst as $d) {
+            $this->PhpExcel->addTableRow(array(
+                $d['Customer']['id'],
+                $d['Customer']['my_promo_code'],
+                $d['Customer']['name'],
+                $d['Customer']['mobile_number'],
+                @date("d-m-Y h:i A",$d['Customer']['registered_on']),
+                "Rs. ".$d['Customer']['cash_by_promo'],
+                
+                
+            ));
+        }
+        
+        
+        $this->PhpExcel->output();
         exit;
     }
 
