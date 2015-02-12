@@ -90,14 +90,14 @@ echo json_encode($a);
         <div class="banner_in">
             <div class="video-text"><p>Making it Simple to eat Well<br><span>Hot Healthy Meals Delivered in 45 minutes</span></p>
                 <!--<span class="tx">View the menu and order lunch and dinner using our Android app.</span>-->
-                <div class="dwnld-buttons"><a href="https://play.google.com/store/apps/details?id=com.pickmeals"><?php echo $this->Html->image('../img/appstore-android.png');?></a>
-                
+                <div class="dwnld-buttons"><a href="https://play.google.com/store/apps/details?id=com.pickmeals"><?php echo $this->Html->image('../img/appstore-android.png'); ?></a>
+
                 </div>
-                
+
             </div>
-            
-            
-            
+
+
+
             <div data-ride="carousel" class="carousel slide" id="carousel-example-captions" style="visibility: hidden;">
                 <ol class="carousel-indicators">
                     <li class="" data-slide-to="0" data-target="#carousel-example-captions"></li>
@@ -298,8 +298,8 @@ echo json_encode($a);
                                                     <a href="#" data-bind="attr:{'href':'/chef/'+Vendor.name.replace(' ','-').toLowerCase()} ">
                                                         <span class="rateit" data-bind="attr:{'data-rateit-value':Combination.ratings, 'id':'rate-it-blk'+Combination.id}" data-rateit-ispreset="true" data-rateit-readonly="true"></span>&nbsp;&nbsp;&nbsp;&nbsp;(<!-- ko text: Review.length --><!-- /ko -->)
                                                     </a>
-                                                    
-                                                    
+
+
                                                     <div class="food_qty_button">
                                                         <button class="" data-bind="attr:{'id':Vendor.id},click: $root.addToCart">Order</button>
                                                     </div>
@@ -355,9 +355,9 @@ echo json_encode($a);
                     <div class="home-pagination" data-bind="visible:showLoadMore ">
                         <div class="pagination_main">
                             <ul class="pagination">
-                                
+
                                 <li data-bind="click:loadMore"><a href="javascript:void(0);" style="width: 100%; padding: 8px 0 !important;">Load More</a></li>
-                                
+
                             </ul>
                         </div>
                     </div>
@@ -448,8 +448,8 @@ echo json_encode($a);
             });
         });
         me.cartItems = ko.observableArray([]);
-        me.lat = 30.7238504;
-        me.lng = 76.8465098;
+        me.lat = 0.0;
+        me.lng = 0.0;
         me.page = 1;
         me.essentials = ko.observable('6 Roti');
         me.essentials.subscribe(function() {
@@ -493,9 +493,9 @@ echo json_encode($a);
                 "data[User][longitude]": m.lng,
                 "data[User][count]": m.page
             }, function(d) {
-                if(m.Combolist().length == d.data.list){
+                if (m.Combolist().length == d.data.list) {
                     m.showLoadMore(false);
-                }else{
+                } else {
                     m.showLoadMore(true);
                 }
                 for (i in d.data.items) {
@@ -505,7 +505,6 @@ echo json_encode($a);
                 me.isLoading(false);
             });
         };
-        me.getData();
         me.Search = function() {
             var m = me;
             me.isLoading(true);
@@ -536,9 +535,9 @@ echo json_encode($a);
                 "data[User][longitude]": m.lng,
                 "data[User][count]": m.page
             }, function(d) {
-                if(m.Combolist().length == d.data.list){
+                if (m.Combolist().length == d.data.list) {
                     m.showLoadMore(false);
-                }else{
+                } else {
                     m.showLoadMore(true);
                 }
                 if (d.data.items.length == 0) {
@@ -557,60 +556,74 @@ echo json_encode($a);
         };
         me.init = function() {
             var m = me;
-            navigator.geolocation.getCurrentPosition(function(e) {
-                m.lat = e.coords.latitude;
-                m.lng = e.coords.longitude;
-            });
+
+            if(navigator.geolocation){
+                navigator.geolocation.getCurrentPosition(function(e) {
+                    m.lat = e.coords.latitude;
+                    m.lng = e.coords.longitude;
+                    m.getData();
+                },function(){
+                    m.lat = 0;
+                    m.lng = 0;
+                    m.getData();
+                });
+            }else{
+                m.lat = 0;
+                m.lng = 0;
+                m.getData();
+            }
 
             //window.scrollMaxY;
             /*
-            window.scrollY;
-            $(window).on("scroll", function() {
-                if (m.isLoading() == true) {
-                    return false;
-                }
-                if ((document.documentElement.scrollHeight - document.documentElement.clientHeight) - window.scrollY < 100) {
-                    m.page += 1;
-                    m.isLoading(true);
-                    $.post('/api/combinations/indexweb.json', {
-                        "data[User][latitude]": m.lat,
-                        "data[User][longitude]": m.lng,
-                        "data[User][count]": m.page
-                    }, function(d) {
-                        if (d.data.items.length == 0) {
-                            m.page -= 1;
-                            m.isLoading(false);
-                            return false;
-                        } else {
-                            //if(d.data.items.length > showLoadMore)
-                            for (i in d.data.items) {
-                                d.data.items[i].essentials = m.essentials();
-                                m.Combolist.push(d.data.items[i]);
-                            }
-
-                        }
-                        m.isLoading(false);
-                    });
-                }
-            });
-            */
+             window.scrollY;
+             $(window).on("scroll", function() {
+             if (m.isLoading() == true) {
+             return false;
+             }
+             if ((document.documentElement.scrollHeight - document.documentElement.clientHeight) - window.scrollY < 100) {
+             m.page += 1;
+             m.isLoading(true);
+             $.post('/api/combinations/indexweb.json', {
+             "data[User][latitude]": m.lat,
+             "data[User][longitude]": m.lng,
+             "data[User][count]": m.page
+             }, function(d) {
+             if (d.data.items.length == 0) {
+             m.page -= 1;
+             m.isLoading(false);
+             return false;
+             } else {
+             //if(d.data.items.length > showLoadMore)
+             for (i in d.data.items) {
+             d.data.items[i].essentials = m.essentials();
+             m.Combolist.push(d.data.items[i]);
+             }
+             
+             }
+             m.isLoading(false);
+             });
+             }
+             });
+             */
         };
         me.init();
 
     };
 
+
+
     var CartVM = function() {
         var me = this;
         me.items = ko.observableArray([]);
         me.viewItems = ko.observable(false);
-        me.viewItemsClick = function(){
-            if(me.viewItems() == false){
+        me.viewItemsClick = function() {
+            if (me.viewItems() == false) {
                 me.viewItems(true);
                 $('.sidebar_order_list_main').slideDown();
-            }else{
+            } else {
                 me.viewItems(false);
                 $('.sidebar_order_list_main').slideUp();
-                
+
             }
         };
         me.subt = ko.computed(function() {
@@ -625,7 +638,7 @@ echo json_encode($a);
             localStorage.pickmealsCart = ko.mapping.toJSON(me.items);
         };
         me.pushToCart = function(item, qty, price) {
-            if($(window).width() < 720){
+            if ($(window).width() < 720) {
                 $('.sidebar_order_list_main').slideUp();
                 me.viewItems(false);
             }
@@ -677,11 +690,11 @@ echo json_encode($a);
 
 
         me.moveToCheckOut = function() {
-            if(typeof localStorage.pickmealsCart == 'undefined' || localStorage.pickmealsCart == "[]"){
+            if (typeof localStorage.pickmealsCart == 'undefined' || localStorage.pickmealsCart == "[]") {
                 alert("Please add combination to your cart...");
-            }else{
+            } else {
                 window.location = "/checkout";
-                
+
             }
         };
 
@@ -720,12 +733,13 @@ echo json_encode($a);
     CartObj = new CartVM();
     ComboObj = new CombinationVM();
     FilterObj = new FilterVM();
-
+   
+    
     $(document).ready(function() {
         ko.applyBindings(ComboObj, $('#combination-sec')[0]);
         ko.applyBindings(ComboObj, $('#srch-block')[0]);
         ko.applyBindings(ComboObj, $('#srch-blk-2')[0]);
-        
+
 
         ko.applyBindings(CartObj, $('#cart-sec')[0]);
         ko.applyBindings(FilterObj, $('#recipe-sec')[0]);

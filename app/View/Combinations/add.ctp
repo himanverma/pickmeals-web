@@ -23,7 +23,7 @@
                 ?>
             </div>
             <div class="form-group">
-                <?php echo $this->Form->input('price',array(
+                <?php echo $this->Form->input('vendor_cost',array(
                     'div' => FALSE,
                     'class' => 'form-control',
                     'placeholder' => ''

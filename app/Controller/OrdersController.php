@@ -213,7 +213,7 @@ class OrdersController extends AppController {
                 
                 $ttl = 0;
                 foreach($x as $rt){
-                    $ttl += $x[0]['Combination']['price'] * $x[0]['Combination']['qty'];
+                    $ttl += $rt['Combination']['price'] * $rt['Order']['qty'];
                 }
                 
                 

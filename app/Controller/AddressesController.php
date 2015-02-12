@@ -25,7 +25,9 @@ class AddressesController extends AppController {
         
         
         public function api_add(){
+            Configure::write('debug', 2);
             if($this->request->is('post')){
+                $this->loadModel('Customer');
                 $cst = $this->Customer->find("first", array(
                     "Customer.id" => $this->request->data['Address']['customer_id']
                 ));

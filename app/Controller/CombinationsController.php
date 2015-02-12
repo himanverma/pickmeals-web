@@ -35,22 +35,27 @@ class CombinationsController extends AppController {
         $lat = $this->request->data['User']['latitude'];
         $long = $this->request->data['User']['longitude'];
         $count = $this->request->data['User']['count'];
+        $cnd = array(
+                "DATE(Combination.date)" => date("Y-m-d"),
+                "get_distance_in_miles_between_geo_locations($lat,$long,Vendor.lat,Vendor.long) <=" => 13.73
+            );
+        if($lat == 0 || $long == 0){
+            $cnd = array(
+                "DATE(Combination.date)" => date("Y-m-d"),
+                //"get_distance_in_miles_between_geo_locations($lat,$long,Vendor.lat,Vendor.long) <=" => 3.73
+            );
+        }
+        
         $combination1 = $this->Combination->find('count', array(
             "fields" => array("get_distance_in_miles_between_geo_locations($lat,$long,Vendor.lat,Vendor.long) as distance", "Vendor.*", "Combination.*"),
-            //"order" => 'distance ASC',
-            "conditions" => array(
-                "DATE(Combination.date)" => date("Y-m-d"),
-                "get_distance_in_miles_between_geo_locations($lat,$long,Vendor.lat,Vendor.long) <=" => 3.73
-            )
+            "order" => 'Combination.id DESC',
+            "conditions" => $cnd
         ));
         $combination['items'] = $this->Combination->find('all', array(
-            "conditions" => array(
-                "DATE(Combination.date)" => date("Y-m-d"),
-                "get_distance_in_miles_between_geo_locations($lat,$long,Vendor.lat,Vendor.long) <=" => 3.73
-            ),
+            "conditions" => $cnd,
             "fields" => array("get_distance_in_miles_between_geo_locations($lat,$long,Vendor.lat,Vendor.long) as distance", "Vendor.*", "Combination.*"),
             //"order" => 'distance ASC',
-            "order" => 'RAND()',
+            "order" => 'Combination.id DESC',
             'limit' => 8,
             'offset' => ($count - 1) * 8,
             'page' => $count
@@ -286,6 +291,10 @@ class CombinationsController extends AppController {
         }
         exit;
     }
+    
+    private function roundUpToAny($n,$x=5) {
+        return (round($n)%$x === 0) ? round($n) : round(($n+$x/2)/$x)*$x;
+    }
 
     public function generate() {
         Configure::write('debug', 2);
@@ -322,6 +331,16 @@ class CombinationsController extends AppController {
                 $thali_pngs = $this->createThali($dishArr, 150);
                 $data['Combination']['image'] = $html->url("/" . $thali_pngs[0], true);
                 ///-------------Create Thali image end
+                
+                
+                //------------Vendor Cost and Price Logic starts
+                //vendor_cost
+                
+                $data['Combination']['price'] += $data['Combination']['vendor_cost'] + ($data['Combination']['vendor_cost'] * 20/100);
+                $data['Combination']['price'] = $this->roundUpToAny($data['Combination']['price']);
+                
+                
+                //------------Vendor Cost and Price Logic ends
 
                 $this->Combination->saveAssociated($data, array('deep' => true));
                 $this->loadModel('Review');

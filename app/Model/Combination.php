@@ -155,6 +155,11 @@ class Combination extends AppModel {
             if(isset($this->data[$this->alias]['vendor_id']) && isset($this->data[$this->alias]['display_name'])){
                 $this->data[$this->alias]['reviewkey'] = $this->data[$this->alias]['vendor_id'] ."_".$this->data[$this->alias]['display_name'];
             }
+            
+            if(isset($this->data[$this->alias]['vendor_cost']) && $this->data[$this->alias]['vendor_cost'] > 10){
+                $this->data[$this->alias]['price'] += $this->data[$this->alias]['vendor_cost'] + ($this->data[$this->alias]['vendor_cost'] * 20/100);
+                $this->data[$this->alias]['price'] = $this->roundUpToAny($this->data[$this->alias]['price']);
+            }
         }
         
         public function deleteAll($conditions, $cascade = true, $callbacks = false) {

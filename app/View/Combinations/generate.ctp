@@ -43,7 +43,7 @@
                             <tr>
                                 <td><input type="checkbox" data-bind="attr: { 'value': $index, 'id': 'checkBox-' + $index }, checked: $parent.setData" /></td>
                                 <td data-bind="text:Combination.display_name"></td>
-                                <td>Price: <input class="pull-right" type="text" value="0.00" data-bind="value:Combination.price" /></td>
+                                <td>Vendor Price: <input class="pull-right" type="text" value="0.00" data-bind="value:Combination.vendor_cost" /></td>
                             </tr>
                         </tbody>
                     </table>
@@ -104,7 +104,7 @@
                         vendor_id: me.vendor(),
                         //display_name: "FULL " + name,
                         display_name: name,
-                        price: ko.observable(0.00),
+                        vendor_cost: ko.observable(0.00),
                         CombinationItem: [
                             {
                                 recipe_id : p1.id,
@@ -131,7 +131,7 @@
                                 vendor_id: me.vendor(),
                                 //display_name: "HALF " + name + " + HALF " + name2,
                                 display_name: name + " + " + name2,
-                                price: ko.observable(0.00),
+                                vendor_cost: ko.observable(0.00),
                                 CombinationItem: [
                                     {
                                         recipe_id : p2.id,
