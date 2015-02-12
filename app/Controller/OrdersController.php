@@ -114,6 +114,13 @@ class OrdersController extends AppController {
                             ), array(
                         "Customer.id" => $cst['Customer']['id']
                     ));
+                    
+                    $this->Order->updateAll(array(
+                        "Order.discount_amount" => "'".$cst['Customer']['cash_by_promo']."'"
+                    ), array(
+                        "Order.sku" => $x[0]['Order']['sku']
+                    ));
+                    
 //                    CakeLog::debug(print_r($cashToPay,true));
 //                    CakeLog::debug(print_r($cst,true));
                 }
@@ -241,6 +248,13 @@ class OrdersController extends AppController {
                             ), array(
                         "Customer.id" => $cst['Customer']['id']
                     ));
+                    
+                    $this->Order->updateAll(array(
+                        "Order.discount_amount" => "'".$cst['Customer']['cash_by_promo']."'"
+                    ), array(
+                        "Order.sku" => $x[0]['Order']['sku']
+                    ));                    
+
 //                    CakeLog::debug(print_r($cashToPay,true));
 //                    CakeLog::debug(print_r($cst,true));
                 }

@@ -157,13 +157,17 @@ class Combination extends AppModel {
             }
             
             if(isset($this->data[$this->alias]['vendor_cost']) && $this->data[$this->alias]['vendor_cost'] > 10){
-                $this->data[$this->alias]['price'] += $this->data[$this->alias]['vendor_cost'] + ($this->data[$this->alias]['vendor_cost'] * 20/100);
+                $this->data[$this->alias]['price'] = $this->data[$this->alias]['vendor_cost'] + ($this->data[$this->alias]['vendor_cost'] * 20/100);
                 $this->data[$this->alias]['price'] = $this->roundUpToAny($this->data[$this->alias]['price']);
             }
         }
+        
+        
         private function roundUpToAny($n,$x=5) {
             return (round($n)%$x === 0) ? round($n) : round(($n+$x/2)/$x)*$x;
         }
+        
+        
         public function deleteAll($conditions, $cascade = true, $callbacks = false) {
             $x = $this->find("all",array(
                 "contain" => false,

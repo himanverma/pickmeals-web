@@ -1,6 +1,13 @@
 <div class="combinations index">
 	<h2><?php echo __('Combinations'); ?></h2>
-        <button id="deleteSelected">Delete Selected</button>
+        <div class="well">
+            <div class="btn-group">
+                <button class="btn btn-warning" id="hideSelected">Hide Selected</button>
+                <button class="btn btn-success" id="showSelected">Show Selected</button>
+                <button class="btn btn-danger" id="deleteSelected">Delete Selected</button>
+            </div>
+        </div>
+        
         <table cellpadding="0" class="table table-bordered" cellspacing="0">
 	<thead>
 	<tr>
@@ -19,7 +26,7 @@
 	</thead>
 	<tbody>
 	<?php foreach ($combinations as $combination): ?>
-	<tr>
+	<tr class="<?php echo $combination['Combination']['visible'] == 0 ? "bg-orange" : ""; ?>">
                  <td>
                     <input type="checkbox" class="deleteSel" name="ids[]" value="<?php echo h($combination['Combination']['id']); ?>" />
                 </td>
@@ -68,7 +75,24 @@
                window.location.reload();
             });
         });
-        
+        $("#hideSelected").on("click",function(){
+            var ids = [];
+            $('.deleteSel:checked').each(function(){
+               ids.push($(this).val()); 
+            });
+            $.post("/combinations/hideSelected",{"data[ids]":ids},function(d){
+               window.location.reload();
+            });
+        });
+        $("#showSelected").on("click",function(){
+            var ids = [];
+            $('.deleteSel:checked').each(function(){
+               ids.push($(this).val()); 
+            });
+            $.post("/combinations/showSelected",{"data[ids]":ids},function(d){
+               window.location.reload();
+            });
+        });
         
         $('#allChk').on("ifChanged",function(){
            if($(this).is(":checked")){

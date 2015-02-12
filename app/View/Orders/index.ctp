@@ -166,7 +166,7 @@
 N: <?php echo $order['Address']['f_name'] . " " . $order['Address']['l_name']; ?> 
 A: <?php echo $order['Address']['address']; ?> 
 O: <?php echo $order['Order']['sku']; ?> 
-<?php echo "Rs. ".$totalCost."/- " .$order['Order']['paid_via']; ?> 
+<?php echo "Rs. ".($totalCost - $order['Order']['discount_amount'] <= 0 ? 0 : $totalCost - $order['Order']['discount_amount'])."/- " .$order['Order']['paid_via']; ?> 
 <?php foreach($smsString as $sm){ ?>
 
 R: <?php echo $sm['R']; ?> 

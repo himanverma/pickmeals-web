@@ -36,11 +36,13 @@ class CombinationsController extends AppController {
         $long = $this->request->data['User']['longitude'];
         $count = $this->request->data['User']['count'];
         $cnd = array(
+                "Combination.visible" => 1,
                 "DATE(Combination.date)" => date("Y-m-d"),
                 "get_distance_in_miles_between_geo_locations($lat,$long,Vendor.lat,Vendor.long) <=" => 13.73
             );
         if($lat == 0 || $long == 0){
             $cnd = array(
+                "Combination.visible" => 1,
                 "DATE(Combination.date)" => date("Y-m-d"),
                 //"get_distance_in_miles_between_geo_locations($lat,$long,Vendor.lat,Vendor.long) <=" => 3.73
             );
@@ -89,10 +91,12 @@ class CombinationsController extends AppController {
         $long = $this->request->data['User']['longitude'];
         if($lat == 0.0 || $long == 0.0){
             $cnd = array(
+                "Combination.visible" => 1,
                 "DATE(Combination.date)" => date("Y-m-d"),
             );
         }else{
             $cnd = array(
+                "Combination.visible" => 1,
                 "DATE(Combination.date)" => date("Y-m-d"),
                 "get_distance_in_miles_between_geo_locations($lat,$long,Vendor.lat,Vendor.long) <=" => 3.73
             );
@@ -292,6 +296,30 @@ class CombinationsController extends AppController {
         exit;
     }
     
+    public function hideSelected() {
+        if ($this->request->is(array('ajax', 'post'))) {
+            $this->Combination->updateAll(array(
+                "Combination.visible" => 0
+            ), array(
+                "Combination.id" => $this->request->data['ids']
+            ));
+            echo 'done';
+        }
+        exit;
+    }
+    public function showSelected() {
+        if ($this->request->is(array('ajax', 'post'))) {
+            $this->Combination->updateAll(array(
+                "Combination.visible" => 1
+            ), array(
+                "Combination.id" => $this->request->data['ids']
+            ));
+            echo 'done';
+        }
+        exit;
+    }
+    
+    
     private function roundUpToAny($n,$x=5) {
         return (round($n)%$x === 0) ? round($n) : round(($n+$x/2)/$x)*$x;
     }
@@ -335,10 +363,6 @@ class CombinationsController extends AppController {
                 
                 //------------Vendor Cost and Price Logic starts
                 //vendor_cost
-                
-                $data['Combination']['price'] += $data['Combination']['vendor_cost'] + ($data['Combination']['vendor_cost'] * 20/100);
-                $data['Combination']['price'] = $this->roundUpToAny($data['Combination']['price']);
-                
                 
                 //------------Vendor Cost and Price Logic ends
 
