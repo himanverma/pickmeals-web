@@ -1,5 +1,5 @@
 <!--******************************************banner********************************************-->
-<div class="home-video">
+<div class="home-video" style="height: 565px;">
     <video id="pretzel-video" class="video-playing" poster="/story/1.jpg" autoplay="true" style="width: 100%; ">
         <source type="video/mp4" src="/story/NA.mp4"></source>
         <source type="video/webm" src="/story/NA.webm"></source>
@@ -87,7 +87,7 @@ echo json_encode($a);
 </div>
 <div class="banner hidden-xs" id="box1">
     <div class="container">
-        <div class="banner_in">
+        <div class="banner_in" style="height: 465px;">
             <div class="video-text"><p>Making it Simple to eat Well<br><span>Hot Healthy Meals Delivered in 45 minutes</span></p>
                 <!--<span class="tx">View the menu and order lunch and dinner using our Android app.</span>-->
                 <div class="dwnld-buttons"><a href="https://play.google.com/store/apps/details?id=com.pickmeals"><?php echo $this->Html->image('../img/appstore-android.png'); ?></a>
@@ -301,6 +301,7 @@ echo json_encode($a);
 
 
                                                     <div class="food_qty_button">
+                                                        <img src="" data-bind="attr:{'src': Vendor.company_logo}" style="width:52px;" />
                                                         <button class="" data-bind="attr:{'id':Vendor.id},click: $root.addToCart">Order</button>
                                                     </div>
                                                 </li>
@@ -314,13 +315,14 @@ echo json_encode($a);
                                 <div class="col-xs-2 hidden-xs">
                                     <div class="row">
                                         <div class="food_qty_button">
+                                            <img src="" data-bind="attr:{'src': Vendor.company_logo}" style="width:85px;" />
                                             <button class="" data-bind="attr:{'id':Vendor.id},click: $root.addToCart">Order</button>
                                         </div>
                                     </div>
                                 </div>
 
                                 <div style="height: 10px" class="clr-div"></div>
-                                <div class="col-xs-12 padding-none-1">
+<?php   /*                             <div class="col-xs-12 padding-none-1">
                                     <div class="box_price">
                                         <div class="padding-none">
                                             <div class="col-xs-4 col-sm-4 padding-none-2">
@@ -348,7 +350,7 @@ echo json_encode($a);
 
                                         </div> 
                                     </div> 
-                                </div> 
+                                </div> */?>
                             </div>
                         </div>
                     </div>
@@ -389,13 +391,15 @@ echo json_encode($a);
                                                 <div class="order_list_add">
                                                     <button class="badge1" data-bind="click: $root.increase">+</button>
                                                     <button class="badge1" data-bind="click: $root.decrease">-</button>
-                                                    <span class="pull-right">
+                                                    <?php /*<span class="pull-right">
                                                         <select data-bind="value:data.essentials,event:{'change':$root.updateEss}, ">
                                                             <option value="4 Roti + Half Rice">4 Roti + Half Rice</option>
                                                             <option value="6 Roti">6 Roti</option>
                                                             <option value="Full Rice">Full Rice</option>
                                                         </select>
                                                     </span>
+                                                     * 
+                                                     */?>
                                                 </div>
                                             </div>
                                         </div>
@@ -431,7 +435,24 @@ echo json_encode($a);
     <img src="<?php echo $this->Html->url('/img/ajax-loader.gif'); ?>">
 </div>
 <script type="text/javascript">
+function shuffle(array) {
+  var currentIndex = array.length, temporaryValue, randomIndex ;
 
+  // While there remain elements to shuffle...
+  while (0 !== currentIndex) {
+
+    // Pick a remaining element...
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex -= 1;
+
+    // And swap it with the current element.
+    temporaryValue = array[currentIndex];
+    array[currentIndex] = array[randomIndex];
+    array[randomIndex] = temporaryValue;
+  }
+
+  return array;
+}
 
     var CombinationVM = function() {
         var me = this;
@@ -451,10 +472,12 @@ echo json_encode($a);
         me.lat = 0.0;
         me.lng = 0.0;
         me.page = 1;
-        me.essentials = ko.observable('6 Roti');
+        me.essentials = ko.observable('');
+        //me.essentials = ko.observable('6 Roti');
         me.essentials.subscribe(function() {
 
         });
+        
 
         me.dynamicSrc = function(s) {
             if (me.essentials() == "4 Roti + Half Rice") {
@@ -501,7 +524,7 @@ echo json_encode($a);
                 for (i in d.data.items) {
                     d.data.items[i].essentials = m.essentials();
                 }
-                m.Combolist(d.data.items);
+                m.Combolist(shuffle(d.data.items));
                 me.isLoading(false);
             });
         };
@@ -514,7 +537,7 @@ echo json_encode($a);
                 for (i in d.data) {
                     d.data[i].essentials = m.essentials();
                 }
-                me.Combolist(d.data);
+                me.Combolist(shuffle(d.data));
                 m.isLoading(false);
             });
         };
@@ -767,7 +790,7 @@ echo json_encode($a);
                 if (500 < $(window).scrollTop()) {
                     xcsv = 200;
                     $('#nav1').css({position: 'fixed', 'top': '5px', width: '84.5%', 'z-index': 2, height: '30px'});
-                    $('#pretzel-video').parent().css({position: 'fixed', 'top': '-500px', 'z-index': 1});
+                    $('#pretzel-video').parent().css({position: 'fixed', 'top': '-'+(550 - $('#navbar-collapse-main').height())+'px', 'z-index': 1});
                 } else {
                     xcsv = 0;
                     $('#nav1').removeAttr('style').attr({style: 'z-index:2'});
@@ -783,11 +806,11 @@ echo json_encode($a);
                         marginTop: 0
                     });
                 }
-                //---- For top Header and video banner
+                //---- For top Header and video banner 
                 if (500 < $(window).scrollTop()) {
                     xcsv = 200;
                     $('#nav1').css({position: 'fixed', 'top': '5px', width: '84.5%', 'z-index': 2, height: '30px'});
-                    $('#pretzel-video').parent().css({position: 'fixed', 'top': '-500px', 'z-index': 1});
+                    $('#pretzel-video').parent().css({position: 'fixed', 'top': '-'+(550 - $('#navbar-collapse-main').height())+'px', 'z-index': 1});
                 } else {
                     xcsv = 0;
                     $('#nav1').removeAttr('style').attr({style: 'z-index:2'});

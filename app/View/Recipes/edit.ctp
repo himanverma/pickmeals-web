@@ -24,11 +24,24 @@
                         'div' => false,
                         'class' => 'form-control',
                         'placeholder' => '',
-                        'type' => 'file'
+                        'type' => 'file',
+                        'multiple'
                     ));
                     ?>
                 </div>
             </div>
+            <div class="col-md-12">
+                <div class="form-group">
+                    <?php
+                    echo $this->Form->input("is_thali", array(
+                        'div' => false,
+                        'class' => 'form-control',
+                        'placeholder' => ''
+                    ));
+                    ?>
+                </div>
+            </div>
+
             <div class="col-md-12">
                 <div class="form-group">
                     <?php

@@ -42,7 +42,9 @@
                         <tbody data-bind="foreach: generatedD">
                             <tr>
                                 <td><input type="checkbox" data-bind="attr: { 'value': $index, 'id': 'checkBox-' + $index }, checked: $parent.setData" /></td>
-                                <td data-bind="text:Combination.display_name"></td>
+                                <td>
+                                    <input type="text" data-bind="value:Combination.display_name" />
+                                </td>
                                 <td>Vendor Price: <input class="pull-right" type="text" value="0.00" data-bind="value:Combination.vendor_cost" /></td>
                             </tr>
                         </tbody>
@@ -86,10 +88,10 @@
             me.keyAr = [];
             var r = me.recipes();
             var r2 = me.recipes();
-            if (r.length < 2) {
-                alert("Please select at least two recipes...");
-                return false;
-            }
+//            if (r.length < 2) {
+//                alert("Please select at least two recipes...");
+//                return false;
+//            }
 
             me.generatedD([]);
             for (i in r) {
@@ -109,7 +111,8 @@
                             {
                                 recipe_id : p1.id,
                                 name_to_display:p1.recipe_name,
-                                image: p1.image
+                                image: p1.image,
+                                is_thali:p1.is_thali
                             }
                             
                         ]
@@ -136,12 +139,14 @@
                                     {
                                         recipe_id : p2.id,
                                         name_to_display:p2.recipe_name,
-                                        image: p2.image
+                                        image: p2.image,
+                                        is_thali:p2.is_thali
                                     },
                                     {
                                         recipe_id : p3.id,
                                         name_to_display:p3.recipe_name,
-                                        image: p3.image
+                                        image: p3.image,
+                                        is_thali:p3.is_thali
                                     }
                                     
                                 ]

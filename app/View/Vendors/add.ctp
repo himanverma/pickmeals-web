@@ -1,7 +1,7 @@
 <?php echo $this->Form->create('Vendor', array('type' => 'file')); ?>
 <div class="box box-primary">
     <div class="box-header">
-        <h3 class="box-title">Add New Recipe</h3>
+        <h3 class="box-title">Add New Vendor</h3>
     </div>
     <div class="box-body">
         <div class="row">

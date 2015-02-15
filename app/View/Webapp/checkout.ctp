@@ -122,11 +122,13 @@
                                         <button class="badge1" data-bind="click: $root.increase">+</button>
                                         <button class="badge1" data-bind="click: $root.decrease">-</button>
                                         <span class="pull-right">
-                                            <select data-bind="value:data.essentials,event:{'change':$root.updateEss}, ">
+                                            <?php /*<select data-bind="value:data.essentials,event:{'change':$root.updateEss}, ">
                                                 <option value="4 Roti + Half Rice">4 Roti + Half Rice</option>
                                                 <option value="6 Roti">6 Roti</option>
                                                 <option value="Full Rice">Full Rice</option>
                                             </select>
+                                             * 
+                                             */?>
                                         </span>
                                     </div>
                                 </div>

@@ -50,7 +50,7 @@ class CombinationsController extends AppController {
         
         $combination1 = $this->Combination->find('count', array(
             "fields" => array("get_distance_in_miles_between_geo_locations($lat,$long,Vendor.lat,Vendor.long) as distance", "Vendor.*", "Combination.*"),
-            "order" => 'Combination.id DESC',
+            //"order" => 'Combination.id DESC',
             "conditions" => $cnd
         ));
         $combination['items'] = $this->Combination->find('all', array(
@@ -347,17 +347,21 @@ class CombinationsController extends AppController {
             $html = new HtmlHelper(new View());
             foreach ($this->request->data as $data) {
                 ///-------------Create Thali image start
+                $is_thali = true;
                 $dishArr = array();
                 foreach ($data['Combination']['CombinationItem'] as $v) {
                     $dishArr[] = ltrim($v['image'], 'https://www.pickmeals.com/');
+                    if($v['is_thali'] == 'false'){
+                        $is_thali = false;
+                    }
                 }
-
+                
                 if (count($dishArr) == 1) {      //for same dish in both 2 bowls
                     $dishArr[] = $dishArr[0];
                 }
 
-                $thali_pngs = $this->createThali($dishArr, 150);
-                $data['Combination']['image'] = $html->url("/" . $thali_pngs[0], true);
+                $thali_pngs = $this->createThali($dishArr, $is_thali , 150);
+                $data['Combination']['image'] = $html->url("/" . $thali_pngs[2], true);
                 ///-------------Create Thali image end
                 
                 
@@ -389,7 +393,7 @@ class CombinationsController extends AppController {
         }
     }
 
-    public function createThali($dishArray = array(), $w = 140, $h = 0) {
+    public function createThali($dishArray = array(),$is_thali, $w = 140, $h = 0) {
         Configure::write('debug', 2);
         ini_set("max_execution_time", -1);
 
@@ -413,22 +417,26 @@ class CombinationsController extends AppController {
 
             $dish->scaleimage($thali1->getimagewidth(), $thali1->getimageheight()); // Set As per bowl image
 
-            if ($mask_cnt == 1) {
-                $dish->rotateimage("#fff", 180);
+            
+            if($is_thali){
+                if ($mask_cnt == 1) {
+                    $dish->rotateimage("#fff", 180);
+                }
+                $dish->compositeimage(new Imagick("tmpl/img/thali-mask" . ($mask_cnt + 2) . ".png"), \Imagick::COMPOSITE_COPYOPACITY, 0, 0, Imagick::CHANNEL_ALPHA);
+                $dish->mergeimagelayers(Imagick::LAYERMETHOD_COALESCE);
+
+                $thali1->compositeimage($dish, \Imagick::COMPOSITE_ATOP, 0, 0, Imagick::CHANNEL_ALPHA);
+                $thali1->mergeimagelayers(Imagick::LAYERMETHOD_COALESCE);
+
+                $thali2->compositeimage($dish, \Imagick::COMPOSITE_ATOP, 0, 0, Imagick::CHANNEL_ALPHA);
+                $thali2->mergeimagelayers(Imagick::LAYERMETHOD_COALESCE);
+
+                $thali3->compositeimage($dish, \Imagick::COMPOSITE_ATOP, 0, 0, Imagick::CHANNEL_ALPHA);
+                $thali3->mergeimagelayers(Imagick::LAYERMETHOD_COALESCE);
+                
+            }else{
+                $thali3 = $dish;
             }
-
-            $dish->compositeimage(new Imagick("tmpl/img/thali-mask" . ($mask_cnt + 2) . ".png"), \Imagick::COMPOSITE_COPYOPACITY, 0, 0, Imagick::CHANNEL_ALPHA);
-            $dish->mergeimagelayers(Imagick::LAYERMETHOD_COALESCE);
-
-            $thali1->compositeimage($dish, \Imagick::COMPOSITE_ATOP, 0, 0, Imagick::CHANNEL_ALPHA);
-            $thali1->mergeimagelayers(Imagick::LAYERMETHOD_COALESCE);
-
-            $thali2->compositeimage($dish, \Imagick::COMPOSITE_ATOP, 0, 0, Imagick::CHANNEL_ALPHA);
-            $thali2->mergeimagelayers(Imagick::LAYERMETHOD_COALESCE);
-
-            $thali3->compositeimage($dish, \Imagick::COMPOSITE_ATOP, 0, 0, Imagick::CHANNEL_ALPHA);
-            $thali3->mergeimagelayers(Imagick::LAYERMETHOD_COALESCE);
-
 
 
             $mask_cnt++;
@@ -440,13 +448,17 @@ class CombinationsController extends AppController {
         $thali1->setimageformat("jpg");
         $thali1->setImageFileName($result_urls[] = $url . "-0" . $url_end);
         $thali1->scaleimage($w, $h);
-        $thali1->writeimage();
+        if($is_thali){
+            $thali2->writeimage();
+        }
         $thali1->destroy();
 
         $thali2->setimageformat("jpg");
         $thali2->setImageFileName($result_urls[] = $url . "-1" . $url_end);
         $thali2->scaleimage($w, $h);
-        $thali2->writeimage();
+        if($is_thali){
+            $thali2->writeimage();
+        }
         $thali2->destroy();
 
         $thali3->setimageformat("jpg");
