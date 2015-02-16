@@ -32,7 +32,7 @@ class CustomersController extends AppController {
                 exit;
             }
         }
-    }
+    } 
 
     public function api_index() {
         $customers = $this->Customer->find('all');

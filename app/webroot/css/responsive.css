@@ -39,6 +39,8 @@
         width: 100%;
     }
  .home_content {margin: -30px 0 0;}
+ .food_qty_button > img {width: 100% !important;}
+.food_qty_button button { width: 100% !important; margin: 0px !important;}
 
 }
 
@@ -940,6 +942,8 @@
 .my_account_detaill_rating {width: 80% !important;}
 
 .footer_top_box iframe{width: 225px;}
+.food_qty_button > img {width: 100% !important;}
+.food_qty_button button { width: 100% !important; margin: 0px !important;}
 }
 
 

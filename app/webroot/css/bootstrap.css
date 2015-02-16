@@ -1109,6 +1109,8 @@ p {
   line-height: 1.4;
 }
 @media (min-width: 768px) {
+   .food_qty_button img { width: 100% !important;}
+    .food_qty_button button { width: 100% !important; margin:0px !important;}
   .lead {
     font-size: 21px;
   }
