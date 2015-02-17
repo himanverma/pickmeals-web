@@ -90,6 +90,7 @@
                                 <button data-combo='<?php echo json_encode($combo); ?>' data-bind="click:addToCart">Order</button>
                             </div> </div>
                         </div>
+                        <?php /*
                         <div style="height: 10px" class="clr-div"></div>
                         <div class="col-xs-12 padding-none-1">
                             <div class="box_price">
@@ -119,6 +120,9 @@
                                 </div>
                             </div>
                         </div>
+                         * 
+                         */
+                        ?>
                     </div>
                 <?php } ?>
             </div>
@@ -151,6 +155,7 @@
                                     <div class="order_list_add">
                                         <button class="badge1" data-bind="click: $root.increase">+</button>
                                         <button class="badge1" data-bind="click: $root.decrease">-</button>
+                                        <?php /*
                                         <span class="pull-right">
                                             <select data-bind="value:data.essentials,event:{'change':$root.updateEss}, ">
                                                 <option value="4 Roti + Half Rice">4 Roti + Half Rice</option>
@@ -158,6 +163,9 @@
                                                 <option value="Full Rice">Full Rice</option>
                                             </select>
                                         </span>
+                                         * 
+                                         */
+                                        ?>
                                     </div>
                                 </div>
                             </div>
@@ -203,7 +211,7 @@
             }
             return s;
         };
-        me.essentials = ko.observable('6 Roti');
+        me.essentials = ko.observable('');
         me.addToCart = function(d,e){
             var data = $(e.currentTarget).data('combo');
             delete data.Review;

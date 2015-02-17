@@ -120,6 +120,8 @@ class Recipe extends AppModel {
             }
             $this->data[$this->alias]['image'] = $html->url("/".$dt, true);
             $this->data[$this->alias]['image_bowl'] = $html->url("/".$destination2, true);
+        }else{
+            unset($this->data[$this->alias]['image']);
         }
         parent::beforeSave($options);
         return true;

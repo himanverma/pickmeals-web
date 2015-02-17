@@ -580,7 +580,7 @@ function shuffle(array) {
         me.init = function() {
             var m = me;
 
-            if(navigator.geolocation){
+            if(navigator.geolocation  && true == false){
                 navigator.geolocation.getCurrentPosition(function(e) {
                     m.lat = e.coords.latitude;
                     m.lng = e.coords.longitude;
@@ -591,6 +591,7 @@ function shuffle(array) {
                     m.getData();
                 });
             }else{
+                console.log("GeoLocation not active on code...");
                 m.lat = 0;
                 m.lng = 0;
                 m.getData();

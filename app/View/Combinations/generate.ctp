@@ -26,6 +26,7 @@
                         'div' => false,
                         'options' => array(),
                         'class' => 'form-control',
+                        'style' => 'height: 490px;',
                         'placeholder' => 'Enter Username',
                         'multiple' => 'multiple',
                         'data-bind' => "selectedOptions:recipes, options: dataR, optionsText: 'recipe_name', optionsValue: 'id'"

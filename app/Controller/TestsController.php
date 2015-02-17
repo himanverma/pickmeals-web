@@ -19,7 +19,7 @@ class TestsController extends AppController {
 
     public function beforeFilter() {
         parent::beforeFilter();
-        $this->Auth->allow(array('index', 'mail', 'genpass', 'updatereviewkey', 'createThali', 'renderThali'));
+        $this->Auth->allow(array('index', 'mail', 'genpass', 'updatereviewkey', 'createThali', 'renderThali', 'update_profiles'));
     }
 
     public function index() {
@@ -375,6 +375,32 @@ class TestsController extends AppController {
         
         $this->PhpExcel->output();
         exit;
+    }
+    public function updatep(){
+        $this->loadModel('Customer');
+        $this->loadModel('Address');
+        $cst = $this->Customer->find("all",array(
+           "conditions" => array(
+               "Customer.name" => array(""," ")
+           ),
+            "contain" => false
+        ));
+        foreach($cst as $c){
+            $add = $this->Address->find("first",array(
+                "conditions" => array(
+                    "Address.customer_id" => $c['Customer']['id']
+                ),
+                "order" => "Address.id DESC",
+                "contain" => false
+            ));
+            $this->Customer->updateAll(array(
+                "Customer.name" => "'".  ucwords($add['Address']['f_name']." ".$add['Address']['l_name'])."'",
+            ), array(
+                "Customer.id" => $c['Customer']['id']
+            ));
+        }
+        exit;
+        
     }
 
 }

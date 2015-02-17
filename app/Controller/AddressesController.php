@@ -74,7 +74,7 @@ class AddressesController extends AppController {
                     ));
                 }
                 
-                if($cst['Customer']['name'] == null || $cst['Customer']['name'] == ""){
+//                if($cst['Customer']['name'] == null || $cst['Customer']['name'] == ""){
                     $this->loadModel('Customer');
                     $this->Customer->updateAll(array(
                         "Customer.name" => "'".$this->request->data['Address']['f_name']." ".$this->request->data['Address']['f_name']."'",
@@ -84,7 +84,7 @@ class AddressesController extends AppController {
                     if($cst['Customer']['my_promo_code'] == null || $cst['Customer']['my_promo_code'] == ""){
                         $this->generatePromo($this->request->data['Address']['customer_id']);
                     }
-                }
+//                }
                 
                 if($this->Address->save($this->request->data)){
                     $this->set(array(

@@ -165,6 +165,7 @@ class OrdersController extends AppController {
                     ),
                     '_serialize' => array('data')
                 ));
+                $this->sendSms($x[0]['Address']['phone_number'], "Dear " . $x[0]['Address']['f_name'] . " " . $x[0]['Address']['l_name'] . " Thanks for placing Order ID:" . $x[0]['Order']['sku'] . ". Your order (".$x[0]['Order']['recipe_names'].") will be delivered within 45 minutes.");
             } else {
                 $this->set(array(
                     'data' => array(
@@ -587,7 +588,12 @@ class OrdersController extends AppController {
         } else {
             $mobile_num = ltrim($mobile_num[0], "0");
         }
-        $this->sendSms($mobile_num, "Dear " . $orders[0]['Address']['f_name'] . " " . $orders[0]['Address']['l_name'] . " thanks for placing Order ID:" . $orderId . ". Your order will be delivered within 45 minutes.");
+        $odrTxt = "";
+        foreach ($orders as $es){
+            $odrTxt .= $es['Order']['recipe_names'].", ";
+        }
+        $odrTxt = rtrim($odrTxt,", ");
+        $this->sendSms($mobile_num, "Dear " . $orders[0]['Address']['f_name'] . " " . $orders[0]['Address']['l_name'] . " Thanks for placing Order ID:" . $orderId . ". Your order (".$odrTxt.") will be delivered within 45 minutes.");
         $this->set("orders", $orders);
     }
 
