@@ -31,6 +31,8 @@
                         <li><?php echo $this->Form->input("city", array('div' => false, 'label' => false, 'data-bind' => "value:city")); ?></li>
                         <li><label>Zipcode</label></li>
                         <li><?php echo $this->Form->input("zipcode", array('div' => false, 'label' => false, 'data-bind' => "value:zip, validationElement: zip")); ?></li>
+                        <li><label>Email ID.</label></li>
+                        <li><?php echo $this->Form->input("email", array('div' => false, 'type'=>'text', 'label' => false, 'data-bind' => "value:email, validationElement: email")); ?></li>
                         <li><label>Phone No.</label></li>
                         <li><?php echo $this->Form->input("phone_number", array('div' => false, 'label' => false, 'data-bind' => "value:phone, validationElement: phone")); ?></li>
                         <?php
@@ -284,6 +286,10 @@
                                                         digits: {message: 'Please fill only numbers.'}
                                                         //                     minLength: {params: 10, message: "Mobile Number must be at least 10 digit long"},
                                                         //                     maxLength: {params: 10, message: "Mobile Number should not more than 10 digits"}
+                                                    });
+                                                    me.email = ko.observable('<?php echo $me['email'] ?>').extend({
+                                                        required: {message: 'Please fill your Email ID.'},
+                                                        email: {message: 'Please enter a valid Email ID.'},
                                                     });
                                                     me.phone = ko.observable('<?php echo $me['mobile_number'] ?>').extend({
                                                         required: {message: 'Please fill your 10 digit mobile number.'},

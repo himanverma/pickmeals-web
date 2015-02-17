@@ -27,6 +27,7 @@
         <!-- /.search form -->
         <!-- sidebar menu: : style can be found in sidebar.less -->
         <ul class="sidebar-menu">
+             
             <li class="treeview">
                 <a href="#">
                     <i class="fa fa-dashboard"></i>
@@ -113,42 +114,15 @@
                 </ul>
             </li>
             
-            
-            <li class="treeview">
-                <a href="#">
-                    <i class="fa fa-folder"></i>
-                    <span>Days</span>
-                    <!--<small class="badge pull-right bg-green">new</small>-->
-                    <i class="fa fa-angle-left pull-right"></i>
+            <li>
+                <a href="/AppVersions/edit/1">
+                    <i class="fa fa-dashboard"></i>
+                    <span>AppVersion</span>
+                    <small class="badge pull-right bg-green">new</small>
                 </a>
-                <ul class="treeview-menu">
-                    <li><a href="<?php echo $this->Html->url('/vendor_days/');?>"><i class="fa fa-angle-double-right"></i> List All</a></li>
-                    <li><a href="<?php echo $this->Html->url('/vendor_days/add');?>"><i class="fa fa-angle-double-right"></i> Add New</a></li>
-                </ul>
             </li>
             
-                        
-            <li  class="treeview">
-                <a href="">
-                    <i class="fa fa-th"></i> <span>Coupons Management</span>
-                    <i class="fa fa-angle-left pull-right"></i>
-                </a>
-                <ul class="treeview-menu">
-                    <li><a href="<?php echo $this->Html->url('/admin/coupons');?>"><i class="fa fa-angle-double-right"></i> List All</a></li>
-                    <li><a href="<?php echo $this->Html->url('/admin/coupons/add');?>"><i class="fa fa-angle-double-right"></i> Add New</a></li>
-                </ul>
-            </li>
             
-            <li  class="treeview">
-                <a href="">
-                    <i class="fa fa-th"></i> <span>Mail-Templates</span>
-                    <i class="fa fa-angle-left pull-right"></i>
-                </a>
-                <ul class="treeview-menu">
-                    <li><a href="<?php echo $this->Html->url('/admin/mailtemplates');?>"><i class="fa fa-angle-double-right"></i> List All</a></li>
-                    <li><a href="<?php echo $this->Html->url('/admin/mailtemplates/add');?>"><i class="fa fa-angle-double-right"></i> Add New</a></li>
-                </ul>
-            </li>
         </ul>
     </section>
     <!-- /.sidebar -->

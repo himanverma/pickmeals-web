@@ -45,7 +45,8 @@ class WebappController extends AppController {
                 $this->Customer->save(array(
                     'Customer' => array(
                         'mobile_number' => $this->request->data['Customer']['mobile_number'],
-                        'password' => $pass
+                        'password' => $pass,
+                        "registered_on" => time()
                     )
                 ));
                 $this->sendSms($this->request->data['Customer']['mobile_number'], "Your pickmeals.com password is " . $pass);

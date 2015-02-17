@@ -298,18 +298,19 @@ class TestsController extends AppController {
         
 // define table cells
         $table = array(
-            array('label' => __('ID'), 'filter' => true),
-            array('label' => __('ORDER_ID'), 'filter' => true),
             array('label' => __('Vendor Name'), 'filter' => true),
             array('label' => __('Combination (Dish)'), 'filter' => true),
             array('label' => __('Essentials'), 'filter' => true),
             array('label' => __('Price')),
+            array('label' => __('Paid Amount')),
             array('label' => __('Quantity')),
             array('label' => __('Customer ID'), 'filter' => true),
             array('label' => __('Customer Name'), 'filter' => true),
             array('label' => __('Contact No.'), 'width' => 20, 'wrap' => true),
             array('label' => __('Payment Method')),
             array('label' => __('Order @'), 'filter' => true),
+            array('label' => __('ID'), 'filter' => true),
+            array('label' => __('ORDER_ID'), 'filter' => true),
             array('label' => __('Delivery Address'), 'width' => 40, 'wrap' => true),
             
         );
@@ -320,18 +321,19 @@ class TestsController extends AppController {
 // add data
         foreach ($x as $d) {
             $this->PhpExcel->addTableRow(array(
-                $d['Order']['id'],
-                $d['Order']['sku'],
                 @$d['Combination']['Vendor']['name'],
                 $d['Order']['recipe_names'],
                 $d['Order']['essentials'],
                 $d['Combination']['price'],
+                ($d['Order']['discount_amount']>=$d['Combination']['price']) ? 0.00 : abs($d['Order']['discount_amount'] - $d['Combination']['price']) ,
                 $d['Order']['qty'],
                 $d['Order']['customer_id'],
                 $d['Address']['f_name']." ".$d['Address']['l_name'],
                 $d['Address']['phone_number'],
                 $d['Order']['paid_via'],
                 date("d-m-Y h:i A",$d['Order']['timestamp']),
+                $d['Order']['id'],
+                $d['Order']['sku'],
                 $d['Address']['address'],
             ));
         }
@@ -347,12 +349,18 @@ class TestsController extends AppController {
             array('label' => __('Name'), 'filter' => true),
             array('label' => __('Mobile No.'), 'width' => 50, 'wrap' => true),
             array('label' => __('Registered On'), 'filter' => true),
-            array('label' => __('Cash Promo'))
+            array('label' => __('Cash Promo')),
+            array('label' => __('Total Orders'))
         );
         $this->PhpExcel->addTableHeader($table, array('name' => 'Cambria', 'bold' => true));
         $this->loadModel('Customer');
         $cst = $this->Customer->find('all');
         foreach ($cst as $d) {
+            $c = $this->Order->find("count",array(
+                "conditions" => array(
+                    "Order.customer_id" => $d['Customer']['id']
+                )
+            ));
             $this->PhpExcel->addTableRow(array(
                 $d['Customer']['id'],
                 $d['Customer']['my_promo_code'],
@@ -360,8 +368,7 @@ class TestsController extends AppController {
                 $d['Customer']['mobile_number'],
                 @date("d-m-Y h:i A",$d['Customer']['registered_on']),
                 "Rs. ".$d['Customer']['cash_by_promo'],
-                
-                
+                $c
             ));
         }
         
