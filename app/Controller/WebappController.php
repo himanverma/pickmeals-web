@@ -29,6 +29,9 @@ class WebappController extends AppController {
     public function home() {
         $this->layout = "webapp";
     }
+    public function dev() {
+        $this->layout = "webapp";
+    }
 
     public function checklogin() {
         if ($this->request->is(array('ajax', 'post'))) {

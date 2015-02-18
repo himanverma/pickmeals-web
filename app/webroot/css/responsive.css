@@ -682,7 +682,6 @@
 }
 
 
-
 @media screen and (max-width: 768px){
 
     nav {top: 4px !important; height: 20px; z-index:999 !important;}
@@ -705,9 +704,9 @@
     video { display: none; }
     .navbar-header button{float: left;}
     .navbar-brand{display: none;}
-    .list_box_left img {border: 1px solid #d9d9d9;}
+  
     padding-none{padding: 0;}
-    .trans-btns {margin-left: 6px !important; padding: 2px !important;}
+    .trans-btns {margin-left: 6px !important; padding: 9px 16px !important;}
     .trans-btns {font-size: 12px;}
     .food_qty_button button{padding: 9px 18px;}
     .navbar-toggle{padding: 7px 8px;}
@@ -944,6 +943,7 @@
 .footer_top_box iframe{width: 225px;}
 .food_qty_button > img {width: 100% !important;}
 .food_qty_button button { width: 100% !important; margin: 0px !important;}
+
 }
 
 
@@ -952,6 +952,11 @@
 
 @media screen and (max-width: 767px){
 
+ .food_qty_button > img {width: auto !important;}
+.food_qty_button button { width: auto !important; margin: 0px !important;}   
+    
+    
+    
 #cart-sec {
     bottom: 0;
     left: 0;
@@ -1007,6 +1012,14 @@ footer {padding: 0 0 70px;}
 
 }
 
+@media only screen and (max-width: 640px){
+ .food_qty_button button {
+    margin: 0 !important;
+    padding: 12px !important;
+    width: 100% !important;
+}   
+}
+
 @media screen and (max-width: 640px){
 
     /*--header--*/
@@ -1023,17 +1036,17 @@ footer {padding: 0 0 70px;}
     .list_box_right ul{ padding:0 0 0 5px; margin: 0;}
     .list_box_right ul li h4 {font-size: 15px;}
     .food_qty_button button{margin-top: 12px;}
-    .list_box_right ul li h4 { background: none; height: auto; line-height: 17px; margin: 0; padding: 0; font-size: 14px; }
-    .list_box_right ul li h3 {font-size: 14px;}
+    .list_box_right ul li h4 { background: none; height: auto; line-height: 17px; margin: 0; padding: 0; font-size: 20px; }
+    .list_box_right ul li h3 {font-size: 18px;}
     .box_price .padding-none { padding: 0 15px;}
     .list_box_right ul li p {font-size: 14px;padding: 0 0 3px;}
     .list_box_title h3 {padding: 0 15px 7px;}
     video { display: none; }
     .navbar-header button{float: left;}
     .navbar-brand{display: none;}
-    .list_box_left img {border: 1px solid #d9d9d9;}
+    .list_box_left img {border: none;}
     padding-none{padding: 0;}
-    .trans-btns {margin-left: 6px !important; padding: 2px !important;}
+    .trans-btns {margin-left: 6px !important; padding: 7px !important;}
     .trans-btns {font-size: 12px;}
     .food_qty_button button{ margin: 0;padding: 6px 12px;}
     .logo img {width: 150px !important;}
@@ -1126,7 +1139,7 @@ footer {padding: 0 0 70px;}
         width: 100%;
     }
     .list_box_left img{margin:0px;height:auto;}
-    .list_box_title h3 {font-size: 15px; margin: 0; padding: 0 0 7px;}
+    .list_box_title h3 {font-size: 20px; margin: 0; padding: 0 0 7px;}
 
 /*    Creating issues*/
 /*    .rateit .rateit-range {
@@ -1308,6 +1321,16 @@ footer {padding: 0 0 70px;}
 
 }
 
+@media only screen and (max-width: 480px){
+
+.food_qty_button button {   margin: 0 !important;
+    padding: 10px !important;
+    width: 100% !important;}
+.list_box_right ul li p {
+    font-size: 16px;
+}
+}
+
 
 @media screen and (max-width: 480px){
 
@@ -1316,7 +1339,7 @@ footer {padding: 0 0 70px;}
     nav {top: 4px !important;}
     .home_content {margin: 30px 0 0;}
     .top-txt {float: right;padding: 20px 0 !important;}
-    .list_box_title h3 {font-size: 16px;}
+    .list_box_title h3 {font-size: 18px;}
     .food_qty_button button{  margin: 0;
                               padding: 6px 12px;}
     .logo img{width: 120px;}
@@ -1547,7 +1570,7 @@ footer {padding: 0 0 70px;}
     }
 
     .order_checkout button {
-        font-size: 12px;
+        font-size: 14px;
         width: auto;
     }
 
@@ -1904,6 +1927,13 @@ footer {padding: 0 0 70px;}
 
 
 }
+@media only screen and (max-width: 320px){
+.food_qty_button > img {width:60% !important;}
+.food_qty_button button { width: auto !important; margin: 0px !important;}
+.list_box_right ul li p {
+    font-size: 16px;
+}
+}
 
 @media screen and (max-width: 320px){
 
@@ -1912,7 +1942,7 @@ footer {padding: 0 0 70px;}
     .top-txt {float: right;padding: 15px 0 !important;}
     .list_box {padding: 3%;}
     .navbar-nav img{width: 100%;float: left;}
-    .list_box_title h3 {padding: 0 0 7px;   font-size: 14px;}
+    .list_box_title h3 {padding: 0 0 7px;   font-size: 18px;}
     .list_box .col-xs-4 .col-sm-4 {padding: 0 !important;}
     #combination-sec { padding: 0 !important;}
 
@@ -2601,7 +2631,8 @@ footer {padding: 0 0 70px;}
         font-weight: 700;
     }
 
-
+.food_qty_button > img {width: auto !important;}
+.food_qty_button button { width: auto !important; margin: 0px !important;}
 }
 
 

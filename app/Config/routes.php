@@ -24,7 +24,7 @@
  * its action called 'display', and we pass a param to select the view file
  * to use (in this case, /app/View/Pages/home.ctp)...
  */
-        Router::connect('/', array('controller' => 'Webapp', 'action' => 'home')); 
+        
         Router::connect('/chef/*', array('controller' => 'Webapp', 'action' => 'chef')); 
         Router::connect('/reviews/*', array('controller' => 'Webapp', 'action' => 'reviews'));
         Router::connect('/checkout', array('controller' => 'Webapp', 'action' => 'checkout')); 
@@ -54,7 +54,27 @@
 	Router::connect('/pages/*', array('controller' => 'pages', 'action' => 'display'));
         
         
+        /**
+         * Chef Router 
+         */
+        App::uses("Vendor", "Model");
+        $vendorModel = new Vendor();
+        $vendors = $vendorModel->find("all",array(
+            "contain" => false
+        ));
+        foreach($vendors as $v){
+            $slug = strtolower($v['Vendor']['name']);
+            $slug = str_replace(" ", "-", $slug);
+            Router::connect('/'.$slug, array('controller' => 'Webapp', 'action' => 'chef',$slug));
+//            echo $slug."\n";
+        }
+//        exit;
+        
+        
+        
        
+        Router::connect('/', array('controller' => 'Webapp', 'action' => 'home'));
+        Router::connect('/dev', array('controller' => 'Webapp', 'action' => 'dev'));
         
         Router::mapResources('vendors');
         Router::parseExtensions();
