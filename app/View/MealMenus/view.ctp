@@ -1,4 +1,7 @@
 <div class="mealMenus view">
+    
+    
+    
 <h2><?php echo __('Meal Menu'); ?></h2>
 	<dl>
 		<dt><?php echo __('Id'); ?></dt>
