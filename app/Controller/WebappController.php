@@ -24,13 +24,25 @@ class WebappController extends AppController {
         parent::beforeFilter();
         $this->layout = "webapp";
         $this->Auth->allow(array('home', 'login', 'fblogin', 'chef', 'checkout','reviews', 'getuser', 'checklogin', "aboutus", "contactus", "faq", "press", "privacy", "terms", "forgot_password", "change_password", "change_password", 't'));
+        
+        $this->loadModel('Category');
+        $this->set("top_menu", $this->Category->find('threaded'));
+        
+        $this->loadModel('Combination');
+        $this->set("extras", $this->Combination->find("all",array(
+            "conditions" => array(
+                "Combination.type <>" => "MAIN" 
+            ),
+            "contain" => array('Vendor')
+        )));
+        
     }
 
     public function home() {
         $this->layout = "webapp";
     }
     public function dev() {
-        $this->layout = "webapp";
+        $this->layout = "webapp-dev";
     }
 
     public function checklogin() {

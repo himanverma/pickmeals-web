@@ -18,7 +18,7 @@ class CombinationsController extends AppController {
      * @var array
      */
     public $components = array('Paginator', 'Session');
-
+    public $_since = "2015-2-19";
     public function beforeFilter() {
         parent::beforeFilter();
         $this->Auth->allow(array('api_index', 'api_view', 'api_search', 'api_feedback'));
@@ -37,13 +37,15 @@ class CombinationsController extends AppController {
         $count = $this->request->data['User']['count'];
         $cnd = array(
                 "Combination.visible" => 1,
-                "DATE(Combination.date)" => date("Y-m-d"),
+                "Combination.type" => "MAIN",
+                "DATE(Combination.date) >= " => $this->_since, // date("Y-m-d"),
                 "get_distance_in_miles_between_geo_locations($lat,$long,Vendor.lat,Vendor.long) <=" => 13.73
             );
         if($lat == 0 || $long == 0){
             $cnd = array(
+                "Combination.type" => "MAIN",
                 "Combination.visible" => 1,
-                "DATE(Combination.date)" => date("Y-m-d"),
+                "DATE(Combination.date) >= " => $this->_since // date("Y-m-d"),
                 //"get_distance_in_miles_between_geo_locations($lat,$long,Vendor.lat,Vendor.long) <=" => 3.73
             );
         }
@@ -91,13 +93,15 @@ class CombinationsController extends AppController {
         $long = $this->request->data['User']['longitude'];
         if($lat == 0.0 || $long == 0.0){
             $cnd = array(
+                "Combination.type" => "MAIN",
                 "Combination.visible" => 1,
-                "DATE(Combination.date)" => date("Y-m-d"),
+                "DATE(Combination.date) >= " => $this->_since//date("Y-m-d"),
             );
         }else{
             $cnd = array(
+                "Combination.type" => "MAIN",
                 "Combination.visible" => 1,
-                "DATE(Combination.date)" => date("Y-m-d"),
+                "DATE(Combination.date) >= " => $this->_since,//date("Y-m-d"),
                 "get_distance_in_miles_between_geo_locations($lat,$long,Vendor.lat,Vendor.long) <=" => 3.73
             );
         }
@@ -171,7 +175,7 @@ class CombinationsController extends AppController {
         $searchRecords = $this->Combination->find('all', array('conditions' => array(
                 "AND" => array(
                     "Combination.display_name LIKE" => "%$like%",
-                    "DATE(Combination.date)" => date("Y-m-d")
+                    "DATE(Combination.date) >= " => $this->_since // date("Y-m-d")
                 )
         )));
         $this->set(array(
@@ -196,9 +200,10 @@ class CombinationsController extends AppController {
     public function today() {
         $this->Combination->recursive = 0;
         $this->Paginator->settings['limit'] = 10;
+        $this->Paginator->settings['order'] = "Combination.id DESC";
         $this->set('combinations', $this->Paginator->paginate(
                         "Combination", array(
-                    "DATE(Combination.date)" => date("Y-m-d")
+                    "DATE(Combination.date) >= " => $this->_since//date("Y-m-d")
                         )
         ));
     }

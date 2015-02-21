@@ -4,6 +4,7 @@
     
 <h2><?php echo __('Meal Menu'); ?></h2>
 	<dl>
+            <a href="../../Model/Category.php"></a>
 		<dt><?php echo __('Id'); ?></dt>
 		<dd>
 			<?php echo h($mealMenu['MealMenu']['id']); ?>

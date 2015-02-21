@@ -19,6 +19,38 @@
             <div class="col-md-12">
                 <div class="form-group">
                     <?php
+                    echo $this->Form->input("category_id", array(
+                        'div' => false,
+                        'options' => $cat,
+                        'class' => 'form-control',
+                        'placeholder' => ''
+                    ));
+                    ?>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="form-group">
+                    <?php
+                    echo $this->Form->input("type", array(
+                        'div' => false,
+                        'options' => array(
+                            "MAIN" => "MAIN",
+                            "COLDRINK" => "COLDRINK",
+                            "ICECREAM" => "ICECREAM",
+                            "SWEETS" => "SWEETS",
+                            "CHIPS" => "CHIPS",
+                            "ROTI" => "ROTI",
+                            "RICE" => "RICE"
+                        ),
+                        'class' => 'form-control',
+                        'placeholder' => ''
+                    ));
+                    ?>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="form-group">
+                    <?php
                     echo $this->Form->input("image", array(
                         'div' => false,
                         'class' => 'form-control',
@@ -39,6 +71,8 @@
                     ?>
                 </div>
             </div>
+            
+
             <div class="col-md-12">
                 <div class="form-group">
                     <?php

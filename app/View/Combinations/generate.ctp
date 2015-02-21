@@ -108,6 +108,7 @@
                         //display_name: "FULL " + name,
                         display_name: name,
                         vendor_cost: ko.observable(0.00),
+                        type: p1.type,
                         CombinationItem: [
                             {
                                 recipe_id : p1.id,
@@ -136,6 +137,7 @@
                                 //display_name: "HALF " + name + " + HALF " + name2,
                                 display_name: name + " + " + name2,
                                 vendor_cost: ko.observable(0.00),
+                                type: p2.type,
                                 CombinationItem: [
                                     {
                                         recipe_id : p2.id,

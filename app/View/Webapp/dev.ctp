@@ -277,80 +277,94 @@ echo json_encode($a);
                                 <h2 style="color:#000;">Loading...</h2>
                             </center>
                         </div>
-                        <div class="list_box_main" data-bind="foreach:Combolist">
+                        <div class="list_box_main" >
                             <div class="list_box">
-                                <div class="list_box_title">
-                                    <h3 data-bind="text: Combination.display_name">Rajma+Paneer+Salad</h3>
-                                </div>
-                                <div class="col-xs-4 col-sm-4 padding-none">
-                                    <div class="padding-none">
-                                        <div class="list_box_left">
-                                            <img data-bind="attr: {'src': ko.computed(function(){return $root.dynamicSrc(Combination.image)})}" onerror="this.src = 'img/product.png';">
-                                        </div>
+                                <div class="row-fluid">
+                                    <div class="col-lg-7">
+                                        <select id="ddSEL" data-bind="foreach: ExtraList ">
+                                            <option data-bind="text: Combination.display_name"></option>
+                                        </select>
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <button data-bind="click: function(){ $root.addToCart($('#ddSEL').data('ddslick').selectedData.value);}" class="btn btn-sm">Add to Cart</button>
                                     </div>
                                 </div>
-                                <div class="col-xs-8 col-sm-6">
-                                    <div class="row">                                                            
-                                        <div class="list_box_right">
-                                            <ul>
-                                                <li><p>By <a href="#" data-bind="text: Vendor.name, attr:{'href':'/'+Vendor.name.replace(new RegExp(/\s{1,}/g),'-').toLowerCase()} "></a></p></li>
-                                                <li>
-                                                    <a href="#" data-bind="attr:{'href':'/'+Vendor.name.replace(new RegExp(/\s{1,}/g),'-').toLowerCase()} ">
-                                                        <span class="rateit" data-bind="attr:{'data-rateit-value':Combination.ratings, 'id':'rate-it-blk'+Combination.id}" data-rateit-ispreset="true" data-rateit-readonly="true"></span>&nbsp;&nbsp;&nbsp;&nbsp;(<!-- ko text: Review.length --><!-- /ko -->)
-                                                    </a>
-
-
-                                                    <div class="food_qty_button">
-                                                        <img src="" data-bind="attr:{'src': Vendor.company_logo}" style="width:52px;" />
-                                                        <button class="" data-bind="attr:{'id':Vendor.id},click: $root.addToCart">Order</button>
-                                                    </div>
-                                                </li>
-                                                <li><h4><span>Delivery:</span>Free/45 mins</h4></li>
-                                                <li><h3 ><span>Price:</span>Rs <!-- ko text: Combination.price --><!-- /ko --></h3></li>
-                                            </ul>
-                                        </div>
+                            </div>    
+                            <div data-bind="foreach:Combolist">
+                                <div class="list_box">
+                                    <div class="list_box_title">
+                                        <h3 data-bind="text: Combination.display_name">Rajma+Paneer+Salad</h3>
                                     </div>
-                                </div>
-
-                                <div class="col-xs-2 hidden-xs">
-                                    <div class="row">
-                                        <div class="food_qty_button">
-                                            <img src="" data-bind="attr:{'src': Vendor.company_logo}" style="width:85px;" />
-                                            <button class="" data-bind="attr:{'id':Vendor.id},click: $root.addToCart">Order</button>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div style="height: 10px" class="clr-div"></div>
-<?php   /*                             <div class="col-xs-12 padding-none-1">
-                                    <div class="box_price">
+                                    <div class="col-xs-4 col-sm-4 padding-none">
                                         <div class="padding-none">
-                                            <div class="col-xs-4 col-sm-4 padding-none-2">
-                                                <div class="row">
-                                                    <div class="food_qty">
-                                                        <span><input data-bind="checked:$root.essentials, attr:{'name':'ess-fw-'+Combination.id} " type="radio" value="4 Roti + Half Rice"></span>
-                                                        <label>4 Roti + Half Rice</label>
-                                                    </div>
-                                                </div>
+                                            <div class="list_box_left">
+                                                <img data-bind="attr: {'src': ko.computed(function(){return $root.dynamicSrc(Combination.image)})}" onerror="this.src = 'img/product.png';">
                                             </div>
-                                            <div class="col-xs-4 col-sm-4 padding-none-2">
-                                                <div class="food_qty">
-                                                    <input checked="checked" data-bind="checked:$root.essentials, attr:{'name':'ess-fw-'+Combination.id} " type="radio" value="6 Roti">
-                                                    <label>6 Roti</label>
-                                                </div>
-                                            </div>
-                                            <div class="col-xs-4 col-sm-4 padding-none-2">
-                                                <div class="row">
-                                                    <div class="food_qty">
-                                                        <input data-bind="checked:$root.essentials, attr:{'name':'ess-fw-'+Combination.id} " type="radio" value="Full Rice">
-                                                        <label>Full Rice</label>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-8 col-sm-6">
+                                        <div class="row">                                                            
+                                            <div class="list_box_right">
+                                                <ul>
+                                                    <li><p>By <a href="#" data-bind="text: Vendor.name, attr:{'href':'/'+Vendor.name.replace(new RegExp(/\s{1,}/g),'-').toLowerCase()} "></a></p></li>
+                                                    <li>
+                                                        <a href="#" data-bind="attr:{'href':'/'+Vendor.name.replace(new RegExp(/\s{1,}/g),'-').toLowerCase()} ">
+                                                            <span class="rateit" data-bind="attr:{'data-rateit-value':Combination.ratings, 'id':'rate-it-blk'+Combination.id}" data-rateit-ispreset="true" data-rateit-readonly="true"></span>&nbsp;&nbsp;&nbsp;&nbsp;(<!-- ko text: Review.length --><!-- /ko -->)
+                                                        </a>
 
-                                        </div> 
-                                    </div> 
-                                </div> */?>
+
+                                                        <div class="food_qty_button">
+                                                            <img src="" data-bind="attr:{'src': Vendor.company_logo}" style="width:52px;" />
+                                                            <button class="" data-bind="attr:{'id':Vendor.id},click: $root.addToCart">Order</button>
+                                                        </div>
+                                                    </li>
+                                                    <li><h4><span>Delivery:</span>Free/45 mins</h4></li>
+                                                    <li><h3 ><span>Price:</span>Rs <!-- ko text: Combination.price --><!-- /ko --></h3></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-xs-2 hidden-xs">
+                                        <div class="row">
+                                            <div class="food_qty_button">
+                                                <img src="" data-bind="attr:{'src': Vendor.company_logo}" style="width:85px;" />
+                                                <button class="" data-bind="attr:{'id':Vendor.id},click: $root.addToCart">Order</button>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div style="height: 10px" class="clr-div"></div>
+                                    <?php /*                             <div class="col-xs-12 padding-none-1">
+                                      <div class="box_price">
+                                      <div class="padding-none">
+                                      <div class="col-xs-4 col-sm-4 padding-none-2">
+                                      <div class="row">
+                                      <div class="food_qty">
+                                      <span><input data-bind="checked:$root.essentials, attr:{'name':'ess-fw-'+Combination.id} " type="radio" value="4 Roti + Half Rice"></span>
+                                      <label>4 Roti + Half Rice</label>
+                                      </div>
+                                      </div>
+                                      </div>
+                                      <div class="col-xs-4 col-sm-4 padding-none-2">
+                                      <div class="food_qty">
+                                      <input checked="checked" data-bind="checked:$root.essentials, attr:{'name':'ess-fw-'+Combination.id} " type="radio" value="6 Roti">
+                                      <label>6 Roti</label>
+                                      </div>
+                                      </div>
+                                      <div class="col-xs-4 col-sm-4 padding-none-2">
+                                      <div class="row">
+                                      <div class="food_qty">
+                                      <input data-bind="checked:$root.essentials, attr:{'name':'ess-fw-'+Combination.id} " type="radio" value="Full Rice">
+                                      <label>Full Rice</label>
+                                      </div>
+                                      </div>
+                                      </div>
+
+                                      </div>
+                                      </div>
+                                      </div> */ ?>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -373,6 +387,7 @@ echo json_encode($a);
                                 <div class="sidebar_main">
 
                                     <div class="home_content_right_title">
+
                                     </div>
                                     <div class="sidebar_order_list_main" data-bind="foreach:items ">
                                         <div class="sidebar_order_list" >
@@ -391,15 +406,15 @@ echo json_encode($a);
                                                 <div class="order_list_add">
                                                     <button class="badge1" data-bind="click: $root.increase">+</button>
                                                     <button class="badge1" data-bind="click: $root.decrease">-</button>
-                                                    <?php /*<span class="pull-right">
-                                                        <select data-bind="value:data.essentials,event:{'change':$root.updateEss}, ">
-                                                            <option value="4 Roti + Half Rice">4 Roti + Half Rice</option>
-                                                            <option value="6 Roti">6 Roti</option>
-                                                            <option value="Full Rice">Full Rice</option>
-                                                        </select>
-                                                    </span>
+                                                    <?php /* <span class="pull-right">
+                                                      <select data-bind="value:data.essentials,event:{'change':$root.updateEss}, ">
+                                                      <option value="4 Roti + Half Rice">4 Roti + Half Rice</option>
+                                                      <option value="6 Roti">6 Roti</option>
+                                                      <option value="Full Rice">Full Rice</option>
+                                                      </select>
+                                                      </span>
                                                      * 
-                                                     */?>
+                                                     */ ?>
                                                 </div>
                                             </div>
                                         </div>
@@ -434,25 +449,79 @@ echo json_encode($a);
 <div style="opacity: 0; z-index: -1; height: 0.1px; width: 0.1px; overflow: hidden;">
     <img src="<?php echo $this->Html->url('/img/ajax-loader.gif'); ?>">
 </div>
+<?php echo $this->Html->script(array('jquery.ddslick.min')); ?>
 <script type="text/javascript">
-function shuffle(array) {
-  var currentIndex = array.length, temporaryValue, randomIndex ;
+    ko.bindingHandlers['options'] = {
+        'init': function() {
+            return {'controlsDescendantBindings': true};
+        },
+        'update': function(element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
+            var previousSelectedValues = ko.utils.arrayMap(ko.utils.arrayFilter(element.childNodes, function(node) {
+                return node.tagName && node.tagName == "OPTION" && node.selected;
+            }), function(node) {
+                return ko.selectExtensions.readValue(node) || node.innerText || node.textContent;
+            });
+            var previousScrollTop = element.scrollTop;
+            var value = ko.utils.unwrapObservable(valueAccessor());
 
-  // While there remain elements to shuffle...
-  while (0 !== currentIndex) {
+            // Remove all existing <option>s. 
+            while (element.length > 0) {
+                ko.cleanNode(element.options[0]);
+                element.remove(0);
+            }
 
-    // Pick a remaining element...
-    randomIndex = Math.floor(Math.random() * currentIndex);
-    currentIndex -= 1;
+            if (value) {
+                if (typeof value.length != "number")
+                    value = [value];
+                var optionsBind = allBindingsAccessor()['optionsBind'];
+                for (var i = 0, j = value.length; i < j; i++) {
+                    var option = document.createElement("OPTION");
+                    var optionValue = ko.utils.unwrapObservable(value[i]);
+                    ko.selectExtensions.writeValue(option, optionValue);
+                    option.appendChild(document.createTextNode(optionValue));
+                    element.appendChild(option);
+                    if (optionsBind) {
+                        option.setAttribute('data-bind', optionsBind);
+                        ko.applyBindings(bindingContext['createChildContext'](optionValue), option);
+                    }
+                }
 
-    // And swap it with the current element.
-    temporaryValue = array[currentIndex];
-    array[currentIndex] = array[randomIndex];
-    array[randomIndex] = temporaryValue;
-  }
+                var newOptions = element.getElementsByTagName("OPTION");
+                var countSelectionsRetained = 0;
+                for (var i = 0, j = newOptions.length; i < j; i++) {
+                    if (ko.utils.arrayIndexOf(previousSelectedValues, ko.selectExtensions.readValue(newOptions[i])) >= 0) {
+                        ko.utils.setOptionNodeSelectionState(newOptions[i], true);
+                        countSelectionsRetained++;
+                    }
+                }
+                element.scrollTop = previousScrollTop;
 
-  return array;
-}
+                if (countSelectionsRetained < previousSelectedValues.length)
+                    ko.utils.triggerEvent(element, "change");
+
+                // Workaround for IE9 bug
+                ko.utils.ensureSelectElementIsRenderedCorrectly(element);
+            }
+        }
+    };
+    function shuffle(array) {
+        var currentIndex = array.length, temporaryValue, randomIndex;
+
+        // While there remain elements to shuffle...
+        while (0 !== currentIndex) {
+
+            // Pick a remaining element...
+            randomIndex = Math.floor(Math.random() * currentIndex);
+            currentIndex -= 1;
+
+            // And swap it with the current element.
+            temporaryValue = array[currentIndex];
+            array[currentIndex] = array[randomIndex];
+            array[randomIndex] = temporaryValue;
+        }
+
+        return array;
+    }
 
     var CombinationVM = function() {
         var me = this;
@@ -462,6 +531,8 @@ function shuffle(array) {
         me.price = ko.observable();
         me.SearchMeal = ko.observable();
         me.showLoadMore = ko.observable(false);
+        me.selectedExtra = ko.observable();
+        me.ExtraList = ko.observable(<?php echo json_encode($extras); ?>);
         me.Combolist = ko.observableArray([]);
         me.Combolist.subscribe(function() {
             $.getScript("/rate/jquery.rateit.min.js", function() {
@@ -477,7 +548,9 @@ function shuffle(array) {
         me.essentials.subscribe(function() {
 
         });
-        
+
+
+
 
         me.dynamicSrc = function(s) {
             if (me.essentials() == "4 Roti + Half Rice") {
@@ -580,17 +653,17 @@ function shuffle(array) {
         me.init = function() {
             var m = me;
 
-            if(navigator.geolocation  && true == false){
+            if (navigator.geolocation && true == false) {
                 navigator.geolocation.getCurrentPosition(function(e) {
                     m.lat = e.coords.latitude;
                     m.lng = e.coords.longitude;
                     m.getData();
-                },function(){
+                }, function() {
                     m.lat = 0;
                     m.lng = 0;
                     m.getData();
                 });
-            }else{
+            } else {
                 console.log("GeoLocation not active on code...");
                 m.lat = 0;
                 m.lng = 0;
@@ -629,6 +702,27 @@ function shuffle(array) {
              }
              });
              */
+            var ex = me.ExtraList();
+            var ddData = [];
+            for (i in ex) {
+                ddData.push({
+                    text: ex[i].Combination.display_name,
+                    value: ex[i],
+                    selected: true,
+                    description: 'Rs. ' + ex[i].Combination.price + '/-  Category: ' + ex[i].Combination.type,
+                    imageSrc: ex[i].Combination.image
+                });
+            }
+
+            $('#ddSEL').ddslick({
+                data: ddData,
+                width: 300,
+                imagePosition: "left",
+                selectText: "Select your favorite social network",
+                onSelected: function(data) {
+                    console.log(data);
+                }
+            });
         };
         me.init();
 
@@ -757,8 +851,8 @@ function shuffle(array) {
     CartObj = new CartVM();
     ComboObj = new CombinationVM();
     FilterObj = new FilterVM();
-   
-    
+
+
     $(document).ready(function() {
         ko.applyBindings(ComboObj, $('#combination-sec')[0]);
         ko.applyBindings(ComboObj, $('#srch-block')[0]);
@@ -791,7 +885,7 @@ function shuffle(array) {
                 if (500 < $(window).scrollTop()) {
                     xcsv = 200;
                     $('#nav1').css({position: 'fixed', 'top': '5px', width: '84.5%', 'z-index': 2, height: '30px'});
-                    $('#pretzel-video').parent().css({position: 'fixed', 'top': '-'+(550 - $('#navbar-collapse-main').height())+'px', 'z-index': 1});
+                    $('#pretzel-video').parent().css({position: 'fixed', 'top': '-' + (550 - $('#navbar-collapse-main').height()) + 'px', 'z-index': 1});
                 } else {
                     xcsv = 0;
                     $('#nav1').removeAttr('style').attr({style: 'z-index:2'});
@@ -811,7 +905,7 @@ function shuffle(array) {
                 if (500 < $(window).scrollTop()) {
                     xcsv = 200;
                     $('#nav1').css({position: 'fixed', 'top': '5px', width: '84.5%', 'z-index': 2, height: '30px'});
-                    $('#pretzel-video').parent().css({position: 'fixed', 'top': '-'+(550 - $('#navbar-collapse-main').height())+'px', 'z-index': 1});
+                    $('#pretzel-video').parent().css({position: 'fixed', 'top': '-' + (550 - $('#navbar-collapse-main').height()) + 'px', 'z-index': 1});
                 } else {
                     xcsv = 0;
                     $('#nav1').removeAttr('style').attr({style: 'z-index:2'});
@@ -821,4 +915,7 @@ function shuffle(array) {
 
         });
     });
+
+
 </script>
+<?php echo $this->Html->css(array('dev')); ?>

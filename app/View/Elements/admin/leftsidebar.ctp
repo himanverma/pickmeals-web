@@ -109,7 +109,7 @@
                             <i class="fa fa-angle-double-right"></i> Generate-Combination
                         </a>
                     </li>
-                    <li><a href="<?php echo $this->Html->url('/combinations/today');?>"><i class="fa fa-angle-double-right"></i> List All(Today)</a></li>
+                    <li><a href="<?php echo $this->Html->url('/combinations/today');?>"><i class="fa fa-angle-double-right"></i> List All(since 20th feb)</a></li>
                     <li><a href="<?php echo $this->Html->url('/combinations/');?>"><i class="fa fa-angle-double-right"></i> List All</a></li>
                 </ul>
             </li>
@@ -122,7 +122,18 @@
                 </a>
             </li>
             
-            
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-dashboard"></i>
+                    <span>Category-List</span>
+                    <!--<small class="badge pull-right bg-green">new</small>-->
+                    <i class="fa fa-angle-left pull-right"></i>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="<?php echo $this->Html->url('/categories/');?>"><i class="fa fa-angle-double-right"></i> List All</a></li>
+                    <li><a href="<?php echo $this->Html->url('/categories/add');?>"><i class="fa fa-angle-double-right"></i> Add New</a></li>
+                </ul>
+            </li>
         </ul>
     </section>
     <!-- /.sidebar -->

@@ -33,7 +33,7 @@ App::uses('Controller', 'Controller');
 class AppController extends Controller {
 
     public $components = array('RequestHandler', 'Auth', 'Session','MobileDetect.MobileDetect');
-    public $helpers = array('Html', 'Form', 'Combinator.Combinator');
+    public $helpers = array('Html', 'Form', 'Combinator.Combinator','Utilitymethods');
     public $_device = "desktop";
 
     public function beforeFilter() {
@@ -88,6 +88,7 @@ class AppController extends Controller {
             );
             $this->Auth->loginAction = "/?_act=login";
         }
+        
 
         $this->set("c_user", AuthComponent::user());
         $this->updateRatings();
