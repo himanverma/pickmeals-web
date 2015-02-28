@@ -88,7 +88,7 @@ echo json_encode($a);
 <div class="banner hidden-xs" id="box1">
     <div class="container">
         <div class="banner_in" style="height: 465px;">
-            <div class="video-text"><p>Making it Simple to eat Well<br><span>Hot Healthy Meals Delivered in 45 minutes</span></p>
+            <div class="video-text"><p>Get Food Delivered in 10 Minutes<br><span>Download Now</span></p>
                 <!--<span class="tx">View the menu and order lunch and dinner using our Android app.</span>-->
                 <div class="dwnld-buttons"><a href="https://play.google.com/store/apps/details?id=com.pickmeals"><?php echo $this->Html->image('../img/appstore-android.png'); ?></a>
 
@@ -305,7 +305,7 @@ echo json_encode($a);
                                                         <button class="" data-bind="attr:{'id':Vendor.id},click: $root.addToCart">Order</button>
                                                     </div>
                                                 </li>
-                                                <li><h4><span>Delivery:</span>Free/45 mins</h4></li>
+                                                <li><h4><span>Delivery:</span>Free/10 mins</h4></li>
                                                 <li><h3 ><span>Price:</span>Rs <!-- ko text: Combination.price --><!-- /ko --></h3></li>
                                             </ul>
                                         </div>

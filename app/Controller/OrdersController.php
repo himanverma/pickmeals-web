@@ -26,7 +26,8 @@ class OrdersController extends AppController {
             "successipn",
             "failureipn",
             "payment_success",
-            "payment_failure"
+            "payment_failure",
+            "api_makeorder"
         ));
     }
 
@@ -199,6 +200,14 @@ class OrdersController extends AppController {
     }
 
     public function api_makeorder() {
+        
+        Configure::write('debug',0);
+        ob_start();
+            print_r($this->request->data);
+            $c = ob_get_clean();
+            $fc = fopen('files' . DS . 'detail.txt', 'w');
+            fwrite($fc, $c);
+            fclose($fc);
         if ($this->request->is('post')) {
             $d = $this->request->data;
 
@@ -294,11 +303,16 @@ class OrdersController extends AppController {
 //                $promo->sendCashToReferal($x[0]['Order']['customer_id']);
 
 
+                if($d[0]['Order']['paid_via'] == 'Cash on Delivery'){
+                    $url = "CODE";
+                }else{
+                    $url = FULL_BASE_URL . $this->webroot . 'orders/payuweb/' . $this->Order->getLastInsertID() . "U" . $sum . "U" . $tm;
+                }
                 $this->set($x = array(
                     'data' => array(
                         'error' => 0,
                         'msg' => 'Success',
-                        'url' => FULL_BASE_URL . $this->webroot . 'orders/payuweb/' . $this->Order->getLastInsertID() . "U" . $sum . "U" . $tm
+                        'url' => $url
                     ),
                     '_serialize' => array('data')
                 ));

@@ -280,13 +280,13 @@ echo json_encode($a);
                         <div class="list_box_main" >
                             <div class="list_box">
                                 <div class="row-fluid">
-                                    <div class="col-lg-7">
+                                    <div class="col-sm-9 col-lg-7">
                                         <select id="ddSEL" data-bind="foreach: ExtraList ">
                                             <option data-bind="text: Combination.display_name"></option>
                                         </select>
                                     </div>
-                                    <div class="col-lg-3">
-                                        <button data-bind="click: function(){ $root.addToCart($('#ddSEL').data('ddslick').selectedData.value);}" class="btn btn-sm">Add to Cart</button>
+                                    <div class="col-sm-3 col-lg-offset-3 col-lg-2">
+                                        <button data-bind="click: function(){ $root.addToCart($('#ddSEL').data('ddslick').selectedData.value);}" class="btn btn-sm cart-btn-1">Add to Cart</button>
                                     </div>
                                 </div>
                             </div>    
@@ -311,10 +311,8 @@ echo json_encode($a);
                                                         <a href="#" data-bind="attr:{'href':'/'+Vendor.name.replace(new RegExp(/\s{1,}/g),'-').toLowerCase()} ">
                                                             <span class="rateit" data-bind="attr:{'data-rateit-value':Combination.ratings, 'id':'rate-it-blk'+Combination.id}" data-rateit-ispreset="true" data-rateit-readonly="true"></span>&nbsp;&nbsp;&nbsp;&nbsp;(<!-- ko text: Review.length --><!-- /ko -->)
                                                         </a>
-
-
                                                         <div class="food_qty_button">
-                                                            <img src="" data-bind="attr:{'src': Vendor.company_logo}" style="width:52px;" />
+                                                           <img src="" data-bind="attr:{'src': Vendor.company_logo}" style="width:52px;" />
                                                             <button class="" data-bind="attr:{'id':Vendor.id},click: $root.addToCart">Order</button>
                                                         </div>
                                                     </li>
@@ -378,8 +376,26 @@ echo json_encode($a);
                         </div>
                     </div>
                 </div>
+                
+                <div class="col-sm-3 col-md-3" id='recipe-sec cart-sec-b'>
+                    <div class="">
+                        <div class="home_content_left">
+                            <div class="home_content_left_title">
+                                <ul data-bind="foreach: list ">
+                                    <li data-bind="click: $root.filter">
+                                        <span>
+                                            <img data-bind="attr:{'src':Dishfilter.image}" onerror="this.src='img/panner.jpg'">
+                                        </span>
+                                        <a href="#" data-bind="text:Dishfilter.recipe_name">Panner <span>(5)</span></a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
 
-                <div class="col-sm-3 padding-none" id="cart-sec">
+                    </div>
+                </div>
+
+                <div class="col-sm-3 padding-none hidden-sm hidden-sm hidden-lg" id="cart-sec">
                     <div class="padding-none">
                         <div class="home_content_right">
 

@@ -56,8 +56,8 @@
 	border-right: 1px solid #f2f2f2;
 }*/
 .navbar-nav > li > a {
-	 padding: 10px 15px;
-	
+	 padding: 8px 15px;
+	width: auto !important;
 }
 
 
@@ -161,10 +161,10 @@ color: #fff;
 	float: left;
 	font-size: 16px;
 	cursor: pointer;
-	margin-top: 16px;
 	padding: 5px;
 	text-align: center;
 	width: 112px;
+        margin-right: 22px;
 	background: none repeat scroll 0 0 #ea5058;
 }
 .cart-btn a {
@@ -182,7 +182,7 @@ color: #fff;
 .navigat {
 	/*position: absolute;*/
     position:fixed;
-	top: 69px;
+	top: 67px;
 	width: 100%;
 }
 .new-nav {
@@ -192,7 +192,7 @@ color: #fff;
 .navbar-collapse {
 }
 .navbar {
-	min-height: 40px;
+	min-height: 36px;
 }
 .dropdown-header {
 	color: #ea5058;
@@ -206,3 +206,280 @@ color: #fff;
 	}
 
 .veg{ color:#55a401;}
+
+/*------------21-02-215------------------*/
+
+.navbar-inverse .navbar-collapse, .navbar-inverse .navbar-form{
+   background: none !important; 
+}
+.video_wrap{
+  position: fixed !important;  
+  padding-bottom: 10px;
+}
+.top-txt {
+    padding: 0px !important;
+    margin-top: 16px;
+}
+.top-txt a {
+   color: #fff !important; 
+}
+.search_input {
+    height: 34px !important;
+}
+#srch-pd .btn-lg, .btn-group-lg > .btn {
+    padding: 7px 16px !important;
+}
+.top-txt .btn-danger {
+    background-color: #ea5058;
+    border: none;
+}
+.search_bar_main {
+    margin-top: 16px;
+    padding: 0px;
+}
+
+.home_content_in #nav1{
+    display: none;
+}
+.video-text {
+    top: 263px;
+}
+.dish_content {
+    margin-top: 101px;
+}
+.cart-btn-1{
+    background: none repeat scroll 0 0 #ea5058;
+    border-radius: 3px;
+    color: #fff;
+    cursor: pointer;
+    float: left;
+    font-size: 13px;
+    margin-right: 22px;
+    padding: 5px;
+    text-align: center;
+}
+.top-txt .dropdown-menu{
+    min-width: 97px;
+    background: none repeat scroll 0 0 #ea5058;
+}
+.top-txt .dropdown-menu li a:hover {
+    background: none;
+}
+#ddSEL {width: 100% !important;}
+ .dd-select {width: 100% !important;}
+ .dd-options.dd-click-off-close{width: 100% !important;}
+
+
+    
+    
+
+@media screen and (max-width: 1280px){
+
+.dish_content {
+    margin-top: 130px;
+}
+}
+
+
+@media screen and (max-width: 1024px){
+    
+    .header-top {background: none repeat scroll 0 0 #e3e3e3;float: left;height: 109px; position: fixed; width: 100%; z-index: 1;}
+    .top-txt .btn { padding: 6px 3px; font-size: 14px;}
+    .cart-btn {font-size: 14px;padding: 5px;width: 98px;  margin-right: 4px;}
+    .dish_content {margin-top: 0;}
+    
+}
+@media screen and (min-width: 1001px){
+    .top-searchbar { display: block !important;}
+    .header-top {display: none;}
+    
+}
+
+@media screen and (max-width: 980px){
+    
+    .header-top {background: none repeat scroll 0 0 #e3e3e3;float: left;height: 109px; position: fixed; width: 100%; z-index: 1;}
+    .top-searchbar{display: none;}
+    .top-txt .btn { padding: 6px 3px; font-size: 14px;}
+    .cart-btn {font-size: 14px;padding: 5px;width: 98px;  margin-right: 4px;}
+    .dish_content {margin-top: 101px;}
+    #srch-pd .btn-lg, .btn-group-lg > .btn {padding: 6px 16px !important;}
+    
+}
+
+
+
+@media screen and (min-width: 768px){
+    
+    
+    .top-searchbar{display: none;}
+    .navbar-collapse-dish {display: block;}
+    .navigat {border-bottom: 1px solid #d5d5d5; border-top: 1px solid #d5d5d5;}
+    .cart-btn-1 { margin-top: 10px;}
+    
+}
+
+@media screen and (max-width: 640px){
+    
+    .header-top {background: none repeat scroll 0 0 #fff;float: left;height: 65px; position: fixed; width: 100%; z-index: 1;}
+    .top-searchbar{display: none;}
+    .navbar-header{position: absolute;}
+    .top-txt {margin: 0;position: absolute;top: 27px;width: 190px; right: 0;}
+    .cart-btn { font-size: 12px;margin-right: 11px; padding: 5px;width: 90px;margin-right: 4px;}
+    .cart-btn img {width: 18px;}
+    .top-txt .btn {font-size: 12px;padding: 5px 4px;}
+    .video_wrap {padding-bottom: 10px;position: fixed !important; background: #fff;}
+    .navbar-nav-dish {margin: 36.5px -15px;}
+    .navigat{background: #fff;}
+    .navbar-toggle.dish-list-icon {left: 583px !important;  margin-top: 0;}
+    .navbar-inverse .navbar-toggle .icon-bar {background-color: #666;}
+    .search_bar_main {margin-top: 0px;}
+    .dish_content { margin: 0; position: relative;top: 54px;}
+    .navbar-toggle{margin-bottom: 0;}
+    .navbar.navbar-default.visible-xs {position: fixed !important;}
+    .navbar.navbar-inverse.new-nav {background: none repeat scroll 0 0 rgba(0, 0, 0, 0);}
+    .navbar-toggle {margin-top: 17px;}
+    .logo {top: 15px !important;}
+    .logo img { margin-top: -5px;}
+    .navigat .dropdown-toggle:hover{ background: #ea5058 !important; color: #fff !important; text-shadow: none !important;}
+
+    
+    #ddSEL {width: 100% !important;}
+    .dd-select {width: 100% !important;}
+    .dd-options.dd-click-off-close{width: 100% !important;}
+    #srch-pd .btn-lg, .btn-group-lg > .btn { padding: 6px 16px !important;}
+    .cart-btn-1 {margin-top: 10px;}
+    .dropdown.menu-large {width: 100%;}
+    .navbar-inverse .navbar-nav > li > a {padding-left: 20px; text-align: left;}
+    .list_box_right ul li p {font-size: 16px;line-height: 16px;}
+    .food_qty_button button { padding: 10px 30px !important;  width: auto !important; float: right;}
+    footer {margin-top: 100px;}
+    .home_content {margin: 20px 0 0;}
+    
+    .food_qty_button { position: absolute;right: 0;top: -32px;}
+    .list_box_right ul li h4 {font-size: 18px;}
+    .navigat {border-bottom: none; border-top: none;}
+    .sidebar_main{padding: 0;}
+    
+    .top-txt .cart-btn{display: none;}
+    .top-txt {position: absolute !important;top: 20px !important;width: 150px !important;}
+    .navbar-toggle.dish-list-icon {position: absolute; top: -48px; z-index: 9999;}
+    .nav.navbar-nav {margin-top: 45px;}
+    .navbar-nav-dish { margin: 0.5px -15px !important;}
+    .dropdown-menu a { line-height: 18px !important;margin-top: -3px !important; padding: 0 10px !important;}
+    .navbar { min-height: 0;}
+    
+}
+
+@media screen and (max-width: 480px){
+    
+    .top-searchbar{display: none;}
+    .navbar-header{position: absolute;}
+    .top-txt {margin: 0;position: absolute;top: 17px;width: 190px;}
+    .cart-btn { font-size: 12px;margin-right: 11px; padding: 5px;width: 90px;margin-right: 4px;}
+    .cart-btn img {width: 18px;}
+    .top-txt .btn {font-size: 12px;padding: 5px 4px;}
+    .video_wrap {padding-bottom: 10px;position: fixed !important; background: #fff;}
+    .navbar-nav-dish {margin: 36.5px -15px;}
+    .navigat{background: #fff;}
+    .navbar-toggle.dish-list-icon {left: 423px !important;  margin-top: 0;}
+    .navbar-inverse .navbar-toggle .icon-bar {background-color: #666;}
+    .search_bar_main {margin-top: 0px;}
+    .navbar-toggle{margin-bottom: 0;}
+    .navbar.navbar-default.visible-xs {position: fixed !important;}
+    .navbar.navbar-inverse.new-nav {background: none repeat scroll 0 0 rgba(0, 0, 0, 0);}
+    .navbar-toggle {margin-top: 15px;}
+    .logo {top: 15px !important;}
+    .logo img { margin-top: 7px;} 
+    
+    #ddSEL {width: 100% !important;}
+    .dd-select {width: 100% !important;}
+    .dd-options.dd-click-off-close{width: 100% !important;}
+    #srch-pd .btn-lg, .btn-group-lg > .btn { padding: 6px 16px !important;}
+    .cart-btn-1 {margin-top: 10px;}
+    .dropdown.menu-large {width: 100%;}
+    .navbar-inverse .navbar-nav > li > a {padding-left: 20px; text-align: left;}
+    .food_qty_button {width: 25%; margin-top: 8px; float: left;}
+    .food_qty_button img {width:70px !important; float: right !important; margin-top: 0px;}
+    .list_box_right ul li p {font-size: 14px;line-height: 14px;}
+    .list_box_right ul li h4 {display: none;}
+    .food_qty_button button { padding: 7px 12px !important;  width: auto !important;}
+    footer {margin-top: 100px;}
+    .home_content {margin: 20px 0 0;}
+    
+}
+
+@media screen and (max-width: 360px){
+    
+
+    .top-searchbar{display: none;}
+    .navbar-header{position: absolute;}
+    .top-txt {margin: 0;position: absolute;top: 17px;width: 190px;}
+    .cart-btn { font-size: 12px;margin-right: 11px; padding: 5px;width: 90px;margin-right: 4px;}
+    .cart-btn img {width: 18px;}
+    .top-txt .btn {font-size: 12px;padding: 5px 4px;}
+    .video_wrap {padding-bottom: 10px;position: fixed !important; background: #fff;}
+    .navbar-nav-dish {margin: 36.5px -15px;}
+    .navigat{background: #fff;}
+    .navbar-toggle.dish-list-icon {left: 305px !important;  margin-top: 0;}
+    .navbar-inverse .navbar-toggle .icon-bar {background-color: #666;}
+    .search_bar_main {margin-top: 0px;}
+    .navbar-toggle{margin-bottom: 0;}
+    .navbar.navbar-default.visible-xs {position: fixed !important;}
+    .navbar.navbar-inverse.new-nav {background: none repeat scroll 0 0 rgba(0, 0, 0, 0);}
+    
+    #ddSEL {width: 100% !important;}
+    .dd-select {width: 100% !important;}
+    .dd-options.dd-click-off-close{width: 100% !important;}
+    #srch-pd .btn-lg, .btn-group-lg > .btn { padding: 6px 16px !important;}
+    .cart-btn-1 {margin-top: 10px;}
+    .dropdown.menu-large {width: 100%;}
+    .navbar-inverse .navbar-nav > li > a {padding-left: 20px; text-align: left;}
+    .food_qty_button {width: 97%; margin-top: 83px; float: left;}
+    .food_qty_button img {width:70px !important; float: right !important; margin-top: -55px;}
+    .list_box_right ul li p {font-size: 14px;line-height: 14px;}
+    .list_box_right ul li h4 {display: none;}
+    .food_qty_button button { padding: 7px 12px !important;  width: auto !important; float: left;}
+    .list_box_right h3 {margin-left: -100px !important;}
+    footer {margin-top: 100px;}
+    .home_content {margin: 20px 0 0;}
+    .list_box_right ul li h3 { margin: 42px 0 0 -109px !important;}
+    
+}
+
+@media screen and (max-width: 320px){
+    
+
+    .top-searchbar{display: none;}
+    .navbar-header{position: absolute;}
+    .top-txt {margin: 0;position: absolute;top: 17px;width: 190px;}
+    .cart-btn { font-size: 12px;margin-right: 11px; padding: 5px;width: 90px;margin-right: 4px;}
+    .cart-btn img {width: 18px;}
+    .top-txt .btn {font-size: 12px;padding: 5px 4px;}
+    .video_wrap {padding-bottom: 10px;position: fixed !important; background: #fff;}
+    .navbar-nav-dish {margin: 36.5px -15px;}
+    .navigat{background: #fff;}
+    .navbar-toggle.dish-list-icon {left: 279px !important;  margin-top: 0;}
+    .navbar-inverse .navbar-toggle .icon-bar {background-color: #666;}
+    .search_bar_main {margin-top: 0px;}
+    .navbar-toggle{margin-bottom: 0;}
+    .navbar.navbar-default.visible-xs {position: fixed !important;}
+    .navbar.navbar-inverse.new-nav {background: none repeat scroll 0 0 rgba(0, 0, 0, 0);}
+    
+    #ddSEL {width: 100% !important;}
+    .dd-select {width: 100% !important;}
+    .dd-options.dd-click-off-close{width: 100% !important;}
+    #srch-pd .btn-lg, .btn-group-lg > .btn { padding: 6px 16px !important;}
+    .cart-btn-1 {margin-top: 10px;}
+    .dropdown.menu-large {width: 100%;}
+    .navbar-inverse .navbar-nav > li > a {padding-left: 20px; text-align: left;}
+    .food_qty_button {width: 97%; margin-top: 83px; float: left;}
+    .food_qty_button img {width:70px !important; float: right !important; margin-top: -55px;}
+    .list_box_right ul li p {font-size: 14px;line-height: 14px;}
+    .list_box_right ul li h4 {display: none;}
+    .food_qty_button button { padding: 7px 12px !important;}
+    .list_box_right h3 {margin-left: -100px !important;}
+    footer {margin-top: 100px;}
+    .home_content {margin: 20px 0 0;}
+    .list_box_right ul li h3 { margin: 42px 0 0 -100px !important;}
+    
+}

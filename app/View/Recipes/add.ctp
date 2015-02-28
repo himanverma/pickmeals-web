@@ -19,38 +19,6 @@
             <div class="col-md-12">
                 <div class="form-group">
                     <?php
-                    echo $this->Form->input("category_id", array(
-                        'div' => false,
-                        'options' => $cat,
-                        'class' => 'form-control',
-                        'placeholder' => ''
-                    ));
-                    ?>
-                </div>
-            </div>
-            <div class="col-md-12">
-                <div class="form-group">
-                    <?php
-                    echo $this->Form->input("type", array(
-                        'div' => false,
-                        'options' => array(
-                            "MAIN" => "MAIN",
-                            "COLDRINK" => "COLDRINK",
-                            "ICECREAM" => "ICECREAM",
-                            "SWEETS" => "SWEETS",
-                            "CHIPS" => "CHIPS",
-                            "ROTI" => "ROTI",
-                            "RICE" => "RICE"
-                        ),
-                        'class' => 'form-control',
-                        'placeholder' => ''
-                    ));
-                    ?>
-                </div>
-            </div>
-            <div class="col-md-12">
-                <div class="form-group">
-                    <?php
                     echo $this->Form->input("image", array(
                         'div' => false,
                         'class' => 'form-control',
@@ -71,7 +39,19 @@
                     ?>
                 </div>
             </div>
-            
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label>Select Category</label>
+                    <span><select name="data[Recipe][category_id]">
+                            <option value=""><?php echo __("Select"); ?></option>
+                            <?php foreach ($recipes as $recipe) { ?>
+                                <option value="<?php echo $recipe['Category']['id']; ?>">
+                                    <?php echo $recipe['Category']['name']; ?></option>
+                            <?php } ?>
+                        </select>
+                    </span>
+                </div>
+            </div>
 
             <div class="col-md-12">
                 <div class="form-group">
@@ -98,7 +78,7 @@
             <div class="col-md-12">
                 <div class="form-group">
                     <?php
-                    echo $this->Form->input("status", array(
+                        echo $this->Form->input("status", array(
                         'div' => false,
                         'class' => 'form-control',
                         'placeholder' => '',

@@ -75,7 +75,7 @@
                                             </div>
                                         </li>
                                         <li>
-                                            <h4><span>Delivery:</span>Free/45 mins</h4>
+                                            <h4><span>Delivery:</span>Free/10 mins</h4>
                                         </li>
                                         <li>
                                             <h3><span>Price:</span>Rs <?php echo $combo['price']; ?></h3>

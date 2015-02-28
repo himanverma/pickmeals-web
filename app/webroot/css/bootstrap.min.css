@@ -1710,7 +1710,7 @@ input, button, select, textarea {
 
 a {
 
-	color: #428bca;
+	color: #666;
 
 	text-decoration: none
 
@@ -7230,7 +7230,7 @@ textarea.input-group-sm>.form-control, textarea.input-group-sm>.input-group-addo
 
 	color: #fff;
 
-	background-color: #080808
+	background-color: #fff
 
 }
 

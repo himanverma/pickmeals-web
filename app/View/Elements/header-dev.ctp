@@ -1,3 +1,5 @@
+
+<div class="header-top"></div>
 <header>
 
     <div class="header_nav">
@@ -5,7 +7,7 @@
             <div class="video_wrap">
 
                 <div class="container">
-                    <div class="col-sm-2">    
+                    <div class="col-sm-2 col-md-3 col-lg-2">    
                         <div class="logo">
                             <img src="/img/logo-home.png" onclick="window.location = '/'" >
                             <img class="logo-2" src="/img/pickmeals_icon.png" onclick="window.location = '/'" >
@@ -14,8 +16,8 @@
                         </div>
                     </div>    
 
-                    <div class="col-sm-7">        
-                        <div class="search_bar_main" id="srch-block">
+                    <div class="col-sm-5 col-md-6 col-lg-7">        
+                        <div class="search_bar_main top-searchbar" id="srch-block">
 
                             <div id="srch-pd">
                                 <div class="input-group">
@@ -31,9 +33,9 @@
 
                        
 
-                    <div class="col-sm-3">        
-                        <div class="top-txt">   
-                            <div class="btn-group">
+                    <div class="col-sm-5 col-md-3 col-lg-3">        
+                        <div class="top-txt"> 
+                            <div class="btn-group cart-btn">
                                 
                                 <a href="#" data-toggle="dropdown">	<img src="img/cart1.png" alt="">
                                     View Cart
@@ -72,15 +74,15 @@
                 <div class="navbar navbar-default">
                     <div class="container">
                         <div class="navbar-header">
-                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                            <button type="button" class="navbar-toggle dish-list-icon" data-toggle="collapse" data-target=".navbar-collapse-dish">
                                 <span class="icon-bar"></span>
                                 <span class="icon-bar"></span>
                                 <span class="icon-bar"></span>
                             </button>
 
                         </div>
-                        <div class="navbar-collapse collapse">
-                            <ul class="nav navbar-nav">
+                        <div class="navbar-collapse-dish collapse">
+                            <ul class="nav navbar-nav navbar-nav-dish">
                                 
                                 <?php 
                                     foreach($top_menu as $tm){

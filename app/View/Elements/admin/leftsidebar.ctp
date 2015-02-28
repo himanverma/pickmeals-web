@@ -134,6 +134,29 @@
                     <li><a href="<?php echo $this->Html->url('/categories/add');?>"><i class="fa fa-angle-double-right"></i> Add New</a></li>
                 </ul>
             </li>
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-dashboard"></i>
+                    <span>Send-Notification-List</span>
+                    <!--<small class="badge pull-right bg-green">new</small>-->
+                    <i class="fa fa-angle-left pull-right"></i>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="<?php echo $this->Html->url('/SendNotifications/');?>"><i class="fa fa-angle-double-right"></i> List All</a></li>
+                    <li><a href="<?php echo $this->Html->url('/SendNotifications/add');?>"><i class="fa fa-angle-double-right"></i> Add New</a></li>
+                </ul>
+            </li>
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-dashboard"></i>
+                    <span>Error-List</span>
+                    <!--<small class="badge pull-right bg-green">new</small>-->
+                    <i class="fa fa-angle-left pull-right"></i>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="<?php echo $this->Html->url('/Errorlogs/');?>"><i class="fa fa-angle-double-right"></i> List All</a></li>
+                </ul>
+            </li>
         </ul>
     </section>
     <!-- /.sidebar -->

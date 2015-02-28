@@ -60,8 +60,8 @@ class CombinationsController extends AppController {
             "fields" => array("get_distance_in_miles_between_geo_locations($lat,$long,Vendor.lat,Vendor.long) as distance", "Vendor.*", "Combination.*"),
             //"order" => 'distance ASC',
             "order" => 'Combination.id DESC',
-            'limit' => 8,
-            'offset' => ($count - 1) * 8,
+            'limit' => 40,
+            'offset' => ($count - 1) * 40,
             'page' => $count
         ));
 //        foreach($combination['items'] as &$ar){
@@ -174,6 +174,8 @@ class CombinationsController extends AppController {
         $like = $this->request->data['Combination']['search'];
         $searchRecords = $this->Combination->find('all', array('conditions' => array(
                 "AND" => array(
+                    "Combination.type" => "MAIN",
+                    "Combination.visible" => 1,
                     "Combination.display_name LIKE" => "%$like%",
                     "DATE(Combination.date) >= " => $this->_since // date("Y-m-d")
                 )

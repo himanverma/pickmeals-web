@@ -19,6 +19,7 @@ App::uses("AppController", "Controller");
 class WebappController extends AppController {
 
     public $components = array('Paginator', 'Session');
+    public $_since = "2015-2-19";
 
     public function beforeFilter() {
         parent::beforeFilter();
@@ -54,7 +55,7 @@ class WebappController extends AppController {
                     "Customer.mobile_number" => $this->request->data['Customer']['mobile_number']
                 )
             ));
-            if ($x == 0) {
+            if ($x == 1) {
                 // create new Customer here..
                 $pass = $this->randomString(6);
                 $this->Customer->save(array(
@@ -229,10 +230,14 @@ class WebappController extends AppController {
             "conditions" => array(
                 "Vendor.name LIKE" => $slug
             ),
-            "contain" => array(
-                "Combination.date BETWEEN '" . date("Y-m-d 00:00:00") . "' AND '" . date("Y-m-d 00:00:00", strtotime("+1 day")) . "'",
-                "Combination.Review"
-            )
+            "contain" => false
+//            array(
+//                //"Combination.date BETWEEN '" . date("Y-m-d 00:00:00") . "' AND '" . date("Y-m-d 00:00:00", strtotime("+1 day")) . "'",
+//                //"DATE(Combination.date) >= ".$this->_since." AND Combination.visible = 1 AND Combination.type = 'MAIN'",
+//                "Combination.visible" => 0,
+//                "Combination.type" => "MAIN",
+//                "Combination.Review"
+//            )
         ));
         $this->loadModel('Review');
         $rvCount = $this->Review->find("count",array(
