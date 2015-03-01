@@ -10,6 +10,16 @@
  * to change the values in the less files!
  */
 var left_side_width = 220; //Sidebar width in pixels
+var notiHiman = function(d){
+    winTitle = $('title').html();
+    $('title').html(d);
+    setTimeout(function(){
+        if(winTitle != null){
+            $('title').html(winTitle);
+            winTitle = null;
+        }
+    },1000);
+};
 
 $(function() {
     "use strict";
@@ -84,6 +94,19 @@ $(function() {
             e.preventDefault();
         });
 
+    });
+    
+    $("[data-widget='remove-me']").click(function() {
+        var data = $(this).data();      
+        var box = $(this).parents(".box").first();
+        if(confirm("You are about to delete an Order, Are you sure?")){
+            $.post(data.url,function(d){
+                if(d.error == 0){
+                    box.slideUp();
+                }
+                notiHiman(d.msg);
+            });
+        }
     });
 
     $("[data-widget='remove']").click(function() {

@@ -430,13 +430,24 @@ class OrdersController extends AppController {
         if (!$this->Order->exists()) {
             throw new NotFoundException(__('Invalid order'));
         }
-        $this->request->allowMethod('post', 'delete');
+        $this->request->allowMethod('ajax', 'post');
         if ($this->Order->delete()) {
-            $this->Session->setFlash(__('The order has been deleted.'));
+            $res = array(
+                "error" => 0,
+                "msg" => __('The order has been deleted.')
+            );
+//            $this->Session->setFlash(__('The order has been deleted.'));
         } else {
-            $this->Session->setFlash(__('The order could not be deleted. Please, try again.'));
+            $res = array(
+                "error" => 1,
+                "msg" => __('The order could not be deleted. Please, try again.')
+            );
+//            $this->Session->setFlash(__('The order could not be deleted. Please, try again.'));
         }
-        return $this->redirect(array('action' => 'index'));
+        $this->autoRender = false;
+        $this->response->type('json');
+        $this->response->body(json_encode($res));
+//        return $this->redirect(array('action' => 'index'));
     }
 
     /**

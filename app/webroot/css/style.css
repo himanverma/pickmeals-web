@@ -3185,3 +3185,12 @@ footer {
     border-top: none !important;
     padding: 0 15px 6px;
 }
+
+
+
+/*
+Modal Mods
+*/
+div.modal {
+    z-index: 99999 !important;
+}

@@ -9,6 +9,9 @@ App::uses("AppController", "Controller");
  * @property Customer $Customer Description
  */
 class PromoController extends AppController {
+    
+    private $_promodiscount = 60;
+    private $_referalBonus = 25;
 
     public function beforeFilter() {
         parent::beforeFilter();
@@ -85,7 +88,7 @@ class PromoController extends AppController {
         } elseif (!empty($referal) && $me['Customer']['refered_by'] == null) {
             // Add cash to me
             $this->Customer->updateAll(array(
-                "Customer.cash_by_promo" => "'" . ($me['Customer']['cash_by_promo'] + 50) . "'",
+                "Customer.cash_by_promo" => "'" . ($me['Customer']['cash_by_promo'] + $this->_promodiscount) . "'",
                 "Customer.refered_by" => "'" . $this->request->data['Customer']['code'] . "'",
                     ), array(
                 "Customer.id" => $me['Customer']['id']
@@ -93,13 +96,13 @@ class PromoController extends AppController {
 
 //            // Add cash to referal
 //            $this->Customer->updateAll(array(
-//                "Customer.cash_by_promo" => "'" . ($referal['Customer']['cash_by_promo'] + 25) . "'"
+//                "Customer.cash_by_promo" => "'" . ($referal['Customer']['cash_by_promo'] + ".$this->_referalBonus.") . "'"
 //                    ), array(
 //                "Customer.id" => $referal['Customer']['id']
 //            ));
             $res = array(
                 "error" => 0,
-                "msg" => "You just earned Rs.50/-"
+                "msg" => "You just earned Rs.".$this->_promodiscount."/-"
             );
         } else {
             $res = array(
@@ -137,7 +140,7 @@ class PromoController extends AppController {
         } else {
             $res = array(
                 "error" => 0,
-                "msg" => "Share your promo code <b>".$data['Customer']['my_promo_code']."</b> with your friends, and they get Rs 50 first meal free. Once they order, you get Rs 25 in Pickmeals credits.",
+                "msg" => "Share your promo code <b>".$data['Customer']['my_promo_code']."</b> with your friends, and they get Rs ".$this->_promodiscount." first meal free. Once they order, you get Rs ".$this->_referalBonus." in Pickmeals credits.",
                 "code" => $data['Customer']['my_promo_code']
             );
         }
@@ -220,7 +223,7 @@ class PromoController extends AppController {
             ));
             if(!empty($referal)){
                 $this->Customer->updateAll(array(
-                        "Customer.cash_by_promo" => "'" . ($referal['Customer']['cash_by_promo'] + 25) . "'"
+                        "Customer.cash_by_promo" => "'" . ($referal['Customer']['cash_by_promo'] + $this->_referalBonus) . "'"
                             ), array(
                         "Customer.id" => $referal['Customer']['id']
                     ));

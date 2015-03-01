@@ -276,7 +276,8 @@ class TestsController extends AppController {
     }
 
     public function getxorder() {
-        
+        ini_set('memory_limit', '-1');
+        Configure::write('debug', 0);
         require '../Vendor/PhpExcel/PHPExcel.php';
         define( 'PCLZIP_TEMPORARY_DIR', '../tmp/' );
         PHPExcel_Settings::setZipClass(PHPExcel_Settings::PCLZIP);
@@ -285,7 +286,8 @@ class TestsController extends AppController {
            "contain" =>  array(
                "Address",
                "Combination",
-               "Combination.Vendor"
+               "Combination.Vendor",
+               "Customer"
            ),
            "order" => "Order.id DESC"
         ));
@@ -298,6 +300,7 @@ class TestsController extends AppController {
         
 // define table cells
         $table = array(
+            array('label' => __('Used Discount'), 'filter' => true),
             array('label' => __('Vendor Name'), 'filter' => true),
             array('label' => __('Combination (Dish)'), 'filter' => true),
             array('label' => __('Essentials'), 'filter' => true),
@@ -321,6 +324,7 @@ class TestsController extends AppController {
 // add data
         foreach ($x as $d) {
             $this->PhpExcel->addTableRow(array(
+                $d['Order']['discount_amount'] == 0 ? "NO":"YES",
                 @$d['Combination']['Vendor']['name'],
                 $d['Order']['recipe_names'],
                 $d['Order']['essentials'],
@@ -353,6 +357,8 @@ class TestsController extends AppController {
             array('label' => __('Total Orders'))
         );
         $this->PhpExcel->addTableHeader($table, array('name' => 'Cambria', 'bold' => true));
+        
+        $cstDate = array();
         $this->loadModel('Customer');
         $cst = $this->Customer->find('all');
         foreach ($cst as $d) {
@@ -361,6 +367,8 @@ class TestsController extends AppController {
                     "Order.customer_id" => $d['Customer']['id']
                 )
             ));
+            
+            $cstDate[@date("d-m-Y",$d['Customer']['registered_on'])][] = $d;
             $this->PhpExcel->addTableRow(array(
                 $d['Customer']['id'],
                 $d['Customer']['my_promo_code'],
@@ -371,11 +379,75 @@ class TestsController extends AppController {
                 $c
             ));
         }
+        $this->PhpExcel->addTableFooter();
         
         
+        $odr3 = array();
+        $chartData = array();
+        foreach($x as $v3){
+            $d3 = date("d-m-Y",$v3['Order']['timestamp']);
+            $odr3[$d3][] = $v3;
+        }
+        foreach($odr3 as $kv3 => $cv3){
+           $chartData[$kv3]['total'] = count($cv3);
+           $repeated = 0;
+           $newCount = 0;
+           $couponCount = 0;
+           foreach($cv3 as $ev3){
+               
+               $tmp = $this->Order->find("count",array(
+                   "conditions" => array(
+                       "Order.customer_id" => $ev3['Order']['customer_id']
+                   )
+               ));
+               if($ev3['Order']['discount_amount'] != NULL && $ev3['Order']['discount_amount'] > 0){
+                   $couponCount++;
+               }
+               if(@date("d-m-Y",$ev3['Customer']['registered_on']) == @date("d-m-Y",$ev3['Order']['timestamp'])){
+                   $newCount++;
+               }
+               if($tmp > 1)
+                   $repeated++;
+           }
+           $chartData[$kv3]['repeated'] = $repeated;
+           $chartData[$kv3]['newreg'] = isset($cstDate[$kv3])? count($cstDate[$kv3]): 0;
+           $chartData[$kv3]['Coupon'] = $couponCount;
+           $chartData[$kv3]['new'] = $newCount;
+        }
+        //echo json_encode($chartData);
+        //exit;
+        
+        $this->PhpExcel->addSheet("Chart 1");
+        
+        $table = array(
+            array('label' => __('Date'), 'filter' => true),
+            array('label' => __('Total Orders')),
+            array('label' => __('Repeated')),
+            array('label' => __('New Registered Customers')),
+            array('label' => __('New Orders')),
+            array('label' => __('Coupon'), 'filter' => true)
+        );
+        $this->PhpExcel->addTableHeader($table, array('name' => 'Cambria', 'bold' => true));
+        $this->loadModel('Customer');
+        $cst = $this->Customer->find('all');
+        foreach ($chartData as $eK => $eD) {
+            
+            $this->PhpExcel->addTableRow(array(
+                $eK,
+                $eD['total'],
+                $eD['repeated'],
+                $eD['newreg'],
+                $eD['new'],
+                $eD['Coupon'],
+            ));
+        }
+        $this->PhpExcel->addTableFooter();
         $this->PhpExcel->output();
         exit;
     }
+    
+    
+
     public function updatep(){
         $this->loadModel('Customer');
         $this->loadModel('Address');

@@ -31,7 +31,7 @@
                                         , array('action' => 'changepaymentstatus', $orderO['Order']['id'].",".$orderO['Order']['customer_id']), array('class'=>"btn btn-".($orderO['Order']['payment_status'] == "PENDING" ? "warning" : "success")), __('Are you sure?', $orderO['Order']['customer_id'])); ?>
                                 <a href="<?php echo $this->Html->url('/order/edit/' . $orderO['Order']['sku']); ?>" class="btn btn-default btn-sm">Edit</a>
                                 <button data-widget="collapse" class="btn btn-default btn-sm"><i class="fa fa-plus"></i></button>
-                                <button data-widget="remove" class="btn btn-default btn-sm"><i class="fa fa-times"></i></button>
+                                <button data-widget="remove-me" data-url="<?php echo $this->Html->url('/orders/delete/'.$orderO['Order']['id']);?>" data-id="<?php echo $orderO['Order']['id'];?>" class="btn btn-default btn-sm"><i class="fa fa-times"></i> Delete</button>
                             </div>
                         </div>
                         <div class="box-body" style="display: none;">
