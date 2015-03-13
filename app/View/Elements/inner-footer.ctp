@@ -43,3 +43,25 @@
         </div>
     </div>
 </footer>
+<?php if(Configure::read('Global.shop_online') == "off"){ ?>
+<div class="modal fade" data-backdrop="static" id="shop_online">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+<!--        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>-->
+        <h4 class="modal-title">We are closed now :(</h4>
+      </div>
+      <div class="modal-body">
+        <p>Placed order between 11am to 4pm and 7pm to 11:30pm.</p>
+      </div>
+      <div class="modal-footer">
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<script type="text/javascript">
+    $(function(){
+        $('#shop_online').modal('show');
+    });
+</script>
+<?php } ?>

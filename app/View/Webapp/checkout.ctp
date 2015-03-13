@@ -385,10 +385,11 @@
                                                         });
                                                     };
                                                     me.makeOrder = function(d, e) {
+                                                        if(CartObj.items().length <= 0){
+                                                                alert("Your Cart is empty, please add few items...");
+                                                                return false;
+                                                            }
                                                         if (ko.validation.group(me)().length > 0) {
-
-
-
                                                             var err1 = ko.validation.group(me);
                                                             err1.showAllMessages();
                                                             var err = err1();

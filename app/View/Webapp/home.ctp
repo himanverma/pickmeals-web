@@ -434,6 +434,7 @@ echo json_encode($a);
 <div style="opacity: 0; z-index: -1; height: 0.1px; width: 0.1px; overflow: hidden;">
     <img src="<?php echo $this->Html->url('/img/ajax-loader.gif'); ?>">
 </div>
+
 <script type="text/javascript">
 function shuffle(array) {
   var currentIndex = array.length, temporaryValue, randomIndex ;

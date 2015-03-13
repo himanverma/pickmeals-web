@@ -83,7 +83,7 @@ class CombinationsController extends AppController {
         ));
     }
 
-    public function api_index() {
+    public function api_get() {
         Configure::write('debug', 0);
 //        Configure::write('debug', 2);
         $lat = $this->request->data['User']['latitude'] = 0.0;//30.7238504;

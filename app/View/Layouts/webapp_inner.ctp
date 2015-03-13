@@ -197,9 +197,20 @@
         }());
 
         var pk_fw_login = 0;
+        $('#login-mdl').on('shown.bs.modal', function () {
+            $('#pk-fw-uname').slideDown();
+            $('#pk-fw-passw').slideUp();
+            $('.lgn-fb').show();
+            pk_fw_login = 0;
+        });
         var login_mthd = function() {
-            $('#pk-fw-messa').html("");
-            if (pk_fw_login == 0) {
+             $('#pk-fw-messa').html("");
+            if($('#pk-fw-uname').val().length < 10){
+                $('#pk-fw-messa').html("<center>Please enter your mobile number...</center>");
+            }else{
+                $('#pk-fw-messa').html("");
+            }
+            if (pk_fw_login == 0 && $('#pk-fw-uname').val().length >= 10 ) {
                 $.post("/webapp/checklogin", {'data[Customer][mobile_number]': $('#pk-fw-uname').val()}, function(d) {
                     if (d.count == 0) {
                         $('#pk-fw-messa').html("Your Password has been sent to your mobile number...");

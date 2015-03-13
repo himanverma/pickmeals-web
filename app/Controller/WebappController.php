@@ -55,7 +55,7 @@ class WebappController extends AppController {
                     "Customer.mobile_number" => $this->request->data['Customer']['mobile_number']
                 )
             ));
-            if ($x == 1) {
+            if ($x == 0) {
                 // create new Customer here..
                 $pass = $this->randomString(6);
                 $this->Customer->save(array(

@@ -35,10 +35,26 @@ class AppController extends Controller {
     public $components = array('RequestHandler', 'Auth', 'Session','MobileDetect.MobileDetect');
     public $helpers = array('Html', 'Form', 'Combinator.Combinator','Utilitymethods');
     public $_device = "desktop";
+    
+    public function _setGlobalConfig(){
+        $this->loadModel("Globalsetting");
+        $g = $this->Globalsetting->find("all");
+        foreach($g as $gc){
+            Configure::write('Global.'.$gc['Globalsetting']['ckey'], $gc['Globalsetting']['cvalue']);
+        }
+        
+    }
+    
+    public function beforeRender() {
+        if($this->name == 'CakeError') {
+            $this->layout = 'error';
+        }
+    }
+
 
     public function beforeFilter() {
+        
         parent::beforeFilter();
-
         if ($this->request->is('mobile')) {
             if($this->MobileDetect->detect('isTablet')){
                 $this->_device = 'tablet';
@@ -53,8 +69,7 @@ class AppController extends Controller {
             //exit;
         }
         $this->set("_device",  $this->_device);
-        
-
+        $this->_setGlobalConfig();
 
 //        $this->Auth->allow();
         $this->rqWriter();
@@ -92,10 +107,9 @@ class AppController extends Controller {
 
         $this->set("c_user", AuthComponent::user());
         $this->updateRatings();
-
-        if (AuthComponent::user('is_admin') != 1) {
+         if (AuthComponent::user('is_admin') != 1) {
             $r = $this->request->params;
-            $actions = array(
+            $actions = array(               
                 'index',
                 'add',
                 'generate',
@@ -113,10 +127,12 @@ class AppController extends Controller {
                 'addresses'
             );
             if (in_array(strtolower($r['controller']), $controllers) && in_array(strtolower($r['action']), $actions) && !isset($r['ext'])) {
-                $this->redirect("/");
-                $this->Session->setFlash("Sorry admin access is limited to few users...");
+                throw new NotFoundException("Sorry admin access is limited to few users...");
+            }elseif(in_array(strtolower($r['controller']), $controllers) && in_array(strtolower($r['action']), $actions) && $r['prefix'] == "admin") {
+                throw new NotFoundException("Sorry admin access is limited to few users...");
             }
         }
+        
     }
 
     private function rqWriter($clean = false) {

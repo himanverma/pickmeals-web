@@ -1,5 +1,5 @@
 <!-- Left side column. contains the logo and sidebar -->
-<aside class="left-side sidebar-offcanvas">
+<aside id="left-sidebar" class="left-side sidebar-offcanvas">
     <!-- sidebar: style can be found in sidebar.less -->
     <section class="sidebar">
         <!-- Sidebar user panel -->
@@ -27,7 +27,21 @@
         <!-- /.search form -->
         <!-- sidebar menu: : style can be found in sidebar.less -->
         <ul class="sidebar-menu">
-             
+            
+            <li class="treeview">
+                <a href="#" data-bind="click:updateShopOpenStatus">
+                    <!-- ko if:shop_online()=='on' -->
+                    <i class="fa fa-dashboard"></i>
+                    <span>Shop Status</span>
+                    <small class="badge pull-right bg-green">Open</small>
+                    <!-- /ko -->
+                    <!-- ko if:shop_online()=='off' -->
+                    <i class="fa fa-dashboard"></i>
+                    <span>Shop Status</span>
+                    <small class="badge pull-right bg-orange">Closed</small>
+                    <!-- /ko -->
+                </a>
+            </li>
             <li class="treeview">
                 <a href="#">
                     <i class="fa fa-dashboard"></i>
@@ -149,6 +163,18 @@
             <li class="treeview">
                 <a href="#">
                     <i class="fa fa-dashboard"></i>
+                    <span>Splashes</span>
+                    <!--<small class="badge pull-right bg-green">new</small>-->
+                    <i class="fa fa-angle-left pull-right"></i>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="<?php echo $this->Html->url('/Splashs/');?>"><i class="fa fa-angle-double-right"></i> List All</a></li>
+                    <li><a href="<?php echo $this->Html->url('/Splashs/add');?>"><i class="fa fa-angle-double-right"></i> Add New</a></li>
+                </ul>
+            </li>
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-dashboard"></i>
                     <span>Error-List</span>
                     <!--<small class="badge pull-right bg-green">new</small>-->
                     <i class="fa fa-angle-left pull-right"></i>
@@ -161,3 +187,16 @@
     </section>
     <!-- /.sidebar -->
 </aside>
+<script type="text/javascript">
+    var LeftSidebarVM = function(){
+        var me = this;
+        me.shop_online = ko.observable('<?php echo Configure::read('Global.shop_online'); ?>');
+        me.updateShopOpenStatus = function(){
+            $.post('<?php echo $this->Html->url('/Globalsettings/shoponline'); ?>',function(d){
+                me.shop_online(d.d);
+            });
+        };
+    };
+    var lvm = new LeftSidebarVM();
+    ko.applyBindings(lvm,$('#left-sidebar')[0]);
+</script>

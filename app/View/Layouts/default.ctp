@@ -6,6 +6,9 @@
         <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
         <?php echo $this->Html->meta("icon", "favicon.ico"); ?>
         <!-- bootstrap 3.0.2 -->
+        <script src="//cdnjs.cloudflare.com/ajax/libs/knockout/3.2.0/knockout-min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/knockout.mapping/2.4.1/knockout.mapping.js"></script>
+
         <?php 
             echo $this->Html->css(array(
                 'cake.generic',

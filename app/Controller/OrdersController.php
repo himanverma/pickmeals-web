@@ -22,6 +22,7 @@ class OrdersController extends AppController {
         parent::beforeFilter();
         $this->Auth->allow(array(
             'api_order',
+            'payuweb',
             'payu',
             "successipn",
             "failureipn",
@@ -426,12 +427,10 @@ class OrdersController extends AppController {
      * @return void
      */
     public function delete($id = null) {
-        $this->Order->id = $id;
-        if (!$this->Order->exists()) {
-            throw new NotFoundException(__('Invalid order'));
-        }
         $this->request->allowMethod('ajax', 'post');
-        if ($this->Order->delete()) {
+        if ($this->Order->deleteAll(array(
+            "Order.sku" => $id
+        ),true)) {
             $res = array(
                 "error" => 0,
                 "msg" => __('The order has been deleted.')

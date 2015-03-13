@@ -6,20 +6,18 @@
                 <div class="container">
                     <div class="row">
 
-                        <div class="col-lg-3">
+                        <div class="col-sm-3 col-md-3">
                             <div class="logo">
                                 <img src="/img/logo-home.png" onclick="window.location = '/'" >
                                 <img class="logo-2" src="/img/pickmeals_icon.png" onclick="window.location = '/'" >
                             </div>
                         </div>
-                        <div class="col-lg-6">
-                            <div style="margin: 0 auto;" class="hidden-xs">
-                                <h3 style="color: #fff;
-                                    text-shadow: 0px 0px 7px #000;
-                                    font-size: 29pt;">For orders call 8054636023</h3>
+                        <div class="col-sm-8 col-md-6">
+                            <div style="margin: 0 auto; float: left;">
+                                <h3 class="call-number">For orders call 8054636023</h3>
                             </div>
                         </div>
-                        <div class="col-lg-3">
+                        <div class="col-sm-1 col-md-3">
                             <div class="top-txt">
                                 <?php if ($c_user) { ?>
                                     <a class="trans-btns" href="/myaccount">My Account</a>
@@ -42,7 +40,7 @@
 
 
 
-        <nav class="navbar navbar-default visible-xs" role="navigation" style="position: absolute; right: 0; z-index: 2;">
+        <nav class="navbar navbar-default" role="navigation" style="position: absolute; right: 0; z-index: 2; display: none;">
             <div class="container-fluid">
                 <!-- Brand and toggle get grouped for better mobile display -->
                 <div class="col-sm-12 padding-none">

@@ -95,6 +95,7 @@ Configure::write('Dispatcher.filters', array(
 /**
  * Configures default file logging options
  */
+App::uses('AppExceptionRenderer', 'Lib/Error');
 App::uses('CakeLog', 'Log');
 App::import('Vendor', array('file' => 'autoload'));
 CakeLog::config('debug', array(

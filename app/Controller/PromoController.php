@@ -80,12 +80,19 @@ class PromoController extends AppController {
             ),
             "contain" => false
         ));
+        
+        
         if($cnt > 1){
             $res = array(
                 "error" => 1,
-                "msg" => "You can't redeam promo code twice on the same device."
+                "msg" => "You can't redeem promo code twice on the same device."
             );
-        } elseif (!empty($referal) && $me['Customer']['refered_by'] == null) {
+        }elseif(empty($referal)){
+            $res = array(
+                "error" => 1,
+                "msg" => "Invalid Promo Code"
+            );
+        }elseif (!empty($referal) && $me['Customer']['refered_by'] == null) {
             // Add cash to me
             $this->Customer->updateAll(array(
                 "Customer.cash_by_promo" => "'" . ($me['Customer']['cash_by_promo'] + $this->_promodiscount) . "'",
@@ -107,9 +114,10 @@ class PromoController extends AppController {
         } else {
             $res = array(
                 "error" => 1,
-                "msg" => "Invalid promo code."
+                "msg" => "You can't redeem promo code twice on the same device."
             );
         }
+        
         $this->set(array(
             'data' => $res,
             '_serialize' => array('data')

@@ -22,7 +22,8 @@ class SplashsController extends AppController {
         $records = $this->Splash->find('first',array(
             'conditions' => array(
                 'Splash.status' => 'active'
-            )
+            ),
+            'order' => 'Splash.id DESC'
         ));
         if($records){
             $response['error'] = 0;
@@ -70,7 +71,7 @@ class SplashsController extends AppController {
         Configure::write('debug',2);
         if ($this->request->is('post')) {
             $this->Splash->create();
-            $this->request->data['Splash']['status'] =1;
+            $this->request->data['Splash']['status'] = 'active';
             if ($this->Splash->save($this->request->data)) {
                 $this->Session->setFlash(__('The splash has been saved.'));
                 return $this->redirect(array('action' => 'index'));

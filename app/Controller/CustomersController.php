@@ -85,6 +85,7 @@ class CustomersController extends AppController {
         $fc = fopen('files' . DS . 'detail.txt', 'w');
         fwrite($fc, $c);
         fclose($fc);
+        
         if (isset($this->request->data['Customer']['mobile_number'])) {
             $customerRcord = $this->Customer->find('first', array(
                 'conditions' => array(
@@ -96,6 +97,13 @@ class CustomersController extends AppController {
             $customerRcord = $this->Customer->find('first', array(
                 'conditions' => array(
                     "Customer.fbid" => $this->request->data['Customer']['fbid'],
+                )
+            ));
+        }
+        if (isset($this->request->data['Customer']['deviceId'])) {
+            $customerRcord = $this->Customer->find('first', array(
+                'conditions' => array(
+                    "Customer.deviceId" => $this->request->data['Customer']['deviceId'],
                 )
             ));
         }

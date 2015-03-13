@@ -14,11 +14,7 @@
             <tr class="data-row">
                         <td><img src="<?php echo h($splash['Splash']['file']); ?>" width="50" height="50" />&nbsp;</td>
                         <td><?php
-                            if ($splash['Splash']['status'] == 1) {
-                                echo "Active";
-                            } else {
-                                echo "Deactive";
-                            }
+                            echo $splash['Splash']['status'];
                             ?>&nbsp;</td>
                         <td class="actions">
                            <?php echo $this->Html->link(__('View'), array('action' => 'view', $splash['Splash']['id'])); ?>

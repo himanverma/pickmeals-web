@@ -31,7 +31,7 @@
  * In production mode, flash messages redirect after a time interval.
  * In development mode, you need to click the flash message to continue.
  */
-	Configure::write('debug', 2);
+	Configure::write('debug', 0);
 
 /**
  * Configure the Error handler used to handle errors for your application. By default
@@ -74,11 +74,13 @@
  *
  * @see ErrorHandler for more information on exception handling and configuration.
  */
+        
 	Configure::write('Exception', array(
 		'handler' => 'ErrorHandler::handleException',
-		'renderer' => 'ExceptionRenderer',
+		'renderer' => 'AppExceptionRenderer',//'ExceptionRenderer',
 		'log' => true
 	));
+        //Configure::write('Exception.handler', 'AppExceptionHandler::handle');
 
 /**
  * Application wide charset encoding
