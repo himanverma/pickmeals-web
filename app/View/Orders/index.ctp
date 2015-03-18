@@ -158,7 +158,15 @@
                                                 <tbody>
                                                     <tr>
                                                         <th>Mobile No.</th>
-                                                        <td><input type="text" value="" placeholder="Eg. 8699445905" name="data[num]" /></td>
+                                                        <td>
+                                                            <input type="text" id="datanum" value="" placeholder="Eg. 8699445905" name="data[num]" />
+                                                            <select onchange="javascript: $('#datanum').val($(this).val())">
+                                                                <option value="">--Select Delivery Boy--</option>
+                                                                <?php foreach($dboys as $dboy){ ?>
+                                                                <option value="<?php echo $dboy['DeliveryBoy']['mobile_number']; ?>"><?php echo $dboy['DeliveryBoy']['name']; ?></option>
+                                                                <?php } ?>
+                                                            </select>
+                                                        </td>
                                                     </tr>
                                                     <tr>
                                                         <td colspan="2">
@@ -179,7 +187,7 @@ D: <?php echo $sm['D']; ?> / <?php echo $sm['E']; ?>
                                             </table>
                                         </div>
                                         <div class="box-footer">
-                                            <div class="pull-right"><button class="btn btn-default" type="submit">Send SMS</button></div>
+                                            <div class="pull-right"><button class="btn btn-default sbmt-btn" type="submit">Send SMS</button></div>
                                         </div>
                                     </div>
                                 </form>
@@ -216,11 +224,18 @@ D: <?php echo $sm['D']; ?> / <?php echo $sm['E']; ?>
 <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery.form/3.51/jquery.form.min.js"></script>
 <script type="text/javascript">
     $(document).ready(function() {
+        
         $('.smsDelivery').ajaxForm({
+            beforeSubmit: function(arr, $form, options) {
+                $($form).find('.sbmt-btn').addClass("disabled");  
+              },
             success: function(d) {
                 if (d.error == 0) {
                     alert(d.msg.api_response);
+                }else{
+                    alert(d.msg);
                 }
+                $('.sbmt-btn').removeClass('disabled');
             }
         });
     });

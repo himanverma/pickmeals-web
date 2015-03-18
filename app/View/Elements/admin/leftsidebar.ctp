@@ -42,6 +42,14 @@
                     <!-- /ko -->
                 </a>
             </li>
+            <li>
+                <a href="<?php echo $this->Html->url('/Dashboard/neworder'); ?>">
+                    <i class="fa fa-dashboard"></i>
+                    <span>Place Order</span>
+                    <small class="badge pull-right bg-green">new</small>
+                    <i class="fa fa-plus pull-right"></i>
+                </a>
+            </li>
             <li class="treeview">
                 <a href="#">
                     <i class="fa fa-dashboard"></i>
@@ -67,7 +75,18 @@
                 </ul>
             </li>
             
-            
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-dashboard"></i>
+                    <span>Delivery Boys</span>
+                    <small class="badge pull-right bg-green">new</small>
+                    <i class="fa fa-angle-left pull-right"></i>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="<?php echo $this->Html->url('/deliveryBoys/');?>"><i class="fa fa-angle-double-right"></i> List All</a></li>
+                    <li><a href="<?php echo $this->Html->url('/deliveryBoys/add');?>"><i class="fa fa-angle-double-right"></i> Add New</a></li>
+                </ul>
+            </li>
             <li class="treeview">
                 <a href="#">
                     <i class="fa fa-circle"></i>
@@ -132,7 +151,7 @@
                 <a href="/AppVersions/edit/1">
                     <i class="fa fa-dashboard"></i>
                     <span>AppVersion</span>
-                    <small class="badge pull-right bg-green">new</small>
+<!--                    <small class="badge pull-right bg-green">new</small>-->
                 </a>
             </li>
             

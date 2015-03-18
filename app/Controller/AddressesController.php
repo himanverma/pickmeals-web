@@ -32,7 +32,7 @@ class AddressesController extends AppController {
                     "Customer.id" => $this->request->data['Address']['customer_id']
                 ));
                 
-                if($cst['Customer']['email'] == null || $cst['Customer']['email'] == ""){
+                if(isset($cst['Customer']['email'])){
                     $this->loadModel('Customer');
                     $this->Customer->updateAll(array(
                         "Customer.email" => "'".$this->request->data['Address']['email']."'",
@@ -77,7 +77,7 @@ class AddressesController extends AppController {
 //                if($cst['Customer']['name'] == null || $cst['Customer']['name'] == ""){
                     $this->loadModel('Customer');
                     $this->Customer->updateAll(array(
-                        "Customer.name" => "'".$this->request->data['Address']['f_name']." ".$this->request->data['Address']['f_name']."'",
+                        "Customer.name" => "'".$this->request->data['Address']['f_name']." ".$this->request->data['Address']['l_name']."'",
                     ), array(
                         "Customer.id" => $this->request->data['Address']['customer_id']
                     ));

@@ -16,10 +16,12 @@
                 'admin/font-awesome.min',
                 'admin/ionicons.min',
                 'admin/AdminLTE',
-                'admin/bootstrap-wysihtml5/bootstrap3-wysihtml5.min'
+                'admin/bootstrap-wysihtml5/bootstrap3-wysihtml5.min',
+                '//cdnjs.cloudflare.com/ajax/libs/chosen/1.4.1/chosen.min.css'
             ));
             echo $this->Html->script(array(
                     '//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js',
+                    '//cdnjs.cloudflare.com/ajax/libs/chosen/1.1.0/chosen.jquery.min.js'
                     //'app/swt'
                 ));
         ?>

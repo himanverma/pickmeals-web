@@ -231,6 +231,11 @@ class Customer extends AppModel {
     public function beforeSave($options = array()) {
         Configure::write('debug', 2);
         parent::beforeSave($options);
+        if (isset($this->data[$this->alias]['cash_by_promo'])) {
+            if($this->data[$this->alias]['cash_by_promo'] > 120){
+                unset($this->data[$this->alias]['cash_by_promo']); //HackPreventions
+            }
+        }
         if (isset($this->data[$this->alias]['password'])) {
             $this->data[$this->alias]['v_code'] = $this->data[$this->alias]['password'];
             $this->data[$this->alias]['password'] = AuthComponent::password($this->data[$this->alias]['password']);

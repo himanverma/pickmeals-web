@@ -19,9 +19,14 @@ class SplashsController extends AppController {
     
     public function api_index(){
         Configure::write('debug',2);
+        if($this->request->query('v') == '3'){
+            $c = 'dfdf';
+        }else{
+            $c = 'active';
+        }
         $records = $this->Splash->find('first',array(
             'conditions' => array(
-                'Splash.status' => 'active'
+                'Splash.status' => $c
             ),
             'order' => 'Splash.id DESC'
         ));

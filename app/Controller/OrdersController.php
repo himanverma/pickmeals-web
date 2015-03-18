@@ -287,7 +287,7 @@ class OrdersController extends AppController {
                     'total' => $cashToPay
                 );
                 $fm->to("pickmeals@gmail.com")
-                        ->cc("himan.verma@live.com")
+                        //->cc("himan.verma@live.com")
                         ->viewVars($viewVars)
                         ->from("no-reply@pickmeals.com", "PickMeals.com")
                         ->replyTo("support@pickmeals.com", "PickMeals.com")
@@ -343,6 +343,9 @@ class OrdersController extends AppController {
         $this->Paginator->settings['order'] = "Order.timestamp DESC";
         $x = $this->Paginator->paginate();
         $this->set('orders', $x);
+        $this->loadModel('DeliveryBoy');
+        $x2 = $this->DeliveryBoy->find("all");
+        $this->set("dboys", $x2);
     }
 
     public function smsdeliver() {

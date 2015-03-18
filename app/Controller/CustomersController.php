@@ -99,14 +99,9 @@ class CustomersController extends AppController {
                     "Customer.fbid" => $this->request->data['Customer']['fbid'],
                 )
             ));
+            
         }
-        if (isset($this->request->data['Customer']['deviceId'])) {
-            $customerRcord = $this->Customer->find('first', array(
-                'conditions' => array(
-                    "Customer.deviceId" => $this->request->data['Customer']['deviceId'],
-                )
-            ));
-        }
+       
 //        debug($customerRcord);exit;
         if (!empty($customerRcord)) {
             if (isset($this->request->data['Customer']['fbid'])) {

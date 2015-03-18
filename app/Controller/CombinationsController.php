@@ -117,6 +117,8 @@ class CombinationsController extends AppController {
             "conditions" => $cnd,
             "order" => 'RAND()',
         ));
+        
+        file_put_contents("files/apiget.txt", print_r($combination,true));
 
         $combination['list'] = $combination1;
         $this->set(array(
@@ -335,7 +337,9 @@ class CombinationsController extends AppController {
         Configure::write('debug', 2);
         $this->loadModel('Recipe');
         $this->Recipe->recursive = 0;
-        $recipes = $this->Recipe->find('all');
+        $recipes = $this->Recipe->find('all',array(
+            "order" => "Recipe.recipe_name ASC"
+        ));
         $r = array();
         foreach ($recipes as $d) {
             $r[] = $d['Recipe'];

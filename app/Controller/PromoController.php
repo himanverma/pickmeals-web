@@ -10,7 +10,7 @@ App::uses("AppController", "Controller");
  */
 class PromoController extends AppController {
     
-    private $_promodiscount = 60;
+    private $_promodiscount = 40;
     private $_referalBonus = 25;
 
     public function beforeFilter() {
