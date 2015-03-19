@@ -6,6 +6,7 @@ App::uses("AuthComponent", "Controller/Component");
 /**
  * Customer Model
  *
+ * @property AppModel $AppModel Description
  * @property Order $Order
  * @property VendorReview $VendorReview
  */

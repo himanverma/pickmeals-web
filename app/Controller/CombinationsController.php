@@ -23,6 +23,7 @@ class CombinationsController extends AppController {
         parent::beforeFilter();
         $this->Auth->allow(array('api_index', 'api_view', 'api_search', 'api_feedback'));
         $this->updateRatings();
+        
     }
 
     /* ------------------------------------------ Web-Services-Start---------------------------------------- */
@@ -258,14 +259,17 @@ class CombinationsController extends AppController {
         if (!$this->Combination->exists($id)) {
             throw new NotFoundException(__('Invalid combination'));
         }
+        
         if ($this->request->is(array('post', 'put'))) {
             if ($this->Combination->save($this->request->data)) {
                 $this->Session->setFlash(__('The combination has been saved.'));
-                return $this->redirect(array('action' => 'index'));
+                //return $this->redirect(array('action' => 'index'));
+                return $this->redirect($this->Session->read("ref.url"));
             } else {
                 $this->Session->setFlash(__('The combination could not be saved. Please, try again.'));
             }
         } else {
+            $this->Session->write("ref.url", $this->request->referer());
             $options = array('conditions' => array('Combination.' . $this->Combination->primaryKey => $id));
             $this->request->data = $this->Combination->find('first', $options);
         }
