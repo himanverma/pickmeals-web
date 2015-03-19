@@ -8,7 +8,7 @@
                 <button class="btn btn-danger" id="deleteSelected">Delete Selected</button>
             </div>
         </div>
-        
+        <div class="table-responsive">
         <table cellpadding="0" class="table table-bordered" cellspacing="0">
 	<thead>
 	<tr>
@@ -49,6 +49,7 @@
 <?php endforeach; ?>
 	</tbody>
 	</table>
+        </div>
 	<p>
 	<?php
 	echo $this->Paginator->counter(array(

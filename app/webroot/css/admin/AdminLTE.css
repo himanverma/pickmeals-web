@@ -2197,6 +2197,17 @@ Component: timeline
     font-size: 60px;
     margin-bottom: 40px;
   }
+  .content {width: 100%;}
+}
+@media screen and (max-width: 360px) {
+
+  .navbar .navbar-nav > li {width: 50px;}
+  .btn {padding: 6px 4px;}
+  body > .header .navbar {height: auto; }
+}
+@media screen and (max-width: 320px) {
+
+  .navbar .navbar-nav > li {width: 45px;}
 }
 /* User name [optional] */
 .lockscreen .lockscreen-name {
