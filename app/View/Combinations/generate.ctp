@@ -46,6 +46,7 @@
                                 <td>
                                     <input type="text" data-bind="value:Combination.display_name" />
                                 </td>
+                                <td>Stock Count: <input class="pull-right" type="text" value="10" data-bind="value:Combination.stock_count" /></td>
                                 <td>Vendor Price: <input class="pull-right" type="text" value="0.00" data-bind="value:Combination.vendor_cost" /></td>
                             </tr>
                         </tbody>
@@ -107,6 +108,7 @@
                         display_name: name,
                         vendor_cost: ko.observable(0.00),
                         type: p1.type,
+                        stock_count: ko.observable(10),
                         CombinationItem: [
                             {
                                 recipe_id : p1.id,
@@ -136,6 +138,7 @@
                                 display_name: name + " + " + name2,
                                 vendor_cost: ko.observable(0.00),
                                 type: p2.type,
+                                stock_count: ko.observable(10),
                                 CombinationItem: [
                                     {
                                         recipe_id : p2.id,

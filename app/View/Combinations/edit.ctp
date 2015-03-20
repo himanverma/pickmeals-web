@@ -8,6 +8,7 @@
 		echo $this->Form->input('display_name');
 		echo $this->Form->input('day');
 		echo $this->Form->input('date');
+                echo $this->Form->input('stock_count');
 		echo $this->Form->input('vendor_cost');
 		echo $this->Form->input('status');
 	?>

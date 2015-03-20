@@ -12,6 +12,9 @@
                 'admin/ionicons.min',
                 'admin/AdminLTE'
             ));
+            echo $this->Html->script(array(
+                'admin/openfb'
+            ));
         ?>
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -22,53 +25,212 @@
     </head>
     <body class="bg-black">
 
-        <div class="form-box" id="login-box">
-            <div class="header">Sign In</div>
-            <div style="text-align: center;"><?php echo $this->Session->flash(); ?></div>
-            <form method="post">
-                <div class="body bg-gray">
-                    <div class="form-group">
-                        <input type="text" name="data[User][username]" class="form-control" value="admin" placeholder="User ID"/>
-                    </div>
-                    <div class="form-group">
-                        <input type="password" name="data[User][password]" class="form-control" value="admin@123" placeholder="Password"/>
-                    </div>
-                    <div class="form-group">
-                        <select name="data[User][type]" class="form-control">
-                            <option value="vendor">Chef (Food Supplier)</option>
-                            <option value="customer">Customer</option>
-                            <option selected="" value="admin">Administrator</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <input type="checkbox" name="remember_me"/> Remember me
+        
+
+        
+        
+        <div style="padding-bottom: 24px;" class="bs-example">
+            <!--<button class="payment_checkout1_button" data-whatever="@mdo" data-target="#login-mdl" data-toggle="modal" class="btn btn-primary" type="button">Place order</button>-->
+
+            <div aria-hidden="true" aria-labelledby="exampleModalLabel" role="dialog" tabindex="-1" id="login-mdl" class="modal fade">
+                <div class="modal-dialog">
+                    <div class="modal-content" style="margin-top: 30%">
+                        <!--<div class="modal-header">
+                          <button data-dismiss="modal" class="close" type="button"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+              
+                        </div>-->
+                        <div class="modal-body">
+                            <div class="modal-body_in center-block">
+                                <form role="form">
+                                    <div class="lgn-fb form-group">
+                                        <span onclick="fb_login();" class="login_img">
+                                            <img src="/img/login.png" width="100%" />
+                                        </span>
+                                    </div>
+                                    <p class="login_or lgn-fb">-OR-</p>
+                                    <div class="form-group">
+                                        <div class="login_phone">
+                                            <div style="color:red;" id="pk-fw-messa"></div>
+                                            <div class="login_phone_in center-block form-group">
+                                                <input type="text" placeholder="Enter Mobile No." class="form-control" id="pk-fw-uname">
+                                                <input type="password" placeholder="Enter Password" class="form-control" id="pk-fw-passw" style="display:none">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <span class="submit_img">
+                                        <img src="/img/submit.png" id="pk-fw-submi" width="100%" />
+                                    </span>
+                                    <p class="forgot_pass"><a href="/forgot-password">Forgot password</a></p>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                        </div>
                     </div>
                 </div>
-                <div class="footer">                                                               
-                    <button type="submit" class="btn bg-olive btn-block">Sign me in</button>  
-                    
-                    <p><a href="#">I forgot my password</a></p>
-                    
-                    <!--<a href="register.html" class="text-center">Register a new membership</a>-->
-                </div>
-            </form>
-
-            <!--<div class="margin text-center">
-                <span>Sign in using social networks</span>
-                <br/>
-                <button class="btn bg-light-blue btn-circle"><i class="fa fa-facebook"></i></button>
-                <button class="btn bg-aqua btn-circle"><i class="fa fa-twitter"></i></button>
-                <button class="btn bg-red btn-circle"><i class="fa fa-google-plus"></i></button>
-
-            </div>-->
+            </div><!-- /.modal -->
         </div>
-
+        <div id="fb-root"></div>
+        
+        
+        
+        
 
         <!-- jQuery 2.0.2 -->
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
         <!-- Bootstrap -->
         <?php echo $this->Html->script(array('admin/bootstrap.min')); ?>
+        <script type="text/javascript">
+        window.fbAsyncInit = function() {
+            FB.init({
+                appId: '741582422594237',
+                oauth: true,
+                status: true, // check login status
+                cookie: true, // enable cookies to allow the server to access the session
+                xfbml: true // parse XFBML
+            });
+        };
+        function fb_login() {
+            FB.login(function(response) {
+
+                if (response.authResponse) {
+                    console.log('Welcome!  Fetching your information.... ');
+                    access_token = response.authResponse.accessToken; //get access token
+                    user_id = response.authResponse.userID; //get FB UID
+
+                    FB.api('/me', function(response) {
+                        FB.api("/me/picture?width=180&height=180", function(r)
+                        {
+                            response.profile_pic = r.data.url;
+                            $.post("/webapp/fblogin", {"data": response}, function(d) {
+                                if (d.error == 0) {
+                                    $('#login-mdl').modal('hide');
+                                    try{
+                                        var options = {
+                                            iconUrl: '//pickmeals.com/img/pickmeals_icon.png',
+                                            title: 'pickmeals.com',
+                                            body: d.msg,
+                                            timeout: 7000,
+                                            onclick: function() {
+                                                notification.close();
+                                            }
+                                        };
+                                        $.notification(options);
+                                    } catch (e) {
+//                                        alert(d.msg);
+                                    }
+                                    window.location = "https://www.pickmeals.com/Dashboard";
+                                }
+                                console.log(d);
+                            });
+
+                        });
+                        
+                    });
+
+                } else {
+                    //user hit cancel button
+                    console.log('User cancelled login or did not fully authorize.');
+
+                }
+            }, {
+                scope: 'publish_stream,email,user_location'
+            });
+        }
+        (function() {
+            var e = document.createElement('script');
+            e.src = document.location.protocol + '//connect.facebook.net/en_US/all.js';
+            e.async = true;
+            document.getElementById('fb-root').appendChild(e);
+        }());
+
+
+        var pk_fw_login = 0;
         
+        $('#login-mdl').on('shown.bs.modal', function () {
+            $('#pk-fw-uname').slideDown();
+            $('#pk-fw-passw').slideUp();
+            $('.lgn-fb').show();
+            pk_fw_login = 0;
+        });
+        
+        
+        
+        var login_mthd = function() {
+            $('#pk-fw-messa').html("");
+            if($('#pk-fw-uname').val().length < 10){
+                $('#pk-fw-messa').html("<center>Please enter your mobile number...</center>");
+            }else{
+                $('#pk-fw-messa').html("");
+            }
+            if (pk_fw_login == 0 && $('#pk-fw-uname').val().length >= 10 ) {
+                $('#pk-fw-messa').html("");
+                $.post("/webapp/checklogin", {'data[Customer][mobile_number]': $('#pk-fw-uname').val()}, function(d) {
+                    if (d.count == 0) {
+                        $('#pk-fw-messa').html("Your Password has been sent to your mobile number...");
+                    }
+                    $('#pk-fw-uname').slideUp();
+                    $('#pk-fw-passw').slideDown();
+                    $('.lgn-fb').hide();
+                    pk_fw_login = 1;
+                });
+                return false;
+            }
+            if (pk_fw_login == 1) {
+                $('#pk-fw-passw').val();
+                $.post("/webapp/login", {'data[Customer][mobile_number]': $('#pk-fw-uname').val(), 'data[Customer][password]': $('#pk-fw-passw').val()}, function(d) {
+                    console.log(d);
+                    if (d.error == 1) {
+                        pk_fw_login = 1;
+                        $('#pk-fw-messa').html("Please try again...");
+                    } else {
+                        try{
+                            var options = {
+                                iconUrl: '//pickmeals.com/img/pickmeals_icon.png',
+                                title: 'pickmeals.com',
+                                body: d.msg,
+                                timeout: 7000,
+                                onclick: function() {
+                                    notification.close();
+                                }
+                            };
+                            $.notification(options);
+                        } catch (e) {
+                            //alert(d.msg);
+                        }
+                        pk_fw_login = 2;
+                        $('#login-mdl').modal('hide');
+                        window.location = "https://www.pickmeals.com/Dashboard";
+                    }
+                });
+
+                return false;
+            }
+
+        };
+
+
+        $(document).ready(function() {
+            
+            //=- device_check app download link
+//            if(typeof sessionStorage.device_check == "undefined"){
+//                sessionStorage.device_check = '<?php echo $_device; ?>';
+//                $('#device_check').show();
+//            }
+            
+            
+            $('#pk-fw-submi').off("click").on("click", login_mthd);
+            $('#pk-fw-uname, #pk-fw-passw').off("keyup").on("keyup", function(e) {
+                if(e.keyCode == 13){
+                    login_mthd();
+                }
+            });
+            $('#login-mdl').modal('show');
+            $('#login-mdl').on('hidden.bs.modal',function(){$('#login-mdl').modal('show');});
+        });
+        
+        
+        </script>
 
     </body>
 </html>

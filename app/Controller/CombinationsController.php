@@ -485,5 +485,19 @@ class CombinationsController extends AppController {
 
         return $result_urls;
     }
+    
+    public function upd(){
+        $this->autoRender = false;
+        if($this->request->is(array('post'))){
+            $d = $this->request->data;
+            $this->Combination->updateAll(array(
+                "Combination.stock_count" => "'".$d['val']."'"
+            ), array(
+               "Combination.id" => $d['id'] 
+            ));
+            echo 'done';
+            exit;
+        }
+    }
 
 }

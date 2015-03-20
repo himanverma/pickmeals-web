@@ -13,6 +13,11 @@ class DashboardController extends AppController {
     public $_since = "2015-2-19";
     public function beforeFilter() {
         parent::beforeFilter();
+        $this->Auth->allow(array('login'));
+    }
+    
+    public function login(){
+        $this->layout = "login";
     }
 
     public function index() {

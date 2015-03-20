@@ -14,11 +14,13 @@
              <th>
                 <input type="checkbox" id="allChk" />
             </th>
+            
 			<th><?php echo $this->Paginator->sort('id'); ?></th>
 			<th><?php echo $this->Paginator->sort('vendor_id'); ?></th>
 			<th><?php echo $this->Paginator->sort('display_name'); ?></th>
 			<th><?php echo $this->Paginator->sort('day'); ?></th>
 			<th><?php echo $this->Paginator->sort('date'); ?></th>
+                        <th><?php echo $this->Paginator->sort('stock_count'); ?></th>
 			<th><?php echo $this->Paginator->sort('price'); ?></th>
 			<th><?php echo $this->Paginator->sort('status'); ?></th>
 			<th class="actions"><?php echo __('Actions'); ?></th>
@@ -37,6 +39,12 @@
 		<td><?php echo h($combination['Combination']['display_name']); ?>&nbsp;</td>
 		<td><?php echo h($combination['Combination']['day']); ?>&nbsp;</td>
 		<td><?php echo h($combination['Combination']['date']); ?>&nbsp;</td>
+                <td class="stk-upd">
+                    <div style="height:12px" align="center">
+                        <img style="display:none;" src="/img/1.gif" />
+                    </div>
+                    <input type="number" style="width:69px;" min="0" c data-id="<?php echo h($combination['Combination']['id']); ?>" value="<?php echo $combination['Combination']['stock_count']; ?>" />
+                </td>
 		<td><?php echo h($combination['Combination']['price']); ?>&nbsp;</td>
 		<td><?php echo h($combination['Combination']['status']); ?>&nbsp;</td>
 		<td class="actions">
@@ -65,6 +73,7 @@
 
 
 <script type="text/javascript">
+    var stk = null;
     $(document).ready(function(){
         $("#deleteSelected").on("click",function(){
             var ids = [];
@@ -106,5 +115,15 @@
             });
         });
         
+        $('.stk-upd input').on("change",function(){
+            var me = $(this);
+            me.parent().find('img').show();
+            try{
+                stk.abort();
+            }catch(e){}
+            stk = $.post("<?php echo $this->Html->url('/combinations/upd');?>",{id:$(this).data('id'),val:$(this).val()},function(){
+                me.parent().find('img').hide();
+            });
+        });
     });
 </script>    

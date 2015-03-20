@@ -232,6 +232,13 @@ class OrdersController extends AppController {
                 $ttl = 0;
                 foreach($x as $rt){
                     $ttl += $rt['Combination']['price'] * $rt['Order']['qty'];
+                    
+                    
+                    $this->Combination->updateAll(array(   //-------- Update Stock
+                        "Combination.stock_count" => "'".$rt['Combination']['stock_count'] - $rt['Order']['qty']."'"
+                    ), array(
+                       "Combination.id" => $rt['Combination']['id'] 
+                    ));
                 }
                 
                 
