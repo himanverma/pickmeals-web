@@ -14,7 +14,7 @@
                         </div>
                         <div class="col-sm-8 col-md-6">
                             <div style="margin: 0 auto; float: left;">
-                                <h3 class="call-number">For orders call 8054636023</h3>
+                                <h3 class="call-number">Orders accepted till 4 am Call 8054636023</h3>
                             </div>
                         </div>
                         <div class="col-sm-1 col-md-3">

@@ -37,6 +37,7 @@ class CombinationsController extends AppController {
         $long = $this->request->data['User']['longitude'];
         $count = $this->request->data['User']['count'];
         $cnd = array(
+                "Combination.stock_count > " => 0,
                 "Combination.visible" => 1,
                 "Combination.type" => "MAIN",
                 "DATE(Combination.date) >= " => $this->_since, // date("Y-m-d"),
@@ -44,6 +45,7 @@ class CombinationsController extends AppController {
             );
         if($lat == 0 || $long == 0){
             $cnd = array(
+                "Combination.stock_count > " => 0,
                 "Combination.type" => "MAIN",
                 "Combination.visible" => 1,
                 "DATE(Combination.date) >= " => $this->_since // date("Y-m-d"),
@@ -94,12 +96,14 @@ class CombinationsController extends AppController {
         $long = $this->request->data['User']['longitude'];
         if($lat == 0.0 || $long == 0.0){
             $cnd = array(
+                "Combination.stock_count > " => 0,
                 "Combination.type" => "MAIN",
                 "Combination.visible" => 1,
                 "DATE(Combination.date) >= " => $this->_since//date("Y-m-d"),
             );
         }else{
             $cnd = array(
+                "Combination.stock_count > " => 0,
                 "Combination.type" => "MAIN",
                 "Combination.visible" => 1,
                 "DATE(Combination.date) >= " => $this->_since,//date("Y-m-d"),

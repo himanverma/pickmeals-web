@@ -8,7 +8,14 @@
         <!-- bootstrap 3.0.2 -->
         <script src="//cdnjs.cloudflare.com/ajax/libs/knockout/3.2.0/knockout-min.js"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/knockout.mapping/2.4.1/knockout.mapping.js"></script>
-
+        <script type="text/javascript">
+            if(navigator.userAgent.match(/Android/i)){
+                
+            }else{
+                window._cordovaNative = true;
+            }
+//            window._cordovaNative = true;
+        </script>
         <?php 
             echo $this->Html->css(array(
                 'cake.generic',
@@ -20,6 +27,7 @@
                 '//cdnjs.cloudflare.com/ajax/libs/chosen/1.4.1/chosen.min.css'
             ));
             echo $this->Html->script(array(
+                    'admin/cordova',
                     '//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js',
                     '//cdnjs.cloudflare.com/ajax/libs/chosen/1.1.0/chosen.jquery.min.js'
                     //'app/swt'
@@ -34,6 +42,7 @@
         
     </head>
     <body class="skin-blue">
+        <div class="gv-pnl">
         <?php echo $this->element('admin/header'); ?>
         <div class="wrapper row-offcanvas row-offcanvas-left">
             <?php echo $this->element('admin/leftsidebar'); ?>
@@ -70,8 +79,13 @@
                 padding:4px; 
             }
         </style>
-        <script type="text/javascript">
-            
-        </script>
+        </div>
+        <div id="map-canvas" style="display: none"></div>
+        <div id="gvm-panel" style="display: none">
+            <div id="gvm-msg"></div>
+            <button id="map-your-loc" class="btn btn-danger">You</button>
+            <button id="map-dest-loc" class="btn btn-danger">Destination</button>
+            <button id="map-hide" class="btn btn-danger">Close</button>
+        </div>
     </body>
 </html>
