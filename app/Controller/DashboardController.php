@@ -13,10 +13,13 @@ class DashboardController extends AppController {
     public $_since = "2015-2-19";
     public function beforeFilter() {
         parent::beforeFilter();
-        $this->Auth->allow(array('login'));
+        $this->Auth->allow(array('login','cordova','getNotRespondedOrders'));
     }
     
     public function login(){
+        if($this->Auth->user()){
+            $this->redirect("/Dashboard");
+        }
         $this->layout = "login";
     }
 
@@ -224,7 +227,24 @@ class DashboardController extends AppController {
         
         
     }
-    
+    public function cordova(){
+        
+    }
+    public function getNotRespondedOrders(){
+        $this->loadModel('Order');
+        $nOrders = $this->Order->find("all",array(
+            "conditions" => array(
+                "Order.responded" => 0
+            ),
+            "group" => "Order.sku",
+            "order" => "Order.id"
+        ));
+        $this->autoRender = false;
+        $this->response->type('json');
+        $this->response->body(json_encode(json_encode($nOrders)));
+    }
+
+
     public function t(){
         
         print_r("P-".$d);

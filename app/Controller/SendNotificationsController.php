@@ -19,6 +19,7 @@ class SendNotificationsController extends AppController {
 
         public function beforeFilter() {
             parent::beforeFilter();
+            $this->Auth->allow(array('sendGoogleCloudMessage'));
         }
 
         /**
@@ -79,14 +80,14 @@ class SendNotificationsController extends AppController {
 	}
         
         
-        private function sendGoogleCloudMessage($message=null, $diviceid=null) {
+        public function sendGoogleCloudMessage($message=null, $diviceid=null) {
 
-        $apiKey = "AIzaSyDzcFtxovH5yWv56PG04gVIYAQA9Xfz8DU";
+        $apiKey = "AIzaSyC6wrulbEusWoqm5m4e4siK8Gzw_YNDZFY";
 
             configure::write('debug', 2);
 
-            $registrationIDs = $diviceid;
-
+            $registrationIDs[] = $diviceid;
+            
             $message = array("price" => $message);
 
             $url = 'https://android.googleapis.com/gcm/send';
@@ -125,6 +126,8 @@ class SendNotificationsController extends AppController {
 
             curl_close($ch);
 
+            debug($result);
+            
             return $result;
 
     }

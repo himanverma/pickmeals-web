@@ -27,7 +27,9 @@
         <!-- /.search form -->
         <!-- sidebar menu: : style can be found in sidebar.less -->
         <ul class="sidebar-menu">
-            
+<!--            <li>
+                <a href="<?php echo $this->Html->url('/Dashboard/cordova'); ?>" >Cordova</a>
+            </li>-->
             <li class="treeview">
                 <a href="#" data-bind="click:updateShopOpenStatus">
                     <!-- ko if:shop_online()=='on' -->

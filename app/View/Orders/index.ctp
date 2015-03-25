@@ -34,7 +34,7 @@
                                 <a href="<?php echo $this->Html->url('/order/edit/' . $orderO['Order']['sku']); ?>" class="btn btn-default btn-sm">Edit</a>
                                 <button data-widget="collapse" class="btn btn-default btn-sm"><i class="fa fa-plus"></i></button>
                                 <?php if($orderO['Order']['long'] != "0.0" && $orderO['Order']['long'] != ""){ ?>
-                                <button class="btn btn-default btn-sm direction-mp" data-lng="<?php echo $orderO['Order']['long']; ?>" data-lat="<?php echo $orderO['Order']['lat']; ?>"><i class="fa fa-plus"></i> Directions</button>
+                                <button class="btn btn-default btn-sm direction-mp" data-lng="<?php echo $orderO['Order']['long']; ?>" data-lat="<?php echo $orderO['Order']['lat']; ?>"><i class="fa fa-plus"></i> Navigate</button>
                                 <?php } ?>
                                 <button data-widget="remove-me" data-url="<?php echo $this->Html->url('/orders/delete/' . $orderO['Order']['sku']); ?>" data-id="<?php echo $orderO['Order']['id']; ?>" class="btn btn-default btn-sm"><i class="fa fa-times"></i> Delete</button>
                             </div>
@@ -229,70 +229,33 @@
 <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery.form/3.51/jquery.form.min.js"></script>
 <script type="text/javascript">
 //    alert('web');
-    var myCords = {
-      lat: 0,
-      lng: 0
-    };
-    var pos = false;
-    var directionsDisplay;
-    var destn;
-    var directionsService = new google.maps.DirectionsService();
-    var map;
-
-    function initialize() {
-        directionsDisplay = new google.maps.DirectionsRenderer();
-         destn = new google.maps.LatLng(myCords.lat, myCords.lng);
-        var mapOptions = {
-            zoom: 4,
-//            center: destn
-        };
-        map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
-        directionsDisplay.setMap(map);
-    }
-    function calcRoute(lat,lng) {
-        $('#gvm-msg').html('Updating Location...');
-        //map.setCenter(new google.maps.LatLng(lat, lng));
-        var request = {
-            origin: new google.maps.LatLng(lat, lng),
-            destination: new google.maps.LatLng(myCords.lat, myCords.lng),
-            travelMode: google.maps.TravelMode.DRIVING
-        };
-        directionsService.route(request, function(response, status) {
-            if (status == google.maps.DirectionsStatus.OK) {
-              directionsDisplay.setDirections(response);
-            }
-          });
-       setTimeout(function(){$('#gvm-msg').html('');},6000);
-    }
+//    var myCords = {
+//      lat: 0,
+//      lng: 0
+//    };
+//    var pos = false;
     
     //--- Cordova init
-    var watchId = null;
-    var GLonSuccess = function(position) {
-//        alert(myCords.lat);
-//        alert(myCords.lng);
-        if(myCords.lat == 0 && myCords.lng == 0){
-            return;
-        }
-        pos = position;
-        calcRoute(position.coords.latitude,position.coords.longitude);
-    };
-
-    // onError Callback receives a PositionError object
-    //
-    function GLonError(error) {
-        alert('code: '    + error.code    + '\n' +
-              'message: ' + error.message + '\n');
-    }
-    function onDeviceReady() {
-        var watchId = navigator.geolocation.watchPosition(GLonSuccess,GLonError);
-        navigator.geolocation.getCurrentPosition(GLonSuccess, GLonError);                     
-    }
-    
-    document.addEventListener("deviceready", onDeviceReady, false);
+//    function onDeviceReady() {
+//        $('.direction-mp').on("click", function() {
+//            myCords.lat = parseFloat($(this).data('lat'));
+//            myCords.lng = parseFloat($(this).data('lng'));
+//            launchnavigator.navigate(
+//                [myCords.lat,myCords.lng],
+//                null,
+//                function(){
+////                    alert("Plugin success");
+//                },
+//                function(error){
+////                    alert("Plugin error: "+ error);
+//            });
+//        });
+//    }
+//    
+//    document.addEventListener("deviceready", onDeviceReady, false);
     //-- Cordova Over
     
     $(document).ready(function() {
-        initialize();
         $('.smsDelivery').ajaxForm({
             beforeSubmit: function(arr, $form, options) {
                 $($form).find('.sbmt-btn').addClass("disabled");
@@ -326,29 +289,9 @@
             $('.gv-pnl').show();
             $('html, body').removeClass('mp-visible');
         });
-        $('.direction-mp').on("click", function() {
-//            $('.gv-pnl').hide();
-//            $('#map-canvas, #gvm-panel').show();
-//            $('html, body').addClass('mp-visible');
-//            google.maps.event.trigger(map, "resize");
-            myCords.lat = parseFloat($(this).data('lat'));
-            myCords.lng = parseFloat($(this).data('lng'));
-            launchnavigator.navigate(
-                [myCords.lat,myCords.lng],
-                null,
-                function(){
-//                    alert("Plugin success");
-                },
-                function(error){
-//                    alert("Plugin error: "+ error);
-            });
-//            if(pos){
-//                calcRoute(pos.coords.latitude,pos.coords.longitude);
-//            }
-        });
+        
 
     });
-    initialize();
     
     
     
