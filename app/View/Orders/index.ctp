@@ -32,6 +32,9 @@
                                         , array('action' => 'changepaymentstatus', $orderO['Order']['id'] . "," . $orderO['Order']['customer_id']), array('class' => "btn btn-" . ($orderO['Order']['payment_status'] == "PENDING" ? "warning" : "success")), __('Are you sure?', $orderO['Order']['customer_id']));
                                 ?>
                                 <a href="<?php echo $this->Html->url('/order/edit/' . $orderO['Order']['sku']); ?>" class="btn btn-default btn-sm">Edit</a>
+                                <?php if($orderO['Order']['long'] != "0.0" && $orderO['Order']['long'] != ""){ ?>
+                                <button data-widget="collapse" class="btn btn-warning btn-sm">RESPOND</button>
+                                <?php } ?>
                                 <button data-widget="collapse" class="btn btn-default btn-sm"><i class="fa fa-plus"></i></button>
                                 <?php if($orderO['Order']['long'] != "0.0" && $orderO['Order']['long'] != ""){ ?>
                                 <button class="btn btn-default btn-sm direction-mp" data-lng="<?php echo $orderO['Order']['long']; ?>" data-lat="<?php echo $orderO['Order']['lat']; ?>"><i class="fa fa-plus"></i> Navigate</button>

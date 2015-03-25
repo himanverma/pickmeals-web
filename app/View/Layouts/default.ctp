@@ -157,7 +157,6 @@
                         }
                         greq_fw = $.post('<?php echo $this->Html->url('/Dashboard/getNotRespondedOrders'); ?>', function(d) {
                             d = JSON.parse(d);
-                            alert(d.length);
                             if (d.length == 0) {
                                 return false;
                             }
