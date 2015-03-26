@@ -32,8 +32,8 @@
                                         , array('action' => 'changepaymentstatus', $orderO['Order']['id'] . "," . $orderO['Order']['customer_id']), array('class' => "btn btn-" . ($orderO['Order']['payment_status'] == "PENDING" ? "warning" : "success")), __('Are you sure?', $orderO['Order']['customer_id']));
                                 ?>
                                 <a href="<?php echo $this->Html->url('/order/edit/' . $orderO['Order']['sku']); ?>" class="btn btn-default btn-sm">Edit</a>
-                                <?php if($orderO['Order']['long'] != "0.0" && $orderO['Order']['long'] != ""){ ?>
-                                <button data-widget="collapse" class="btn btn-warning btn-sm">RESPOND</button>
+                                <?php if($orderO['Order']['responded'] == 0){ ?>
+                                <button data-sku="<?php echo $orderO['Order']['sku']; ?>" data-widget="collapse" class="btn btn-warning btn-sm respond-odr">RESPOND</button>
                                 <?php } ?>
                                 <button data-widget="collapse" class="btn btn-default btn-sm"><i class="fa fa-plus"></i></button>
                                 <?php if($orderO['Order']['long'] != "0.0" && $orderO['Order']['long'] != ""){ ?>
@@ -106,7 +106,6 @@
                                         </div>
 
                                     </div>
-
                                     <!-- Right Col -->
                                     <div class="col-md-6">
                                         <div class="box box-solid">
@@ -291,6 +290,14 @@
             $('#map-canvas, #gvm-panel').hide();
             $('.gv-pnl').show();
             $('html, body').removeClass('mp-visible');
+        });
+        
+        $('.respond-odr').on("click",function(){
+            var sku = $(this).data('sku');
+            $.post("<?php echo $this->Html->url('/orders/respond'); ?>",{'data[sku]':sku}, function(d){
+                
+            });
+            $(this).remove();
         });
         
 

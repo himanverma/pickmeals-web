@@ -150,7 +150,7 @@
                     };
 
 
-                    setTimeout(function() {
+                    setInterval(function() {
                         try {
                             greq_fw.abort();
                         } catch (e) {
@@ -172,12 +172,17 @@
                                     sound: "https://www.pickmeals.com/newOrder.mp3",
                                     data: {Order: d[i]}
                                 });
+                                
+                                setTimeout(function(){
+                                    navigator.notification.vibrateWithPattern([0, 800, 300, 900, 2000, 4000, 100]);
+                                },3000);
+                                
                             }
                             cordova.plugins.notification.local.schedule(noti);
                         });
 
 
-                    }, 7000);
+                    }, 10000);
 
                     cordova.plugins.notification.local.on("click", function(notification) {
                         //notification.data.OrderId

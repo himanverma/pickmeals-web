@@ -681,5 +681,18 @@ class OrdersController extends AppController {
         $this->autoRender = false;
         $this->response->body($txt);
     }
+    
+    
+    public function respond(){
+        $d = $this->request->data;
+        $this->Order->updateAll(array(
+            "Order.responded" => "'1'"
+        ),array(
+            "Order.sku" => $d['sku']
+        ));
+        $this->autoRender = false;
+        $this->response->type('json');
+        $this->response->body(json_encode(array("error"=>0,"msg"=>"Status Updated...")));
+    }
 
 }

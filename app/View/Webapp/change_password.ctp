@@ -11,15 +11,15 @@
                 <div class="panel-body">
                     <div class="form-group">
                         <label for="exampleInputEmail1">Enter Current Password</label><br>
-                        <input style="width:100%" name="data[current_password]" type="text" class="form-control" id="exampleInputEmail1" placeholder="">
+                        <input style="width:100%" name="data[current_password]" type="password" class="form-control" id="exampleInputEmail1" placeholder="">
                     </div>
                     <div class="form-group">
                         <label for="exampleInputEmail1">Enter New Password</label><br>
-                        <input style="width:100%" name="data[new_password]" type="text" class="form-control" id="exampleInputEmail1" placeholder="Min 4 Characters">
+                        <input style="width:100%" name="data[new_password]" type="password" class="form-control" id="exampleInputEmail1" placeholder="Min 4 Characters">
                     </div>
                     <div class="form-group">
                         <label for="exampleInputEmail1">Confirm Password</label><br>
-                        <input style="width:100%" name="data[confirm_password]" type="text" class="form-control" id="exampleInputEmail1" placeholder="Same as new password">
+                        <input style="width:100%" name="data[confirm_password]" type="password" class="form-control" id="exampleInputEmail1" placeholder="Same as new password">
                     </div>
                 </div>
                 <div class="panel-footer">

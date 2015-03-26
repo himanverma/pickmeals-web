@@ -13,10 +13,14 @@ class DashboardController extends AppController {
     public $_since = "2015-2-19";
     public function beforeFilter() {
         parent::beforeFilter();
-        $this->Auth->allow(array('login','cordova','getNotRespondedOrders'));
+        $this->Auth->allow(array('sdkfix','login','cordova','getNotRespondedOrders'));
     }
     
-    public function login(){
+    public function sdkfix(){
+        $this->layout = "sdk8fix";
+    }
+
+        public function login(){
         if($this->Auth->user()){
             $this->redirect("/Dashboard");
         }

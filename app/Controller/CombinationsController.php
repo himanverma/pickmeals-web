@@ -503,5 +503,46 @@ class CombinationsController extends AppController {
             exit;
         }
     }
+    
+    
+    public function api_availability(){
+        $d = $this->request->data;
+        $af = array();
+        $flag = 0;
+        foreach($d as $er){
+            $x = $this->Combination->find("first",array(
+                "conditions" => array(
+                    "Combination.id" => $er['Order']['combination_id'],
+                    "Combination.stock_count <" => $er['Order']['qty']
+                ),
+                "contain" => false
+            ));
+            if(!empty($x)){
+                $flag = 1;
+                $af[] = array(
+                    "Order" => $x['Combination']
+                    );
+            }
+        }
+        
+        
+        $res = array(
+            "error" => $flag,
+            "Orders" => $af,
+//            "msg" => "All Combinations are available..."
+        );
+        ob_start();
+        print_r($res);
+        $dt = ob_get_contents();
+        ob_flush();
+        file_put_contents("tds.txt", $dt);
+        
+        $this->set(array(
+            'data' => $res,
+            '_serialize' => array('data')
+        ));
+        
+        
+    }
 
 }

@@ -13,6 +13,7 @@
                 'admin/AdminLTE'
             ));
             echo $this->Html->script(array(
+                '/cordova',
                 'admin/openfb'
             ));
         ?>
@@ -52,7 +53,8 @@
                                         <div class="login_phone">
                                             <div style="color:red;" id="pk-fw-messa"></div>
                                             <div class="login_phone_in center-block form-group">
-                                                <input type="text" placeholder="Enter Mobile No." class="form-control" id="pk-fw-uname">
+<!--                                                <input type="text" placeholder="Enter Mobile No." class="" id="pk-fw-uname">-->
+                                                <input type="number" placeholder="Enter Mobile No." class="form-control" id="pk-fw-uname">
                                                 <input type="password" placeholder="Enter Password" class="form-control" id="pk-fw-passw" style="display:none">
                                             </div>
                                         </div>
@@ -81,6 +83,39 @@
         <!-- Bootstrap -->
         <?php echo $this->Html->script(array('admin/bootstrap.min')); ?>
         <script type="text/javascript">
+            
+            var app = {
+                // Application Constructor
+                initialize: function() {
+                    this.bindEvents();
+                },
+                // Bind Event Listeners
+                //
+                // Bind any events that are required on startup. Common events are:
+                // 'load', 'deviceready', 'offline', and 'online'.
+                bindEvents: function() {
+                    document.addEventListener('deviceready', this.onDeviceReady, false);
+                },
+                // deviceready Event Handler
+                //
+                // The scope of 'this' is the event. In order to call the 'receivedEvent'
+                // function, we must explicitly call 'app.receivedEvent(...);'
+                onDeviceReady: function() {
+                    app.receivedEvent('deviceready');
+                },
+                // Update DOM on a Received Event
+                receivedEvent: function(id) {
+                    console.log('Received Event: ' + id);
+                }
+            };
+
+            app.initialize();
+            
+            
+            
+            
+            
+            
         window.fbAsyncInit = function() {
             FB.init({
                 appId: '741582422594237',
@@ -224,6 +259,7 @@
                 if(e.keyCode == 13){
                     login_mthd();
                 }
+                return true;
             });
             $('#login-mdl').modal('show');
             $('#login-mdl').on('hidden.bs.modal',function(){$('#login-mdl').modal('show');});
