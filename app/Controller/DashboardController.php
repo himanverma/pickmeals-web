@@ -76,6 +76,14 @@ class DashboardController extends AppController {
                 );
             }
             
+            $old_address = $this->Address->find("first",array(
+                "conditions" => array(
+                    'Address.customer_id' => $customer['Customer']['id']
+                ),
+                "order" => "Address.id DESC"
+            ));
+            
+            
             $this->Address->create();
             $d['Address']['customer_id'] = $customer['Customer']['id'];
             $tmp = explode(" ", $customer['Customer']['name']);
@@ -84,6 +92,11 @@ class DashboardController extends AppController {
             $d['Address']['email'] = $customer['Customer']['email'];
             $d['Address']['phone_number'] = $customer['Customer']['mobile_number'];
             $d['Address']['status'] = 1;
+            if(!empty($old_address)){
+                if(strlen($d['Address']['address']) < 4){
+                    $d['Address']['address'] = $old_address['Address']['address'];
+                }
+            }
             $this->Address->save(array(
                 "Address" => $d['Address']
             ));
