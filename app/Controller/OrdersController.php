@@ -493,7 +493,7 @@ class OrdersController extends AppController {
                 "Order.sku" => $order['Order']['sku']
             ));
         }
-        return $this->redirect(array('action' => 'index'));
+        return $this->redirect($this->request->referer());
     }
 
     /**
