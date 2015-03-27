@@ -31,13 +31,13 @@
                                         $orderO['Order']['payment_status'] == "PENDING" ? "Mark as Paid" : "Mark as Pending"
                                         , array('action' => 'changepaymentstatus', $orderO['Order']['id'] . "," . $orderO['Order']['customer_id']), array('class' => "btn btn-" . ($orderO['Order']['payment_status'] == "PENDING" ? "warning" : "success")), __('Are you sure?', $orderO['Order']['customer_id']));
                                 ?>
-                                <a href="<?php echo $this->Html->url('/order/edit/' . $orderO['Order']['sku']); ?>" class="btn btn-default btn-sm">Edit</a>
+<!--                                <a href="<?php echo $this->Html->url('/order/edit/' . $orderO['Order']['sku']); ?>" class="btn btn-default btn-sm">Edit</a>-->
                                 <?php if($orderO['Order']['responded'] == 0){ ?>
                                 <button data-sku="<?php echo $orderO['Order']['sku']; ?>" data-widget="collapse" class="btn btn-warning btn-sm respond-odr">RESPOND</button>
                                 <?php } ?>
-                                <button data-widget="collapse" class="btn btn-default btn-sm"><i class="fa fa-plus"></i></button>
+                                <button data-widget="collapse" class="btn btn-default btn-sm"><i class="fa fa-plus"></i> Expand</button>
                                 <?php if($orderO['Order']['long'] != "0.0" && $orderO['Order']['long'] != ""){ ?>
-                                <button class="btn btn-default btn-sm direction-mp" data-lng="<?php echo $orderO['Order']['long']; ?>" data-lat="<?php echo $orderO['Order']['lat']; ?>"><i class="fa fa-plus"></i> Navigate</button>
+                                <button class="btn btn-default btn-sm direction-mp" data-lng="<?php echo $orderO['Order']['long']; ?>" data-lat="<?php echo $orderO['Order']['lat']; ?>"><i class="fa fa-map-marker"></i> Navigate</button>
                                 <?php } ?>
                                 <button data-widget="remove-me" data-url="<?php echo $this->Html->url('/orders/delete/' . $orderO['Order']['sku']); ?>" data-id="<?php echo $orderO['Order']['id']; ?>" class="btn btn-default btn-sm"><i class="fa fa-times"></i> Delete</button>
                             </div>

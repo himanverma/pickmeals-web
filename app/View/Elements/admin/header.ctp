@@ -70,9 +70,19 @@
             <ul class="nav navbar-nav">
 
                 <!-- Messages: style can be found in dropdown.less-->
-                <li class="dropdown messages-menu">
+                <li class="messages-menu visible-lg">
                     <a href="/tests/getxorder"><i class="fa fa-download"></i> Download XLS</a>
                 </li>
+                <li class="messages-menu">
+                    <a href="/Dashboard/neworder"><i class="fa fa-plus-square"></i> New Order</a>
+                </li>
+                <li class="messages-menu">
+                    <a href="/orders"><i class="fa fa-qrcode"></i> Orders</a>
+                </li>
+                <li class="messages-menu">
+                    <a href="/combinations/today"><i class="fa fa-tasks"></i> Combinations</a>
+                </li>
+                <?php /* 
                 <li class="dropdown messages-menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <i class="fa fa-envelope"></i>
@@ -260,7 +270,7 @@
                         </li>
                     </ul>
                 </li>
-
+                */ ?>
                 <!-- User Account: style can be found in dropdown.less -->
                 <li style="margin-top: 12px;">
 

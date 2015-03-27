@@ -205,7 +205,11 @@ $(document).ready(function(){
       '.chosen-select-width'     : {width:"95%"}
     };
     for (var selector in config) {
-      $(selector).chosen(config[selector]);
+//      $(selector).chosen(config[selector]);
+        $(selector).select2({
+            placeholder: "Select a Customer",
+            allowClear: true
+          });
     }
 //    $('.chosen-select').chosen({
 //        no_results_text: "Oops, nothing found!",

@@ -30,20 +30,6 @@
 <!--            <li>
                 <a href="<?php echo $this->Html->url('/Dashboard/cordova'); ?>" >Cordova</a>
             </li>-->
-            <li class="treeview">
-                <a href="#" data-bind="click:updateShopOpenStatus">
-                    <!-- ko if:shop_online()=='on' -->
-                    <i class="fa fa-dashboard"></i>
-                    <span>Shop Status</span>
-                    <small class="badge pull-right bg-green">Open</small>
-                    <!-- /ko -->
-                    <!-- ko if:shop_online()=='off' -->
-                    <i class="fa fa-dashboard"></i>
-                    <span>Shop Status</span>
-                    <small class="badge pull-right bg-orange">Closed</small>
-                    <!-- /ko -->
-                </a>
-            </li>
             <li>
                 <a href="<?php echo $this->Html->url('/Dashboard/neworder'); ?>">
                     <i class="fa fa-dashboard"></i>
@@ -192,6 +178,27 @@
                     <li><a href="<?php echo $this->Html->url('/Splashs/');?>"><i class="fa fa-angle-double-right"></i> List All</a></li>
                     <li><a href="<?php echo $this->Html->url('/Splashs/add');?>"><i class="fa fa-angle-double-right"></i> Add New</a></li>
                 </ul>
+            </li>
+            <li class="treeview">
+                <a href="#" data-bind="click:updateShopOpenStatus">
+                    <!-- ko if:shop_online()=='on' -->
+                    <i class="fa fa-dashboard"></i>
+                    <span>Shop Status</span>
+                    <small class="badge pull-right bg-green">Open</small>
+                    <!-- /ko -->
+                    <!-- ko if:shop_online()=='off' -->
+                    <i class="fa fa-dashboard"></i>
+                    <span>Shop Status</span>
+                    <small class="badge pull-right bg-orange">Closed</small>
+                    <!-- /ko -->
+                </a>
+            </li>
+            <li>
+                <a href="/tests/getxorder" >
+                    <i class="fa fa-download"></i>
+                    <span>Download XLS</span>
+<!--                    <small class="badge pull-right bg-orange">Closed</small>-->
+                </a>
             </li>
             <li class="treeview">
                 <a href="#">

@@ -1,3 +1,4 @@
+<?php //print_r($vendor ); exit; ?>
 <div class="chef_profile">
     <div class="col-xs-12 col-sm-3 col-md-3">
         <div class="chef_profile_left">
@@ -71,7 +72,7 @@
                                             <a href="/reviews/<?php echo $combo['id']; ?>" ><span class="rateit" data-rateit-value="<?php echo $tRate; ?>" data-rateit-ispreset="true" data-rateit-readonly="true"></span>&nbsp;&nbsp;&nbsp;&nbsp;
                                             (<?php echo count($combo['Review']); ?>)</a>
                                             <div class="food_qty_button">
-                                               <button data-combo='<?php echo json_encode($combo); ?>' data-bind="click:addToCart">Order</button>
+<!--                                               <button data-combo='<?php echo json_encode($combo); ?>' data-bind="click:addToCart">Order</button>-->
                                             </div>
                                         </li>
                                         <li>
@@ -87,7 +88,7 @@
                         <div class="col-xs-2 col-sm-2 hidden-xs">
                             <div class="row">
                             <div class="food_qty_button">
-                                <button data-combo='<?php echo json_encode($combo); ?>' data-bind="click:addToCart">Order</button>
+<!--                                <button data-combo='<?php echo json_encode($combo); ?>' data-bind="click:addToCart">Order</button>-->
                             </div> </div>
                         </div>
                         <?php /*

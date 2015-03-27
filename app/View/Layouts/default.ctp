@@ -16,6 +16,8 @@
             }
 //            window._cordovaNative = true; 
         </script>
+        <link href="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0-rc.2/css/select2.min.css" rel="stylesheet" />
+        <script src="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0-rc.2/js/select2.min.js"></script>
         <?php
         echo $this->Html->css(array(
             'cake.generic',
@@ -24,12 +26,14 @@
             'admin/ionicons.min',
             'admin/AdminLTE',
             'admin/bootstrap-wysihtml5/bootstrap3-wysihtml5.min',
-            '//cdnjs.cloudflare.com/ajax/libs/chosen/1.4.1/chosen.min.css'
+            '//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0-rc.2/css/select2.min.css'
+//            '//cdnjs.cloudflare.com/ajax/libs/chosen/1.4.1/chosen.min.css'
         ));
         echo $this->Html->script(array(
             '/cordova',
             '//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js',
-            '//cdnjs.cloudflare.com/ajax/libs/chosen/1.1.0/chosen.jquery.min.js'
+            '//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0-rc.2/js/select2.min.js'
+//            '//cdnjs.cloudflare.com/ajax/libs/chosen/1.1.0/chosen.jquery.min.js'
                 //'app/swt'
         ));
         ?>

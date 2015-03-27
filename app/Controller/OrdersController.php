@@ -346,7 +346,7 @@ class OrdersController extends AppController {
      */
     public function index() {
         $this->Order->recursive = 0;
-        $this->Paginator->settings['limit'] = 8;
+        $this->Paginator->settings['limit'] = 15;
         $this->Paginator->settings['group'] = "Order.sku";
         $this->Paginator->settings['order'] = "Order.timestamp DESC";
         $x = $this->Paginator->paginate();

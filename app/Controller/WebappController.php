@@ -230,7 +230,11 @@ class WebappController extends AppController {
             "conditions" => array(
                 "Vendor.name LIKE" => $slug
             ),
-            "contain" => false
+            "contain" => array(
+                "Combination",
+                "DATE(Combination.date) >= ".$this->_since." AND Combination.visible = 1 AND Combination.type = 'MAIN'",
+                "Combination.Review"
+            )
 //            array(
 //                //"Combination.date BETWEEN '" . date("Y-m-d 00:00:00") . "' AND '" . date("Y-m-d 00:00:00", strtotime("+1 day")) . "'",
 //                //"DATE(Combination.date) >= ".$this->_since." AND Combination.visible = 1 AND Combination.type = 'MAIN'",
@@ -242,12 +246,13 @@ class WebappController extends AppController {
 //        print_r($vendor);
 //        exit;
         $this->loadModel('Review');
-        $rvCount = $this->Review->find("count",array(
+        $reviews = $this->Review->find("all",array(
             "conditions" => array(
                 "Review.vendor_id" => $vendor['Vendor']['id']
             )
         ));
-        
+        $rvCount = count($reviews);
+        $this->set("reviews", $reviews);
         $this->set("vendor", $vendor);
         $this->set("rvCount", $rvCount);
 //        debug($vendor);

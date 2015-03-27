@@ -202,13 +202,13 @@ class CombinationsController extends AppController {
      */
     public function index() {
         $this->Combination->recursive = 0;
-        $this->Paginator->settings['limit'] = 10;
+        $this->Paginator->settings['limit'] = 20;
         $this->set('combinations', $this->Paginator->paginate());
     }
 
     public function today() {
         $this->Combination->recursive = 0;
-        $this->Paginator->settings['limit'] = 10;
+        $this->Paginator->settings['limit'] = 20;
         $this->Paginator->settings['order'] = "Combination.id DESC";
         $this->set('combinations', $this->Paginator->paginate(
                         "Combination", array(
@@ -507,6 +507,12 @@ class CombinationsController extends AppController {
     
     public function api_availability(){
         $d = $this->request->data;
+        
+        ob_start();
+//        print_r($d);
+        file_put_contents("tdt.txt", ob_get_flush());
+        
+        
         $af = array();
         $flag = 0;
         foreach($d as $er){
@@ -532,10 +538,8 @@ class CombinationsController extends AppController {
 //            "msg" => "All Combinations are available..."
         );
         ob_start();
-        print_r($res);
-        $dt = ob_get_contents();
-        ob_flush();
-        file_put_contents("tds.txt", $dt);
+//        print_r($res);
+        file_put_contents("tds.txt", ob_get_flush());
         
         $this->set(array(
             'data' => $res,
