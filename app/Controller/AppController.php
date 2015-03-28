@@ -124,7 +124,8 @@ class AppController extends Controller {
                 'recipies',
                 'dishfilters',
                 'combinations',
-                'addresses'
+                'addresses',
+//                'devices'
             );
             if (in_array(strtolower($r['controller']), $controllers) && in_array(strtolower($r['action']), $actions) && !isset($r['ext'])) {
                 throw new NotFoundException("Sorry admin access is limited to few users...");
