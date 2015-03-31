@@ -1,6 +1,22 @@
 <div class="combinations index">
 	<h2><?php echo __('Combinations'); ?></h2>
         <div class="well">
+            <form method="post">
+                <div class="form-group">
+                    <input type="text" name="data[keyword]" class="form-control" placeholder="keyword..." />
+                </div>
+                <div class="form-group">
+                    <select name="data[field]" class="form-control">
+                        <option value="Combination.display_name">Display Name</option>
+                        <option value="Vendor.name">Vendor Name</option>
+                        <option value="Combination.stock_count">Stock Count</option>
+                        <option value="Combination.Price">Price</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary">Search</button>
+            </form>
+        </div>
+        <div class="well">
             <div class="btn-group">
                 <button class="btn btn-warning" id="hideSelected">Hide Selected</button>
                 <button class="btn btn-success" id="showSelected">Show Selected</button>
@@ -38,7 +54,7 @@
 		</td>
 		<td><?php echo h($combination['Combination']['display_name']); ?>&nbsp;</td>
 		<td><?php echo h($combination['Combination']['day']); ?>&nbsp;</td>
-		<td><?php echo h($combination['Combination']['date']); ?>&nbsp;</td>
+                <td title="<?php echo h($combination['Combination']['date']); ?>"><?php echo $this->Time->timeAgoInWords($combination['Combination']['date']); ?>&nbsp;</td>
                 <td class="stk-upd">
                     <div style="height:12px" align="center">
                         <img style="display:none;" src="/img/1.gif" />

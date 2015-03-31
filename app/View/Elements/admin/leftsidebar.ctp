@@ -31,6 +31,14 @@
                 <a href="<?php echo $this->Html->url('/Dashboard/cordova'); ?>" >Cordova</a>
             </li>-->
             <li>
+                <a href="<?php echo $this->Html->url('/Devices/notify'); ?>">
+                    <i class="fa fa-dashboard"></i>
+                    <span>App Notifications</span>
+                    <small class="badge pull-right bg-green">new</small>
+                    <i class="fa fa-plus pull-right"></i>
+                </a>
+            </li>
+            <li>
                 <a href="<?php echo $this->Html->url('/Dashboard/neworder'); ?>">
                     <i class="fa fa-dashboard"></i>
                     <span>Place Order</span>

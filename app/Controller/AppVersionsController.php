@@ -29,11 +29,13 @@ class AppVersionsController extends AppController {
         $this->loadModel("Device");
         if (isset($d['device_token'])) {
             $dt = $this->Device->find('first', array(
-                "Device.device_token" => $d['device_token']
+                "conditions" => array(
+                    "Device.device_token" => $d['device_token']
+                )
             ));
             if (empty($dt)) {
                 $this->Device->create();
-                $this->Device->save(array(
+                $t = $this->Device->save(array(
                     "Device" => array(
                         "device_token" => $d['device_token'],
                         "customer_id" => $d['customer_id'],

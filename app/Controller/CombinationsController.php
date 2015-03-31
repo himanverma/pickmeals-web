@@ -19,11 +19,11 @@ class CombinationsController extends AppController {
      */
     public $components = array('Paginator', 'Session');
     public $_since = "2015-2-19";
+
     public function beforeFilter() {
         parent::beforeFilter();
         $this->Auth->allow(array('api_index', 'api_view', 'api_search', 'api_feedback'));
         $this->updateRatings();
-        
     }
 
     /* ------------------------------------------ Web-Services-Start---------------------------------------- */
@@ -37,22 +37,22 @@ class CombinationsController extends AppController {
         $long = $this->request->data['User']['longitude'];
         $count = $this->request->data['User']['count'];
         $cnd = array(
-                "Combination.stock_count > " => 0,
-                "Combination.visible" => 1,
-                "Combination.type" => "MAIN",
-                "DATE(Combination.date) >= " => $this->_since, // date("Y-m-d"),
-                "get_distance_in_miles_between_geo_locations($lat,$long,Vendor.lat,Vendor.long) <=" => 13.73
-            );
-        if($lat == 0 || $long == 0){
+            "Combination.stock_count > " => 0,
+            "Combination.visible" => 1,
+            "Combination.type" => "MAIN",
+            "DATE(Combination.date) >= " => $this->_since, // date("Y-m-d"),
+            "get_distance_in_miles_between_geo_locations($lat,$long,Vendor.lat,Vendor.long) <=" => 13.73
+        );
+        if ($lat == 0 || $long == 0) {
             $cnd = array(
                 "Combination.stock_count > " => 0,
                 "Combination.type" => "MAIN",
                 "Combination.visible" => 1,
                 "DATE(Combination.date) >= " => $this->_since // date("Y-m-d"),
-                //"get_distance_in_miles_between_geo_locations($lat,$long,Vendor.lat,Vendor.long) <=" => 3.73
+                    //"get_distance_in_miles_between_geo_locations($lat,$long,Vendor.lat,Vendor.long) <=" => 3.73
             );
         }
-        
+
         $combination1 = $this->Combination->find('count', array(
             "fields" => array("get_distance_in_miles_between_geo_locations($lat,$long,Vendor.lat,Vendor.long) as distance", "Vendor.*", "Combination.*"),
             //"order" => 'Combination.id DESC',
@@ -89,24 +89,24 @@ class CombinationsController extends AppController {
     public function api_get() {
         Configure::write('debug', 0);
 //        Configure::write('debug', 2);
-        $lat = $this->request->data['User']['latitude'] = 0.0;//30.7238504;
-        $long = $this->request->data['User']['longitude'] = 0.0;//76.8465098;
+        $lat = $this->request->data['User']['latitude'] = 0.0; //30.7238504;
+        $long = $this->request->data['User']['longitude'] = 0.0; //76.8465098;
 //        $count = $this->request->data['User']['count'] = 1;
         $lat = $this->request->data['User']['latitude'];
         $long = $this->request->data['User']['longitude'];
-        if($lat == 0.0 || $long == 0.0){
+        if ($lat == 0.0 || $long == 0.0) {
             $cnd = array(
                 "Combination.stock_count > " => 0,
                 "Combination.type" => "MAIN",
                 "Combination.visible" => 1,
                 "DATE(Combination.date) >= " => $this->_since//date("Y-m-d"),
             );
-        }else{
+        } else {
             $cnd = array(
                 "Combination.stock_count > " => 0,
                 "Combination.type" => "MAIN",
                 "Combination.visible" => 1,
-                "DATE(Combination.date) >= " => $this->_since,//date("Y-m-d"),
+                "DATE(Combination.date) >= " => $this->_since, //date("Y-m-d"),
                 "get_distance_in_miles_between_geo_locations($lat,$long,Vendor.lat,Vendor.long) <=" => 3.73
             );
         }
@@ -122,8 +122,8 @@ class CombinationsController extends AppController {
             "conditions" => $cnd,
             "order" => 'RAND()',
         ));
-        
-        file_put_contents("files/apiget.txt", print_r($combination,true));
+
+        file_put_contents("files/apiget.txt", print_r($combination, true));
 
         $combination['list'] = $combination1;
         $this->set(array(
@@ -210,11 +210,21 @@ class CombinationsController extends AppController {
         $this->Combination->recursive = 0;
         $this->Paginator->settings['limit'] = 20;
         $this->Paginator->settings['order'] = "Combination.id DESC";
-        $this->set('combinations', $this->Paginator->paginate(
-                        "Combination", array(
-                    "DATE(Combination.date) >= " => $this->_since//date("Y-m-d")
-                        )
-        ));
+        if($this->request->is(array('post'))){
+            $dt = $this->Paginator->paginate(
+                    "Combination", array(
+                        "DATE(Combination.date) >= " => $this->_since, //date("Y-m-d"),
+                        "" . $this->request->data['field'] . " LIKE" => "%".$this->request->data['keyword']."%"
+                    )
+            );
+        }else{
+            $dt = $this->Paginator->paginate(
+                    "Combination", array(
+                        "DATE(Combination.date) >= " => $this->_since//date("Y-m-d")
+                    )
+            );
+        }
+        $this->set('combinations', $dt);
     }
 
     /**
@@ -263,7 +273,7 @@ class CombinationsController extends AppController {
         if (!$this->Combination->exists($id)) {
             throw new NotFoundException(__('Invalid combination'));
         }
-        
+
         if ($this->request->is(array('post', 'put'))) {
             if ($this->Combination->save($this->request->data)) {
                 $this->Session->setFlash(__('The combination has been saved.'));
@@ -312,40 +322,40 @@ class CombinationsController extends AppController {
         }
         exit;
     }
-    
+
     public function hideSelected() {
         if ($this->request->is(array('ajax', 'post'))) {
             $this->Combination->updateAll(array(
                 "Combination.visible" => 0
-            ), array(
+                    ), array(
                 "Combination.id" => $this->request->data['ids']
             ));
             echo 'done';
         }
         exit;
     }
+
     public function showSelected() {
         if ($this->request->is(array('ajax', 'post'))) {
             $this->Combination->updateAll(array(
                 "Combination.visible" => 1
-            ), array(
+                    ), array(
                 "Combination.id" => $this->request->data['ids']
             ));
             echo 'done';
         }
         exit;
     }
-    
-    
-    private function roundUpToAny($n,$x=5) {
-        return (round($n)%$x === 0) ? round($n) : round(($n+$x/2)/$x)*$x;
+
+    private function roundUpToAny($n, $x = 5) {
+        return (round($n) % $x === 0) ? round($n) : round(($n + $x / 2) / $x) * $x;
     }
 
     public function generate() {
         Configure::write('debug', 2);
         $this->loadModel('Recipe');
         $this->Recipe->recursive = 0;
-        $recipes = $this->Recipe->find('all',array(
+        $recipes = $this->Recipe->find('all', array(
             "order" => "Recipe.recipe_name ASC"
         ));
         $r = array();
@@ -370,23 +380,20 @@ class CombinationsController extends AppController {
                 $dishArr = array();
                 foreach ($data['Combination']['CombinationItem'] as $v) {
                     $dishArr[] = ltrim($v['image'], 'https://www.pickmeals.com/');
-                    if($v['is_thali'] == 'false'){
+                    if ($v['is_thali'] == 'false') {
                         $is_thali = false;
                     }
                 }
-                
+
                 if (count($dishArr) == 1) {      //for same dish in both 2 bowls
                     $dishArr[] = $dishArr[0];
                 }
 
-                $thali_pngs = $this->createThali($dishArr, $is_thali , 150);
+                $thali_pngs = $this->createThali($dishArr, $is_thali, 150);
                 $data['Combination']['image'] = $html->url("/" . $thali_pngs[2], true);
                 ///-------------Create Thali image end
-                
-                
                 //------------Vendor Cost and Price Logic starts
                 //vendor_cost
-                
                 //------------Vendor Cost and Price Logic ends
 
                 $this->Combination->saveAssociated($data, array('deep' => true));
@@ -412,7 +419,7 @@ class CombinationsController extends AppController {
         }
     }
 
-    public function createThali($dishArray = array(),$is_thali, $w = 140, $h = 0) {
+    public function createThali($dishArray = array(), $is_thali, $w = 140, $h = 0) {
         Configure::write('debug', 2);
         ini_set("max_execution_time", -1);
 
@@ -436,8 +443,8 @@ class CombinationsController extends AppController {
 
             $dish->scaleimage($thali1->getimagewidth(), $thali1->getimageheight()); // Set As per bowl image
 
-            
-            if($is_thali){
+
+            if ($is_thali) {
                 if ($mask_cnt == 1) {
                     $dish->rotateimage("#fff", 180);
                 }
@@ -452,8 +459,7 @@ class CombinationsController extends AppController {
 
                 $thali3->compositeimage($dish, \Imagick::COMPOSITE_ATOP, 0, 0, Imagick::CHANNEL_ALPHA);
                 $thali3->mergeimagelayers(Imagick::LAYERMETHOD_COALESCE);
-                
-            }else{
+            } else {
                 $thali3 = $dish;
             }
 
@@ -467,7 +473,7 @@ class CombinationsController extends AppController {
         $thali1->setimageformat("jpg");
         $thali1->setImageFileName($result_urls[] = $url . "-0" . $url_end);
         $thali1->scaleimage($w, $h);
-        if($is_thali){
+        if ($is_thali) {
             $thali2->writeimage();
         }
         $thali1->destroy();
@@ -475,7 +481,7 @@ class CombinationsController extends AppController {
         $thali2->setimageformat("jpg");
         $thali2->setImageFileName($result_urls[] = $url . "-1" . $url_end);
         $thali2->scaleimage($w, $h);
-        if($is_thali){
+        if ($is_thali) {
             $thali2->writeimage();
         }
         $thali2->destroy();
@@ -489,49 +495,48 @@ class CombinationsController extends AppController {
 
         return $result_urls;
     }
-    
-    public function upd(){
+
+    public function upd() {
         $this->autoRender = false;
-        if($this->request->is(array('post'))){
+        if ($this->request->is(array('post'))) {
             $d = $this->request->data;
             $this->Combination->updateAll(array(
-                "Combination.stock_count" => "'".$d['val']."'"
-            ), array(
-               "Combination.id" => $d['id'] 
+                "Combination.stock_count" => "'" . $d['val'] . "'"
+                    ), array(
+                "Combination.id" => $d['id']
             ));
             echo 'done';
             exit;
         }
     }
-    
-    
-    public function api_availability(){
+
+    public function api_availability() {
         $d = $this->request->data;
-        
+
         ob_start();
 //        print_r($d);
         file_put_contents("tdt.txt", ob_get_flush());
-        
-        
+
+
         $af = array();
         $flag = 0;
-        foreach($d as $er){
-            $x = $this->Combination->find("first",array(
+        foreach ($d as $er) {
+            $x = $this->Combination->find("first", array(
                 "conditions" => array(
                     "Combination.id" => $er['Order']['combination_id'],
                     "Combination.stock_count <" => $er['Order']['qty']
                 ),
                 "contain" => false
             ));
-            if(!empty($x)){
+            if (!empty($x)) {
                 $flag = 1;
                 $af[] = array(
                     "Order" => $x['Combination']
-                    );
+                );
             }
         }
-        
-        
+
+
         $res = array(
             "error" => $flag,
             "Orders" => $af,
@@ -540,13 +545,11 @@ class CombinationsController extends AppController {
         ob_start();
 //        print_r($res);
         file_put_contents("tds.txt", ob_get_flush());
-        
+
         $this->set(array(
             'data' => $res,
             '_serialize' => array('data')
         ));
-        
-        
     }
 
 }

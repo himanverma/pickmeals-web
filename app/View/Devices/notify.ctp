@@ -1,4 +1,6 @@
-<section class="content">
+<?php //print_r($devices); exit; ?>
+
+<section class="content" id="ibx-r6">
     <div class="row">
         <section class="col-lg-6 connectedSortable">
             <!-- Map box -->
@@ -16,7 +18,14 @@
                     </h3>
                 </div>
                 <div class="box-body no-padding">
-                    <?php print_r($result); ?>
+                    <div>
+                        <div class="form-group">
+                            <textarea class="form-control"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <button type="button">Send</button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -46,15 +55,14 @@
                                 </th>
                                 <td></td>
                                 <th>
-                                    Combination Details
+                                    Device Details
                                 </th>
-                                <th>
-                                    Qty
-                                </th>
-                                <th>Total</th>
+                                
+                                <th>Register on</th>
                             </tr>
                         </thead>
-                        <tbody data-bind="foreach: combinations ">
+                        <tbody>
+                            <?php foreach($devices as $dv){ ?>
                             <tr>
                                 <td style="vertical-align: middle;">
                                     <input class="simple" type="checkbox" data-bind="value: jsonval , checked:$root.selectedCombinations " value="" />
@@ -64,16 +72,14 @@
                                 </td>
                                 <td>
                                     <b data-bind="text:Combination.display_name "></b>
-                                    <p>Vendor: <span data-bind="text:Vendor.company_name"></span></p>
-                                    <p>Price: Rs. <span data-bind="text:Combination.price"></span>/=</p>
+                                    <p>Name: <?php echo $dv['Customer']['name']; ?></p>
+                                    <p>Mobile Number. <?php echo $dv['Customer']['mobile_number']; ?></p>
                                 </td>
                                 <td>
-                                    <input data-bind="value:qty" type="number" min="1" max="20" value="1"/>
-                                </td>
-                                <td>
-                                    <b>Rs. <!-- ko text:total --><!-- /ko -->/=</b>
+                                    <?php echo $dv['Customer']['registered_on']; ?>
                                 </td>
                             </tr>
+                            <?php } ?>
                         </tbody>
                     </table>
                 </div>
@@ -81,3 +87,12 @@
         </section>
     </div>
 </section>
+<script type="text/javascript">
+    var NotifyVM = function(){
+        var me = this;
+        me.sendNotify = function(){
+            
+        };
+    };
+    
+</script>

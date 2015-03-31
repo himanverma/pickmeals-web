@@ -42,7 +42,7 @@
  .food_qty_button > img {width: 100% !important;}
 .food_qty_button button { width: 100% !important; margin: 0px !important;}
 
-.call-number {padding: 14px 0 0; font-size: 32pt;}
+.call-number {padding: 14px 0 0; font-size: 22pt;}
 
 }
 
@@ -57,8 +57,6 @@
         float: left;
         width: 100%;
     }
-
-    .call-number {padding: 18px 0 0; font-size: 25pt;}
     .list_box_right ul li h4 {   font-size: 15px;}
 
 
@@ -165,7 +163,7 @@
         padding: 0 0 0 26px;
     }
     
-    .call-number {padding: 18px 0 0; font-size: 25pt;}
+    .call-number {padding: 18px 0 0 !important; font-size: 17pt;}
 
 
     /*--25-1-2015--*/
@@ -202,7 +200,7 @@
 @media screen and (max-width: 1000px){
     
     .top-txt {padding: 27px 0 !important;}
-    .call-number {padding: 20px 0 0;}
+    .call-number {padding: 18px 0 0 !important; font-size: 15pt;}
 
     .home-video {
         display: none;
@@ -555,7 +553,6 @@
 @media screen and (max-width: 800px){
     
     .top-txt {padding: 27px 0 !important;}
-    .call-number {padding: 20px 0 0;}
 
     .home_content {margin: 0 0;}
     .placeorder_right ul li textarea{width:100%;}
@@ -695,7 +692,6 @@
 
 @media screen and (max-width: 768px){
     
-    .call-number {padding: 10px 0 0;}
 
     nav {top: 4px !important; height: 20px; z-index:999 !important;}
     .home_content {margin: 31px 0 0;}
@@ -1022,6 +1018,7 @@ footer {padding: 0 0 70px;}
 }
 .header_nav{background: #e3e3e3;}
 .logo img {margin-top: 0px;}
+.call-number {font-size: 22pt; display: none;}
 
 }
 
@@ -1042,7 +1039,7 @@ footer {padding: 0 0 70px;}
     .top-txt {float: right; padding: 20px 0 !important;}
     .navbar-nav img{width: 100%;float: left; padding: 5%;}
     
-    .call-number {font-size: 22pt;}
+    .call-number {font-size: 22pt; display: none;}
     .top-txt {padding: 15px 0 !important;}
 
     .navbar-nav > li > a {clear: both;width: 100%;}

@@ -28,7 +28,7 @@
 
 
 
-        <nav class="navbar navbar-default visible-xs" role="navigation" style="position: absolute; right: 0; z-index: 2;">
+        <nav class="navbar navbar-default visible-xs" role="navigation" style="position: absolute; right: 0; z-index: 2; display: none !important;">
             <div class="container-fluid">
                 <!-- Brand and toggle get grouped for better mobile display -->
                 <div class="col-sm-12 padding-none">
